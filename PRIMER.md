@@ -66,6 +66,9 @@ Eigenschaften:
 | bb-5kbc, geo-lod, poseidon2lod | nicht in diesen Grafiken; eigene Case-Study-Folien nach Ogham und Holy Wells | 2026-09-22 |
 | Stil | wie bb-5kbc-visuals; Palette: GND ocker, Community-Hubs petrol, GeoNames grau, „ohne Koordinate“ rot gestrichelt, Zitate amber | 2026-09-22 |
 | Zitate | pro Grafik gemeinsam auswählen; Grafik 1: A1 + A2 (Autorentext S. 119); Grafik 2: Z2, Z4, Z6 + P3, P4, P5, P6; Z3 verworfen (würde Ketts Worte gegen ihn wenden) | 2026-09-22 |
+| Einleitung | zwei Zusatzgrafiken in `img/00-einleitung/`: 00a „Drei Drehkreuze“ (Idee A), 00b „Dicht und dünn“ (Idee B); c't-Bilder (Cover, Aufmacher, GND-Explorer-Graph) nicht im Repo, nur gestrichelte Rahmen mit Bildnachweis (00a); eigene GND-Explorer-Screenshots (Berners-Lee, Goethe) eingebettet in 00b (`data/raw/screenshots/`); in 00a statt des c't-Berners-Lee-Bilds das Beispiel Konrad Zuse (Namensgeber des Tagungsorts): eigener GND-Explorer-Screenshot, Geburts-/Sterbeort auf schematischer Deutschlandkarte, Foto W. Hunscher (CC BY-SA 3.0); Platzhalter nur als Text, ohne Rahmen; allgemeine Zitate E1–E3, F1–F3; Zahlen in `ct/facts.yaml` | 2026-09-22 |
+| Zitatboxen | fester Höhe: kursiv, Schrift so groß, dass der Text die Box füllt (`svg_quote_fill`); Boxen einer Reihe teilen eine Schriftgröße (Minimum der Einzelgrößen); gilt für 00a, 00b, 01, 03 — 02 hat mitwachsende Karten | 2026-09-22 |
+| Folien-Untertitel | kurze Variante: 00a „Drei Drehkreuze: GND, Wikiversum und OSM“, 00b „Dicht bei Personen, dünn bei Fundstellen“, 01 „Ohne Geometrie bleibt offen, welches Garranes gemeint ist“, 02 „Beide Seiten bewegen sich auf Wikibase zu“, 03 „Die Nische ist der Hub – und jede Aussage hat eine Quelle“ | 2026-09-22 |
 | Grafik 3 | Zitate Z5 (Achse), Z7 (Auszug), Z9 (Auszug); Z8 verworfen (neben Z7 konfrontativ), Z1 nicht verwendet; OSM-Nutzernamen dürfen genannt werden (öffentlich); Lissacresig-Karte weggelassen (würde verwirren) — faires Gegenbeispiel ist der wikidata-Tag am Stein | 2026-09-22 |
 | Grafik 2 rechts | der Stein CIIC 81 (Q130529871) als Beispiel der Föderation, angebunden an Garranes über P189 — der rote Faden: Ort (Grafik 1) → Objekt (Grafik 2) | 2026-09-22 |
 | Repo-Name | `hdoku26-visuals` (github.com/florianthiery/hdoku26-visuals) | 2026-09-22 |
@@ -89,6 +92,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 |---|---|---|---|
 | S0 | Festlegungen (Grafikfolge, Leitbeispiel, Palette) | — | erledigt 2026-09-22 |
 | S1 | Skelett: main.py, Utils, Daten, Lizenz | S0 | erledigt 2026-09-22 |
+| S1b | Einleitungsgrafiken 00a, 00b | S1 | Entwurf 2026-09-22 |
 | S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |

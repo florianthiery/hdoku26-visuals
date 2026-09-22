@@ -20,11 +20,18 @@ baked in, German and English versions of every figure, deterministic output.
 
 ## Figures
 
-| # | Figure | Files |
-|---|---|---|
-| 01 | Garranes: one name, several places — what the GND record says, what Wikidata/Logainm/OSM and GeoNames say, and how far apart they are | `img/01-ein-name-viele-orte/ein-name-viele-orte.{de,en}.{svg,png}` |
-| 02 | Both sides moving towards Wikibase — the GND today and next (GNDplus, NFDI geodata module) set against CIIC 81, the stone from Garranes, as it already lives in a federated Wikibase ecosystem and in OpenStreetMap | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
-| 03 | The niche is the hub — on the DNB's own axis (Wikidata … GNDplus … authority data), two mini knowledge graphs: Garranes, where two Wikidata items meet at the Logainm ID, and St. Lachtain's Well, where Wikidata and OSM point at each other; who entered the data; responsibility per statement | `img/03-nische-hub/nische-hub.{de,en}.{svg,png}` |
+| # | Figure | Slide caption (DE) | Files |
+|---|---|---|---|
+| 00a | Three hubs — GND, Wikidata/Wikibase and OpenStreetMap as the c't article describes the first two, the cooperation between them, and the bridge to OSM the article does not mention; placeholders for cover and opener; the example Konrad Zuse (GND Explorer graph, his two places on a schematic map, photo) | Drei Drehkreuze: GND, Wikiversum und OSM | `img/00-einleitung/drei-drehkreuze.{de,en}.{svg,png}` |
+| 00b | Dense and thin — GND Explorer graphs of Tim Berners-Lee and Goethe (own screenshots) above every edge of the GND record Garranes, with three quotations on why | Dicht bei Personen, dünn bei Fundstellen | `img/00-einleitung/dicht-und-duenn.{de,en}.{svg,png}` |
+| 01 | Garranes: one name, several places — what the GND record says, what Wikidata/Logainm/OSM and GeoNames say, and how far apart they are | Ohne Geometrie bleibt offen, welches Garranes gemeint ist | `img/01-ein-name-viele-orte/ein-name-viele-orte.{de,en}.{svg,png}` |
+| 02 | Both sides moving towards Wikibase — the GND today and next set against CIIC 81, the stone from Garranes, federated across Wikibases and OpenStreetMap | Beide Seiten bewegen sich auf Wikibase zu | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
+| 03 | The niche is the hub — on the DNB's own axis, two mini knowledge graphs (Garranes, St. Lachtain's Well), who entered the data, responsibility per statement | Die Nische ist der Hub – und jede Aussage hat eine Quelle | `img/03-nische-hub/nische-hub.{de,en}.{svg,png}` |
+
+Figure 00a contains text placeholders for two third-party pictures from the
+c't article (cover, opener). These pictures are not part of
+the repository; they are placed on the slide by hand, with the credit printed
+under each frame.
 
 ## Build
 
@@ -44,6 +51,7 @@ All inputs are under `data/raw/` and are described in
 
 ## Licence
 
-Code: MIT. Figures: CC BY 4.0. Wikidata content: CC0. GND data: CC0.
+Code: MIT. Figures: CC BY 4.0, except the embedded photo of Konrad Zuse in
+00a (Wolfgang Hunscher, CC BY-SA 3.0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
 OpenStreetMap data: © OpenStreetMap contributors, ODbL. Natural Earth: public
 domain. Quotations from c't are short citations with attribution.

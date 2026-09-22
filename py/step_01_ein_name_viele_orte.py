@@ -359,17 +359,14 @@ def _quotes(parts: list[str], d: dict, lang: str) -> None:
     total_h = vu.CONTENT_Y1 - BOTTOM_Y
     gap = 16
     qh = (total_h - gap) / 2
+    size = min(vu.quote_fill_size(q["de"] if lang == "de" else q["en"], w, qh, lang, max_size=28)
+               for q in d["quotes"])
     for i, q in enumerate(d["quotes"]):
         qy = y + i * (qh + gap)
-        parts.append(f'<rect x="{x}" y="{qy:.1f}" width="{w}" height="{qh:.1f}" rx="10" '
-                     f'fill="{vu.QUOTE["fill"]}" stroke="{vu.QUOTE["stroke"]}" stroke-width="1.2"/>')
-        text = f"„{q['de']}“" if lang == "de" else f"“{q['en']}”"
-        block, _ = vu.svg_text_block(x + 22, qy + 36, text, w - 44, size=18, line_h=25, italic=True)
-        parts.append(block)
+        text = q["de"] if lang == "de" else q["en"]
         src = (f"c’t 19/2026, S. {q['page']}" if lang == "de"
                else f"c’t 19/2026, p. {q['page']} (translated)")
-        parts.append(vu.svg_text(x + w - 20, qy + qh - 14, src, size=12.5, color=vu.QUOTE["stroke"],
-                                 anchor="end"))
+        parts.append(vu.svg_quote_fill(x, qy, w, qh, text, src, lang, size=size))
 
 
 def build(lang: str = "de") -> list[str]:

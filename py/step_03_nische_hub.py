@@ -335,11 +335,11 @@ def _bottom(parts, d, lang):
               "… It is simply about responsibility and trust.")
     z9 = vu.t(lang, "Man muss immer wissen, woher die Daten stammen", "You always have to know where the data comes from")
     half = (B_W - 16) / 2
+    qsize = min(vu.quote_fill_size(t_, half, LOW_B - LOW_Y, lang, max_size=26) for t_ in (z7, z9))
     for i, (text, q) in enumerate(((z7, q7), (z9, q9))):
         src = f"{q['speaker']} · " + vu.quote_source(q, lang).split(" · ", 1)[-1]
-        card, _ = vu.svg_quote_card(bx + i * (half + 16), LOW_Y, half, text, src, lang, size=15,
-                                    min_h=LOW_B - LOW_Y)
-        parts.append(card)
+        parts.append(vu.svg_quote_fill(bx + i * (half + 16), LOW_Y, half, LOW_B - LOW_Y, text, src, lang,
+                                       size=qsize))
 
     # foundation
     parts.append(f'<rect x="{vu.MARGIN_X}" y="{BASE_Y}" width="{vu.CONTENT_X1 - vu.MARGIN_X}" '

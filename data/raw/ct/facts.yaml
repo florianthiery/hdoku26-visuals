@@ -1,0 +1,33 @@
+# Figures and facts stated in c't 19/2026, pp. 118-121 (E. Giardina), for the
+# introduction figures. Each entry: value as printed, page. Not quotations --
+# set as plain facts with the page reference.
+
+article:
+  title: "Von Karteikarten zur KI"
+  subtitle: "Bibliotheksdaten werden zum Wissensdrehkreuz für alle"
+  author: Enrico Giardina
+  issue: "c’t 2026, Heft 19 (4.9.2026)"
+  pages: "118–121"
+  images:
+    cover: {credit: "c’t 19/2026, Titel"}
+    opener: {page: 118, credit: "Bild: Ulrike Weis / KI / heise medien"}
+    gnd_graph: {page: 120, credit: "Bild: Deutsche Nationalbibliothek / GND Explorer",
+                caption: "Der GND Explorer stellt semantische Verknüpfungen als Graph dar. Ausgangspunkt: Tim Berners-Lee"}
+
+gnd:
+  records: {de: "über 10,3 Mio. Datensätze", en: "over 10.3 million records", page: 119}
+  persons_orgs: {de: "davon 6,6 Mio. Personen, 1,5 Mio. Organisationen", en: "incl. 6.6 million persons, 1.5 million organisations", page: 119}
+  licence: {de: "CC0 · Linked Open Data (RDF, JSON-LD)", en: "CC0 · Linked Open Data (RDF, JSON-LD)", page: 120}
+  services: {de: "GND Explorer · Abgleichdienst · SPARQL", en: "GND Explorer · reconciliation service · SPARQL", page: 120}
+  beacon: {de: "BEACON: Webseiten zeigen an, zu welchen GND-IDs sie Inhalte haben", en: "BEACON: websites declare which GND IDs they hold content for", page: 119}
+
+wikidata:
+  items: {de: "über 120 Mio. Einträge", en: "over 120 million items", page: 120}
+  community: {de: "über 40.000 Aktive pro Monat", en: "over 40,000 active contributors a month", page: 120}
+  software: {de: "Software: Wikibase", en: "software: Wikibase", page: 120}
+
+cooperation:
+  - {de: "Wikipedia-Community meldet seit 20 Jahren Fehler und Dubletten", en: "Wikipedia community has reported errors and duplicates for 20 years", page: 120}
+  - {de: "GND Explorer bindet Bilder aus Wikimedia Commons ein, wechselseitige Links", en: "GND Explorer embeds Wikimedia Commons images; mutual links", page: 120}
+  - {de: "DNB erprobt Wikibase seit 2019 · WikiLibrary-Manifest 2020", en: "DNB trials Wikibase since 2019 · WikiLibrary Manifesto 2020", page: 120}
+  - {de: "Barbara Fischer war bis 2018 bei Wikimedia Deutschland", en: "Barbara Fischer worked at Wikimedia Deutschland until 2018", page: 120}

@@ -47,6 +47,7 @@ CANVAS_W = 1750
 CANVAS_H = 1000
 
 OUT_DIRS = {
+    "00-einleitung": IMG / "00-einleitung",
     "01-ein-name-viele-orte": IMG / "01-ein-name-viele-orte",
     "02-wikibase-konvergenz": IMG / "02-wikibase-konvergenz",
     "03-nische-hub": IMG / "03-nische-hub",
@@ -653,3 +654,115 @@ def svg_quote_card(x: float, y: float, w: float, text: str, source: str, lang: s
         block,
         svg_text(x + w - 18, y + h - 12, source, size=11.5, color=colors["stroke"], anchor="end"),
     ]), y + h
+
+
+def svg_image_frame(x: float, y: float, w: float, h: float, label: str, credit: str) -> str:
+    """Placeholder for a picture that is placed on the slide by hand
+    (third-party images are not embedded in the SVG): no outline, only the
+    label centred in the area -- covered by the picture once it is placed --
+    and the picture credit below the area."""
+    return "\n".join([
+        svg_text(x + w / 2, y + h / 2, label, size=14, weight=500, color=TEXT_MUTED,
+                 anchor="middle", baseline="central"),
+        svg_text(x, y + h + 17, credit, size=11, color=TEXT_MUTED),
+    ])
+
+
+ITALIC_WIDTH = 0.50   # Fira Sans italic runs narrower than the 0.56 upright estimate
+
+
+def _qwrap(text: str, max_width: float, size: float) -> list[str]:
+    lines, cur = [], ""
+    for word in text.split():
+        trial = f"{cur} {word}".strip()
+        if cur and len(trial) * size * ITALIC_WIDTH > max_width:
+            lines.append(cur)
+            cur = word
+        else:
+            cur = trial
+    return lines + ([cur] if cur else [])
+
+
+_Q_PAD_X, _Q_PAD_TOP, _Q_SRC_H = 26, 22, 34
+
+
+def _qmark(text: str, lang: str, quote_marks: bool) -> str:
+    if not quote_marks:
+        return text
+    return f"„{text}“" if lang == "de" else f"“{text}”"
+
+
+def quote_fill_size(text: str, w: float, h: float, lang: str, *, max_size: float = 34,
+                    min_size: float = 12, quote_marks: bool = True) -> float:
+    """Largest font size at which the italic quotation fits the card."""
+    text = _qmark(text, lang, quote_marks)
+    avail_w, avail_h = w - 2 * _Q_PAD_X, h - _Q_PAD_TOP - _Q_SRC_H
+    size = max_size
+    while size > min_size:
+        lines = _qwrap(text, avail_w, size)
+        if (len(lines) * size * 1.3 <= avail_h
+                and all(len(li) * size * ITALIC_WIDTH <= avail_w for li in lines)):
+            return size
+        size -= 0.5
+    return min_size
+
+
+def svg_quote_fill(x: float, y: float, w: float, h: float, text: str, source: str, lang: str, *,
+                   max_size: float = 34, size: float | None = None, colors: dict | None = None,
+                   quote_marks: bool = True) -> str:
+    """Quotation card of fixed size whose italic text fills it. Pass ``size``
+    (e.g. the minimum of ``quote_fill_size`` over a row of cards) so that
+    neighbouring cards share one type size; otherwise it is fitted per card.
+    The text block is vertically centred above the source line."""
+    colors = colors or QUOTE
+    size = size or quote_fill_size(text, w, h, lang, max_size=max_size, quote_marks=quote_marks)
+    text = _qmark(text, lang, quote_marks)
+    avail_w, avail_h = w - 2 * _Q_PAD_X, h - _Q_PAD_TOP - _Q_SRC_H
+    lines = _qwrap(text, avail_w, size)
+    line_h = size * 1.3
+    y0 = y + _Q_PAD_TOP + (avail_h - len(lines) * line_h) / 2 + size * 0.95
+    parts = [f'<rect x="{x}" y="{y:.1f}" width="{w}" height="{h:.1f}" rx="10" '
+             f'fill="{colors["fill"]}" stroke="{colors["stroke"]}" stroke-width="1.2"/>']
+    for k, line in enumerate(lines):
+        parts.append(svg_text(x + _Q_PAD_X, y0 + k * line_h, line, size=round(size, 1), italic=True))
+    parts.append(svg_text(x + w - 18, y + h - 13, source, size=12, color=colors["stroke"], anchor="end"))
+    return "\n".join(parts)
+
+
+def _image_size(data: bytes) -> tuple[int, int, str]:
+    """Pixel size and MIME type of a PNG or baseline/progressive JPEG."""
+    import struct
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        w, h = struct.unpack(">II", data[16:24])
+        return w, h, "image/png"
+    if data[:2] == b"\xff\xd8":
+        i = 2
+        while i < len(data):
+            marker, length = data[i + 1], struct.unpack(">H", data[i + 2:i + 4])[0]
+            if marker in (0xC0, 0xC1, 0xC2):
+                h, w = struct.unpack(">HH", data[i + 5:i + 9])
+                return w, h, "image/jpeg"
+            i += 2 + length
+    raise ValueError("unsupported image format")
+
+
+def svg_image_crop(x: float, y: float, w: float, h: float, img_path: Path,
+                   crop: tuple[int, int, int, int] | None = None) -> str:
+    """Embed a PNG or JPEG (base64, so the SVG stays self-contained) showing
+    only the ``crop`` region (x0, y0, x1, y1 in image pixels; whole image if
+    None), scaled to fit the box and centred. Clipped with an explicit
+    clipPath (resvg does not clip nested <svg> viewports); the clip id is
+    derived from the file name, so output stays deterministic."""
+    import base64
+    data = img_path.read_bytes()
+    iw, ih, mime = _image_size(data)
+    x0, y0, x1, y1 = crop or (0, 0, iw, ih)
+    cw, ch = x1 - x0, y1 - y0
+    s = min(w / cw, h / ch)
+    ox, oy = x + (w - cw * s) / 2, y + (h - ch * s) / 2
+    cid = "clip-" + "".join(c if c.isalnum() else "-" for c in img_path.stem)
+    b64 = base64.b64encode(data).decode("ascii")
+    return (f'<defs><clipPath id="{cid}"><rect x="{ox:.2f}" y="{oy:.2f}" width="{cw * s:.2f}" '
+            f'height="{ch * s:.2f}"/></clipPath></defs>'
+            f'<g clip-path="url(#{cid})"><image x="{ox - x0 * s:.2f}" y="{oy - y0 * s:.2f}" '
+            f'width="{iw * s:.2f}" height="{ih * s:.2f}" href="data:{mime};base64,{b64}"/></g>')

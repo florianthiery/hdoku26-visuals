@@ -1,0 +1,24 @@
+# Konrad Zuse -- the example in figure 00a (the venue, Konrad-Zuse-Zentrum
+# Berlin, is named after him; the c't article shows his GND record, p. 119).
+
+places:
+  # Places linked to Zuse in the GND Explorer graph (screenshot 2026-09-22).
+  # Coordinates are approximate town-centre positions used only to place two
+  # dots on a schematic outline map; they are not shown as numbers.
+  - label: Berlin-Wilmersdorf
+    relation: {de: Geburtsort, en: place of birth}
+    lat: 52.49
+    lon: 13.31
+  - label: Hünfeld
+    relation: {de: Sterbeort, en: place of death}
+    lat: 50.67
+    lon: 9.77
+
+photo:
+  file: images/konrad-zuse-hunscher.jpg
+  credit: "Foto: Wolfgang Hunscher, Dortmund, CC BY-SA 3.0, via Wikimedia Commons"
+  licence: http://creativecommons.org/licenses/by-sa/3.0/
+
+graph:
+  file: screenshots/gnd-explorer-zuse.png
+  crop: [70, 220, 2400, 1045]

@@ -139,3 +139,62 @@ P6:
   page: 120
   figures: ["02"]
   status: used
+
+# --- introduction figures (00) -------------------------------------------------
+
+E1:
+  de: "Entstehen soll ein großes Netzwerk, das Wissen aus allen Kultur- und Forschungseinrichtungen verknüpfen und schnell auffindbar machen soll."
+  en: "The aim is a large network that links knowledge from all cultural and research institutions and makes it quickly findable."
+  speaker: author
+  page: 118
+  figures: ["00a"]
+  status: used
+
+E2:
+  de: "Normdaten sind kein Selbstzweck. Wir brauchen sie, um in der schieren Masse an Informationen echtes Wissen hervorzubringen."
+  en: "Authority data are not an end in themselves. We need them to bring forth real knowledge from the sheer mass of information."
+  speaker: Jürgen Kett
+  page: 121
+  figures: ["00a"]
+  status: used
+
+E3:
+  de: "Die GND, wenngleich in ihrem Bestand kleiner, ergänzt diese Datenbank als spezialisiertes Instrument für wissenschaftliche und kulturelle Kontexte."
+  en: "The GND, although smaller in its holdings, complements this database as a specialised instrument for scholarly and cultural contexts."
+  speaker: author
+  page: 120
+  figures: ["00a"]
+  status: used
+
+E4:
+  de: "Seit zwei Jahrzehnten meldet etwa die Wikipedia-Community Fehler und Dubletten und unterstützt die GND-Redaktionen so bei der Normdatenpflege."
+  en: "For two decades the Wikipedia community has been reporting errors and duplicates, supporting the GND editorial teams in maintaining the authority data."
+  speaker: author
+  page: 120
+  figures: ["00a"]
+  status: used
+
+F1:
+  de: "Bibliotheken legen für Entitäten, die in ihren Systemen vorkommen, einen Datensatz in der GND an."
+  en: "Libraries create a GND record for entities that occur in their systems."
+  speaker: author
+  page: 119
+  figures: ["00b"]
+  status: used
+
+F2:
+  de: "Sie pflegen die Einträge anlassbezogen und nach strengen Standards."
+  en: "They maintain the records as the need arises and according to strict standards."
+  speaker: author
+  page: 119
+  note: '"Sie" = the GND agencies (GND-Agenturen) at the large library networks.'
+  figures: ["00b"]
+  status: used
+
+F3:
+  de: "Mit dem GND-Eintrag Johann Wolfgang von Goethes sind beispielsweise bereits fast 200 Webquellen verknüpft"
+  en: "Almost 200 web sources are already linked to the GND record of Johann Wolfgang von Goethe, for example"
+  speaker: author
+  page: 119
+  figures: ["00b"]
+  status: used

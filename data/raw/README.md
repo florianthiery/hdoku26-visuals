@@ -17,6 +17,11 @@ written by the pipeline, and no step reaches the network.
 | `manual/vgi.yaml` | Townland of Garranes in OSM since 2016 (townlands.ie), WikiProject Holy Wells, GND record Freshford (Somerset) | web pages / GND Explorer, 2026-09-22 |
 | `manual/federation.yaml` | CIIC 81 in the fuzzy-sl Wikibase (Item:Q74, two coordinates with certainty) and the planned CrossyBase | slide 18 of the DH Ireland-UK 2026 deck; approved abstract |
 | `naturalearth/ireland_outline.json` | Island-of-Ireland coastline polygons, 3 decimals | Natural Earth 1:10m admin-0 (public domain) via npm `world-atlas@2.0.2` `countries-10m.json` |
+| `screenshots/gnd-explorer-*.png` | GND Explorer graph views of Tim Berners-Lee, Goethe and Konrad Zuse (see `screenshots/README.md`) | taken by Florian Thiery, 2026-09-22 |
+| `images/konrad-zuse-hunscher.jpg` | Photo of Konrad Zuse by Wolfgang Hunscher, Dortmund, CC BY-SA 3.0, via Wikimedia Commons | Wikimedia Commons, 2026-09-22 |
+| `manual/zuse.yaml` | Zuse example: the two places linked in the GND graph (approximate positions for a schematic map), photo credit, graph crop | GND Explorer screenshot, 2026-09-22 |
+| `naturalearth/germany_outline.json` | Outline of Germany, 2 decimals, for the schematic map in 00a | Natural Earth 1:10m via npm `world-atlas@2.0.2` |
+| `ct/facts.yaml` | Figures and facts stated in the c't article (GND/Wikidata numbers, cooperation, picture credits), with page | transcribed from the article, 2026-09-22 |
 | `ct/quotes.yaml` | Quotations from c't 19/2026, pp. 118–121 (E. Giardina), with page, speaker and status | transcribed from the article, 2026-09-22 |
 
 `ct/quotes.yaml` holds short quotations only, for use with attribution. The

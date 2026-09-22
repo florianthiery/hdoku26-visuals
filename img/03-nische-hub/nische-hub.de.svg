@@ -132,13 +132,13 @@
 <text x="490.0" y="841.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12.5" fill="#5f5e5a">WikiProject Holy Wells</text>
 <text x="490.0" y="859.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13.5" font-weight="500" fill="#2c2c2a">Wikidata · Citizen Science</text>
 <rect x="910.0" y="745.0" width="382.0" height="135.0" rx="10" fill="#fff7dc" stroke="#7f6000" stroke-width="1.2"/>
-<text x="930.0" y="775.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-style="italic" fill="#2c2c2a">„… Es geht schlicht um Verantwortung und</text>
-<text x="930.0" y="796.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-style="italic" fill="#2c2c2a">Vertrauen.“</text>
-<text x="1274.0" y="868.0" text-anchor="end" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#7f6000">Barbara Fischer · c’t 19/2026, S. 120</text>
+<text x="936.0" y="798.6" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="22.5" font-style="italic" fill="#2c2c2a">„… Es geht schlicht um</text>
+<text x="936.0" y="827.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="22.5" font-style="italic" fill="#2c2c2a">Verantwortung und Vertrauen.“</text>
+<text x="1274.0" y="867.0" text-anchor="end" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#7f6000">Barbara Fischer · c’t 19/2026, S. 120</text>
 <rect x="1308.0" y="745.0" width="382.0" height="135.0" rx="10" fill="#fff7dc" stroke="#7f6000" stroke-width="1.2"/>
-<text x="1328.0" y="775.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-style="italic" fill="#2c2c2a">„Man muss immer wissen, woher die Daten</text>
-<text x="1328.0" y="796.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-style="italic" fill="#2c2c2a">stammen“</text>
-<text x="1672.0" y="868.0" text-anchor="end" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#7f6000">Barbara Fischer · c’t 19/2026, S. 121</text>
+<text x="1334.0" y="798.6" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="22.5" font-style="italic" fill="#2c2c2a">„Man muss immer wissen, woher</text>
+<text x="1334.0" y="827.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="22.5" font-style="italic" fill="#2c2c2a">die Daten stammen“</text>
+<text x="1672.0" y="867.0" text-anchor="end" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#7f6000">Barbara Fischer · c’t 19/2026, S. 121</text>
 <rect x="60" y="898" width="1630" height="52" rx="10" fill="#f4f3ef" stroke="#888780" stroke-width="1.4"/>
 <text x="80.0" y="925.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Verantwortung pro Aussage: jede Verknüpfung mit Quelle, Methode und Person – dokumentiert in den Crossys (NFDI4Objects TRAIL 2.5)</text>
 <text x="1670.0" y="925.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-style="italic" fill="#a03030">Pflegefall: wikidata=Q106680733 am Stein (Grafik 2)</text>
