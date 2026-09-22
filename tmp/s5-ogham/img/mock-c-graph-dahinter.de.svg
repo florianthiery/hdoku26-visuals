@@ -1,0 +1,258 @@
+<svg width="1750" height="1000" viewBox="0 0 1750 1000" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Mockup C – Der Graph hinter der Inschrift führt zurück zum Ort</title>
+<rect x="0" y="0" width="1750" height="1000" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="arrow-uncertain" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a03030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<text x="60.0" y="60.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">CIIC 178</text>
+<text x="170" y="62" font-family="Fira Sans" font-size="26" font-weight="500" letter-spacing="1.5"><tspan fill="#2c2c2a">E</tspan><tspan fill="#2c2c2a">R</tspan><tspan fill="#2c2c2a">C</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">M</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#2c2c2a">Q</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">M</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#2c2c2a">Q</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a">-</tspan><tspan fill="#2c2c2a">E</tspan><tspan fill="#2c2c2a">R</tspan><tspan fill="#2c2c2a">C</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#a03030">S</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#a03030">M</tspan><tspan fill="#a03030">U</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">D</tspan><tspan fill="#2c2c2a">O</tspan><tspan fill="#2c2c2a">V</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#a03030">N</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#a03030">A</tspan></text>
+<rect x="699.7" y="45.0" width="87.2" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="743.3" y="56.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">EpiDoc pgl</text>
+<rect x="796.9" y="45.0" width="127.5" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="860.7" y="56.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">OSM pgl-Latn · ?</text>
+<rect x="934.4" y="45.0" width="93.9" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="981.4" y="56.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Wikidata la</text>
+<text x="170.0" y="90.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">„of Erc son of Mac-Erce descendant? of Duibne“ · rot: in der Edition unsicher gelesen</text>
+<text x="170.0" y="115.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#5f5e5a">gelesen von</text>
+<rect x="254.0" y="104.0" width="116.6" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="312.3" y="115.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Macalister 1945</text>
+<rect x="374.6" y="105" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="385.6" y="116.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="410.6" y="104.0" width="97.3" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="459.2" y="115.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Cuppage 1986</text>
+<rect x="511.88" y="105" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="522.9" y="116.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="547.9" y="104.0" width="97.3" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="596.5" y="115.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">McManus 1991</text>
+<rect x="649.16" y="105" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="660.2" y="116.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="685.2" y="104.0" width="168.1" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="769.2" y="115.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">White (OG(H)AM) · ORCID</text>
+<rect x="857.28" y="105" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="868.3" y="116.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="60" y="210" width="172" height="58" rx="10" fill="#fff" stroke="#5f5e5a" stroke-width="1.4"/>
+<text x="146.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Stein CIIC 178</text>
+<text x="146.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q126503090</text>
+<rect x="86.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="99.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="117.5" y="274" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="130.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="148.5" y="274" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="161.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="179.5" y="274" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="192.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="340" y="210" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="426.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">ERC</text>
+<text x="426.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="9.5" fill="#5f5e5a">OP400203 · Wort ERC Q67382360</text>
+<rect x="366.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="379.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="397.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="410.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="428.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="441.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="459.5" y="274" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="472.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="620" y="210" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="706.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">MAQI-ERCIAS</text>
+<text x="706.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">OP400321</text>
+<rect x="646.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="659.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="677.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="690.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="708.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="721.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="739.5" y="274" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="752.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="900" y="210" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="986.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">DOVINIA</text>
+<text x="986.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">OP400175</text>
+<rect x="926.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="939.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="957.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="970.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="988.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="1001.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="1019.5" y="274" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="1032.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="1180" y="210" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="1266.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Corcu Duibne</text>
+<text x="1266.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Sippe / Tribus</text>
+<rect x="1206.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="1219.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="1237.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1250.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1268.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="1281.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="1299.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1312.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1430" y="210" width="260" height="58" rx="10" fill="#fff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="1560.0" y="231.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Baronie Corkaguiny</text>
+<text x="1560.0" y="251.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Corca Dhuibhne</text>
+<rect x="1500.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="1513.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="1531.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1544.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1562.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1575.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1593.5" y="274" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1606.5" y="285.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<line x1="1266.0" y1="176" x2="1266.0" y2="210" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 4"/><rect x="1207.0" y="150" width="118.0" height="26" rx="13" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/><text x="1266.0" y="163.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">GND denkbar</text>
+<line x1="1560" y1="176" x2="1560" y2="210" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 4"/><rect x="1501.0" y="150" width="118.0" height="26" rx="13" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/><text x="1560.0" y="163.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">GND denkbar</text>
+<line x1="146.0" y1="176" x2="146.0" y2="210" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 4"/><rect x="70.6" y="150" width="150.8" height="26" rx="13" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/><text x="146.0" y="163.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">GND denkbar (Objekt)</text>
+<text x="236.0" y="163.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#8a5a2a">GND</text>
+<line x1="232.0" y1="239.0" x2="340.0" y2="239.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="286.0" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Inschrift nennt</text>
+<line x1="512.0" y1="239.0" x2="620.0" y2="239.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="566.0" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">MAQI · Q67381254</text>
+<line x1="792.0" y1="239.0" x2="900.0" y2="239.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="846.0" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">MU(COI) · Q67999759</text>
+<line x1="1072.0" y1="239.0" x2="1180.0" y2="239.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1126.0" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Sippe</text>
+<line x1="1352.0" y1="239.0" x2="1430.0" y2="239.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1391.0" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Name</text>
+<rect x="900" y="400" width="172" height="58" rx="10" fill="#fff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="986.0" y="421.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Townland</text>
+<text x="986.0" y="441.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="9.0" fill="#5f5e5a">Coumeenoole North · Logainm 22572</text>
+<rect x="926.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="939.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="957.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="970.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="988.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1001.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1019.5" y="464" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="1032.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="340" y="400" width="172" height="58" rx="10" fill="#fff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="426.0" y="421.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">An Dún Mór</text>
+<text x="426.0" y="441.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="9.0" fill="#5f5e5a">Promontory Fort · Logainm 1394328</text>
+<rect x="366.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="379.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="397.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="410.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="428.5" y="464" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="441.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="459.5" y="464" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="472.5" y="475.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<path d="M 1560.0 300.0 L 1560.0 429.0 L 1072.0 429.0" fill="none" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1316.0" y="419.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">enthält</text>
+<line x1="900.0" y1="429.0" x2="512.0" y2="429.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="706.0" y="443.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">enthält</text>
+<path d="M 340.0 429.0 L 146.0 429.0 L 146.0 300.0" fill="none" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="243.0" y="419.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Fundort</text>
+<rect x="60.0" y="492.0" width="682.5" height="28" rx="14.0" fill="#dce8ea" stroke="#386870" stroke-width="1.2"/>
+<text x="401.2" y="506.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="13" font-weight="500" fill="#2c2c2a">DOVINIA führt über die Sippe zur Baronie – und die enthält den Fundort (McManus 1991, 111).</text>
+<line x1="60" y1="548" x2="1690" y2="548" stroke="#888780" stroke-width="1"/>
+<text x="60.0" y="594.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">CIIC 81</text>
+<text x="170" y="596" font-family="Fira Sans" font-size="26" font-weight="500" letter-spacing="1.5"><tspan fill="#2c2c2a">C</tspan><tspan fill="#a03030">A</tspan><tspan fill="#2c2c2a">S</tspan><tspan fill="#2c2c2a">S</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a">T</tspan><tspan fill="#2c2c2a">T</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#a03030">S</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">M</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#2c2c2a">Q</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">M</tspan><tspan fill="#2c2c2a">U</tspan><tspan fill="#a03030">C</tspan><tspan fill="#a03030">O</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a"> </tspan><tspan fill="#2c2c2a">C</tspan><tspan fill="#2c2c2a">A</tspan><tspan fill="#2c2c2a">L</tspan><tspan fill="#2c2c2a">L</tspan><tspan fill="#2c2c2a">I</tspan><tspan fill="#2c2c2a">T</tspan><tspan fill="#2c2c2a">I</tspan></text>
+<rect x="651.4" y="579.0" width="87.2" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="695.0" y="590.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">EpiDoc pgl</text>
+<rect x="748.6" y="579.0" width="214.9" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="856.0" y="590.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">OSM pgl-Latn · C[A]SSITT[A/O]</text>
+<rect x="973.4" y="579.0" width="93.9" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="1020.4" y="590.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Wikidata ga</text>
+<text x="170.0" y="624.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">Macalister 1945: -AS · Gippert 1987: -OS · OSM hält den Streit im Tag fest</text>
+<text x="170.0" y="649.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#5f5e5a">gelesen von</text>
+<rect x="254.0" y="638.0" width="116.6" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="312.3" y="649.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Macalister 1945</text>
+<rect x="374.6" y="639" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="385.6" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="410.6" y="638.0" width="97.3" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="459.2" y="649.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Gippert 1987</text>
+<rect x="511.88" y="639" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="522.9" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="547.9" y="638.0" width="97.3" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="596.5" y="649.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">McManus 2004</text>
+<rect x="649.16" y="639" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="660.2" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="685.2" y="638.0" width="97.3" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="733.8" y="649.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">O’Brien 2021</text>
+<rect x="786.4399999999999" y="639" width="22" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="797.4" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10" font-weight="500" fill="#8a887f">G?</text>
+<rect x="60" y="740" width="172" height="58" rx="10" fill="#fff" stroke="#5f5e5a" stroke-width="1.4"/>
+<text x="146.0" y="761.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Stein CIIC 81</text>
+<text x="146.0" y="781.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q130529871</text>
+<rect x="86.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="99.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="117.5" y="804" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="130.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="148.5" y="804" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="161.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="179.5" y="804" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="192.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="340" y="740" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="426.0" y="761.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">CASSITTAS</text>
+<text x="426.0" y="781.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">OP400067</text>
+<rect x="366.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="379.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="397.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="410.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="428.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="441.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="459.5" y="804" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="472.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="620" y="740" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="706.0" y="761.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">CALLITI</text>
+<text x="706.0" y="781.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">OP400061</text>
+<rect x="646.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="659.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="677.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="690.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="708.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="721.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="739.5" y="804" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="752.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="900" y="740" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="986.0" y="761.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Cailtrige</text>
+<text x="986.0" y="781.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10.5" fill="#5f5e5a">Ceinéal Caollaidhe · Sippe</text>
+<rect x="926.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="4 2"/>
+<text x="939.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="957.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="970.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="988.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="1001.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="1019.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1032.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1180" y="740" width="172" height="58" rx="29" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="1266.0" y="761.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#2c2c2a">Eoghanachta</text>
+<text x="1266.0" y="781.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Dynastie</text>
+<rect x="1206.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1219.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1237.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1250.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="1268.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="1281.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="1299.5" y="804" width="26" height="20" rx="4" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="1312.5" y="815.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<line x1="986.0" y1="708" x2="986.0" y2="740" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 4"/><rect x="927.0" y="682" width="118.0" height="26" rx="13" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/><text x="986.0" y="695.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">GND denkbar</text>
+<line x1="1266.0" y1="708" x2="1266.0" y2="740" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/><rect x="1207.0" y="682" width="118.0" height="26" rx="13" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/><text x="1266.0" y="695.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a887f">GND prüfen</text>
+<line x1="232.0" y1="769.0" x2="340.0" y2="769.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="286.0" y="755.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Inschrift nennt</text>
+<line x1="512.0" y1="769.0" x2="620.0" y2="769.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="566.0" y="755.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">MAQI MUCOI</text>
+<line x1="792.0" y1="769.0" x2="900.0" y2="769.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="846.0" y="755.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">O’Brien 2021</text>
+<line x1="1072.0" y1="769.0" x2="1180.0" y2="769.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="1126.0" y="755.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">Teil von</text>
+<rect x="1430" y="740" width="260" height="58" rx="10" fill="#fff" stroke="#9a9890" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="1560.0" y="769.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#9a9890">Ort? · kein Gebiet benannt</text>
+<line x1="1352.0" y1="769.0" x2="1430.0" y2="769.0" stroke="#73726c" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<rect x="60.0" y="836.0" width="617.0" height="28" rx="14.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="368.5" y="850.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="13" font-weight="500" fill="#2c2c2a">Hier bleibt die Kette offen: Die Sippe ist belegt, ein Gebiet mit Geometrie nicht.</text>
+<rect x="62.5" y="920" width="26" height="20" rx="4" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="75.5" y="931.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="93.5" y="920" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="106.5" y="931.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="124.5" y="920" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="137.5" y="931.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="155.5" y="920" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="168.5" y="931.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<text x="192.0" y="931.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">G GND · W Wikidata/Wikibase · O OpenStreetMap · F Fach-Hubs (Logainm, SMR, CISP, TM)</text>
+<rect x="818.0" y="921" width="26" height="18" rx="4" fill="#fff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="852.0" y="931.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">Ort</text>
+<rect x="888.0" y="921" width="26" height="18" rx="9" fill="#fff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="922.0" y="931.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">Begriff / Name</text>
+<rect x="60" y="953" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="112.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Satz vorhanden</text>
+<rect x="250" y="953" width="44" height="18" rx="9" fill="#fff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="302.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Eintrag denkbar (GND-Planung)</text>
+<rect x="520" y="953" width="44" height="18" rx="9" fill="#fff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="572.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vermutlich vorhanden, zu prüfen</text>
+</svg>
