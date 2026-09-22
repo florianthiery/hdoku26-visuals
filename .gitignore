@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+# img/ is NOT ignored: the figures are the repository's versioned, citable product.

@@ -1,0 +1,4 @@
+# Python >= 3.10
+resvg-py>=0.2      # SVG -> PNG in-process with the vendored Fira Sans; same renderer as bb-5kbc-visuals
+rdflib>=7.0        # reads the GND Turtle record in data/raw/gnd/
+PyYAML>=6.0        # reads data/raw/manual/*.yaml and data/raw/ct/quotes.yaml

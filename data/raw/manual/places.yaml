@@ -1,0 +1,47 @@
+# Facts read by hand from web pages (screenshots, 2026-09-22) for records that
+# could not be downloaded as data in the authoring session. Each entry names
+# its source; nothing here is estimated or inferred. Coordinates are WGS84.
+
+geonames_3299501:
+  label: Garranes
+  feature: Locality (L/LCTY)
+  lat: 51.94417
+  lon: -8.27028
+  hierarchy: [Ireland, Munster, Cork]
+  source: https://www.geonames.org/3299501/garranes.html
+  note: >-
+    Named by the GND record 1248049489 as its cataloguing source
+    ("GeoNames (Stand:20.12.2021) http://geotree.geonames.org/3299501/").
+
+gnd_1248049489_ui:
+  cataloguing_source: GeoNames (Stand:20.12.2021) http://geotree.geonames.org/3299501/
+  cataloguing_institution: DE-12
+  source: https://explore.gnd.network/gnd/1248049489
+  note: >-
+    The cataloguing source is shown in the GND Explorer ("Quellen für die
+    Metadaten") but is not part of the Turtle download.
+
+wikidata_Q31066388:
+  label: Garranes
+  description: hillfort in Cork
+  alias: Dooneen Point
+  instance_of: promontory fort
+  atlas_of_hillforts_id: "0879"
+  # 51°36'43.45"N, 9°59'2.36"W as displayed on the item page
+  lat: 51.612069
+  lon: -9.983989
+  source: https://www.wikidata.org/wiki/Q31066388
+
+lisnacaheragh:
+  label: Lisnacaheragh
+  note: >-
+    Ringfort in the townland of Garranes (Templemartin, Co. Cork). No
+    Wikidata item of its own (checked 2026-09-22); no coordinate is used
+    for it here. Named as the larger rath next to the Ogham findspot in the
+    CIIC/Brash account quoted on the fuzzy-sl Wikibase item Q74.
+
+cork_city:
+  label: Cork
+  lat: 51.8972
+  lon: -8.4700
+  note: Orientation marker only; approximate city-centre position.

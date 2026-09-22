@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498735 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="11071361392" visible="true" version="12" changeset="152307179" timestamp="2024-06-05T22:51:27Z" user="b-unicycling" uid="1713634" lat="51.8937150" lon="-8.4924208">
+  <tag k="historic" v="ogham_stone"/>
+  <tag k="indoor" v="yes"/>
+  <tag k="inscription" v="C[A]SSITT[A/O]S MAQI MU[CO]I CALLITI"/>
+  <tag k="inscription:pgl-Latn" v="C[A]SSITT[A/O] MAQI MU[CO]I CALLITI"/>
+  <tag k="level" v="0"/>
+  <tag k="moved" v="yes"/>
+  <tag k="moved_from" v="Garranes, Co. Cork souterrain"/>
+  <tag k="moved_to:wikidata" v="Q69379477"/>
+  <tag k="name" v="CIIC 81 / UCC 4"/>
+  <tag k="project" v="ogham.link"/>
+  <tag k="ref:IE:smr" v="CO074-148----"/>
+  <tag k="source" v="survey"/>
+  <tag k="source:inscription:pgl-Latn" v="information panel"/>
+  <tag k="url:sketchfab" v="https://skfb.ly/oVOIH"/>
+  <tag k="wikidata" v="Q106680733"/>
+ </node>
+</osm>

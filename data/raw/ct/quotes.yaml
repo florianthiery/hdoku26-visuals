@@ -1,0 +1,102 @@
+# Quotations from: Enrico Giardina, "Von Karteikarten zur KI. Bibliotheksdaten
+# werden zum Wissensdrehkreuz für alle", c't 2026, Heft 19, S. 118-121.
+# Verbatim from the article; soft hyphens removed. `speaker` is "author" when
+# the sentence is the journalist's own text (not a quote of Fischer/Kett),
+# "indirect" when it is reported speech (Konjunktiv) and must therefore NOT be
+# set in quotation marks as the person's words. `en` is our translation.
+#
+# Status: `used` = placed in a figure, `candidate` = proposed, not placed.
+
+A1:
+  de: "So gibt es zum Beispiel in Deutschland tausende Personen, die Thomas Müller heißen, Gemeinden, die Neustadt heißen, und Gebäude, die Rathaus heißen."
+  en: "In Germany, for example, there are thousands of people called Thomas Müller, municipalities called Neustadt and buildings called Rathaus."
+  speaker: author
+  page: 119
+  figures: ["01"]
+  status: used
+
+A2:
+  de: "Sie ersetzen die mehrdeutigen Namen durch eindeutige alphanumerische Kennungen, sogenannte Persistent Identifier."
+  en: "They replace ambiguous names with unique alphanumeric codes, so-called persistent identifiers."
+  speaker: author
+  page: 119
+  figures: ["01"]
+  status: used
+
+P1:
+  de: "Ziel war es, die Datenbank von einem reinen Werkzeug für Bibliothekskataloge zu einer zentralen Referenz für Kultur- und Forschungseinrichtungen im deutschsprachigen Raum zu entwickeln."
+  en: "The aim was to turn the database from a mere tool for library catalogues into a central reference for cultural and research institutions in the German-speaking world."
+  speaker: author
+  page: 119
+  status: candidate
+
+P2:
+  de: "Archive, Museen, Denkmalbehörden und wissenschaftliche Forschungseinrichtungen brächten völlig unterschiedliche Bestände ein, die sich nicht in bibliothekarische Erschließungsmuster pressen ließen."
+  en: "Archives, museums, heritage authorities and research institutions bring in entirely different holdings that cannot be squeezed into library indexing patterns."
+  speaker: indirect
+  person: Jürgen Kett
+  page: 119
+  status: candidate
+
+Z1:
+  de: "Man muss die Leute immer da abholen, wo sie stehen"
+  en: "You always have to meet people where they are"
+  speaker: Jürgen Kett
+  page: 119
+  status: candidate
+
+Z2:
+  de: "einen partizipativen Datenraum für Entitäten, die noch nicht normdatenreif sind, aber schon dauerhafte Identifikatoren brauchen"
+  en: "a participatory data space for entities that are not yet ready to be authority data but already need persistent identifiers"
+  speaker: Jürgen Kett
+  page: 120
+  status: candidate
+
+Z3:
+  de: "ohne dass alles sofort perfekt sein muss"
+  en: "without everything having to be perfect straight away"
+  speaker: Jürgen Kett
+  page: 120
+  status: candidate
+
+Z4:
+  de: "Wir wollen steuerbare Offenheit, die den Qualitätsansprüchen einer öffentlichen Einrichtung genügt"
+  en: "We want controllable openness that meets the quality standards of a public institution"
+  speaker: Barbara Fischer
+  page: 120
+  status: candidate
+
+Z5:
+  de: "eine Nische zwischen der großen weiten Datenwelt wie Wikidata und den strengen, eingekasteten Normdaten der Kultureinrichtungen"
+  en: "a niche between the big wide data world such as Wikidata and the strict, boxed-in authority data of cultural institutions"
+  speaker: Barbara Fischer
+  page: 120
+  status: candidate
+
+Z6:
+  de: "das gemeinsame Ziel: Zugang zu Wissen zu ermöglichen."
+  en: "the common goal: enabling access to knowledge."
+  speaker: Barbara Fischer
+  page: 120
+  status: candidate
+
+Z7:
+  de: "Die Institutionen im GND-Verbund stehen mit ihrem Verhaltenskodex für die Korrektheit der Daten ein. Es geht schlicht um Verantwortung und Vertrauen."
+  en: "The institutions in the GND network vouch for the correctness of the data with their code of conduct. It is simply about responsibility and trust."
+  speaker: Barbara Fischer
+  page: 120
+  status: candidate
+
+Z8:
+  de: "Man kann sich nicht nur darauf verlassen, dass es irgendwer in seiner Freizeit macht"
+  en: "You cannot just rely on someone doing it in their spare time"
+  speaker: Jürgen Kett
+  page: 121
+  status: candidate
+
+Z9:
+  de: "Quellenkritik wird im KI-Zeitalter schwieriger, aber gleichzeitig wichtiger denn je. Man muss immer wissen, woher die Daten stammen"
+  en: "Source criticism is becoming harder in the AI age, but at the same time more important than ever. You always have to know where the data comes from"
+  speaker: Barbara Fischer
+  page: 121
+  status: candidate
