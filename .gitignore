@@ -6,3 +6,4 @@ __pycache__/
 Thumbs.db
 .DS_Store
 # img/ is NOT ignored: the figures are the repository's versioned, citable product.
+PATCH-README.md
