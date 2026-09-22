@@ -65,7 +65,8 @@ Eigenschaften:
 | Nische | Hub-Funktion, Community-Daten (VGI), Mini-Wissensgraphen Wikidata–Logainm–OSM(–GND) plus daran hängende Infos — nicht „die GND hat nichts“ | 2026-09-22 |
 | bb-5kbc, geo-lod, poseidon2lod | nicht in diesen Grafiken; eigene Case-Study-Folien nach Ogham und Holy Wells | 2026-09-22 |
 | Stil | wie bb-5kbc-visuals; Palette: GND ocker, Community-Hubs petrol, GeoNames grau, „ohne Koordinate“ rot gestrichelt, Zitate amber | 2026-09-22 |
-| Zitate | pro Grafik gemeinsam auswählen; Grafik 1: A1 + A2 (Autorentext S. 119) | Vorschlag |
+| Zitate | pro Grafik gemeinsam auswählen; Grafik 1: A1 + A2 (Autorentext S. 119); Grafik 2: Z2, Z4, Z6 + P3, P4, P5, P6; Z3 verworfen (würde Ketts Worte gegen ihn wenden) | 2026-09-22 |
+| Grafik 2 rechts | der Stein CIIC 81 (Q130529871) als Beispiel der Föderation, angebunden an Garranes über P189 — der rote Faden: Ort (Grafik 1) → Objekt (Grafik 2) | 2026-09-22 |
 | Repo-Name | `hdoku26-visuals` (github.com/florianthiery/hdoku26-visuals) | 2026-09-22 |
 | Kennungs-Tags in Karten | alle gleich breit (volle Kartenbreite), Text linksbündig, gemeinsame Startlinie über alle Karten einer Reihe | 2026-09-22 |
 | Case Studies | gleiche Bildsprache wie Grafik 1–3, je eine Grafik: Ogham (2 Steine), Holy Wells (2 Brunnen), geo-lod, bb-5kbc, poseidon2lod | 2026-09-22 |
@@ -88,7 +89,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S0 | Festlegungen (Grafikfolge, Leitbeispiel, Palette) | — | erledigt 2026-09-22 |
 | S1 | Skelett: main.py, Utils, Daten, Lizenz | S0 | erledigt 2026-09-22 |
 | S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
-| S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | offen |
+| S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | offen |
 | S5 | Case Study Ogham (2 Steine) | S1 | offen |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
@@ -115,9 +116,14 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
 ### S3 — Grafik 2 „Zukunft“
 
-**Ziel:** links GND (GNDplus Z2/Z3, Geodaten-Modul P3, steuerbare Offenheit Z4), rechts föderiertes Wikibase-Ökosystem am CIIC 81 (Wikidata, FactGrid, Semantic Kompakkt, fuzzy-sl) und Semantic OSM, Mitte DNB-Wikibase seit 2019 + WikiLibrary-Manifest (P4), gemeinsames Ziel (Z6).
+**Ziel:** links GND (GNDplus Z2, Geodaten-Modul P3, steuerbare Offenheit Z4), rechts föderiertes Wikibase-Ökosystem am CIIC 81 (Wikidata, FactGrid, Semantic Kompakkt, fuzzy-sl) und Semantic OSM, Mitte roter Faden Garranes → CIIC 81 und die Brücke (P4, P5, Z6), Boden: Wikibase · LOD · CC0.
 
 **Abnahme:** wie S2.
+
+#### Entwurf 2026-09-22
+
+- Alle Verknüpfungen rechts aus `Q130529871.json` gelesen (P189, P8168, P1325, P2888, P11693, P4057, P14097); fuzzy-sl Q74 als Rückverweis (gestrichelt) aus `manual/federation.yaml`.
+- Befund: Der OSM-Tag `wikidata=Q106680733` zeigt nicht auf Q130529871; in Wikidata nur über P1382 „teilweise übereinstimmend“ verbunden — in der Grafik als Hinweis vermerkt, Überleitung zu Grafik 3 (Junctions dokumentieren).
 
 ### S4 — Grafik 3 „Die Nische ist der Hub“
 

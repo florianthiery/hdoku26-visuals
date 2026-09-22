@@ -1,0 +1,32 @@
+# Facts about CIIC 81 in Wikibase instances other than Wikidata, and about the
+# planned CrossyBase, for figure 02. Everything that IS in the Wikidata JSON
+# (FactGrid ID, Semantic Kompakkt URL, lod.ogham.link, OSM node, SMR,
+# coordinates) is read from data/raw/wikidata/Q130529871.json instead and is
+# deliberately not repeated here.
+
+fuzzy_sl_Q74:
+  label: Ogham Stone UCC Stone Corridor IV
+  url: https://fuzzy-sl.wikibase.cloud/wiki/Item:Q74
+  links_to_wikidata: Q130529871     # "related to" http://wikidata.org/entity/Q130529871
+  coordinates:
+    - place: UCC Cork
+      certainty: High
+      method: on-site survey
+      location_type: Exhibition Site
+    - place: Garranes
+      certainty: Low
+      method: Georeferencing
+      source_type: Textual Description / Paper
+      location_type: Findspot
+  source: >-
+    Slide 18 of F. Thiery, "Sustaining the Federated Knowledge Graph Ecosystem
+    for Digital Cultural Heritage in the British-Irish Isles", DH Ireland-UK
+    2026, Southampton (screenshot of fuzzy-sl Wikibase Item:Q74).
+
+crossybase:
+  label: CrossyBase
+  status: planned
+  note: >-
+    Wikibase-based environment in which the Crossy crosswalks (NFDI4Objects,
+    TRAIL 2.5) are to be curated as data; stated as future work in the
+    approved abstract.

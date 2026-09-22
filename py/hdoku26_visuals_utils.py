@@ -48,6 +48,7 @@ CANVAS_H = 1000
 
 OUT_DIRS = {
     "01-ein-name-viele-orte": IMG / "01-ein-name-viele-orte",
+    "02-wikibase-konvergenz": IMG / "02-wikibase-konvergenz",
 }
 
 MARGIN_X = 60

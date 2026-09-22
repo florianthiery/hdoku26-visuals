@@ -50,21 +50,23 @@ Z2:
   en: "a participatory data space for entities that are not yet ready to be authority data but already need persistent identifiers"
   speaker: Jürgen Kett
   page: 120
-  status: candidate
+  figures: ["02"]
+  status: used
 
 Z3:
   de: "ohne dass alles sofort perfekt sein muss"
   en: "without everything having to be perfect straight away"
   speaker: Jürgen Kett
   page: 120
-  status: candidate
+  status: rejected   # 2026-09-22: would turn Kett's own words against him
 
 Z4:
   de: "Wir wollen steuerbare Offenheit, die den Qualitätsansprüchen einer öffentlichen Einrichtung genügt"
   en: "We want controllable openness that meets the quality standards of a public institution"
   speaker: Barbara Fischer
   page: 120
-  status: candidate
+  figures: ["02"]
+  status: used
 
 Z5:
   de: "eine Nische zwischen der großen weiten Datenwelt wie Wikidata und den strengen, eingekasteten Normdaten der Kultureinrichtungen"
@@ -78,7 +80,8 @@ Z6:
   en: "the common goal: enabling access to knowledge."
   speaker: Barbara Fischer
   page: 120
-  status: candidate
+  figures: ["02"]
+  status: used
 
 Z7:
   de: "Die Institutionen im GND-Verbund stehen mit ihrem Verhaltenskodex für die Korrektheit der Daten ein. Es geht schlicht um Verantwortung und Vertrauen."
@@ -100,3 +103,36 @@ Z9:
   speaker: Barbara Fischer
   page: 121
   status: candidate
+
+P3:
+  de: "Derzeit entwickle man etwa für die Nationale Forschungsdateninfrastruktur ein Modul, um ortsbezogene GND-Einträge mit detaillierten Geodaten anzureichern. Projektpartner sind dabei die Staatsbibliothek zu Berlin und das Herder-Institut für historische Ostmitteleuropaforschung."
+  en: "A module is currently being developed for the National Research Data Infrastructure to enrich place-related GND records with detailed geodata. Project partners are the Berlin State Library and the Herder Institute for Historical Research on East Central Europe."
+  speaker: indirect
+  person: DNB (reported speech in the article)
+  page: 120
+  figures: ["02"]
+  status: used
+
+P4:
+  de: "Seit 2019 erprobt die DNB zudem die Software Wikibase, das technische Rückgrat von Wikidata, für eigene Zwecke."
+  en: "Since 2019 the DNB has also been trialling Wikibase, the software backbone of Wikidata, for its own purposes."
+  speaker: author
+  page: 120
+  figures: ["02"]
+  status: used
+
+P5:
+  de: "Strategisch untermauert wurde diese Zusammenarbeit zudem 2020 durch das gemeinsam verabschiedete WikiLibrary-Manifest, das den Aufbau eines offenen, semantischen Datennetzwerks auf Grundlage der Software erreichen soll"
+  en: "This cooperation was strategically underpinned in 2020 by the jointly adopted WikiLibrary Manifesto, which aims at building an open, semantic data network based on the software"
+  speaker: author
+  page: 120
+  figures: ["02"]
+  status: used
+
+P6:
+  de: "Die Normdaten werden frei unter der Creative-Commons-Zero-Lizenz (CC0) veröffentlicht."
+  en: "The authority data are published freely under the Creative Commons Zero licence (CC0)."
+  speaker: author
+  page: 120
+  figures: ["02"]
+  status: used

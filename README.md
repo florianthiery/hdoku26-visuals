@@ -23,6 +23,7 @@ baked in, German and English versions of every figure, deterministic output.
 | # | Figure | Files |
 |---|---|---|
 | 01 | Garranes: one name, several places — what the GND record says, what Wikidata/Logainm/OSM and GeoNames say, and how far apart they are | `img/01-ein-name-viele-orte/ein-name-viele-orte.{de,en}.{svg,png}` |
+| 02 | Both sides moving towards Wikibase — the GND today and next (GNDplus, NFDI geodata module) set against CIIC 81, the stone from Garranes, as it already lives in a federated Wikibase ecosystem and in OpenStreetMap | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
 
 ## Build
 
