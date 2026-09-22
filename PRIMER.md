@@ -66,6 +66,7 @@ Eigenschaften:
 | bb-5kbc, geo-lod, poseidon2lod | nicht in diesen Grafiken; eigene Case-Study-Folien nach Ogham und Holy Wells | 2026-09-22 |
 | Stil | wie bb-5kbc-visuals; Palette: GND ocker, Community-Hubs petrol, GeoNames grau, „ohne Koordinate“ rot gestrichelt, Zitate amber | 2026-09-22 |
 | Zitate | pro Grafik gemeinsam auswählen; Grafik 1: A1 + A2 (Autorentext S. 119); Grafik 2: Z2, Z4, Z6 + P3, P4, P5, P6; Z3 verworfen (würde Ketts Worte gegen ihn wenden) | 2026-09-22 |
+| Grafik 3 | Zitate Z5 (Achse), Z7 (Auszug), Z9 (Auszug); Z8 verworfen (neben Z7 konfrontativ), Z1 nicht verwendet; OSM-Nutzernamen dürfen genannt werden (öffentlich); Lissacresig-Karte weggelassen (würde verwirren) — faires Gegenbeispiel ist der wikidata-Tag am Stein | 2026-09-22 |
 | Grafik 2 rechts | der Stein CIIC 81 (Q130529871) als Beispiel der Föderation, angebunden an Garranes über P189 — der rote Faden: Ort (Grafik 1) → Objekt (Grafik 2) | 2026-09-22 |
 | Repo-Name | `hdoku26-visuals` (github.com/florianthiery/hdoku26-visuals) | 2026-09-22 |
 | Kennungs-Tags in Karten | alle gleich breit (volle Kartenbreite), Text linksbündig, gemeinsame Startlinie über alle Karten einer Reihe | 2026-09-22 |
@@ -90,7 +91,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S1 | Skelett: main.py, Utils, Daten, Lizenz | S0 | erledigt 2026-09-22 |
 | S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
-| S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | offen |
+| S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |
 | S5 | Case Study Ogham (2 Steine) | S1 | offen |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
 | S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
@@ -130,6 +131,13 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 **Ziel:** Mini-Wissensgraph Townland Garranes (Wikidata–Logainm–OSM, GND gestrichelt „Anschluss nach Identitätsklärung“), Holy Well als zweiter Teilgraph, VGI-Band, Crossys/TRAIL 2.5 als Fundament; Z7/Z8 als geteilter Anspruch, Z9 als Schluss.
 
 **Abnahme:** wie S2.
+
+#### Entwurf 2026-09-22
+
+- Befund: Townland Q104295278 und Ogham-Site Q69385525 sind in Wikidata **nicht direkt verknüpft** (Site-P131 nennt Kinalmeaky, Templemartin, Munster, Cork — nicht das Townland). Beide tragen Logainm 8299 → in der Grafik als Treffpunkt/Junction gezeigt.
+- Holy Well: Wikidata und OSM verweisen gegenseitig aufeinander (P10689 ↔ `wikidata=`), SMR und Namensgeber stimmen in beiden überein; 22 P1343-Belege, einer davon mit zwei dúchas.ie-URLs.
+- Labels für P2175/P138/P3342 in `manual/labels.yaml` (von Florian geliefert).
+- Test-Schrift (Latin-Subset) hat keine Pfeilglyphen — in Grafiken keine ⇄/←/→ als Text verwenden.
 
 ### S5–S9 — Case Studies
 

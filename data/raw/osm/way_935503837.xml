@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3830518 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<way id="935503837" visible="true" version="8" changeset="160155386" timestamp="2024-12-11T06:53:13Z" user="geozeisig" uid="66391">
+<nd ref="8669319906"/>
+<nd ref="8669319907"/>
+<nd ref="8669319908"/>
+<nd ref="8669319909"/>
+<nd ref="8669319910"/>
+<nd ref="8669319911"/>
+<nd ref="8669319912"/>
+<nd ref="8669319913"/>
+<nd ref="8669319914"/>
+<nd ref="8669319915"/>
+<nd ref="8669319906"/>
+<tag k="alt_name" v="Toberlachtain"/>
+<tag k="amenity" v="place_of_worship"/>
+<tag k="check_date" v="2023-08-25"/>
+<tag k="denomination" v="roman_catholic"/>
+<tag k="description" v="Walled enclosure with wrought iron gate. Stone paved ground with subcircular water basin which is covered in water lentils."/>
+<tag k="heritage" v="2"/>
+<tag k="heritage:operator" v="IE:smr"/>
+<tag k="name" v="Toberlaghteen"/>
+<tag k="name:en" v="Saint Lachtain's Well"/>
+<tag k="name:etymology:wikidata" v="Q18674069"/>
+<tag k="name:ga" v="Tobar Lachtain"/>
+<tag k="natural" v="spring"/>
+<tag k="place_of_worship" v="holy_well"/>
+<tag k="ref:IE:smr" v="KK013-025"/>
+<tag k="religion" v="christian"/>
+<tag k="source" v="British War Office map;survey"/>
+<tag k="survey:date" v="2021-03-26"/>
+<tag k="url:sketchfab" v="https://skfb.ly/oWvIB"/>
+<tag k="water" v="spring"/>
+<tag k="wikidata" v="Q121840779"/>
+<tag k="wikimedia_commons" v="Category:Toberlachtain"/>
+</way>
+</osm>

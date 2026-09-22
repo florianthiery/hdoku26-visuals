@@ -73,7 +73,8 @@ Z5:
   en: "a niche between the big wide data world such as Wikidata and the strict, boxed-in authority data of cultural institutions"
   speaker: Barbara Fischer
   page: 120
-  status: candidate
+  figures: ["03"]
+  status: used
 
 Z6:
   de: "das gemeinsame Ziel: Zugang zu Wissen zu ermöglichen."
@@ -88,21 +89,23 @@ Z7:
   en: "The institutions in the GND network vouch for the correctness of the data with their code of conduct. It is simply about responsibility and trust."
   speaker: Barbara Fischer
   page: 120
-  status: candidate
+  figures: ["03"]
+  status: used   # excerpt: second sentence only, with leading ellipsis
 
 Z8:
   de: "Man kann sich nicht nur darauf verlassen, dass es irgendwer in seiner Freizeit macht"
   en: "You cannot just rely on someone doing it in their spare time"
   speaker: Jürgen Kett
   page: 121
-  status: candidate
+  status: rejected   # 2026-09-22: next to Z7 it would read as confrontation with the VGI band
 
 Z9:
   de: "Quellenkritik wird im KI-Zeitalter schwieriger, aber gleichzeitig wichtiger denn je. Man muss immer wissen, woher die Daten stammen"
   en: "Source criticism is becoming harder in the AI age, but at the same time more important than ever. You always have to know where the data comes from"
   speaker: Barbara Fischer
   page: 121
-  status: candidate
+  figures: ["03"]
+  status: used   # excerpt: second sentence only
 
 P3:
   de: "Derzeit entwickle man etwa für die Nationale Forschungsdateninfrastruktur ein Modul, um ortsbezogene GND-Einträge mit detaillierten Geodaten anzureichern. Projektpartner sind dabei die Staatsbibliothek zu Berlin und das Herder-Institut für historische Ostmitteleuropaforschung."

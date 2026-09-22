@@ -1,0 +1,9 @@
+# English labels and descriptions of Wikidata items referenced (as bare QIDs)
+# from the entity JSON in data/raw/wikidata/. Supplied by Florian Thiery from
+# wikidata.org on 2026-09-22, because Wikidata was not reachable from the
+# authoring sandbox.
+
+Q10874: {label: blindness, description: "complete or nearly complete lack of vision; visual acuity worse than 3/60"}
+Q21925570: {label: eye infection, description: "infection of the eye or eyes"}
+Q18674069: {label: Lachtín mac Tarbín, description: "Irish abbot of Freshford (Achad Úr) and Belach Febrat, and saint"}
+Q64735653: {label: William Kinsella, description: "Roman Catholic bishop (1796-1845) of Ossory"}

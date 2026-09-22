@@ -1,0 +1,23 @@
+# Who put the data there: volunteered geographic information behind figure 03.
+# OSM edits are read from data/raw/osm/*.xml by the step itself; this file only
+# holds what is not in those downloads. OSM user names are public.
+
+townland_garranes_osm:
+  relation: "6168494"
+  user: Stephen_Co_Antrim
+  added: "2016-04-25"
+  source: https://www.townlands.ie/cork/kinalmeaky/templemartin/templemartin/garranes/
+  note: '"Garranes was added to OpenStreetMap on 25 Apr 2016 by Stephen_Co_Antrim." (townlands.ie)'
+
+wikiproject_holywells:
+  label: WikiProject Holy Wells
+  url: https://www.wikidata.org/wiki/Wikidata:WikiProject_HolyWells
+  kind: citizen science
+
+gnd_freshford:
+  gnd: 7759398-4
+  label: Freshford
+  country: XA-GB
+  info: Ort in der Grafschaft Somerset
+  source: https://explore.gnd.network/gnd/7759398-4 (screenshot 2026-09-22)
+  note: 'GND Explorer search "Lachtain" (2026-09-22): no matching record.'

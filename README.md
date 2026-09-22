@@ -24,6 +24,7 @@ baked in, German and English versions of every figure, deterministic output.
 |---|---|---|
 | 01 | Garranes: one name, several places — what the GND record says, what Wikidata/Logainm/OSM and GeoNames say, and how far apart they are | `img/01-ein-name-viele-orte/ein-name-viele-orte.{de,en}.{svg,png}` |
 | 02 | Both sides moving towards Wikibase — the GND today and next (GNDplus, NFDI geodata module) set against CIIC 81, the stone from Garranes, as it already lives in a federated Wikibase ecosystem and in OpenStreetMap | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
+| 03 | The niche is the hub — on the DNB's own axis (Wikidata … GNDplus … authority data), two mini knowledge graphs: Garranes, where two Wikidata items meet at the Logainm ID, and St. Lachtain's Well, where Wikidata and OSM point at each other; who entered the data; responsibility per statement | `img/03-nische-hub/nische-hub.{de,en}.{svg,png}` |
 
 ## Build
 

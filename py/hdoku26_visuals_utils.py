@@ -49,6 +49,7 @@ CANVAS_H = 1000
 OUT_DIRS = {
     "01-ein-name-viele-orte": IMG / "01-ein-name-viele-orte",
     "02-wikibase-konvergenz": IMG / "02-wikibase-konvergenz",
+    "03-nische-hub": IMG / "03-nische-hub",
 }
 
 MARGIN_X = 60
@@ -604,3 +605,51 @@ def svg_marker(cx: float, cy: float, number: str, colors: dict, *, r: float = 14
             f'stroke="{colors["stroke"]}" stroke-width="2"{dash}/>\n'
             + svg_text(cx, cy + 0.5, number, size=r * 1.05, weight=500, color=text_col,
                        anchor="middle", baseline="central"))
+
+
+# --------------------------------------------------------------------------- #
+# Panel and quotation card (introduced with figure 03; figure 02 keeps its own
+# local copies so its output stays byte-identical).
+# --------------------------------------------------------------------------- #
+def svg_panel(x: float, y: float, w: float, h: float, colors: dict, kicker: str, title: str,
+              *, head_h: float = 58) -> str:
+    """White panel with a tinted header strip (kicker line + title line)."""
+    return "\n".join([
+        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#ffffff" '
+        f'stroke="{colors["stroke"]}" stroke-width="1.6"/>',
+        f'<path d="M {x} {y + 12} Q {x} {y} {x + 12} {y} L {x + w - 12} {y} '
+        f'Q {x + w} {y} {x + w} {y + 12} L {x + w} {y + head_h} L {x} {y + head_h} Z" '
+        f'fill="{colors["fill"]}"/>',
+        svg_text(x + 20, y + 25, kicker, size=12.5, weight=500, color=colors["stroke"]),
+        svg_text(x + 20, y + 47, title, size=17, weight=500),
+    ])
+
+
+def quote_source(q: dict, lang: str) -> str:
+    """'Barbara Fischer · c’t 19/2026, S. 120' -- speaker resolved from quotes.yaml."""
+    who = q.get("speaker")
+    if who == "author":
+        who = t(lang, "Autorentext", "author's text")
+    elif who == "indirect":
+        who = t(lang, "indirekte Rede", "reported speech")
+    page = t(lang, f"S. {q['page']}", f"p. {q['page']}")
+    tr = "" if lang == "de" else ", transl."
+    return f"{who} · c’t 19/2026, {page}{tr}"
+
+
+def svg_quote_card(x: float, y: float, w: float, text: str, source: str, lang: str, *,
+                   size: float = 15, italic: bool = True, quote_marks: bool = True,
+                   colors: dict | None = None, min_h: float = 0) -> tuple[str, float]:
+    """Quotation card sized to its text; returns (markup, bottom y)."""
+    colors = colors or QUOTE
+    if quote_marks:
+        text = f"„{text}“" if lang == "de" else f"“{text}”"
+    lines = wrap_lines(text, w - 40, size)
+    h = max(min_h, 26 + len(lines) * size * 1.4 + 30)
+    block, _ = svg_text_block(x + 20, y + 30, text, w - 40, size=size, line_h=size * 1.4, italic=italic)
+    return "\n".join([
+        f'<rect x="{x}" y="{y:.1f}" width="{w}" height="{h:.1f}" rx="10" '
+        f'fill="{colors["fill"]}" stroke="{colors["stroke"]}" stroke-width="1.2"/>',
+        block,
+        svg_text(x + w - 18, y + h - 12, source, size=11.5, color=colors["stroke"], anchor="end"),
+    ]), y + h
