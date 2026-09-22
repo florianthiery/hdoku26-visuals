@@ -82,7 +82,7 @@ Eigenschaften:
 | fuzzy-sl | liefert in B die Geometrie: pro Koordinate Ort-Typ (Findspot / Exhibition Site) und Sicherheit (High = Marker, Low = roter gestrichelter Ring) mit Quelle; in A als Kennungs-Tag in der Wikibase-Zeile | 2026-09-22 |
 | Farbe OSM | eigenes Grün (`#e3eed9` / `#4f7a2a`) in den Case Studies; Grafiken 00a–03 bleiben unverändert | 2026-09-22 |
 | Karten in B | dürfen größer werden, solange der Rest lesbar bleibt | 2026-09-22 |
-| Reihenfolge | Grafik 2, dann 3, dann die Case Studies | 2026-09-22 |
+| Reihenfolge | Grafik 2, dann 3, dann die Case Studies: Ogham fertigstellen (nach dem Fragebogen), dann Holy Wells, geo-lod, bb-5kbc, poseidon2lod — jeweils erst die Daten im Detail ansehen | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
 
@@ -169,7 +169,13 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
 
-**Uploads:** Entity-JSON/OSM-XML der gewählten Objekte; für S7–S9 die jeweiligen Repo-ZIPs (liegen im Abstract-Chat vor).
+**Quellen:**
+- S6 Holy Wells: WikiProject auf Wikidata (Doku) und OSM-Objekte; Entity-JSON/OSM-XML der gewählten Brunnen.
+- S7 geo-lod: https://github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD
+- S8 bb-5kbc: https://github.com/Research-Squirrel-Engineers/bb-5kbc-sites
+- S9 poseidon2lod: https://github.com/archaeonatural-cloud/poseidon2lod mit Ontologie https://github.com/archaeonatural-cloud/archaeonatural-ontology
+
+Die GitHub-Repos erzeugen die LOD/RDF-Daten und lassen sich im Sandbox direkt klonen.
 
 **Abnahme:** wie S2.
 
