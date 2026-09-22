@@ -576,14 +576,20 @@ def svg_text_block(x: float, y: float, s: str, max_width: float, *, size: float 
 
 
 def svg_chip(x: float, y: float, label: str, colors: dict, *, size: float = 11.5,
-             h: float = 22, dashed: bool = False, pad: float = 10) -> tuple[str, float]:
-    """A rounded identifier chip ("Wikidata Q104295278"); returns (markup, width)."""
-    w = text_width(label, size) + 2 * pad
+             h: float = 22, dashed: bool = False, pad: float = 10,
+             width: float | None = None, align: str = "middle") -> tuple[str, float]:
+    """A rounded identifier chip ("Wikidata Q104295278"); returns (markup, width).
+
+    ``width`` fixes the chip width (so a column of chips lines up); by default
+    it hugs the label. ``align="start"`` sets the label flush left at ``pad``.
+    """
+    w = width if width is not None else text_width(label, size) + 2 * pad
     dash = ' stroke-dasharray="4 3"' if dashed else ""
+    tx = x + pad if align == "start" else x + w / 2
     markup = (f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h}" rx="{h/2:.1f}" '
               f'fill="{colors["fill"]}" stroke="{colors["stroke"]}" stroke-width="1.2"{dash}/>\n'
-              + svg_text(x + w / 2, y + h / 2 + 0.5, label, size=size, weight=500,
-                         anchor="middle", baseline="central"))
+              + svg_text(tx, y + h / 2 + 0.5, label, size=size, weight=500,
+                         anchor=align, baseline="central"))
     return markup, w
 
 

@@ -66,7 +66,10 @@ Eigenschaften:
 | bb-5kbc, geo-lod, poseidon2lod | nicht in diesen Grafiken; eigene Case-Study-Folien nach Ogham und Holy Wells | 2026-09-22 |
 | Stil | wie bb-5kbc-visuals; Palette: GND ocker, Community-Hubs petrol, GeoNames grau, „ohne Koordinate“ rot gestrichelt, Zitate amber | 2026-09-22 |
 | Zitate | pro Grafik gemeinsam auswählen; Grafik 1: A1 + A2 (Autorentext S. 119) | Vorschlag |
-| Repo-Name | `hdoku26-visuals` | Vorschlag |
+| Repo-Name | `hdoku26-visuals` (github.com/florianthiery/hdoku26-visuals) | 2026-09-22 |
+| Kennungs-Tags in Karten | alle gleich breit (volle Kartenbreite), Text linksbündig, gemeinsame Startlinie über alle Karten einer Reihe | 2026-09-22 |
+| Case Studies | gleiche Bildsprache wie Grafik 1–3, je eine Grafik: Ogham (2 Steine), Holy Wells (2 Brunnen), geo-lod, bb-5kbc, poseidon2lod | 2026-09-22 |
+| Reihenfolge | Grafik 2, dann 3, dann die Case Studies | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
 
@@ -84,11 +87,16 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 |---|---|---|---|
 | S0 | Festlegungen (Grafikfolge, Leitbeispiel, Palette) | — | erledigt 2026-09-22 |
 | S1 | Skelett: main.py, Utils, Daten, Lizenz | S0 | erledigt 2026-09-22 |
-| S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | Entwurf 2026-09-22, Iteration offen |
+| S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | offen |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | offen |
+| S5 | Case Study Ogham (2 Steine) | S1 | offen |
+| S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
+| S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
+| S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
+| S9 | Case Study poseidon2lod (aDNA) | S1 | offen |
 
-S3 und S4 sind unabhängig von S2 und voneinander.
+S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
 ---
 
@@ -100,6 +108,11 @@ S3 und S4 sind unabhängig von S2 und voneinander.
 
 **Abnahme:** Alle IDs/Zahlen aus `data/raw/`; Abstände gerechnet (36,6 / 87,2 km, 24 m); keine Überlappungen in DE und EN; keine Diagonalen; zweiter Lauf byte-identisch.
 
+#### Erledigt 2026-09-22
+
+- Iteration 1 committed (github.com/florianthiery/hdoku26-visuals).
+- Iteration 2: Kennungs-Tags gleich breit und linksbündig (`svg_chip(width=, align="start")`), gemeinsame Startlinie der Tags über alle vier Karten.
+
 ### S3 — Grafik 2 „Zukunft“
 
 **Ziel:** links GND (GNDplus Z2/Z3, Geodaten-Modul P3, steuerbare Offenheit Z4), rechts föderiertes Wikibase-Ökosystem am CIIC 81 (Wikidata, FactGrid, Semantic Kompakkt, fuzzy-sl) und Semantic OSM, Mitte DNB-Wikibase seit 2019 + WikiLibrary-Manifest (P4), gemeinsames Ziel (Z6).
@@ -109,6 +122,14 @@ S3 und S4 sind unabhängig von S2 und voneinander.
 ### S4 — Grafik 3 „Die Nische ist der Hub“
 
 **Ziel:** Mini-Wissensgraph Townland Garranes (Wikidata–Logainm–OSM, GND gestrichelt „Anschluss nach Identitätsklärung“), Holy Well als zweiter Teilgraph, VGI-Band, Crossys/TRAIL 2.5 als Fundament; Z7/Z8 als geteilter Anspruch, Z9 als Schluss.
+
+**Abnahme:** wie S2.
+
+### S5–S9 — Case Studies
+
+**Ziel:** je eine Grafik pro Case Study in derselben Bildsprache (Palette, Tags, Nummern-Marker, c't-Bezug wo er trägt): Ogham mit zwei Steinen (u. a. CIIC 81: Fundort Garranes vs. Standort UCC Cork, zwei Koordinaten mit Rang), Holy Wells mit zwei Brunnen (u. a. St. Lachtain's Well Q121840779), geo-lod, bb-5kbc, poseidon2lod.
+
+**Uploads:** Entity-JSON/OSM-XML der gewählten Objekte; für S7–S9 die jeweiligen Repo-ZIPs (liegen im Abstract-Chat vor).
 
 **Abnahme:** wie S2.
 

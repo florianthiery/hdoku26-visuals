@@ -324,6 +324,14 @@ def _candidate_cards(parts: list[str], d: dict, lang: str) -> None:
     gap = 16
     cw = (MAP_W - 3 * gap) / 4
     ch = vu.CONTENT_Y1 - BOTTOM_Y
+    # first pass: where does each card's text end? Chips then start on one
+    # common line across all four cards, so the chip columns align.
+    text_end = []
+    for num, colors, dashed, title, sub, chips, foot in cards:
+        ty = BOTTOM_Y + 27 + 20 * len(vu.wrap_lines(title, cw - 60, 16))
+        ty = max(ty, BOTTOM_Y + 50) + 4
+        text_end.append(ty + 18 * len(vu.wrap_lines(sub, cw - 32, 13.5)))
+    chip_y0 = max(text_end) + 10
     for i, (num, colors, dashed, title, sub, chips, foot) in enumerate(cards):
         x = MAP_X + i * (cw + gap)
         y = BOTTOM_Y
@@ -336,9 +344,10 @@ def _candidate_cards(parts: list[str], d: dict, lang: str) -> None:
         sb, ny = vu.svg_text_block(x + 16, max(ny, y + 50) + 4, sub, cw - 32, size=13.5, line_h=18,
                                    color=vu.TEXT_MUTED)
         parts.append(sb)
-        cy = ny + 10
+        cy = chip_y0
         for label, c, dsh in chips:
-            chip, _ = vu.svg_chip(x + 16, cy, label, c, dashed=dsh, size=12.5, h=25)
+            chip, _ = vu.svg_chip(x + 16, cy, label, c, dashed=dsh, size=12.5, h=25,
+                                  width=cw - 32, align="start", pad=14)
             parts.append(chip)
             cy += 33
         parts.append(vu.svg_text(x + 16, y + ch - 16, foot, size=13, color=vu.TEXT_MUTED, italic=True))
