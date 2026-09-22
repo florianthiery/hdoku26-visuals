@@ -73,7 +73,15 @@ Eigenschaften:
 | Grafik 2 rechts | der Stein CIIC 81 (Q130529871) als Beispiel der Föderation, angebunden an Garranes über P189 — der rote Faden: Ort (Grafik 1) → Objekt (Grafik 2) | 2026-09-22 |
 | Repo-Name | `hdoku26-visuals` (github.com/florianthiery/hdoku26-visuals) | 2026-09-22 |
 | Kennungs-Tags in Karten | alle gleich breit (volle Kartenbreite), Text linksbündig, gemeinsame Startlinie über alle Karten einer Reihe | 2026-09-22 |
-| Case Studies | gleiche Bildsprache wie Grafik 1–3, je eine Grafik: Ogham (2 Steine), Holy Wells (2 Brunnen), geo-lod, bb-5kbc, poseidon2lod | 2026-09-22 |
+| Case Studies | gleiche Bildsprache wie Grafik 1–3: Ogham (2 Steine), Holy Wells (2 Brunnen oder ein Use Case), geo-lod, bb-5kbc, poseidon2lod; Schwerpunkt immer **Geografika** | 2026-09-22 |
+| Case-Study-Raster | bis zu drei Grafiken pro Case Study, über alle gleich aufgebaut, **A und B auf getrennten Folien**: **A Rollen** (Zeilen GND · Wikidata/Wikibase · OSM · Fach-Hubs, Spalten = Beispiele; Spalte geteilt in Fundort / Standort heute, bei Fundort = Standort zusammengelegt; pro Zelle ein Status-Symbol + Kennungs-Tags); **B Ortskette** (Karte + Kette Objekt → Fundort → Townland → Baronie → County, bei getrennten Orten zweite Kette über P276; GND-Zeile darüber); **C Graph dahinter** (fachliche Kette, die zum Ort zurückführt: Ogham Inschrift → Name → Sippe → Baronie; Holy Wells Heilige usw.; GND-Zeile + „gelesen von“) — den Graph dahinter gibt es bei allen Beispielen | 2026-09-22 |
+| Case Studies: keine c't-Zitate | die GND erscheint dort nur als Datenzeile; Rolle von GND, Wikidata/Wikibase und OSM soll sichtbar sein | 2026-09-22 |
+| Status-Vokabular | vorhanden (gefüllt, Hubfarbe) · eine Ebene höher (Pfeil, z. B. GND-Ringwall statt Stein) · fehlt (Kreuz) · offen (grau gestrichelt „?“) · unsicher/umstritten (rot „?“); Symbole als Pfade gezeichnet (Fira Sans hat kein ✓ ✗ →) | 2026-09-22 |
+| Hub-Leiste | unter jedem Knoten in B und C vier Kästchen G · W · O · F (GND, Wikidata/Wikibase, OSM, Fach-Hubs wie Logainm/SMR/CISP/TM); Ort = eckiger Kasten, Begriff/Name = runder Kasten (violett) | 2026-09-22 |
+| GND in B und C | eigene Zeile über den Knoten, senkrechte Linie zum Knoten: durchgezogen = Satz vorhanden · **gestrichelt ocker = Eintrag nach GND-Planung denkbar** · grau gepunktet = vermutlich vorhanden, zu prüfen; in C zusätzlich „gelesen von“ (Forschende, bei denen die GND dicht ist → Bezug zu 00b) | 2026-09-22 |
+| fuzzy-sl | liefert in B die Geometrie: pro Koordinate Ort-Typ (Findspot / Exhibition Site) und Sicherheit (High = Marker, Low = roter gestrichelter Ring) mit Quelle; in A als Kennungs-Tag in der Wikibase-Zeile | 2026-09-22 |
+| Farbe OSM | eigenes Grün (`#e3eed9` / `#4f7a2a`) in den Case Studies; Grafiken 00a–03 bleiben unverändert | 2026-09-22 |
+| Karten in B | dürfen größer werden, solange der Rest lesbar bleibt | 2026-09-22 |
 | Reihenfolge | Grafik 2, dann 3, dann die Case Studies | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
@@ -96,7 +104,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |
-| S5 | Case Study Ogham (2 Steine) | S1 | offen |
+| S5 | Case Study Ogham (2 Steine) | S1 | Mockups 2026-09-22 (`tmp/s5-ogham/`), wartet auf Fragebogen |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
 | S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
@@ -143,9 +151,23 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - Labels für P2175/P138/P3342 in `manual/labels.yaml` (von Florian geliefert).
 - Test-Schrift (Latin-Subset) hat keine Pfeilglyphen — in Grafiken keine ⇄/←/→ als Text verwenden.
 
-### S5–S9 — Case Studies
+### S5 — Case Study Ogham
 
-**Ziel:** je eine Grafik pro Case Study in derselben Bildsprache (Palette, Tags, Nummern-Marker, c't-Bezug wo er trägt): Ogham mit zwei Steinen (u. a. CIIC 81: Fundort Garranes vs. Standort UCC Cork, zwei Koordinaten mit Rang), Holy Wells mit zwei Brunnen (u. a. St. Lachtain's Well Q121840779), geo-lod, bb-5kbc, poseidon2lod.
+**Ziel:** Grafiken A, B, C nach dem Case-Study-Raster (A4) für CIIC 81 (Fundort Garranes ≠ Standort UCC Cork, 20,5 km) und CIIC 178 Coumeenoole North / Dunmore Head (Q126503090; Fundort = Standort, 1839 wieder aufgerichtet).
+
+**Abnahme:** wie S2; zusätzlich alle Werte aus Dateien in `data/raw/` statt fest im Code.
+
+#### Mockups 2026-09-22
+
+- Arbeitsstand in `tmp/s5-ogham/` (siehe `tmp/README.md`): Fragebogen, Mockup-Skript, gerenderte Mockups, Rohdaten (EpiDoc, Q126503090, fuzzy-sl Q131).
+- Quellen neu: OG(H)AM-EpiDoc (`lguariento/og-h-am`, I-COR-030 = CIIC 81, I-KER-046 = CIIC 178), `LinkedOpenOgham/tei--epidoc-crosswalk` (Tabellen `docs/*.csv`), ogham-lod v1 (Abstract-Zip).
+- Befunde: EpiDoc nennt für Garranes das Ringfort *Lisheenagreine* (SMR CO084-090001-) — genau der GND-Satz 1248049489 „Ringwallanlage“ → GND „eine Ebene höher“, nicht daneben. Coumeenoole hat zwei Logainm-Anker (22572 Townland, 1394328 An Dún Mór). SMR CIIC 81: EpiDoc CO084-090003- (Fundort) vs. Wikidata/OSM CO074-148---- (Standort?). Sprach-Tags der Inschrift uneinheitlich: EpiDoc `pgl`, OSM `pgl-Latn`, Wikidata `ga` (CIIC 81) bzw. `la` (CIIC 178). Q126503090 ohne P189 und ohne P2888. Site-Punkt vs. Stein: 1,03 km (CIIC 178), EpiDoc-Fundort vs. WD-Site 267 m (CIIC 81).
+- Kette DOVINIA → Corcu Duibne → Baronie Corkaguiny (Corca Dhuibhne) belegt über McManus 1991, 111 (zitiert im EpiDoc); auf CIIC 178 sind MU und N unsicher gelesen → rot. CIIC 81: CALLITI → Cailtrige → Eoghanachta, ohne Gebiet → Kette bleibt offen.
+- Nächster Schritt: Fragebogen auswerten, Bilder (je eins pro Stein mit Lizenz) einbinden, Werte nach `data/raw/` (YAML), `py/step_05_ogham.py` mit DE/EN, Mockups in `tmp/` löschen.
+
+### S6–S9 — weitere Case Studies
+
+**Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
 
 **Uploads:** Entity-JSON/OSM-XML der gewählten Objekte; für S7–S9 die jeweiligen Repo-ZIPs (liegen im Abstract-Chat vor).
 
@@ -157,4 +179,5 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
 - Zitatauswahl für Grafik 2 und 3 (Kandidaten in `quotes.yaml`).
 - Fonts: im Sandbox aus `@fontsource/fira-sans` (Latin-Subset) konvertiert; im Repo die Originaldateien aus bb-5kbc-visuals verwenden.
+- S5: Fragebogen `tmp/s5-ogham/fragebogen.md` (A–G) beantworten; v. a. Townland Coumeenoole North (QID, OSM-Relation), OSM-Node 5145413640, Q106680733, GND-IDs (G1), fuzzy-sl-Qualifier (G2), Auswahl „GND denkbar“ (G3).
 - Soll Lisnacaheragh in Wikidata angelegt werden (mit P227 = 1248049489)? Wäre eine Aussage für Grafik 3.
