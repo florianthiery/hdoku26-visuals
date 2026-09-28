@@ -82,6 +82,9 @@ Eigenschaften:
 | fuzzy-sl | liefert in B die Geometrie: pro Koordinate Ort-Typ (Findspot / Exhibition Site) und Sicherheit (High = Marker, Low = roter gestrichelter Ring) mit Quelle; in A als Kennungs-Tag in der Wikibase-Zeile | 2026-09-22 |
 | Farbe OSM | eigenes Grün (`#e3eed9` / `#4f7a2a`) in den Case Studies; Grafiken 00a–03 bleiben unverändert | 2026-09-22 |
 | Karten in B | dürfen größer werden, solange der Rest lesbar bleibt | 2026-09-22 |
+| Zwei Beispiele pro Case Study | ja, aber nur wenn sich die beiden **geografisch** unterscheiden (bei Ogham: Fundort ≠ Standort gegen Fundort = Standort); zwei gleichartige Beispiele kosten Platz ohne Aussage | 2026-09-28 |
+| Karten in den Case Studies | immer mit OSM-Geometrie anreichern, nach dem Muster aus S5: nächstgrößere Einheit als Fläche, kleinere darin, Objekt als Marker — die Karte trägt genau die Ebenen, die rechts in der Kette stehen; je Case Study eine Overpass-Abfrage (`out geom`), Datei nach `data/raw/osm/`, gerundet auf 5 Nachkommastellen; gezeichnete OSM-Geometrie bekommt die ODbL-Namensnennung unter der Karte | 2026-09-28 |
+| Grafik C | nur dort, wo der fachliche Graph wirklich zu einem Ort zurückführt; sonst nur A und B | 2026-09-28 |
 | Reihenfolge | Grafik 2, dann 3, dann die Case Studies: Ogham fertigstellen (nach dem Fragebogen), dann Holy Wells, geo-lod, bb-5kbc, poseidon2lod — jeweils erst die Daten im Detail ansehen | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
@@ -180,6 +183,17 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 ### S6–S9 — weitere Case Studies
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
+
+**Beispielpaare (Vorschlag vom 2026-09-28, vor dem Zeichnen jeweils an den Daten prüfen):**
+
+| Schritt | Beispiel 1 | Beispiel 2 | Kontrast | OSM-Flächen für die Karte |
+|---|---|---|---|---|
+| S6 Holy Wells | St. Lachtain's Well (Q121840779): Wikidata, OSM-Way, SMR, dúchas, Namenspatron | ein Brunnen, den praktisch nur OSM und dúchas kennen | Wer hält den Ort überhaupt? | Brunnen, Townland, Civil Parish |
+| S7 geo-lod | SISAL-Höhle | CI-Tephra-Fundstelle | punktgenaue Probenahme gegen flächige Ablagerung | Höhleneingang (`natural=cave_entrance`), Schutzgebiet, Verwaltungseinheit |
+| S8 bb-5kbc | Fundstelle in Brandenburg | Fundstelle in Westpolen | GND-Satz und Gemeinde auf der einen, anderes nationales Register auf der anderen Seite — Internationalität wird gezeigt, nicht behauptet | Gemeinde bzw. Gmina, Staatsgrenze |
+| S9 poseidon2lod | Individuum von einer gut publizierten Fundstelle | Individuum, das nur über eine aggregierte Sammlung hängt | Wie weit reicht die Kette vom Individuum zum Ort? | Fundstelle, Verwaltungseinheit |
+
+Grafik C ist bei S6 gesetzt (Heiliger, Patrozinium, Kirche — bei Personen ist die GND dicht, die Kette trifft sie also von der anderen Seite) und bei S8 wahrscheinlich; bei S7 und S9 erst nach einem Blick in die Daten entscheiden.
 
 **Quellen:**
 - S6 Holy Wells: WikiProject auf Wikidata (Doku) und OSM-Objekte; Entity-JSON/OSM-XML der gewählten Brunnen.
