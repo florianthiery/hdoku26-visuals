@@ -1,0 +1,39 @@
+# Excerpt from SISAL/rdf/sisal_sites.ttl of
+# https://github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD
+# (CC BY 4.0). Only the cave sites this figure set uses are copied here.
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix geolod: <http://w3id.org/geo-lod/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix sisal: <http://w3id.org/geo-lod/sisal/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+geolod:Cave_site_0104 a geolod:Cave,
+        owl:NamedIndividual ;
+    rdfs:label "Liang Luar"@en ;
+    geolod:countD13CSamples 2050 ;
+    geolod:countD18OSamples 4625 ;
+    geolod:elevation_m 550.0 ;
+    geolod:siteId 104 ;
+    geo:hasGeometry sisal:geom_site_0104 ;
+    prov:wasDerivedFrom geolod:SISALv3_DataSource .
+
+geolod:Cave_site_0077 a geolod:Cave,
+        owl:NamedIndividual ;
+    rdfs:label "Chauvet cave"@en ;
+    geolod:countD13CSamples 210 ;
+    geolod:countD18OSamples 210 ;
+    geolod:elevation_m 240.0 ;
+    geolod:siteId 77 ;
+    geo:hasGeometry sisal:geom_site_0077 ;
+    prov:wasDerivedFrom geolod:SISALv3_DataSource .
+
+sisal:geom_site_0104 a sf:Point ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(120.4300 -8.5300)"^^geo:wktLiteral .
+
+sisal:geom_site_0077 a sf:Point ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(4.2600 44.2300)"^^geo:wktLiteral .

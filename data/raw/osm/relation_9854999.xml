@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498754 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <relation id="9854999" visible="true" version="17" changeset="161952529" timestamp="2025-01-30T20:06:25Z" user="dmgroom_ct" uid="437598">
+  <member type="way" ref="8838105" role="outer"/>
+  <member type="way" ref="708622756" role="outer"/>
+  <tag k="name" v="Susak"/>
+  <tag k="name:it" v="Sansego"/>
+  <tag k="name:ru" v="Сусак"/>
+  <tag k="place" v="island"/>
+  <tag k="population" v="142"/>
+  <tag k="source:population" v="DZS 2021"/>
+  <tag k="type" v="multipolygon"/>
+  <tag k="wikidata" v="Q994174"/>
+  <tag k="wikipedia" v="hr:Susak"/>
+ </relation>
+</osm>

@@ -1,0 +1,111 @@
+# Excerpt from CI/rdf/ci_findspots.ttl of
+# https://github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD
+# (CC BY 4.0). Only the findspots this figure set uses are copied here.
+
+@prefix ci: <http://w3id.org/geo-lod/ci/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix fsl: <http://fuzzy-sl.squirrel.link/ontology/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix geolod: <http://w3id.org/geo-lod/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pleiades: <https://pleiades.stoa.org/places/vocab#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ci:cisite_45 a fsl:Site,
+        geolod:CIArchaeologicalSite,
+        geolod:CIFindspot,
+        <http://www.cidoc-crm.org/extensions/crmarchaeo/A2_Stratigraphic_Volume_Unit>,
+        prov:Entity,
+        pleiades:Place ;
+    rdfs:label "Franchthi Cave (Greece)"@en ;
+    dct:creator <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:rightsHolder <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    geolod:hasCertaintyDescription "findspot mentioned in a scientific paper and found on OpenStreetMap"@en ;
+    geolod:hasCertaintyLevel fsl:high ;
+    geolod:hasLiteratureReference "Fedele et al., 2003" ;
+    geolod:hasSpatialType fsl:ArchaeologicalSite,
+        fsl:Cave ;
+    geo:hasGeometry ci:cisite_45_geom ;
+    rdfs:comment "CI findspot related from literature"@en ;
+    skos:closeMatch <http://openstreetmap.org/node/1221172611>,
+        <http://wikidata.org/entity/Q1441331> ;
+    skos:prefLabel "Franchthi Cave (Greece)"@en ;
+    skos:scopeNote "CI findspot related from literature"@en ;
+    prov:wasAttributedTo <http://orcid.org/0000-0002-3246-3531>,
+        <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo/blob/main/py/CI.py> ;
+    prov:wasDerivedFrom <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo> ;
+    prov:wasGeneratedBy ci:cisite_45_pyscript .
+
+ci:cisite_22 a fsl:Site,
+        geolod:CIFindspot,
+        prov:Entity,
+        pleiades:Place ;
+    rdfs:label "Phlegraean Fields"@en ;
+    dct:creator <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:rightsHolder <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    geolod:hasCertaintyDescription "findspot mentioned in a scientific paper"@en ;
+    geolod:hasCertaintyLevel fsl:medium ;
+    geolod:hasLiteratureReference "Fedele et al., 2003",
+        "Orsi et al., 1996" ;
+    geolod:hasSpatialType fsl:Supervolcano ;
+    geo:hasGeometry ci:cisite_22_geom ;
+    rdfs:comment "CI findspot related from literature"@en ;
+    skos:closeMatch <http://openstreetmap.org/node/10879170567>,
+        <http://wikidata.org/entity/Q755123> ;
+    skos:prefLabel "Phlegraean Fields"@en ;
+    skos:scopeNote "CI findspot related from literature"@en ;
+    prov:wasAttributedTo <http://orcid.org/0009-0008-2877-3204>,
+        <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo/blob/main/py/CI.py> ;
+    prov:wasDerivedFrom <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo> ;
+    prov:wasGeneratedBy ci:cisite_22_pyscript .
+
+ci:cisite_48 a fsl:Site,
+        geolod:CIFindspot,
+        prov:Entity,
+        pleiades:Place ;
+    rdfs:label "Susak Island (Greece)"@en ;
+    dct:creator <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:rightsHolder <https://orcid.org/0000-0002-3246-3531>,
+        <https://orcid.org/0000-0003-1100-6494> ;
+    geolod:hasCertaintyDescription "findspot mentioned in a scientific paper"@en ;
+    geolod:hasCertaintyLevel fsl:medium ;
+    geolod:hasLiteratureReference "Wacha, 2011" ;
+    geolod:hasSpatialType fsl:Island ;
+    geo:hasGeometry ci:cisite_48_geom ;
+    rdfs:comment "CI findspot related from literature"@en ;
+    skos:closeMatch <http://openstreetmap.org/relation/9854999>,
+        <http://sws.geonames.org/3189468> ;
+    skos:prefLabel "Susak Island (Greece)"@en ;
+    skos:scopeNote "CI findspot related from literature"@en ;
+    prov:wasAttributedTo <http://orcid.org/0009-0008-2877-3204>,
+        <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo/blob/main/py/CI.py> ;
+    prov:wasDerivedFrom <https://github.com/Research-Squirrel-Engineers/campanian-ignimbrite-geo> ;
+    prov:wasGeneratedBy ci:cisite_48_pyscript .
+
+ci:cisite_45_geom a <http://www.ics.forth.gr/isl/CRMgeo/SP6_Declarative_Place>,
+        sf:Point ;
+    geolod:hasCertaintyDescription "findspot mentioned in a scientific paper and found on OpenStreetMap"@en ;
+    geolod:hasCertaintyLevel fsl:high ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(23.1311 37.4226)"^^geo:wktLiteral ;
+    prov:wasGeneratedBy ci:cisite_45_activity .
+
+ci:cisite_22_geom a <http://www.ics.forth.gr/isl/CRMgeo/SP6_Declarative_Place>,
+        sf:Point ;
+    geolod:hasCertaintyDescription "findspot mentioned in a scientific paper"@en ;
+    geolod:hasCertaintyLevel fsl:medium ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(14.1402 40.8275)"^^geo:wktLiteral ;
+    prov:wasGeneratedBy ci:cisite_22_activity .

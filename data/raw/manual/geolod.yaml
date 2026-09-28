@@ -1,0 +1,187 @@
+# geolod.yaml -- everything for the geo-lod case study (step 07) that is not
+# already in a Wikidata JSON, an OSM export or one of the two geo-lod tables.
+#
+# Two findspots from two datasets of
+# https://github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD
+# are set against each other: one that is linked in every direction, and one
+# that is anchored two levels above itself because nothing closer exists.
+#
+# GND numbers were looked up by hand in the GND Explorer (lobid/DNB) on
+# 2026-09-28 and are recorded with what the record actually says, including
+# the entity type -- the difference between gik and gin is part of the story.
+
+sites:
+  franchthi:
+    title_de: "Franchthi-Höhle · Argolis, Griechenland"
+    title_en: "Franchthi Cave · Argolis, Greece"
+    dataset_de: "Campanian Ignimbrite · Fundstelle Nr. 45"
+    dataset_en: "Campanian Ignimbrite · findspot no. 45"
+    ci_id: 45
+    wikidata: Q1441331
+    osm: "node 1221172611"
+    heritage_id: "GR-J11-0044"        # P2186, griechisches Denkmalregister
+    gnd: "4228929-4"
+    gnd_label: "Franchthi-Höhle"
+    gnd_type: "gin"
+    gnd_type_de: "Natürliche geografische Einheit"
+    gnd_type_en: "natural geographic unit"
+    gnd_country: "XA-GR"
+    gnd_systematik_de:
+      - "19.1b Physische Geografie"
+      - "16.3 Archäologie, Vor- und Frühgeschichte"
+    gnd_systematik_en:
+      - "19.1b physical geography"
+      - "16.3 archaeology, pre- and protohistory"
+    gnd_changed: "2021-09-22"
+    # Der Satz existiert, aber Q1441331 trägt kein P227: die beiden Datensätze
+    # wissen nichts voneinander. Genau diese Lücke schließt ein Community-Hub.
+    linked_in_wikidata: false
+    gnd_has_coordinate: false
+  liangluar:
+    title_de: "Liang Luar · Flores, Indonesien"
+    title_en: "Liang Luar · Flores, Indonesia"
+    dataset_de: "SISAL v3 · Standort 104"
+    dataset_en: "SISAL v3 · site 104"
+    sisal_id: 104
+    wikidata: null
+    osm: null
+    gnd: null
+    elevation_m: 550
+    note_de: "Klimaarchiv mit über 2 700 δ¹⁸O-Werten — und ohne jeden Identifikator"
+    note_en: "a climate archive with more than 2,700 δ¹⁸O values — and no identifier at all"
+
+# Die Ortsketten. Was keine eigene Wikidata-JSON hat, steht hier mit Label und
+# den IDs, die in den OSM-Exporten stehen.
+chain:
+  franchthi:
+    - key: site
+      name_de: "Franchthi-Höhle"
+      name_en: "Franchthi Cave"
+      ids: "Q1441331 · node 1221172611"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: object
+      gnd_slot: ["GND 4228929-4", ok]
+    - key: ermionida
+      name_de: "Gemeinde Ermionida"
+      name_en: "Municipality of Ermionida"
+      ids: "Q616733 · rel 2185768 · admin_level 7"
+      hubs: {G: none, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND: kein Treffer|GND: no record", check]
+    - key: argolis
+      name_de: "Regionalbezirk Argolis"
+      name_en: "Argolis Regional Unit"
+      ids: "Q191897 · rel 937635 · admin_level 6"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4002893-8", ok]
+    - key: greece
+      name_de: "Griechenland"
+      name_en: "Greece"
+      ids: "Q41"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: null
+  liangluar:
+    - key: site
+      name_de: "Liang Luar"
+      name_en: "Liang Luar"
+      ids_de: "SISAL 104 · kein QID, kein OSM-Objekt"
+      ids_en: "SISAL 104 · no QID, no OSM object"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: ["GND: 0 Treffer|GND: 0 hits", check]
+    - key: manggarai
+      name_de: "Kabupaten Manggarai"
+      name_en: "Manggarai Regency"
+      ids: "Q14143 · rel 11228382 · admin_level 5"
+      hubs: {G: none, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND: kein Geografikum|GND: no place record", check]
+    - key: flores
+      name_de: "Insel Flores"
+      name_en: "Flores Island"
+      ids: "Q148440 · rel 7219477 · P227"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4098001-7", ok]
+    - key: ntt
+      name_de: "Ost-Nusa-Tenggara"
+      name_en: "East Nusa Tenggara"
+      ids: "Q5061 · rel 2396778 · P227"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 5059700-0", ok]
+
+# Je ein Ort neben der Kette, der nicht in die Verwaltungshierarchie passt --
+# das Gegenstück zur Diözese in der Holy-Wells-Fallstudie.
+aside:
+  franchthi:
+    name_de: "Argolis (historische Landschaft)"
+    name_en: "Argolis (historical region)"
+    ids: "Q12649101"
+    hubs: {G: ok, W: ok, O: none, F: open}
+    note_de: >-
+      Wikidata trennt die antike Landschaft vom heutigen Regionalbezirk; die GND
+      hält beides in einem Satz zusammen und vergibt dafür zwei Entitätentypen,
+      gik und gin.
+    note_en: >-
+      Wikidata separates the ancient region from today's regional unit; the GND
+      keeps both in one record and gives it two entity types, gik and gin.
+  liangluar:
+    name_de: "Kleine Sundainseln"
+    name_en: "Lesser Sunda Islands"
+    ids: "Q3803 · GND 4290172-8"
+    hubs: {G: ok, W: ok, O: none, F: open}
+    note_de: >-
+      Eine Inselgruppe, keine Verwaltungseinheit: die GND hat einen Satz, OSM
+      keine Relation, Wikidata kein P402.
+    note_en: >-
+      An island group, not an administrative unit: the GND has a record, OSM has
+      no relation, Wikidata has no P402.
+
+# Was in der GND rund um die beiden Orte tatsächlich steht. Handrecherche im
+# GND Explorer am 2026-09-28, Satztyp-Filter "Geografikum".
+gnd_probe:
+  argolis_hits: 25
+  argolis_examples_de: "Franchthi-Höhle, Ermioni, Epidauros, Argos-Mykene, Argolischer Golf, Hydra (Insel)"
+  argolis_examples_en: "Franchthi Cave, Ermioni, Epidauros, Argos-Mykene, Argolic Gulf, Hydra (island)"
+  liangluar_hits: 0
+  manggarai_note_de: "als Geografikum kein Treffer; die GND kennt Manggarai als Sprache"
+  manggarai_note_en: "no hit as a place; the GND knows Manggarai as a language"
+  ermionida_note_de: "kein Treffer; die Stadt Ermioni hat einen Satz, die Gemeinde nicht"
+  ermionida_note_en: "no hit; the town of Ermioni has a record, the municipality does not"
+
+# Der zweite Ort der Tephra-Kette und die beiden Prüffälle aus dem CI-Datensatz.
+tephra:
+  target:
+    name_de: "Phlegräische Felder"
+    name_en: "Phlegraean Fields"
+    ci_id: 22
+    wikidata: Q755123
+    gnd: "4103347-4"
+    osm_way: "way 1260684434"
+    osm_node: "node 4948370721"
+    admin: "Q18241891 · rel 40600 · Pozzuoli rel 40808"
+  # Zeile 22: der Link zeigt auf einen anderen Ort als die Methodenangabe
+  # derselben Zeile. Zeile 48: das Label nennt ein anderes Land als die beiden
+  # Identifikatoren und die Koordinate. Beides ist nur auffindbar, weil dort
+  # IDs stehen.
+  mismatch_node: "10879170567"
+  mismatch_node_is_de: "Crvena stijena, Montenegro (wikidata=Q121418883)"
+  mismatch_node_is_en: "Crvena stijena, Montenegro (wikidata=Q121418883)"
+  susak_id: 48
+  susak_label: "Susak Island (Greece)"
+  susak_is_de: "Relation 9854999 und GeoNames 3189468 liegen beide in Kroatien"
+  susak_is_en: "relation 9854999 and GeoNames 3189468 are both in Croatia"
+
+maps:
+  # lon0, lon1, lat0, lat1
+  franchthi: [22.98, 23.42, 37.25, 37.55]
+  liangluar: [119.95, 120.95, -8.95, -8.20]
+
+sources:
+  ci_de: "Fedele et al. 2003 · Orsi et al. 1996"
+  ci_en: "Fedele et al. 2003 · Orsi et al. 1996"
+  repo: "github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD"
+  licence: "CC BY 4.0"

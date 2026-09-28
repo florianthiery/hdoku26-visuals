@@ -109,7 +109,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |
 | S5 | Case Study Ogham (2 Steine) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/05-ogham/`) |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/06-holy-wells/`) |
-| S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
+| S7 | Case Study geo-lod (CI-Fundstelle, SISAL-Höhle) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/07-geo-lod/`) |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
 | S9 | Case Study poseidon2lod (aDNA) | S1 | offen |
 
@@ -195,6 +195,23 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - Die Diözese Ossory steht in B als Ebene daneben: kirchliche Einteilung, in OSM nicht vorhanden.
 - In C ist die Kante „Abt von Freshford" rot vermerkt, weil sie nur in der Wikidata-Beschreibung steht, nicht als Aussage.
 
+### S7 — Case Study geo-lod
+
+**Ziel:** CI-Fundstelle 45 (Franchthi-Höhle, Argolis) gegen SISAL-Standort 104 (Liang Luar, Flores) — dieselbe Fragestellung wie S5/S6, nur ist der Kontrast hier die **Tiefe der Verortung**, nicht die Geometrie.
+
+**Abnahme:** wie S2.
+
+#### Erledigt 2026-09-28
+
+- `py/step_07_geo_lod.py` baut `rollen`, `ortskette`, `graph-dahinter` in DE und EN; alle Kennzahlen in Grafik A werden beim Bauen aus `geolod/ci_findspots.csv` und `geolod/sisal_sites.csv` gezählt, die RDF-Prädikate in Grafik C werden aus den beiden `*_excerpt.ttl` gelesen.
+- **Hauptbefund:** Die Franchthi-Höhle **hat** einen GND-Satz — 4228929-4, Entitätentyp `gin`, Systematik 19.1b Physische Geografie *und* 16.3 Archäologie, seit 2021 unverändert, ohne Koordinate. Q1441331 trägt aber kein P227. Der Satz existiert und ist aus Wikidata nicht erreichbar; das ist die kleinere und leichter zu schließende der beiden Lücken. Eignet sich als Live-Demo im Vortrag.
+- Liang Luar: 0 GND-Treffer, kein QID, kein OSM-Objekt — verankert erst über Kabupaten Manggarai (Q14143, rel 11228382) und die Insel Flores (Q148440, GND 4098001-7, rel 7219477), darüber Ost-Nusa-Tenggara (Q5061, GND 5059700-0).
+- Ebene daneben (Gegenstück zur Diözese in S6): in Griechenland die **historische Landschaft Argolis** (Q12649101) — Wikidata trennt sie vom Regionalbezirk, die GND hält beides in einem Satz (4002893-8, `gik` *und* `gin`). In Indonesien die **Kleinen Sundainseln** (Q3803, GND 4290172-8) — GND-Satz vorhanden, OSM ohne Relation, Wikidata ohne P402.
+- **Befund zu den Identifikatoren:** Zwei Fehler im CI-Datensatz sind nur auffindbar, *weil* dort IDs stehen. Fundstelle 22 (Phlegräische Felder) verlinkt OSM-Node 10879170567 — das ist „Crvena stijena" in Montenegro (`wikidata=Q121418883`); die Methodenangabe derselben Zeile nennt den richtigen Node 4948370721, und die Koordinate der Zeile trifft ihn auch. Fundstelle 48 heißt „Susak Island (Greece)", ihre beiden Identifikatoren und ihre Koordinate liegen aber in Kroatien. Das trägt Grafik A als eigenes Band — Selbstkritik am eigenen Datensatz, nicht an der GND.
+- **Offen / an Flo:** `arch_note` zu Liang Luar sagt „Type site for Homo floresiensis". Typuslokalität ist nach Literaturlage Liang Bua, eine andere Höhle im selben Kabupaten. Die Grafik behauptet dazu nichts, sondern markiert die Kante rot und sagt, dass die Aussage ohne QID von außen nicht prüfbar ist.
+- **Offen / an Flo:** `sisal_sites.ttl` und `sisal_sites.csv` widersprechen sich bei den Probenzahlen (Liang Luar 4625 gegen 2715 δ¹⁸O, Chauvet 210 gegen 187). Die Grafik schreibt deshalb „über 2 700", was unter beiden Lesarten stimmt.
+- OSM-Flächen kommen aus drei `is_in`-Overpass-Abfragen; die Ringe sind mit Douglas-Peucker ausgedünnt (0,0004° bzw. 0,0012°) und auf 5 Nachkommastellen gerundet, damit die GeoJSONs im Repo klein bleiben.
+
 ### S7–S9 — weitere Case Studies
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
@@ -204,7 +221,7 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 | Schritt | Beispiel 1 | Beispiel 2 | Kontrast | OSM-Flächen für die Karte |
 |---|---|---|---|---|
 | S6 Holy Wells | St. Lachtain's Well (Q121840779): Wikidata, OSM-Way, SMR, dúchas, Namenspatron | ein Brunnen, den praktisch nur OSM und dúchas kennen | Wer hält den Ort überhaupt? | Brunnen, Townland, Civil Parish |
-| S7 geo-lod | SISAL-Höhle | CI-Tephra-Fundstelle | punktgenaue Probenahme gegen flächige Ablagerung | Höhleneingang (`natural=cave_entrance`), Schutzgebiet, Verwaltungseinheit |
+| S7 geo-lod | CI-Fundstelle 45 Franchthi-Höhle (Q1441331, OSM-Node 1221172611, `fsl:high`) | SISAL-Standort 104 Liang Luar (kein QID, kein OSM-Objekt) | wie tief reicht die Verortung — bis auf die Höhle oder erst bis zur Insel | Gemeinde Ermionida in Argolis; Kabupaten Manggarai auf Flores |
 | S8 bb-5kbc | Fundstelle in Brandenburg | Fundstelle in Westpolen | GND-Satz und Gemeinde auf der einen, anderes nationales Register auf der anderen Seite — Internationalität wird gezeigt, nicht behauptet | Gemeinde bzw. Gmina, Staatsgrenze |
 | S9 poseidon2lod | Individuum von einer gut publizierten Fundstelle | Individuum, das nur über eine aggregierte Sammlung hängt | Wie weit reicht die Kette vom Individuum zum Ort? | Fundstelle, Verwaltungseinheit |
 

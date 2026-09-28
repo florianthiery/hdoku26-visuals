@@ -53,6 +53,7 @@ OUT_DIRS = {
     "03-nische-hub": IMG / "03-nische-hub",
     "05-ogham": IMG / "05-ogham",
     "06-holy-wells": IMG / "06-holy-wells",
+    "07-geo-lod": IMG / "07-geo-lod",
 }
 
 MARGIN_X = 60

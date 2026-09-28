@@ -36,6 +36,7 @@ STEPS: list[tuple[str, str, str]] = [
     ("03", "step_03_nische_hub", "The niche is the hub: mini knowledge graphs, VGI, provenance"),
     ("05", "step_05_ogham", "Case study Ogham: two stones, one grid (roles, chain of places, graph behind)"),
     ("06", "step_06_holy_wells", "Case study Holy Wells: two wells, area vs. point, and the saint behind them"),
+    ("07", "step_07_geo_lod", "Case study geo-lod: two findspots, linked vs. unanchored (CI and SISAL)"),
 ]
 
 
