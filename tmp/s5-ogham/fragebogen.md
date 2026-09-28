@@ -46,77 +46,79 @@ Aus ogham-lod v1 (2021) kommen dazu:
 ## A. Stein-Items
 
 **A1.** Auf **Q106680733** zeigen bei CIIC 81 sowohl `wikidata=` am OSM-Node als auch P1382. Was ist das? ogham-lod v1 nennt als Konzepte Q69385424 (CIIC) und Q106675512 (CISP). Ist Q106680733 ein drittes Konzept oder ein neueres Item?
-→
+→ Q106680733 ist der "Squirrel Stone" also das umbrella item von ogham-lod v1, sollte jetzt aber in dem Fall ersetrzt werden mit Q130529871 als dem wirklichen "modellierten Stein"
 
 **A2.** Wo steht bei Coumeenoole der P2888-Link auf **Y50000178**? Q130529871 hat P2888 → Y50000081, Q126503090 hat keinen. Soll er in der Grafik als „fehlt noch" erscheinen oder ignoriert werden?
-→
+→ irgnorieren, mache da vor allem die Wikidata und OSM Links sichtbar (nicht zuviel, dass es unübersichtlich wird!)
 
 **A3.** Q126503090 hat **kein P189** (Fundort). Fundort und Standort fallen hier zusammen. Wie soll das modelliert werden?
+
 - (a) P189 → Q85395557, die Ogham Site, dazu P276 → Q26716194
 - (b) nur P276, der Fundort ist implizit
 - (c) anders
-→
+→ nimm (a)
 
 **A4.** Fehlt für CIIC 81 die **Trismegistos-ID**, oder gibt es keine? Wikidata hat dafür P1958.
-→
+→ lass die mal weg
 
 **A5.** fuzzy-sl **Q74** (CIIC 81) bitte als JSON, damit beide Steine gleich belegt sind (für Q131 liegt es schon vor).
-→
+→ anbei
 
 ## B. Sites und Townlands
 
 **B1.** Coumeenoole North, Townland: **WD-QID** und **OSM-Relation**. Logainm 22572 steht schon im EpiDoc.
-→
+→ Coumeenoole North (Townland) (Q104309699); [OpenStreetMap relation ID](https://www.wikidata.org/wiki/Property:P402) [4250372](https://www.openstreetmap.org/relation/4250372)
 
 **B2.** **An Dún Mór / Dunmore Head** (Logainm 1394328): Ist das **Q26716194** (P276)? Gibt es dafür ein OSM-Objekt, z. B. `natural=cape` oder `historic=archaeological_site` mit `site_type=fortification`?
-→
+→ Dunmore Head (Q26716192); osm node/4306696347
 
 **B3.** Die **SMR des Promontory Fort** Dún Mór. Vermutlich KE052-059001-, das ist aber nur geraten.
-→
+→ ja, siehe anbei
 
 **B4.** **Q85395557** (Ogham Site Coumeenoole) bitte als JSON: Koordinate, Referenzen, eventuell Logainm.
-→
+→ anbei
 
 **B5.** Soll die Ringfort-Ebene bei Garranes rein, also Ringfort *Lisheenagreine* (SMR CO084-090001-) mit Souterrain (CO084-090002-)? Siehe Idee **I2**: Der GND-Satz 1248049489 „Garranes, Ringwallanlage" meint genau dieses Ringfort. Falls ja: Gibt es ein WD-Item oder ein OSM-Objekt für das Ringfort?
-→
+→ Ringfort *Lisheenagreine* (SMR CO084-090001-) = osm way/1252604956, Ringfort Lisheenagreine (Q141591358)
 
 **B6.** **Baronien:** Kinalmeaky (Garranes) und Corkaguiny (Coumeenoole). QID und OSM-Relation, falls sie gebraucht werden (siehe **I3**).
-→
+→ Kinalmeaky (Q20616069), Corkaguiny (Q59419929)
 
 ## C. OpenStreetMap
 
 **C1.** OSM-XML von **Node 5145413640** (Coumeenoole). Die Fragen dazu:
+
 - Gibt es `inscription` bzw. `inscription:pgl-Latn`?
 - Worauf zeigt `wikidata=`, auf den Stein oder auf ein Konzept?
 - Gibt es `ref:IE:smr`?
-→
+→  inscription = ERC MAQI MAQI-ERCIAS MU DOVINIA; wikidata zeigt auf CIIC 178 (Ogham Stone Concept by RAS Macalister) (Q70892682); ref:IE:smr 	KE052-059002-
 
 **C2.** Bei CIIC 81 steht in `ref:IE:smr` am OSM-Node und in P4057 übereinstimmend **CO074-148----**. Das EpiDoc führt als SMR des Steins **CO084-090003-**. Lese ich das richtig: CO074-148 ist der Standort-Datensatz in Cork (UCC) und CO084-090003 der Fundort-Datensatz?
-→
+→ korrekt
 
 **C3.** Sind `url:sketchfab=https://skfb.ly/oVOIH` am OSM-Node und das Sketchfab-Modell im EpiDoc (*b-unicycling*) dasselbe Modell?
-→
+→ ja
 
 ## D. Knowledge Graph hinter der Inschrift
 
 **D1.** Die **Y5-Einträge** von lod.ogham.link, **Y50000081** und **Y50000178**: Turtle oder Link zum aktuellen Stand. Das Zip enthält nur die Serien Y1, Y2 und Y3 von 2021. Der Ordner `rdf/crosstable/` (Stein ↔ Lesung ↔ Wort ↔ Person) ist leer.
-→
+→ ja
 
 **D2.** **WD-QIDs der Personennamen**. Sie wurden als Q110897921 mit P2888 → OP… angelegt, die QIDs stehen aber nicht in `wd_persons.qs`.
 
 | Name | ogham-lod | QID |
 |---|---|---|
-| CASSITTAS | OP400067 | → |
-| CALLITI | OP400061 | → |
-| ERC | OP400203 | → |
-| MAQI-ERCIAS | OP400321 | → |
-| DOVINIA | OP400175 | → |
+| CASSITTAS | OP400067 | → Q110898426 |
+| CALLITI | OP400061 | → Q110898419 |
+| ERC | OP400203 | → Q110898590 |
+| MAQI-ERCIAS | OP400321 | → (noch) keine entsprechung |
+| DOVINIA | OP400175 | → Q110898560 |
 
 **D3.** **Sippen und Tribus** (für die Brücke Person → Ort, siehe **I3**):
 - MUCOI CALLITI → *Cailtrige* bzw. *Ceinéal Caollaidhe*, Teil der *Eoghanachta* (O'Brien 2021 nach Bhreathnach 2013). Gibt es dafür QIDs?
-→
-- DOVINIA(S) → *Corcu Duibne* und damit die Baronie Corkaguiny (McManus 1991, 111). Gibt es QIDs?
-→
+→ nein, hier auch erstmal egal
+-  DOVINIA(S) → *Corcu Duibne* und damit die Baronie Corkaguiny (McManus 1991, 111). Gibt es QIDs?
+→ nein, hier auch erstmal egal
 
 **D4.** Welche **Lesung** soll auf die Folie?
 - (a) die OG(H)AM-Edition (Nora White), wie sie im EpiDoc steht
@@ -124,25 +126,26 @@ Aus ogham-lod v1 (2021) kommen dazu:
 - (c) alle Lesungen nebeneinander (EpiDoc · WD · OSM · Macalister · Gippert), um die Varianz zu zeigen
 
 Meine Empfehlung: (c) für CIIC 81, das einen echten Lesungsstreit hat, und (a) mit Unterpunkten für Coumeenoole.
-→
+→ hier (c) aber mach es nicht zu komplex!
 
 **D5.** **Sprach-Tags** (siehe **I1**). Soll die Grafik das kommentieren, und wenn ja, wie? Ohne Wertung oder mit der Empfehlung `pgl`?
-→
+→ nein!
 
 ## E. Bilder (optional)
 
 **E1.** Welches Foto pro Stein, mit welcher Lizenz?
 - CIIC 81: dein eigenes Foto (CC BY-NC-SA 4.0), das OG(H)AM-Foto von Nora White oder ein Sketchfab-Screenshot.
+  → mein eigenes Foto!
 - CIIC 178: eines der sechs Commons-Bilder (Kategorie „Coumeenoole Stone"). Welches, und wer ist Urheber:in?
-→
+→ https://commons.wikimedia.org/wiki/File:Coumeenoole_Ogham_Stone_(Dunmore_Head)_20220827_2.jpg ich bin urheber
 
 **E2.** Sollen die Macalister-Zeichnungen (1945) rein? Rechtlich vermutlich frei, das wäre zu prüfen.
-→
+→ nein
 
 ## F. GND (optional, für die Symmetrie zu Folie 14)
 
 **F1.** GND-Explorer-Treffer für „Dunmore Head", „Dún Mór", „Coumeenoole" bzw. „Coumeenole", „Corkaguiny" und „Corcu Duibne". Ein Screenshot genügt, 0 Treffer ist auch ein Ergebnis.
-→
+→  0 Treffer
 
 ## G. Nachtrag nach den Mockups
 
@@ -151,39 +154,39 @@ Das brauche ich für die Zeile „gelesen von“ in Grafik C und für die GND-Ze
 
 | Eintrag | GND-ID |
 |---|---|
-| R. A. S. Macalister | → |
-| Damian McManus | → |
-| Jost Gippert | → |
-| Judith Cuppage | → |
-| O'Brien (2021) | → |
-| Eoghanachta / Eóganacht | → |
-| Corcu Duibne / Corca Dhuibhne | → |
-| County Cork | → |
-| County Kerry | → |
-| University College Cork | → |
-| Sachbegriff „Ogham“ (Schrift / Inschrift) | → |
+| R. A. S. Macalister | → 116620722 https://commons.wikimedia.org/wiki/File:Robert%20Alexander%20Stewart%20Macalister%20-%201870-to-1950.jpg |
+| Damian McManus | → 1067954791 |
+| Jost Gippert | → 109337409 |
+| Judith Cuppage | → --- |
+| O'Brien (2021) | → --- |
+| Eoghanachta / Eóganacht | → --- |
+| Corcu Duibne / Corca Dhuibhne | → --- |
+| County Cork | → 4085331-7 |
+| County Kerry | → 4222590-5 |
+| University College Cork | → 260703-7 |
+| Sachbegriff „Ogham“ (Schrift / Inschrift) | → Oghamschrift 4359722-1 |
 
 **G2.** Was bedeuten die Qualifier-Werte in fuzzy-sl Q131?
 Ich habe sie nach dem Muster von Q74 gelesen, das ist aber geraten.
 
 | Qualifier-Wert | meine Lesart | stimmt? |
 |---|---|---|
-| Q23 | Sicherheit *High* | → |
-| Q24 | Sicherheit *Low* | → |
-| Q77 | Ort-Typ *Exhibition Site* | → |
-| Q17 | Ort-Typ *Findspot* | → |
+| Q23 | Sicherheit *High* | → ja |
+| Q24 | Sicherheit *Low* | → ja |
+| Q77 | Ort-Typ *Exhibition Site* | →  on-site survey  (Q77) method to get coordinates |
+| Q17 | Ort-Typ *Findspot* | →  Georeferencing (Q17) method to get coordinates |
 
 Für die Karten in Grafik B bräuchte ich außerdem eine Zeile, wofür P5, P6, P7, P14, P16, P24 und P33 stehen.
-→
+→ screenshot anbei
 
 **G3.** Welche Knoten sollen in Grafik B und C „GND denkbar“ (gestrichelt ocker) bekommen?
 Im Mockup sind es: Stein, Townland, Baronie, Dún Mór, Corcu Duibne und Cailtrige.
 Wenn es diplomatischer sein soll, reichen zwei bis drei davon. Welche?
-→
+→ sicht so viele damit es nicht unübersichtlich wird!
 
 **G4.** Gibt es für Corkaguiny = Corca Dhuibhne, benannt nach dem Stamm, eine zweite Quelle neben McManus 1991, 111?
 Zum Beispiel Logainm (Baronie), eine Wikidata-Referenz oder einen Eintrag bei Ó Muraíle.
-→
+→ nicht dass ich wüsste, screenshot anbei
 
 ---
 
