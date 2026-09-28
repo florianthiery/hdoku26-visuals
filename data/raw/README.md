@@ -33,6 +33,7 @@ written by the pipeline, and no step reaches the network.
 | `osm/node_4306696347.xml` | OSM node of Dunmore Head | OSM API 0.6, 2026-09-28 (ODbL) |
 | `osm/way_1252604956.xml` | OSM way of the ringfort at Garranes | OSM API 0.6, 2026-09-28 (ODbL) |
 | `osm/relation_4250372.xml` | OSM relation of the townland Coumeenoole North | OSM API 0.6, 2026-09-28 (ODbL) |
+| `osm/boundaries.geojson` | Areas drawn in figure B: baronies Corkaguiny (5304974) and Kinalmeaky (6408043), townlands Coumeenoole North (4250372) and Garranes (6168494), ringfort way 1252604956; coordinates rounded to 5 decimals, tags reduced to name, boundary, Logainm and Wikidata | Overpass turbo (`out geom`), 2026-09-28 (ODbL) |
 | `epidoc/I-COR-030.xml`, `I-KER-046.xml` | OG(H)AM EpiDoc editions of CIIC 81 and CIIC 178; step 05 reads the current transliteration and its underdotted letters from them | [lguariento/og-h-am](https://github.com/lguariento/og-h-am) commit `0a2c7a0`, 2026-09-28 (CC BY 4.0) |
 | `manual/ogham.yaml` | everything for step 05 that is in none of those files: GND IDs, the other editors' readings, kin groups, picture credits, labels of the fuzzy-sl properties | supplied by Florian Thiery, 2026-09-28 (answers in the questionnaire) |
 | `images/ciic81-stone-corridor-thiery.jpg` | Stone Corridor, University College Cork | Florian Thiery, CC BY-NC-SA 4.0 |

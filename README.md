@@ -56,5 +56,7 @@ Code: MIT. Figures: CC BY 4.0, except the embedded photographs: Konrad Zuse in
 00a (Wolfgang Hunscher, CC BY-SA 3.0, via Wikimedia Commons), the Stone
 Corridor in 05 A (Florian Thiery, CC BY-NC-SA 4.0) and the Coumeenoole stone
 in 05 A (Florian Thiery, CC BY 4.0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
-OpenStreetMap data: © OpenStreetMap contributors, ODbL. Natural Earth: public
+OpenStreetMap data: © OpenStreetMap contributors, ODbL — figure 05 B draws OSM
+areas, so a slide showing it carries that credit (the figure prints it under
+each map). Natural Earth: public
 domain. Quotations from c't are short citations with attribution.

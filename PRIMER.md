@@ -164,6 +164,7 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - Alle Werte aus Dateien: Wikidata-JSONs, fuzzy-sl Q74/Q131, vier neue OSM-XML, die beiden EpiDoc-Editionen und `manual/ogham.yaml` (Antworten aus dem Fragebogen).
 - Die aktuelle Lesung und die unsicher gelesenen Buchstaben (rot) werden aus dem EpiDoc gelesen (kombinierender Punkt unter dem Buchstaben), nicht abgetippt.
 - Fundort von CIIC 81 in der Kette ist das Ringfort Lisheenagreine (Q141591358, GND 1248049489); die Ogham Site Q69385525 steht als räumlich verbundener Knoten daneben, in Wikidata sind beide nicht verknüpft.
+- Karten in Grafik B: Natural Earth 1:10m löst Dunmore Head in keiner Zoomstufe auf. Deshalb kommen die Flächen aus OSM (`osm/boundaries.geojson`, Overpass): Baronie als Landfläche, Townland darin, dazu ein Irland-Inset mit markiertem Kartenfenster. Gezeichnete OSM-Geometrie heißt Namensnennung: „© OpenStreetMap-Mitwirkende, ODbL“ steht unter jeder Karte.
 - Befund für Grafik B: Die Ogham Site Q85395557 trägt fünf Koordinaten mit je eigener Quelle (OSM, CISP, Ogham in 3D, SMR, townlands.ie), Spannweite 586 m. Die Quelle jedes Punktes wird aus den Referenzen der Aussage gelesen.
 - Dunmore Head ist Q26716192; das in P276 von Q126503090 verwendete Q26716194 ist falsch (Auskunft Florian, Fragebogen B2).
 - `tmp/s5-ogham/` ist damit erledigt und wird beim Anwenden des Patches gelöscht.

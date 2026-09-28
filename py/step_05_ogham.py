@@ -145,6 +145,7 @@ def load() -> dict:
             "headland": _osm_tags("node_4306696347.xml"),
             "townland178": _osm_tags("relation_4250372.xml"),
         },
+        "geo": json.loads((RAW / "osm" / "boundaries.geojson").read_text(encoding="utf-8")),
         "reading": {
             "ciic81": _epidoc_reading("I-COR-030.xml"),
             "ciic178": _epidoc_reading("I-KER-046.xml"),
@@ -359,7 +360,8 @@ def _fig_a(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure B -- the chain of places
 # --------------------------------------------------------------------------- #
-def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str):
+def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str,
+         *, coastline: bool = True):
     lon0, lon1, lat0, lat1 = bbox
     k = math.cos(math.radians((lat0 + lat1) / 2))
     s = min(w / ((lon1 - lon0) * k), h / (lat1 - lat0))
@@ -369,20 +371,93 @@ def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str):
     def project(lon: float, lat: float) -> tuple[float, float]:
         return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
 
-    rings = json.loads((RAW / "naturalearth" / "ireland_outline.json").read_text(encoding="utf-8"))
     parts = [f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
              f'rx="12"/></clipPath></defs>',
              f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{vu.SEA_FILL}"/>',
              f'<g clip-path="url(#{clip_id})">']
+    if coastline:
+        rings = json.loads((RAW / "naturalearth" / "ireland_outline.json").read_text(encoding="utf-8"))
+        for poly in rings:
+            path = "M " + " L ".join(f"{a:.1f} {b:.1f}" for a, b in
+                                     (project(*point) for point in poly["ring"])) + " Z"
+            parts.append(f'<path d="{path}" fill="{vu.LAND_FILL}" stroke="{vu.LAND_STROKE}" '
+                         f'stroke-width="1"/>')
+    return "\n".join(parts), project
+
+
+def _map_frame(x: float, y: float, w: float, h: float) -> str:
+    """Closes the clip group opened by :func:`_map` and draws the frame; every
+    overlay (boundaries, markers) goes between the two, so nothing spills over
+    the edge of the map."""
+    return ('</g>'
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
+            f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
+
+
+def _locator(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str) -> str:
+    """Small whole-island locator in the corner of a map, with the map window
+    marked -- same device as figure 01, so that a close-up keeps its context."""
+    lon0, lon1, lat0, lat1 = bbox
+    ilon0, ilon1, ilat0, ilat1 = -10.9, -5.3, 51.3, 55.5
+    k = math.cos(math.radians(53.4))
+    s_ = min((w - 12) / ((ilon1 - ilon0) * k), (h - 12) / (ilat1 - ilat0))
+
+    def project(lon: float, lat: float) -> tuple[float, float]:
+        return x + 6 + (lon - ilon0) * k * s_, y + 6 + (ilat1 - lat) * s_
+
+    rings = json.loads((RAW / "naturalearth" / "ireland_outline.json").read_text(encoding="utf-8"))
+    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="8" fill="#ffffff" '
+             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>']
     for poly in rings:
         path = "M " + " L ".join(f"{a:.1f} {b:.1f}" for a, b in
                                  (project(*point) for point in poly["ring"])) + " Z"
         parts.append(f'<path d="{path}" fill="{vu.LAND_FILL}" stroke="{vu.LAND_STROKE}" '
-                     f'stroke-width="1"/>')
-    parts.append("</g>")
-    parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
-                 f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
-    return "\n".join(parts), project
+                     f'stroke-width="0.8"/>')
+    wx0, wy0 = project(lon0, lat1)
+    wx1, wy1 = project(lon1, lat0)
+    parts.append(f'<rect x="{min(wx0, wx1) - 3:.1f}" y="{min(wy0, wy1) - 3:.1f}" '
+                 f'width="{max(abs(wx1 - wx0), 7):.1f}" height="{max(abs(wy1 - wy0), 7):.1f}" '
+                 f'fill="none" stroke="{vu.TEXT_DARK}" stroke-width="1.4"/>')
+    return "\n".join(parts)
+
+
+def _feature(d: dict, osm_id: str) -> dict:
+    return next(f for f in d["geo"]["features"] if f["properties"]["@id"] == osm_id)
+
+
+def _rings(feature: dict) -> list[list[list[float]]]:
+    """Outer rings of a (Multi)Polygon, as lists of [lon, lat]."""
+    geometry = feature["geometry"]
+    if geometry["type"] == "Polygon":
+        return [geometry["coordinates"][0]]
+    return [polygon[0] for polygon in geometry["coordinates"]]
+
+
+def _path(ring: list[list[float]], project, *, min_step: float = 0.45) -> str:
+    """Ring as an SVG path, thinned to the drawing scale: a point closer than
+    ``min_step`` pixels to the one before it adds nothing to a printed map and
+    would only bloat the SVG (the barony has 9,600 of them)."""
+    points, last = [], None
+    for lon, lat in ring:
+        x, y = project(lon, lat)
+        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
+            points.append((x, y))
+            last = (x, y)
+    if len(points) < 3:
+        return ""
+    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + " Z"
+
+
+def _draw_feature(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0,
+                  dashed: bool = False) -> str:
+    dash = ' stroke-dasharray="5 4"' if dashed else ""
+    parts = []
+    for ring in _rings(feature):
+        path = _path(ring, project)
+        if path:
+            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
+                         f'stroke-width="{width}"{dash}/>')
+    return "\n".join(parts)
 
 
 def _fsl_mark(x: float, y: float, number: str, certainty: str) -> str:
@@ -393,6 +468,12 @@ def _fsl_mark(x: float, y: float, number: str, certainty: str) -> str:
                      f'stroke-dasharray="5 4"/>')
     parts.append(vu.svg_marker(x, y, number, {"fill": "#ffffff", "stroke": vu.TEXT_DARK}))
     return "\n".join(parts)
+
+
+def _backdrop(x: float, y: float, w: float, h: float) -> str:
+    """Soft white panel behind a text block that sits on top of a map."""
+    return (f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="8" '
+            f'fill="#ffffff" fill-opacity="0.82"/>')
 
 
 def _note(x: float, y: float, lines: list[str], anchor: str = "start") -> str:
@@ -417,11 +498,22 @@ def _fig_b(d: dict, lang: str) -> str:
     p.append(T(MX + 90, y0 + 16, vu.t(lang, "Fundort und Standort getrennt · 20,5 km",
                                       "findspot and current location apart · 20.5 km"),
                size=14, color=vu.TEXT_MUTED))
-    markup, project = _map(MX, y0 + 34, MW, 372, (-9.40, -8.02, 51.58, 52.10), "map-ciic81")
+    bbox81 = (-9.40, -8.02, 51.58, 52.10)
+    markup, project = _map(MX, y0 + 34, MW, 372, bbox81, "map-ciic81")
     p.append(markup)
+    p.append(_draw_feature(_feature(d, "relation/6408043"), project,
+                           fill=OSM["fill"], stroke=OSM["stroke"], width=1.2))
+    p.append(_draw_feature(_feature(d, "relation/6168494"), project,
+                           fill="#ffffff", stroke=vu.TEXT_DARK, width=1.2))
+    p.append(_map_frame(MX, y0 + 34, MW, 372))
+    p.append(_locator(MX + MW - 116, y0 + 48, 102, 128, bbox81, "loc-ciic81"))
+    p.append(T(MX + 14, y0 + 34 + 24, vu.t(lang, "Baronie Kinalmeaky · Townland Garranes",
+                                           "Barony Kinalmeaky · Townland Garranes"),
+               size=11.5, color=OSM["stroke"]))
     points = d["fsl_points"]["ciic81"]
     labels = m["fuzzy_sl"]["statements"]["ciic81"]
     key_y = y0 + 300
+    p.append(_backdrop(MX + 12, key_y - 26, 330, 96))
     for i, (point, meta) in enumerate(zip(points, labels)):
         mx, my = project(point["lon"], point["lat"])
         p.append(_fsl_mark(mx, my, str(i + 1), meta["certainty"]))
@@ -439,6 +531,10 @@ def _fig_b(d: dict, lang: str) -> str:
         "geometry: fuzzy-sl Q74 · location type, method and certainty per coordinate"),
         WD, size=12)
     p.append(chip)
+    p.append(T(MX + MW, y0 + 452, vu.t(
+        lang, "Küstenlinie: Natural Earth · Grenzen: © OpenStreetMap-Mitwirkende, ODbL",
+        "coastline: Natural Earth · boundaries: © OpenStreetMap contributors, ODbL"),
+        size=10.5, color=vu.TEXT_MUTED, anchor="end", baseline="central"))
 
     lane = y0 + 44
     ry1, ry2 = y0 + 140, y0 + 312
@@ -513,36 +609,44 @@ def _fig_b(d: dict, lang: str) -> str:
     p.append(T(MX + 100, y0 + 16, vu.t(lang, "Fundort ist Standort · 1839 wieder aufgerichtet",
                                        "findspot is the current location · re-erected 1839"),
                size=14, color=vu.TEXT_MUTED))
-    markup, project = _map(MX, y0 + 34, MW, 322, (-10.484, -10.452, 52.1035, 52.1175), "map-ciic178")
+    bbox178 = (-10.620, -10.290, 52.055, 52.185)
+    markup, project = _map(MX, y0 + 34, MW, 322, bbox178, "map-ciic178", coastline=False)
     p.append(markup)
+    p.append(_draw_feature(_feature(d, "relation/5304974"), project,
+                           fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.0))
+    p.append(_draw_feature(_feature(d, "relation/4250372"), project,
+                           fill=OSM["fill"], stroke=OSM["stroke"], width=1.2))
+    p.append(_map_frame(MX, y0 + 34, MW, 322))
+    p.append(_locator(MX + MW - 116, y0 + 48, 102, 128, bbox178, "loc-ciic178"))
+    p.append(T(MX + 14, y0 + 34 + 24, vu.t(
+        lang, "Baronie Corkaguiny (Fläche) · Townland Coumeenoole North (grün)",
+        "Barony Corkaguiny (area) · Townland Coumeenoole North (green)"),
+        size=11.5, color=OSM["stroke"]))
     stone = d["fsl_points"]["ciic178"][0]
     sx, sy2 = project(stone["lon"], stone["lat"])
     p.append(_fsl_mark(sx, sy2, "1", "Low"))
-    shown = 0
     for point in d["site178_points"]:
         px, py = project(point["lon"], point["lat"])
-        if abs(px - sx) < 4 and abs(py - sy2) < 4:
-            continue
         p.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="5" fill="#ffffff" '
                  f'stroke="{vu.UNCERTAIN_STROKE}" stroke-width="1.6"/>')
-        near_stone = math.hypot(px - sx, py - sy2) < 46
-        dy = (-40 if near_stone else (16, -18, 34, -36)[shown % 4])
-        p.append(T(px + 9, py + dy, point["source"], size=11, color=vu.UNCERTAIN_STROKE,
-                   baseline="central"))
-        p.append(f'<line x1="{px:.1f}" y1="{py:.1f}" x2="{px:.1f}" y2="{py + dy:.1f}" '
-                 f'stroke="{vu.UNCERTAIN_STROKE}" stroke-width="0.8"/>')
-        shown += 1
-    p.append(_note(MX + 16, y0 + 300, [
+    p.append(_backdrop(MX + 8, y0 + 262, 400, 88))
+    p.append(_note(MX + 16, y0 + 282, [
         vu.t(lang, "Stein: zwei fuzzy-sl-Aussagen auf einem Punkt",
              "stone: two fuzzy-sl statements on one point"),
         vu.t(lang, "Fundort: Low · Macalister 1945, 170", "findspot: Low · Macalister 1945, 170"),
         vu.t(lang, "Ausstellungsort: High · Survey vor Ort",
-             "exhibition site: High · on-site survey")]))
+             "exhibition site: High · on-site survey"),
+        vu.t(lang, "Site-Punkte: ", "site points: ") + " · ".join(
+            dict.fromkeys(point["source"] for point in d["site178_points"]))]))
     chip, _ = vu.svg_chip(MX, y0 + 366, vu.t(
         lang, "Ogham Site Q85395557: fünf Koordinaten mit je eigener Quelle, 586 m Spannweite",
         "Ogham Site Q85395557: five coordinates, each with its own source, 586 m apart"),
         UNC, size=12)
     p.append(chip)
+    p.append(T(MX + MW, y0 + 394, vu.t(
+        lang, "Flächen: © OpenStreetMap-Mitwirkende, ODbL",
+        "areas: © OpenStreetMap contributors, ODbL"),
+        size=10.5, color=vu.TEXT_MUTED, anchor="end", baseline="central"))
 
     lane = y0 + 44
     ry = y0 + 150
