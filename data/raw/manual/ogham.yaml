@@ -1,0 +1,209 @@
+# Case study Ogham (step 05) -- values that are not in any of the machine-readable
+# files under data/raw/. Everything here was supplied by Florian Thiery on
+# 2026-09-28 in tmp/s5-ogham/fragebogen.md (answers A-G), unless a line names
+# another source.
+
+stones:
+  ciic81:
+    label: CIIC 81
+    title_de: CIIC 81 · Garranes / Cork
+    title_en: CIIC 81 · Garranes / Cork
+    epidoc: I-COR-030
+    cisp: GARES/1
+    ogham_lod: Y50000081
+    wikidata: Q130529871
+    fuzzy_sl: Q74
+    osm_node: 11071361392
+    smr_stone_findspot: CO084-090003-      # EpiDoc: record at the findspot
+    smr_stone_keeper: CO074-148----        # Wikidata P4057 and OSM ref:IE:smr: record at UCC
+    inventory: UCC Stone Corridor, no. 4
+    findspot_is_current: false
+    distance_km: 20.5                      # tei--epidoc-crosswalk docs/keepers.csv
+  ciic178:
+    label: CIIC 178
+    title_de: CIIC 178 · Coumeenoole North
+    title_en: CIIC 178 · Coumeenoole North
+    epidoc: I-KER-046
+    cisp: COUME/1
+    ogham_lod: Y50000178
+    wikidata: Q126503090
+    fuzzy_sl: Q131
+    osm_node: 5145413640
+    smr_stone: KE052-059002-
+    smr_fort: KE052-059001-                # Historic Environment Viewer, screenshot 2026-09-28
+    findspot_is_current: true
+    re_erected: 1839                       # EpiDoc I-KER-046, after Macalister 1945, 170
+
+# Answer A1: the OSM tag wikidata=Q106680733 on the CIIC 81 node points at the
+# "Squirrel Stone" umbrella item of ogham-lod v1 and should be replaced by
+# Q130529871, the modelled stone.
+osm_wikidata_tag:
+  ciic81:
+    value: Q106680733
+    is_umbrella: true
+    should_be: Q130529871
+  ciic178:
+    value: Q70892682                       # CIIC 178 concept by Macalister
+    is_concept: true
+    should_be: Q126503090
+
+# Answer B5 + G3: the findspot of CIIC 81 in the chain is the ringfort; the Ogham
+# Site sits beside it as a spatially related node. Wikidata holds no direct
+# statement between the two (same junction pattern as figure 03).
+findspot_ciic81:
+  chain_node: Q141591358                   # Ringfort Lisheenagreine, SMR CO084-090001-, OSM way 1252604956
+  spatial_relation_to: Q69385525           # Garranes (Ogham Site)
+  linked_in_wikidata: false
+  souterrain_smr: CO084-090002-
+  gnd: '1248049489'                        # GND "Garranes, Ringwallanlage" = this ringfort
+
+# Answer G2: labels of the fuzzy-sl properties and qualifier items
+fuzzy_sl:
+  properties:
+    P4: has coordinate
+    P5: certainty level
+    P6: source type (generic)
+    P7: method used
+    P13: certainty description
+    P14: acting person
+    P15: method description
+    P16: source type (detail)
+    P23: precision
+    P24: location type
+    P33: point type
+  items:
+    Q23: High
+    Q24: Low
+    Q17: Georeferencing
+    Q77: on-site survey
+  statements:
+    ciic81:
+      - place_de: UCC Cork
+        place_en: UCC Cork
+        type_de: Ausstellungsort
+        type_en: exhibition site
+        certainty: High
+        method_de: Survey vor Ort
+        method_en: on-site survey
+      - place_de: Garranes
+        place_en: Garranes
+        type_de: Fundort
+        type_en: findspot
+        certainty: Low
+        method_de: aus Text georeferenziert
+        method_en: georeferenced from text
+    ciic178:
+      - place_de: Dunmore Head
+        place_en: Dunmore Head
+        type_de: Ausstellungsort
+        type_en: exhibition site
+        certainty: High
+        method_de: Survey vor Ort
+        method_en: on-site survey
+      - place_de: Dunmore Head
+        place_en: Dunmore Head
+        type_de: Fundort
+        type_en: findspot
+        certainty: Low
+        method_de: Macalister 1945, 170
+        method_en: Macalister 1945, 170
+
+# Answer D4: readings side by side, kept short.
+readings:
+  ciic81:
+    - source_de: OG(H)AM-Edition (N. White)
+      source_en: OG(H)AM edition (N. White)
+      text: C[A]SSITT[A]S MAQI MU[CO]I CALLITI
+    - source_de: Macalister 1945
+      source_en: Macalister 1945
+      text: C[A]SSITT[A]S MAQI MUCOI CALLITI
+    - source_de: Gippert 1987
+      source_en: Gippert 1987
+      text: '[CA]SSI[O]TTAS MAQI MU[CO]I CALLITI'
+    - source_de: OpenStreetMap
+      source_en: OpenStreetMap
+      text: C[A]SSITT[A/O]S MAQI MU[CO]I CALLITI
+  ciic178:
+    - source_de: OG(H)AM-Edition (N. White)
+      source_en: OG(H)AM edition (N. White)
+      text: ERC MAQI MAQI-ERCIAS MU DOVINIA
+      uncertain: [20, 22, 23, 28, 30]      # character positions underdotted in the edition
+    - source_de: OpenStreetMap
+      source_en: OpenStreetMap
+      text: ERC MAQI MAQI-ERCIAS MU DOVINIA
+  translation_ciic178_en: of Erc son of Mac-Erce descendant? of Duibne
+  translation_ciic178_de: des Erc, Sohn des Mac-Erce, Nachkomme? der Duibne
+
+# Answer D2: Wikidata items for the personal names in the inscriptions
+persons:
+  CASSITTAS: {ogham_lod: OP400067, wikidata: Q110898426}
+  CALLITI: {ogham_lod: OP400061, wikidata: Q110898419}
+  ERC: {ogham_lod: OP400203, wikidata: Q110898590}
+  MAQI-ERCIAS: {ogham_lod: OP400321, wikidata: null}
+  DOVINIA: {ogham_lod: OP400175, wikidata: Q110898560}
+words:
+  MAQI: {wikidata: Q67381254, gloss_de: Sohn, gloss_en: son}
+  MUCOI: {wikidata: Q67999759, gloss_de: Sippe, gloss_en: kin group}
+  ERC: {wikidata: Q67382360, gloss_de: Gott, gloss_en: god}
+
+# Answer D3: kin groups have no Wikidata items yet.
+kin_groups:
+  ciic81:
+    name: Cailtrige
+    alt: Ceinéal Caollaidhe
+    part_of: Eoghanachta
+    source: O'Brien 2021, 212 (after Bhreathnach 2013, 163)
+    wikidata: null
+    place: null
+  ciic178:
+    name: Corcu Duibne
+    alt: Corca Dhuibhne
+    part_of: null
+    source: McManus 1991, 111
+    wikidata: null
+    place: Q59419929                      # barony Corkaguiny / Corca Dhuibhne
+
+# Answer G1 and F1: GND records. null means the GND Explorer returned no hit.
+gnd:
+  ringfort_garranes: '1248049489'
+  county_cork: 4085331-7
+  county_kerry: 4222590-5
+  ucc: 260703-7
+  ogham_script: 4359722-1
+  macalister: '116620722'
+  mcmanus: '1067954791'
+  gippert: '109337409'
+  cuppage: null
+  obrien: null
+  eoghanachta: null
+  corcu_duibne: null
+  dunmore_head: null
+  coumeenoole: null
+  corkaguiny: null
+
+# Who read the inscriptions -- persons, where the GND is dense (figure C)
+scholars:
+  ciic81:
+    - {name: Macalister 1945, gnd: '116620722'}
+    - {name: Gippert 1987, gnd: '109337409'}
+    - {name: McManus 2004, gnd: '1067954791'}
+    - {name: O'Brien 2021, gnd: null}
+  ciic178:
+    - {name: Macalister 1945, gnd: '116620722'}
+    - {name: Cuppage 1986, gnd: null}
+    - {name: McManus 1991, gnd: '1067954791'}
+    - {name: White (OG(H)AM), gnd: null, orcid: 0000-0001-7957-651X}
+
+images:
+  ciic81:
+    file: ciic81-stone-corridor-thiery.jpg
+    crop: [620, 700, 1500, 1700]
+    caption_de: Stone Corridor, University College Cork – heutiger Standort von CIIC 81
+    caption_en: Stone Corridor, University College Cork – where CIIC 81 stands today
+    credit: Florian Thiery, CC BY-NC-SA 4.0
+  ciic178:
+    file: ciic178-coumeenoole-thiery.png
+    crop: null
+    caption_de: CIIC 178 auf Dunmore Head
+    caption_en: CIIC 178 on Dunmore Head
+    credit: Florian Thiery, CC BY 4.0, via Wikimedia Commons

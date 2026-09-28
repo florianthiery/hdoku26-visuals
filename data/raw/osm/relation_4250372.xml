@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498759 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <relation id="4250372" visible="true" version="8" changeset="149545963" timestamp="2024-04-03T22:29:58Z" user="AndrewMcCarthy" uid="1379">
+  <member type="way" ref="315887268" role="outer"/>
+  <member type="way" ref="4563989" role="outer"/>
+  <member type="way" ref="207555300" role="outer"/>
+  <member type="way" ref="207555301" role="outer"/>
+  <member type="way" ref="315887270" role="outer"/>
+  <member type="way" ref="315887269" role="outer"/>
+  <member type="way" ref="316053109" role="outer"/>
+  <member type="way" ref="316369734" role="outer"/>
+  <member type="way" ref="316679410" role="outer"/>
+  <member type="way" ref="315887267" role="outer"/>
+  <tag k="admin_level" v="10"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="locality" v="townland"/>
+  <tag k="logainm:ref" v="22572"/>
+  <tag k="logainm:url" v="http://www.logainm.ie/22572.aspx"/>
+  <tag k="name" v="Com Dhíneol Thuaidh"/>
+  <tag k="name:en" v="Coumeenoole North"/>
+  <tag k="name:ga" v="Com Dhíneol Thuaidh"/>
+  <tag k="place" v="locality"/>
+  <tag k="type" v="boundary"/>
+  <tag k="wikidata" v="Q104309699"/>
+ </relation>
+</osm>

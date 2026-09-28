@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498760 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4306696347" visible="true" version="5" changeset="183068605" timestamp="2026-05-23T13:37:27Z" user="smeòrach" uid="2922304" lat="52.1086466" lon="-10.4796422">
+  <tag k="name" v="An Dún Mór"/>
+  <tag k="name:en" v="Dunmore Head"/>
+  <tag k="name:ga" v="An Dún Mór"/>
+  <tag k="natural" v="cape"/>
+  <tag k="place" v="locality"/>
+  <tag k="wikidata" v="Q26716192"/>
+ </node>
+</osm>

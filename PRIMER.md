@@ -104,7 +104,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S2 | Grafik 1 „Ein Name, viele Orte“ | S1 | erledigt 2026-09-22 (Iteration 2: Tags) |
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |
-| S5 | Case Study Ogham (2 Steine) | S1 | Mockups 2026-09-22 (`tmp/s5-ogham/`), wartet auf Fragebogen |
+| S5 | Case Study Ogham (2 Steine) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/05-ogham/`) |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
 | S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
@@ -157,6 +157,17 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
 **Abnahme:** wie S2; zusätzlich alle Werte aus Dateien in `data/raw/` statt fest im Code.
 
+#### Erledigt 2026-09-28
+
+- `py/step_05_ogham.py` baut drei Grafiken nach DE und EN: `rollen`, `ortskette`, `graph-dahinter`.
+- Gemeinsame Bausteine liegen jetzt in den Utils (`status_icon`, `hub_bar`, `case_node`, `gnd_slot`, `status_legend`) und gelten ab hier für alle Case Studies; OSM hat eine eigene Farbe (`vu.OSM`), 00a–03 bleiben unverändert.
+- Alle Werte aus Dateien: Wikidata-JSONs, fuzzy-sl Q74/Q131, vier neue OSM-XML, die beiden EpiDoc-Editionen und `manual/ogham.yaml` (Antworten aus dem Fragebogen).
+- Die aktuelle Lesung und die unsicher gelesenen Buchstaben (rot) werden aus dem EpiDoc gelesen (kombinierender Punkt unter dem Buchstaben), nicht abgetippt.
+- Fundort von CIIC 81 in der Kette ist das Ringfort Lisheenagreine (Q141591358, GND 1248049489); die Ogham Site Q69385525 steht als räumlich verbundener Knoten daneben, in Wikidata sind beide nicht verknüpft.
+- Befund für Grafik B: Die Ogham Site Q85395557 trägt fünf Koordinaten mit je eigener Quelle (OSM, CISP, Ogham in 3D, SMR, townlands.ie), Spannweite 586 m. Die Quelle jedes Punktes wird aus den Referenzen der Aussage gelesen.
+- Dunmore Head ist Q26716192; das in P276 von Q126503090 verwendete Q26716194 ist falsch (Auskunft Florian, Fragebogen B2).
+- `tmp/s5-ogham/` ist damit erledigt und wird beim Anwenden des Patches gelöscht.
+
 #### Mockups 2026-09-22
 
 - Arbeitsstand in `tmp/s5-ogham/` (siehe `tmp/README.md`): Fragebogen, Mockup-Skript, gerenderte Mockups, Rohdaten (EpiDoc, Q126503090, fuzzy-sl Q131).
@@ -185,5 +196,5 @@ Die GitHub-Repos erzeugen die LOD/RDF-Daten und lassen sich im Sandbox direkt kl
 
 - Zitatauswahl für Grafik 2 und 3 (Kandidaten in `quotes.yaml`).
 - Fonts: im Sandbox aus `@fontsource/fira-sans` (Latin-Subset) konvertiert; im Repo die Originaldateien aus bb-5kbc-visuals verwenden.
-- S5: Fragebogen `tmp/s5-ogham/fragebogen.md` (A–G) beantworten; v. a. Townland Coumeenoole North (QID, OSM-Relation), OSM-Node 5145413640, Q106680733, GND-IDs (G1), fuzzy-sl-Qualifier (G2), Auswahl „GND denkbar“ (G3).
+- Offen aus S5: MAQI-ERCIAS hat kein Wikidata-Item; Cailtrige, Eoghanachta und Corcu Duibne haben weder QID noch GND-Satz; der OSM-Tag `wikidata=Q106680733` am CIIC 81 sollte auf Q130529871 zeigen, der Tag am CIIC 178 (`Q70892682`) auf Q126503090; P276 von Q126503090 zeigt auf das falsche Dunmore-Head-Item.
 - Soll Lisnacaheragh in Wikidata angelegt werden (mit P227 = 1248049489)? Wäre eine Aussage für Grafik 3.

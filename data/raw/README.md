@@ -21,6 +21,22 @@ written by the pipeline, and no step reaches the network.
 | `images/konrad-zuse-hunscher.jpg` | Photo of Konrad Zuse by Wolfgang Hunscher, Dortmund, CC BY-SA 3.0, via Wikimedia Commons | Wikimedia Commons, 2026-09-22 |
 | `manual/zuse.yaml` | Zuse example: the two places linked in the GND graph (approximate positions for a schematic map), photo credit, graph crop | GND Explorer screenshot, 2026-09-22 |
 | `naturalearth/germany_outline.json` | Outline of Germany, 2 decimals, for the schematic map in 00a | Natural Earth 1:10m via npm `world-atlas@2.0.2` |
+| `wikidata/Q126503090.json` | Ogham stone Coumeenoole North / Dunmore Head (CIIC 178) | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q85395557.json` | Coumeenoole North / Dunmore Head (Ogham Site): five coordinates, each with its own source | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q141591358.json` | Ringfort Lisheenagreine, the findspot of CIIC 81: SMR CO084-090001-, OSM way | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q104309699.json` | Townland Coumeenoole North (Logainm 22572, OSM relation 4250372) | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q26716192.json` | Dunmore Head / An Dún Mór (Logainm 1394328, OSM node) | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q59419929.json` | Barony Corkaguiny / Corca Dhuibhne | `Special:EntityData`, 2026-09-28 |
+| `wikidata/Q20616069.json` | Barony Kinalmeaky | `Special:EntityData`, 2026-09-28 |
+| `fuzzy-sl/Q74.json`, `Q131.json` | the two stones in the fuzzy-sl Wikibase: one coordinate statement per location type, with method, certainty and source | fuzzy-sl.wikibase.cloud, 2026-09-28 |
+| `osm/node_5145413640.xml` | OSM node of CIIC 178 (`inscription`, `ref:IE:smr`, `wikidata`) | OSM API 0.6, 2026-09-28 (ODbL) |
+| `osm/node_4306696347.xml` | OSM node of Dunmore Head | OSM API 0.6, 2026-09-28 (ODbL) |
+| `osm/way_1252604956.xml` | OSM way of the ringfort at Garranes | OSM API 0.6, 2026-09-28 (ODbL) |
+| `osm/relation_4250372.xml` | OSM relation of the townland Coumeenoole North | OSM API 0.6, 2026-09-28 (ODbL) |
+| `epidoc/I-COR-030.xml`, `I-KER-046.xml` | OG(H)AM EpiDoc editions of CIIC 81 and CIIC 178; step 05 reads the current transliteration and its underdotted letters from them | [lguariento/og-h-am](https://github.com/lguariento/og-h-am) commit `0a2c7a0`, 2026-09-28 (CC BY 4.0) |
+| `manual/ogham.yaml` | everything for step 05 that is in none of those files: GND IDs, the other editors' readings, kin groups, picture credits, labels of the fuzzy-sl properties | supplied by Florian Thiery, 2026-09-28 (answers in the questionnaire) |
+| `images/ciic81-stone-corridor-thiery.jpg` | Stone Corridor, University College Cork | Florian Thiery, CC BY-NC-SA 4.0 |
+| `images/ciic178-coumeenoole-thiery.png` | CIIC 178 on Dunmore Head | Florian Thiery, CC BY 4.0, via Wikimedia Commons |
 | `ct/facts.yaml` | Figures and facts stated in the c't article (GND/Wikidata numbers, cooperation, picture credits), with page | transcribed from the article, 2026-09-22 |
 | `ct/quotes.yaml` | Quotations from c't 19/2026, pp. 118–121 (E. Giardina), with page, speaker and status | transcribed from the article, 2026-09-22 |
 

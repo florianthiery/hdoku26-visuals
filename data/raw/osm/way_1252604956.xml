@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498761 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <way id="1252604956" visible="true" version="1" changeset="147669327" timestamp="2024-02-19T21:50:59Z" user="b-unicycling" uid="1713634">
+  <nd ref="11643029004"/>
+  <nd ref="11643029003"/>
+  <nd ref="11643029002"/>
+  <nd ref="11643029001"/>
+  <nd ref="11643029000"/>
+  <nd ref="11643028999"/>
+  <nd ref="11643029004"/>
+  <tag k="archaeological_site" v="fortification"/>
+  <tag k="fortification_type" v="ringfort"/>
+  <tag k="historic" v="archaeological_site"/>
+  <tag k="levelled" v="yes"/>
+  <tag k="source" v="British War office map"/>
+ </way>
+</osm>

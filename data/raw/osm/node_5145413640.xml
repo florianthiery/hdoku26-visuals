@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498751 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5145413640" visible="true" version="10" changeset="159661420" timestamp="2024-11-27T14:04:08Z" user="geozeisig" uid="66391" lat="52.1102541" lon="-10.4731829">
+  <tag k="heritage" v="2"/>
+  <tag k="heritage:operator" v="IE:smr"/>
+  <tag k="historic" v="ogham_stone"/>
+  <tag k="inscription" v="ERC MAQI MAQI-ERCIAS MU DOVINIA"/>
+  <tag k="moved" v="no"/>
+  <tag k="name" v="CIIC 178"/>
+  <tag k="project" v="ogham.link"/>
+  <tag k="ref:IE:smr" v="KE052-059002-"/>
+  <tag k="source" v="survey"/>
+  <tag k="wikidata" v="Q70892682"/>
+  <tag k="wikimedia_commons" v="File:Coumeenoole_Ogham_Stone_(Dunmore_Head).jpg"/>
+ </node>
+</osm>

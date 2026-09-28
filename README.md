@@ -27,6 +27,7 @@ baked in, German and English versions of every figure, deterministic output.
 | 01 | Garranes: one name, several places — what the GND record says, what Wikidata/Logainm/OSM and GeoNames say, and how far apart they are | Ohne Geometrie bleibt offen, welches Garranes gemeint ist | `img/01-ein-name-viele-orte/ein-name-viele-orte.{de,en}.{svg,png}` |
 | 02 | Both sides moving towards Wikibase — the GND today and next set against CIIC 81, the stone from Garranes, federated across Wikibases and OpenStreetMap | Beide Seiten bewegen sich auf Wikibase zu | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
 | 03 | The niche is the hub — on the DNB's own axis, two mini knowledge graphs (Garranes, St. Lachtain's Well), who entered the data, responsibility per statement | Die Nische ist der Hub – und jede Aussage hat eine Quelle | `img/03-nische-hub/nische-hub.{de,en}.{svg,png}` |
+| 05 | Case study Ogham: two stones on one grid — A who holds what, B the chain of places with the GND lane and the fuzzy-sl geometry, C the graph behind the inscription | Ogham: zwei Steine, ein Raster | `img/05-ogham/{rollen,ortskette,graph-dahinter}.{de,en}.{svg,png}` |
 
 Figure 00a contains text placeholders for two third-party pictures from the
 c't article (cover, opener). These pictures are not part of
@@ -51,7 +52,9 @@ All inputs are under `data/raw/` and are described in
 
 ## Licence
 
-Code: MIT. Figures: CC BY 4.0, except the embedded photo of Konrad Zuse in
-00a (Wolfgang Hunscher, CC BY-SA 3.0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
+Code: MIT. Figures: CC BY 4.0, except the embedded photographs: Konrad Zuse in
+00a (Wolfgang Hunscher, CC BY-SA 3.0, via Wikimedia Commons), the Stone
+Corridor in 05 A (Florian Thiery, CC BY-NC-SA 4.0) and the Coumeenoole stone
+in 05 A (Florian Thiery, CC BY 4.0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
 OpenStreetMap data: © OpenStreetMap contributors, ODbL. Natural Earth: public
 domain. Quotations from c't are short citations with attribution.

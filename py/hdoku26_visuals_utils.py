@@ -51,6 +51,7 @@ OUT_DIRS = {
     "01-ein-name-viele-orte": IMG / "01-ein-name-viele-orte",
     "02-wikibase-konvergenz": IMG / "02-wikibase-konvergenz",
     "03-nische-hub": IMG / "03-nische-hub",
+    "05-ogham": IMG / "05-ogham",
 }
 
 MARGIN_X = 60
@@ -87,6 +88,11 @@ GND = {"fill": "#f3e6d6", "stroke": "#8a5a2a"}
 COMMUNITY = {"fill": "#dce8ea", "stroke": "#386870"}
 AGGREGATOR = {"fill": "#e8e8e8", "stroke": "#666666"}
 QUOTE = {"fill": "#fff7dc", "stroke": "#7f6000"}
+
+# OpenStreetMap gets a colour of its own from the case studies onwards (figures
+# 00a-03 keep OSM inside COMMUNITY): those figures set the three hubs against
+# each other, so Wikidata and OSM have to be told apart at a glance.
+OSM = {"fill": "#e3eed9", "stroke": "#4f7a2a"}
 
 UNCERTAIN_STROKE = "#a03030"
 UNCERTAIN_FILL = "#f5dede"
@@ -766,3 +772,163 @@ def svg_image_crop(x: float, y: float, w: float, h: float, img_path: Path,
             f'height="{ch * s:.2f}"/></clipPath></defs>'
             f'<g clip-path="url(#{cid})"><image x="{ox - x0 * s:.2f}" y="{oy - y0 * s:.2f}" '
             f'width="{iw * s:.2f}" height="{ih * s:.2f}" href="data:{mime};base64,{b64}"/></g>')
+
+
+# --------------------------------------------------------------------------- #
+# Case-study devices (steps 05 and later). One grid for every case study, so
+# that a viewer who has read one of the figures can read the next one without
+# learning a new visual language: a status symbol per statement, a hub bar
+# under every node (G/W/O/F), and a GND lane that separates a record that
+# exists from one that is conceivable under the GND's own plans.
+#
+# Fira Sans carries no check, cross or arrow glyph (the text "->" renders as
+# tofu), so every symbol here is drawn as a path.
+# --------------------------------------------------------------------------- #
+HUB_ORDER = ("G", "W", "O", "F")
+HUB_COLORS = {"G": GND, "W": COMMUNITY, "O": OSM, "F": AGGREGATOR}
+OPEN_STROKE = "#9a9890"
+CONCEPT_STROKE = "#7a5a9a"
+
+
+def status_icon(cx: float, cy: float, kind: str, colors: dict, *, r: float = 13) -> str:
+    """One statement, one symbol: ``ok`` (filled, hub colour), ``up`` (the hub
+    holds the level above, e.g. the ringfort instead of the stone), ``none``,
+    ``open`` (still to be filled in) or ``unc`` (uncertain / disputed)."""
+    stroke = colors["stroke"]
+    if kind == "ok":
+        return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r}" fill="{stroke}"/>'
+                f'<path d="M {cx-6:.1f} {cy:.1f} L {cx-2:.1f} {cy+5:.1f} L {cx+6:.1f} {cy-5:.1f}" '
+                f'fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" '
+                f'stroke-linejoin="round"/>')
+    if kind == "up":
+        return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r}" fill="#ffffff" stroke="{stroke}" '
+                f'stroke-width="2"/>'
+                f'<path d="M {cx:.1f} {cy+6:.1f} L {cx:.1f} {cy-6:.1f} M {cx-5:.1f} {cy-1:.1f} '
+                f'L {cx:.1f} {cy-6:.1f} L {cx+5:.1f} {cy-1:.1f}" fill="none" stroke="{stroke}" '
+                f'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')
+    if kind == "none":
+        return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r}" fill="#ffffff" stroke="{OPEN_STROKE}" '
+                f'stroke-width="1.6"/>'
+                f'<path d="M {cx-5:.1f} {cy-5:.1f} L {cx+5:.1f} {cy+5:.1f} M {cx+5:.1f} {cy-5:.1f} '
+                f'L {cx-5:.1f} {cy+5:.1f}" stroke="{OPEN_STROKE}" stroke-width="2" '
+                f'stroke-linecap="round"/>')
+    if kind == "open":
+        return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r}" fill="#ffffff" stroke="{OPEN_STROKE}" '
+                f'stroke-width="1.6" stroke-dasharray="3 3"/>'
+                + svg_text(cx, cy + 1, "?", size=15, weight=500, color=OPEN_STROKE,
+                           anchor="middle", baseline="central"))
+    if kind == "unc":
+        return (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r}" fill="{UNCERTAIN_FILL}" '
+                f'stroke="{UNCERTAIN_STROKE}" stroke-width="2"/>'
+                + svg_text(cx, cy + 1, "?", size=15, weight=500, color=UNCERTAIN_STROKE,
+                           anchor="middle", baseline="central"))
+    raise ValueError(f"unknown status {kind!r}")
+
+
+def hub_bar(cx: float, y: float, states: dict[str, str], *, w: float = 26, h: float = 20,
+            gap: float = 5) -> str:
+    """Four squares G W O F centred on ``cx``, one per hub, in a fixed order:
+    ``ok`` (hub colour), ``pot`` (dashed in the hub colour -- an entry would be
+    conceivable there), ``none`` (faint) or ``open`` (dashed, "?")."""
+    x0 = cx - (4 * w + 3 * gap) / 2
+    parts = []
+    for i, letter in enumerate(HUB_ORDER):
+        x = x0 + i * (w + gap)
+        colors = HUB_COLORS[letter]
+        state = states.get(letter, "none")
+        if state == "ok":
+            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="4" '
+                         f'fill="{colors["fill"]}" stroke="{colors["stroke"]}" stroke-width="1.4"/>')
+            parts.append(svg_text(x + w / 2, y + h / 2 + 1, letter, size=11.5, weight=500,
+                                  color=colors["stroke"], anchor="middle", baseline="central"))
+        elif state == "pot":
+            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="4" '
+                         f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.4" '
+                         f'stroke-dasharray="4 2"/>')
+            parts.append(svg_text(x + w / 2, y + h / 2 + 1, letter, size=11.5, weight=500,
+                                  color=colors["stroke"], anchor="middle", baseline="central"))
+        elif state == "none":
+            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="4" '
+                         f'fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>')
+            parts.append(svg_text(x + w / 2, y + h / 2 + 1, letter, size=11.5, color="#c9c7c0",
+                                  anchor="middle", baseline="central"))
+        else:
+            parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="4" '
+                         f'fill="#ffffff" stroke="{OPEN_STROKE}" stroke-width="1.2" '
+                         f'stroke-dasharray="3 2"/>')
+            parts.append(svg_text(x + w / 2, y + h / 2 + 1, "?", size=12, weight=500,
+                                  color=OPEN_STROKE, anchor="middle", baseline="central"))
+    return "\n".join(parts)
+
+
+def case_node(x: float, y: float, w: float, title: str, subtitle: str = "",
+              hubs: dict[str, str] | None = None, *, h: float = 58,
+              kind: str = "place") -> str:
+    """A node of a case-study chain. ``kind``: ``place`` (square box),
+    ``object`` (lighter outline) or ``concept`` (rounded, violet -- a name or
+    a term rather than a place). The hub bar sits under the box."""
+    stroke = {"place": TEXT_DARK, "object": TEXT_MUTED, "concept": CONCEPT_STROKE}[kind]
+    rx = 29 if kind == "concept" else 10
+    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h}" rx="{rx}" fill="#ffffff" '
+             f'stroke="{stroke}" stroke-width="{1.8 if kind == "place" else 1.4}"/>']
+    size = 15.0
+    while size > 10.5 and text_width(title, size) > w - 20:
+        size -= 0.5
+    if subtitle:
+        parts.append(svg_text(x + w / 2, y + h / 2 - 8, title, size=size, weight=500,
+                              anchor="middle", baseline="central"))
+        sub_size = 11.5
+        while sub_size > 8.5 and text_width(subtitle, sub_size) > w - 16:
+            sub_size -= 0.5
+        parts.append(svg_text(x + w / 2, y + h / 2 + 12, subtitle, size=sub_size, color=TEXT_MUTED,
+                              anchor="middle", baseline="central"))
+    else:
+        parts.append(svg_text(x + w / 2, y + h / 2, title, size=size, weight=500,
+                              anchor="middle", baseline="central"))
+    if hubs:
+        parts.append(hub_bar(x + w / 2, y + h + 6, hubs))
+    return "\n".join(parts)
+
+
+def gnd_slot(cx: float, y: float, label: str, kind: str, node_top: float,
+             *, line_x: float | None = None, h: float = 26) -> str:
+    """A box in the GND lane above a node, joined to it by a vertical line:
+    ``ok`` (a record exists), ``pot`` (an entry would be conceivable under the
+    GND's own plans -- dashed, ochre) or ``check`` (probably exists, not
+    verified -- dashed, grey). ``line_x`` moves the connector off the box
+    centre where a label would otherwise sit on it."""
+    w = max(118.0, text_width(label, 11.5) + 22)
+    x = cx - w / 2
+    lx = cx if line_x is None else line_x
+    if kind == "ok":
+        fill, stroke, dash, color = GND["fill"], GND["stroke"], "", TEXT_DARK
+        line_dash, line_w = "", 1.6
+    elif kind == "pot":
+        fill, stroke, dash, color = "#ffffff", GND["stroke"], ' stroke-dasharray="5 3"', GND["stroke"]
+        line_dash, line_w = ' stroke-dasharray="5 4"', 1.4
+    elif kind == "check":
+        fill, stroke, dash, color = "#ffffff", OPEN_STROKE, ' stroke-dasharray="3 3"', "#8a887f"
+        line_dash, line_w = ' stroke-dasharray="3 3"', 1.2
+    else:
+        raise ValueError(f"unknown GND slot {kind!r}")
+    return (f'<line x1="{lx:.1f}" y1="{y + h:.1f}" x2="{lx:.1f}" y2="{node_top:.1f}" '
+            f'stroke="{stroke}" stroke-width="{line_w}"{line_dash}/>'
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h}" rx="{h/2:.1f}" '
+            f'fill="{fill}" stroke="{stroke}" stroke-width="1.4"{dash}/>'
+            + svg_text(cx, y + h / 2, label, size=11.5, weight=500, color=color,
+                       anchor="middle", baseline="central"))
+
+
+def status_legend(x: float, y: float, entries: list[tuple[str, str]], *, size: float = 12.5,
+                  gap: float = 30) -> str:
+    """Row of status symbols with their meaning; ``entries`` is (kind, label)."""
+    parts, cx = [], x
+    for kind, label in entries:
+        colors = UNCERTAIN if kind == "unc" else (GND if kind == "up" else COMMUNITY)
+        parts.append(status_icon(cx + 10, y, kind, colors, r=10))
+        parts.append(svg_text(cx + 26, y + 1, label, size=size, baseline="central"))
+        cx += 36 + text_width(label, size) + gap
+    return "\n".join(parts)
+
+
+UNCERTAIN = {"fill": UNCERTAIN_FILL, "stroke": UNCERTAIN_STROKE}

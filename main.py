@@ -34,6 +34,7 @@ STEPS: list[tuple[str, str, str]] = [
     ("01", "step_01_ein_name_viele_orte", "Garranes: one name, several places (GND vs. community hubs)"),
     ("02", "step_02_wikibase_konvergenz", "Both sides moving towards Wikibase (GND next vs. federated CIIC 81)"),
     ("03", "step_03_nische_hub", "The niche is the hub: mini knowledge graphs, VGI, provenance"),
+    ("05", "step_05_ogham", "Case study Ogham: two stones, one grid (roles, chain of places, graph behind)"),
 ]
 
 
