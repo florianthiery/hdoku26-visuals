@@ -197,7 +197,7 @@ scholars:
 images:
   ciic81:
     file: ciic81-stone-corridor-thiery.jpg
-    crop: [620, 700, 1500, 1700]
+    crop: null
     caption_de: Stone Corridor, University College Cork – heutiger Standort von CIIC 81
     caption_en: Stone Corridor, University College Cork – where CIIC 81 stands today
     credit: Florian Thiery, CC BY-NC-SA 4.0

@@ -417,19 +417,23 @@ def _fig_b(d: dict, lang: str) -> str:
     p.append(T(MX + 90, y0 + 16, vu.t(lang, "Fundort und Standort getrennt · 20,5 km",
                                       "findspot and current location apart · 20.5 km"),
                size=14, color=vu.TEXT_MUTED))
-    markup, project = _map(MX, y0 + 34, MW, 372, (-9.02, -8.36, 51.74, 51.98), "map-ciic81")
+    markup, project = _map(MX, y0 + 34, MW, 372, (-9.40, -8.02, 51.58, 52.10), "map-ciic81")
     p.append(markup)
     points = d["fsl_points"]["ciic81"]
     labels = m["fuzzy_sl"]["statements"]["ciic81"]
+    key_y = y0 + 300
     for i, (point, meta) in enumerate(zip(points, labels)):
         mx, my = project(point["lon"], point["lat"])
         p.append(_fsl_mark(mx, my, str(i + 1), meta["certainty"]))
-        text = [f"{meta['place_de' if de else 'place_en']} · {meta['type_de' if de else 'type_en']}",
-                f"fuzzy-sl: {meta['certainty']} · {meta['method_de' if de else 'method_en']}"]
-        if i == 0:
-            p.append(_note(mx - 26, my - 4, text, anchor="end"))
-        else:
-            p.append(_note(mx + 38, my - 4, text))
+        # key inside the map, so that no label crosses the frame
+        p.append(vu.svg_marker(MX + 28, key_y + i * 44, str(i + 1),
+                               {"fill": "#ffffff", "stroke": vu.TEXT_DARK}, r=11))
+        p.append(T(MX + 48, key_y + i * 44 - 7,
+                   f"{meta['place_de' if de else 'place_en']} · "
+                   f"{meta['type_de' if de else 'type_en']}", size=13.5, weight=500))
+        p.append(T(MX + 48, key_y + i * 44 + 11,
+                   f"fuzzy-sl: {meta['certainty']} · {meta['method_de' if de else 'method_en']}",
+                   size=12, color=vu.TEXT_MUTED))
     chip, _ = vu.svg_chip(MX, y0 + 416, vu.t(
         lang, "Geometrie: fuzzy-sl Q74 · Ort-Typ, Methode und Sicherheit je Koordinate",
         "geometry: fuzzy-sl Q74 · location type, method and certainty per coordinate"),
@@ -521,7 +525,8 @@ def _fig_b(d: dict, lang: str) -> str:
             continue
         p.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="5" fill="#ffffff" '
                  f'stroke="{vu.UNCERTAIN_STROKE}" stroke-width="1.6"/>')
-        dy = (34, -15, 16, -32)[shown % 4]
+        near_stone = math.hypot(px - sx, py - sy2) < 46
+        dy = (-40 if near_stone else (16, -18, 34, -36)[shown % 4])
         p.append(T(px + 9, py + dy, point["source"], size=11, color=vu.UNCERTAIN_STROKE,
                    baseline="central"))
         p.append(f'<line x1="{px:.1f}" y1="{py:.1f}" x2="{px:.1f}" y2="{py + dy:.1f}" '
