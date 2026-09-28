@@ -1,0 +1,94 @@
+# Case study Holy Wells (step 06) -- values that are in none of the
+# machine-readable files under data/raw/. Supplied by Florian Thiery on
+# 2026-09-28 unless a line names another source.
+
+wells:
+  lachtain:
+    wikidata: Q121840779
+    title_de: St. Lachtain's Well · Freshford
+    title_en: St. Lachtain's Well · Freshford
+    irish: Tobar Lachtain
+    osm: {type: way, id: '935503837', property: P10689}
+    smr: KK013-025----
+    parish: {wikidata: Q60554307, name: Freshford, osm: '5330881', logainm: '1295'}
+    inventory: Ó Dálaigh 137 · KHW100
+    geometry_de: Fläche · ummauerter Hof mit Becken
+    geometry_en: area · walled enclosure with a basin
+  fiachra:
+    wikidata: Q121842432
+    title_de: St. Fiachra's Well · Sheastown
+    title_en: St. Fiachra's Well · Sheastown
+    irish: null
+    osm: {type: node, id: '8515265450', property: P11693}
+    smr: KK020-050004-
+    parish: {wikidata: Q60554717, name: Kilferagh, osm: '5385544', logainm: '1317'}
+    inventory: Ó Dálaigh 166 · KHW044
+    geometry_de: Punkt · Kammer unter einem Felsvorsprung
+    geometry_en: point · chamber under a rock outcrop
+
+county:
+  wikidata: Q180231
+  name: County Kilkenny
+  osm: '285980'
+  logainm: '100006'
+  gnd: 4110260-5          # P227 on the Wikidata item
+
+diocese:
+  wikidata: Q873607
+  name_de: Diözese Ossory
+  name_en: Diocese of Ossory
+
+# The saints, and what the GND knows about them (GND Explorer, 2026-09-28)
+saints:
+  lachtain:
+    wikidata: Q18674069
+    name: Lachtín mac Tarbín
+    gnd: null                       # "Lachtín mac Tarbín": no hits
+    reach_de: lokal · Abt von Freshford, gestorben 622
+    reach_en: local · abbot of Freshford, died 622
+  fiacre:
+    wikidata: Q953927
+    name: Fiacre
+    gnd: '131380958'                # GND Explorer: "Fiacrius", died 670; also P227 in Wikidata
+    gnd_label: Fiacrius
+    gnd_countries: XA-IE · XA-FR
+    reach_de: international · Kult in Meaux, Schutzpatron der Gärtner
+    reach_en: international · cult at Meaux, patron saint of gardeners
+
+# What the community wrote down for itself
+project:
+  wikidata: Q126443484
+  concept: Q126443332
+  name: WikiProject HolyWells
+  by: Research Squirrel Engineers Network (Q73901970)
+  model_de:
+    - P31 auf das Holy Well Semantic Concept, unabhängig davon, ob noch verehrt wird
+    - Zustand und Erhaltung als Qualifikatoren, mit Beleg
+    - Namenspatron (P138) als Heilige:r oder als Körperteil für das geheilte Leiden
+    - Belegpflicht über described by source (P1343)
+  model_en:
+    - P31 on the Holy Well Semantic Concept, whether or not veneration continues
+    - state of use and conservation as qualifiers, with a reference
+    - named after (P138) either the saint or the body part standing for the cure
+    - sources required through described by source (P1343)
+  sources_de: OS 6 Inch First Edition · Historic Environment Viewer · Schools' Collection · Ó Dálaigh
+  sources_en: OS 6 Inch First Edition · Historic Environment Viewer · Schools' Collection · Ó Dálaigh
+
+images:
+  lachtain:
+    file: holywell-lachtain-distel.png
+    crop: null
+    caption_de: St. Lachtain's Well, Freshford
+    caption_en: St. Lachtain's Well, Freshford
+    credit: Anne-Karoline Distel, CC0, via Wikimedia Commons
+  fiachra:
+    file: holywell-fiachra-distel.png
+    crop: null
+    caption_de: St. Fiachra's Well, Sheastown
+    caption_en: St. Fiachra's Well, Sheastown
+    credit: Anne-Karoline Distel, CC0, via Wikimedia Commons
+
+# Map windows (degrees): lon0, lon1, lat0, lat1
+maps:
+  lachtain: [-7.52, -7.26, 52.66, 52.80]
+  fiachra: [-7.33, -7.07, 52.55, 52.69]

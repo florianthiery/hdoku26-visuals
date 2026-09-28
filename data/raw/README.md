@@ -38,6 +38,12 @@ written by the pipeline, and no step reaches the network.
 | `manual/ogham.yaml` | everything for step 05 that is in none of those files: GND IDs, the other editors' readings, kin groups, picture credits, labels of the fuzzy-sl properties | supplied by Florian Thiery, 2026-09-28 (answers in the questionnaire) |
 | `images/ciic81-stone-corridor-thiery.jpg` | Stone Corridor, University College Cork | Florian Thiery, CC BY-NC-SA 4.0 |
 | `images/ciic178-coumeenoole-thiery.png` | CIIC 178 on Dunmore Head | Florian Thiery, CC BY 4.0, via Wikimedia Commons |
+| `wikidata/Q121842432.json`, `Q953927.json`, `Q18674069.json`, `Q60554307.json`, `Q60554717.json`, `Q180231.json`, `Q873607.json`, `Q126443484.json`, `Q126443332.json`, `Q120966194.json`, `Q126393245.json`, `Q126528008.json`, `Q126875543.json` | Step 06: St. Fiachra's Well, the two saints, the two civil parishes, County Kilkenny (with GND 4110260-5 as P227), the diocese, the WikiProject with its Holy Well Semantic Concept and the four sources it requires | `Special:EntityData`, 2026-09-28 |
+| `osm/node_8515265450.xml` | OSM node of St. Fiachra's Well (`name:etymology:wikidata`, `access:conditional`, `ref:IE:smr`) | OSM API 0.6, 2026-09-28 (ODbL) |
+| `osm/boundaries-kilkenny.geojson` | County Kilkenny and 25 civil parishes around the two wells; coordinates rounded to 5 decimals | Overpass turbo (`out geom`), 2026-09-28 (ODbL) |
+| `sparql/holywells-concept.json`, `holywells-by-patron.json` | The two WikiProject queries (wells carrying the Holy Well Semantic Concept; wells with coordinate and patron in IE and UK). Every count in figure 06 A is counted from these files at build time | Wikidata Query Service, 2026-09-28 (CC0) |
+| `manual/holywells.yaml` | Step 06: GND numbers of the saints and the county, picture credits, map windows, and the summary of the WikiProject's data model | supplied by Florian Thiery, 2026-09-28 |
+| `images/holywell-lachtain-distel.png`, `holywell-fiachra-distel.png` | The two wells | Anne-Karoline Distel, CC0, via Wikimedia Commons |
 | `ct/facts.yaml` | Figures and facts stated in the c't article (GND/Wikidata numbers, cooperation, picture credits), with page | transcribed from the article, 2026-09-22 |
 | `ct/quotes.yaml` | Quotations from c't 19/2026, pp. 118–121 (E. Giardina), with page, speaker and status | transcribed from the article, 2026-09-22 |
 

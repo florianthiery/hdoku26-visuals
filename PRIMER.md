@@ -108,7 +108,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S3 | Grafik 2 „Zukunft: Wikibase-Konvergenz“ | S1 | Entwurf 2026-09-22 |
 | S4 | Grafik 3 „Die Nische ist der Hub“ | S1 | Entwurf 2026-09-22 |
 | S5 | Case Study Ogham (2 Steine) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/05-ogham/`) |
-| S6 | Case Study Holy Wells (2 Brunnen) | S1 | offen |
+| S6 | Case Study Holy Wells (2 Brunnen) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/06-holy-wells/`) |
 | S7 | Case Study geo-lod (SISAL-Höhlen, CI-Tephra) | S1 | offen |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
 | S9 | Case Study poseidon2lod (aDNA) | S1 | offen |
@@ -180,7 +180,22 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - Kette DOVINIA → Corcu Duibne → Baronie Corkaguiny (Corca Dhuibhne) belegt über McManus 1991, 111 (zitiert im EpiDoc); auf CIIC 178 sind MU und N unsicher gelesen → rot. CIIC 81: CALLITI → Cailtrige → Eoghanachta, ohne Gebiet → Kette bleibt offen.
 - Nächster Schritt: Fragebogen auswerten, Bilder (je eins pro Stein mit Lizenz) einbinden, Werte nach `data/raw/` (YAML), `py/step_05_ogham.py` mit DE/EN, Mockups in `tmp/` löschen.
 
-### S6–S9 — weitere Case Studies
+### S6 — Case Study Holy Wells
+
+**Ziel:** St. Lachtain's Well, Freshford (Q121840779) gegen St. Fiachra's Well, Sheastown (Q121842432), 17 km auseinander, nach demselben WikiProject-Modell erfasst.
+
+**Abnahme:** wie S2.
+
+#### Erledigt 2026-09-28
+
+- `py/step_06_holy_wells.py` baut `rollen`, `ortskette`, `graph-dahinter` in DE und EN; alle Zahlen in Grafik A werden beim Bauen aus `sparql/holywells-*.json` gezählt.
+- Geografischer Kontrast: Lachtain hängt über P10689 an einem OSM-**Way** (Fläche), Fiachra über P11693 an einem **Node** (Punkt). Deshalb fehlt Lachtain in einer Abfrage, die nur P11693 kennt.
+- GND: Lachtín mac Tarbín 0 Treffer; Fiacre dagegen GND 131380958 („Fiacrius", gest. 670, Länderbezug XA-IE und XA-FR), in Wikidata bereits als P227 verlinkt — ebenso County Kilkenny mit GND 4110260-5. Erste Case Study mit vorhandener GND-Verknüpfung.
+- Befund: Die Civil Parish Freshford liegt in OSM in **zwei** Relationen (5330881, 5331080), beide mit `logainm:ref=1295`; P402 in Wikidata nennt nur die kleinere, der Brunnen liegt in der größeren. Die Karte zeichnet deshalb alle Relationen mit passender Logainm-Nummer.
+- Die Diözese Ossory steht in B als Ebene daneben: kirchliche Einteilung, in OSM nicht vorhanden.
+- In C ist die Kante „Abt von Freshford" rot vermerkt, weil sie nur in der Wikidata-Beschreibung steht, nicht als Aussage.
+
+### S7–S9 — weitere Case Studies
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
 
@@ -196,7 +211,6 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 Grafik C ist bei S6 gesetzt (Heiliger, Patrozinium, Kirche — bei Personen ist die GND dicht, die Kette trifft sie also von der anderen Seite) und bei S8 wahrscheinlich; bei S7 und S9 erst nach einem Blick in die Daten entscheiden.
 
 **Quellen:**
-- S6 Holy Wells: WikiProject auf Wikidata (Doku) und OSM-Objekte; Entity-JSON/OSM-XML der gewählten Brunnen.
 - S7 geo-lod: https://github.com/Research-Squirrel-Engineers/GeoScience-FAIRification-LOD
 - S8 bb-5kbc: https://github.com/Research-Squirrel-Engineers/bb-5kbc-sites
 - S9 poseidon2lod: https://github.com/archaeonatural-cloud/poseidon2lod mit Ontologie https://github.com/archaeonatural-cloud/archaeonatural-ontology

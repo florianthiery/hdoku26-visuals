@@ -35,6 +35,7 @@ STEPS: list[tuple[str, str, str]] = [
     ("02", "step_02_wikibase_konvergenz", "Both sides moving towards Wikibase (GND next vs. federated CIIC 81)"),
     ("03", "step_03_nische_hub", "The niche is the hub: mini knowledge graphs, VGI, provenance"),
     ("05", "step_05_ogham", "Case study Ogham: two stones, one grid (roles, chain of places, graph behind)"),
+    ("06", "step_06_holy_wells", "Case study Holy Wells: two wells, area vs. point, and the saint behind them"),
 ]
 
 

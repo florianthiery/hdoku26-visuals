@@ -52,6 +52,7 @@ OUT_DIRS = {
     "02-wikibase-konvergenz": IMG / "02-wikibase-konvergenz",
     "03-nische-hub": IMG / "03-nische-hub",
     "05-ogham": IMG / "05-ogham",
+    "06-holy-wells": IMG / "06-holy-wells",
 }
 
 MARGIN_X = 60

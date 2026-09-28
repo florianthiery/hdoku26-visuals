@@ -28,6 +28,7 @@ baked in, German and English versions of every figure, deterministic output.
 | 02 | Both sides moving towards Wikibase — the GND today and next set against CIIC 81, the stone from Garranes, federated across Wikibases and OpenStreetMap | Beide Seiten bewegen sich auf Wikibase zu | `img/02-wikibase-konvergenz/wikibase-konvergenz.{de,en}.{svg,png}` |
 | 03 | The niche is the hub — on the DNB's own axis, two mini knowledge graphs (Garranes, St. Lachtain's Well), who entered the data, responsibility per statement | Die Nische ist der Hub – und jede Aussage hat eine Quelle | `img/03-nische-hub/nische-hub.{de,en}.{svg,png}` |
 | 05 | Case study Ogham: two stones on one grid — A who holds what, B the chain of places with the GND lane and the fuzzy-sl geometry, C the graph behind the inscription | Ogham: zwei Steine, ein Raster | `img/05-ogham/{rollen,ortskette,graph-dahinter}.{de,en}.{svg,png}` |
+| 06 | Case study Holy Wells: two wells in Co. Kilkenny on the same grid — an area (OSM way) and a point (OSM node), the chain well → civil parish → county, and the saint behind each well | Heilige Quellen: Fläche und Punkt, und der Heilige dahinter | `img/06-holy-wells/{rollen,ortskette,graph-dahinter}.{de,en}.{svg,png}` |
 
 Figure 00a contains text placeholders for two third-party pictures from the
 c't article (cover, opener). These pictures are not part of
@@ -54,8 +55,9 @@ All inputs are under `data/raw/` and are described in
 
 Code: MIT. Figures: CC BY 4.0, except the embedded photographs: Konrad Zuse in
 00a (Wolfgang Hunscher, CC BY-SA 3.0, via Wikimedia Commons), the Stone
-Corridor in 05 A (Florian Thiery, CC BY-NC-SA 4.0) and the Coumeenoole stone
-in 05 A (Florian Thiery, CC BY 4.0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
+Corridor in 05 A (Florian Thiery, CC BY-NC-SA 4.0), the Coumeenoole stone
+in 05 A (Florian Thiery, CC BY 4.0, via Wikimedia Commons) and the two wells
+in 06 A (Anne-Karoline Distel, CC0, via Wikimedia Commons). Wikidata content: CC0. GND data: CC0.
 OpenStreetMap data: © OpenStreetMap contributors, ODbL — figure 05 B draws OSM
 areas, so a slide showing it carries that credit (the figure prints it under
 each map). Natural Earth: public

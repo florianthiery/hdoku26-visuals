@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3498759 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="8515265450" visible="true" version="9" changeset="160155386" timestamp="2024-12-11T06:53:09Z" user="geozeisig" uid="66391" lat="52.6216672" lon="-7.1978959">
+  <tag k="access:conditional" v="yes @ Aug Su[-1]; Aug Su[-1] -1 day 19:30-21:00; Aug Su[-1] -2 days 19:30-21:00; Aug Su[-1] -3 days 19:30-21:00; Aug Su[-1] -4 days 19:30-21:00; Aug Su[-1] -5 days 19:30-21:00; Aug Su[-1] -6 days 19:30-21:00; Aug Su[-1] -7 days 19:30-21:00; Aug Su[-1] -8"/>
+  <tag k="description" v="In a hollow, sheltered by an outcrop of natural rock. Steps leading into the underground chamber. Access via driveway into Sheastown House from R700 on the last Sunday in August around 3pm and the 9 days before in the evening during the novena."/>
+  <tag k="heritage" v="2"/>
+  <tag k="heritage:operator" v="IE:smr"/>
+  <tag k="name" v="Saint Fiachre's Well"/>
+  <tag k="name:etymology:wikidata" v="Q953927"/>
+  <tag k="natural" v="spring"/>
+  <tag k="note" v="This might be the one O'Kelly calls Seanbaile well, since there are faint traces of cropmarks between the church ruin and here on Esri Clarity."/>
+  <tag k="place_of_worship" v="holy_well"/>
+  <tag k="ref:IE:smr" v="KK020-050004"/>
+  <tag k="service_times" v="Aug Su[-1]"/>
+  <tag k="source" v="British war office map;SMR;survey"/>
+  <tag k="subject:wikidata" v="Q953927"/>
+  <tag k="survey:date" v="2023-08-25"/>
+  <tag k="url:sketchfab" v="https://skfb.ly/pq67u"/>
+  <tag k="wikidata" v="Q121842432"/>
+  <tag k="wikimedia_commons" v="Category:St Fiachra's Well, Sheastown"/>
+ </node>
+</osm>
