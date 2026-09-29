@@ -427,7 +427,10 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind it: from the findspot back to a place"))]
     X = vu.MARGIN_X
     NW, NH = 196, 58
-    xs = vu.chain_xs(5, node_w=NW, x0=X)
+    # Four columns, the last one NW + 60 wide: both chains end at the content
+    # edge instead of leaving a third of the figure empty on the right.
+    xs = vu.chain_xs(4, node_w=NW + 60, x0=X)
+    WIDE = NW + 68             # note width under that last node, flush right
     a: list[str] = []          # the two examples are collected separately
     b: list[str] = []          # and centred by ``case_split``
     t2 = m["tephra"]
@@ -485,7 +488,7 @@ def _fig_c(d: dict, lang: str) -> str:
               f"die Koordinate der Zeile trifft dagegen genau den richtigen Node.",
         f"the dataset names node {t2['mismatch_node']} — {t2['mismatch_node_is_en']}; the "
         f"coordinate in the same row, however, lands exactly on the correct node."),
-        280, size=11, color=vu.UNCERTAIN_STROKE)
+        WIDE, size=11, color=vu.UNCERTAIN_STROKE)
     a.append(mismatch)
 
     # what the findspot is anchored in, below
@@ -548,7 +551,7 @@ def _fig_c(d: dict, lang: str) -> str:
         "“Type site for Homo floresiensis” sits in the dataset as free text. Without a QID the "
         "statement can neither be confirmed nor refuted from outside — which is exactly what the "
         "identifiers did for findspots 22 and 48 above."),
-        300, size=11, color=vu.UNCERTAIN_STROKE)
+        WIDE, size=11, color=vu.UNCERTAIN_STROKE)
     b.append(claim)
 
     second = [(vu.t(lang, "Kabupaten Manggarai", "Manggarai Regency"), "Q14143 · rel 11228382",

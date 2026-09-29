@@ -652,7 +652,11 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind the inscription leads back to a place"))]
     X = vu.MARGIN_X
     NW, NH = 172, 58
-    xs = vu.chain_xs(6, node_w=NW, x0=X)
+    # The last node of both chains is LAST_W wide and starts 30 left of its
+    # column, so the columns are spaced for that: the chain ends flush with
+    # the content edge instead of running out over the margin.
+    LAST_W = 260
+    xs = vu.chain_xs(6, node_w=LAST_W - 30, x0=X)
     a: list[str] = []          # the two examples are collected separately
     b: list[str] = []          # and centred by ``case_split``
     persons, words = m["persons"], m["words"]
@@ -687,7 +691,7 @@ def _fig_c(d: dict, lang: str) -> str:
     a.append(vu.case_node(xs[4], top, NW, "Corcu Duibne", vu.t(lang, "Sippe · McManus 1991, 111",
                                                                "kin group · McManus 1991, 111"),
                           {"G": "pot", "W": "open", "O": "none", "F": "open"}, kind="concept"))
-    a.append(vu.case_node(xs[5] - 30, top, 260, vu.t(lang, "Baronie Corkaguiny",
+    a.append(vu.case_node(xs[5] - 30, top, LAST_W, vu.t(lang, "Baronie Corkaguiny",
                                                      "Barony Corkaguiny"),
                           "Q59419929 · Corca Dhuibhne",
                           {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
@@ -695,7 +699,7 @@ def _fig_c(d: dict, lang: str) -> str:
                                                     "GND conceivable (object)"), "pot", top))
     a.append(vu.gnd_slot(xs[4] + NW / 2, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
                          "pot", top))
-    a.append(vu.gnd_slot(xs[5] - 30 + 130, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
+    a.append(vu.gnd_slot(xs[5] - 30 + LAST_W / 2, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
                          "pot", top))
     a.append(T(xs[0] + NW / 2 + 92, lane + 13, "GND", size=14, weight=500, color=GND["stroke"],
                baseline="central"))
@@ -716,7 +720,7 @@ def _fig_c(d: dict, lang: str) -> str:
     a.append(vu.case_node(xs[1], bottom, NW, "An Dún Mór", vu.t(
         lang, "Promontory Fort · Logainm 1394328", "promontory fort · Logainm 1394328"),
         {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
-    a.append(vu.svg_arrow_L(xs[5] - 30 + 130, top + NH + 32, xs[3] + NW, bottom + NH / 2,
+    a.append(vu.svg_arrow_L(xs[5] - 30 + LAST_W / 2, top + NH + 32, xs[3] + NW, bottom + NH / 2,
                             bend="v", label=vu.t(lang, "enthält", "contains")))
     a.append(vu.svg_arrow_labeled(xs[3], bottom + NH / 2, xs[1] + NW, bottom + NH / 2,
                                   vu.t(lang, "enthält", "contains"), font_size=11))
@@ -765,9 +769,9 @@ def _fig_c(d: dict, lang: str) -> str:
         b.append(vu.svg_arrow_labeled(xs[i] + NW, ry + NH / 2, xs[i + 1], ry + NH / 2, label,
                                       font_size=11))
     ex = xs[5] - 30
-    b.append(f'<rect x="{ex}" y="{ry}" width="260" height="{NH}" rx="10" fill="#ffffff" '
+    b.append(f'<rect x="{ex}" y="{ry}" width="{LAST_W}" height="{NH}" rx="10" fill="#ffffff" '
              f'stroke="{vu.OPEN_STROKE}" stroke-width="1.4" stroke-dasharray="6 4"/>')
-    b.append(T(ex + 130, ry + NH / 2, vu.t(lang, "Ort? · kein Gebiet benannt",
+    b.append(T(ex + LAST_W / 2, ry + NH / 2, vu.t(lang, "Ort? · kein Gebiet benannt",
                                            "place? · no territory named"),
                size=14, weight=500, color=vu.OPEN_STROKE, anchor="middle", baseline="central"))
     b.append(vu.svg_arrow(xs[4] + NW, ry + NH / 2, ex, ry + NH / 2, dashed=True))

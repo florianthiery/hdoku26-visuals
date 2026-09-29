@@ -288,6 +288,7 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - **`case_split`.** Grafik C jeder Fallstudie sammelt ihre zwei Beispiele in zwei Listen; `case_split` misst beide mit `svg_y_span`, verteilt den Weißraum und setzt die Trennlinie dazwischen. Damit ist der leere Streifen über der Legende weg.
 - **Engstellen.** poseidon2lod C: die Homonym-Notiz lag auf der Hub-Leiste der Awaren. bb-5kbc C: „Ortsname Jordansmühl“ war breiter als sein Knoten. Ogham B: der ODbL-Nachweis klebte am Chip der zweiten Karte. bb-5kbc B und poseidon2lod B: die Notiz neben der GND-Nebenebene reichte in die Legende — dort ist jetzt `aside_dy` je Band einstellbar.
 - Geprüft: kein Textelement in einer der fünfzehn Grafiken kommt der Legende näher als 10 px; `img/00`–`img/03` und `img/10` bleiben unverändert.
+- **Nachtrag S12b:** Zwei Grafiken nutzten die Breite noch nicht: geo-lod C rechnete mit fünf Spalten, zeichnete aber nur vier (die Kette endete bei 1396 statt 1690), und Ogham C lief mit dem letzten Knoten bei 1748 über die Marge hinaus. Beide rechnen jetzt mit der Breite des letzten Knotens. Automatisch nachgemessen: alle zwanzig B- und C-Grafiken enden bei 1690.
 
 ### S7–S9 — weitere Case Studies
 
