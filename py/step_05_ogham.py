@@ -554,12 +554,13 @@ def _fig_b(d: dict, lang: str) -> str:
              "exhibition site: High · on-site survey"),
         vu.t(lang, "Site-Punkte: ", "site points: ") + " · ".join(
             dict.fromkeys(point["source"] for point in d["site178_points"]))]))
-    chip, _ = vu.svg_chip(MX, y0 + 366, vu.t(
+    chip, _ = vu.svg_chip(MX, y0 + 364, vu.t(
         lang, "Ogham Site Q85395557: fünf Koordinaten mit je eigener Quelle, 586 m Spannweite",
         "Ogham Site Q85395557: five coordinates, each with its own source, 586 m apart"),
         UNC, size=12)
     p.append(chip)
-    p.append(T(MX + MW, y0 + 394, vu.t(
+    # same rhythm as the first band: chip, then the credit a line below it
+    p.append(T(MX + MW, y0 + 400, vu.t(
         lang, "Flächen: © OpenStreetMap-Mitwirkende, ODbL",
         "areas: © OpenStreetMap contributors, ODbL"),
         size=10.5, color=vu.TEXT_MUTED, anchor="end", baseline="central"))
@@ -604,8 +605,7 @@ def _fig_b(d: dict, lang: str) -> str:
     p.append(vu.svg_arrow_L(xs[0] + NW / 2, ry + NH + 32, xs[1], ry + 150 + NH / 2, bend="v",
                             dashed=True, label="P189"))
 
-    p.append(vu.hub_legend(MX, lang))
-    p.append(vu.gnd_slot_legend(vu.MARGIN_X, lang))
+    p.append(vu.case_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -653,49 +653,51 @@ def _fig_c(d: dict, lang: str) -> str:
     X = vu.MARGIN_X
     NW, NH = 172, 58
     xs = vu.chain_xs(6, node_w=NW, x0=X)
+    a: list[str] = []          # the two examples are collected separately
+    b: list[str] = []          # and centred by ``case_split``
     persons, words = m["persons"], m["words"]
 
     # ---------------- CIIC 178: the chain closes
     text, unclear = d["reading"]["ciic178"]
-    p.append(T(X, 60, "CIIC 178", size=20, weight=500))
-    p.append(_inscription(X + 110, 62, text, unclear))
+    a.append(T(X, 60, "CIIC 178", size=20, weight=500))
+    a.append(_inscription(X + 110, 62, text, unclear))
     lx = X + 110 + vu.text_width(text, 26) * 1.12 + 26
     for label, colors in ((vu.t(lang, "OG(H)AM-Edition", "OG(H)AM edition"), AGG),
                           ("OpenStreetMap", OSM)):
         chip, w = vu.svg_chip(lx, 45, label, colors, size=12)
-        p.append(chip)
+        a.append(chip)
         lx += w + 10
-    p.append(T(X + 110, 90, vu.t(
+    a.append(T(X + 110, 90, vu.t(
         lang, f"„{m['readings']['translation_ciic178_de']}“ · rot: in der Edition unsicher gelesen",
         f"“{m['readings']['translation_ciic178_en']}” · red: read as unclear in the edition"),
         size=13, color=vu.TEXT_MUTED, italic=True))
-    p.append(_scholars(X + 110, 104, m["scholars"]["ciic178"], lang))
+    a.append(_scholars(X + 110, 104, m["scholars"]["ciic178"], lang))
 
     lane, top, bottom = 150, 210, 400
-    p.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Stein CIIC 178", "Stone CIIC 178"),
+    a.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Stein CIIC 178", "Stone CIIC 178"),
                           "Q126503090", {"G": "pot", "W": "ok", "O": "ok", "F": "ok"},
                           kind="object"))
-    p.append(vu.case_node(xs[1], top, NW, "ERC", f"{persons['ERC']['wikidata']} · OP400203",
+    a.append(vu.case_node(xs[1], top, NW, "ERC", f"{persons['ERC']['wikidata']} · OP400203",
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], top, NW, "MAQI-ERCIAS", vu.t(lang, "OP400321 · kein Wikidata-Item",
+    a.append(vu.case_node(xs[2], top, NW, "MAQI-ERCIAS", vu.t(lang, "OP400321 · kein Wikidata-Item",
                                                               "OP400321 · no Wikidata item"),
                           {"G": "none", "W": "open", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3], top, NW, "DOVINIA", f"{persons['DOVINIA']['wikidata']} · OP400175",
+    a.append(vu.case_node(xs[3], top, NW, "DOVINIA", f"{persons['DOVINIA']['wikidata']} · OP400175",
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[4], top, NW, "Corcu Duibne", vu.t(lang, "Sippe · McManus 1991, 111",
+    a.append(vu.case_node(xs[4], top, NW, "Corcu Duibne", vu.t(lang, "Sippe · McManus 1991, 111",
                                                                "kin group · McManus 1991, 111"),
                           {"G": "pot", "W": "open", "O": "none", "F": "open"}, kind="concept"))
-    p.append(vu.case_node(xs[5] - 30, top, 260, vu.t(lang, "Baronie Corkaguiny",
+    a.append(vu.case_node(xs[5] - 30, top, 260, vu.t(lang, "Baronie Corkaguiny",
                                                      "Barony Corkaguiny"),
                           "Q59419929 · Corca Dhuibhne",
                           {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.gnd_slot(xs[0] + NW / 2, lane, vu.t(lang, "GND denkbar (Objekt)",
+    a.append(vu.gnd_slot(xs[0] + NW / 2, lane, vu.t(lang, "GND denkbar (Objekt)",
                                                     "GND conceivable (object)"), "pot", top))
-    p.append(vu.gnd_slot(xs[4] + NW / 2, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
+    a.append(vu.gnd_slot(xs[4] + NW / 2, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
                          "pot", top))
-    p.append(vu.gnd_slot(xs[5] - 30 + 130, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
+    a.append(vu.gnd_slot(xs[5] - 30 + 130, lane, vu.t(lang, "GND denkbar", "GND conceivable"),
                          "pot", top))
-    p.append(T(xs[0] + NW / 2 + 92, lane + 13, "GND", size=14, weight=500, color=GND["stroke"],
+    a.append(T(xs[0] + NW / 2 + 92, lane + 13, "GND", size=14, weight=500, color=GND["stroke"],
                baseline="central"))
     edge_labels = [
         vu.t(lang, "Inschrift nennt", "inscription names"),
@@ -706,74 +708,71 @@ def _fig_c(d: dict, lang: str) -> str:
     ]
     for i, label in enumerate(edge_labels):
         x2 = xs[i + 1] - (30 if i == 4 else 0)
-        p.append(vu.svg_arrow_labeled(xs[i] + NW, top + NH / 2, x2, top + NH / 2, label,
+        a.append(vu.svg_arrow_labeled(xs[i] + NW, top + NH / 2, x2, top + NH / 2, label,
                                       font_size=11))
-    p.append(vu.case_node(xs[3], bottom, NW, vu.t(lang, "Townland", "Townland"),
+    a.append(vu.case_node(xs[3], bottom, NW, vu.t(lang, "Townland", "Townland"),
                           "Coumeenoole North · Logainm 22572",
                           {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.case_node(xs[1], bottom, NW, "An Dún Mór", vu.t(
+    a.append(vu.case_node(xs[1], bottom, NW, "An Dún Mór", vu.t(
         lang, "Promontory Fort · Logainm 1394328", "promontory fort · Logainm 1394328"),
         {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_L(xs[5] - 30 + 130, top + NH + 32, xs[3] + NW, bottom + NH / 2,
+    a.append(vu.svg_arrow_L(xs[5] - 30 + 130, top + NH + 32, xs[3] + NW, bottom + NH / 2,
                             bend="v", label=vu.t(lang, "enthält", "contains")))
-    p.append(vu.svg_arrow_labeled(xs[3], bottom + NH / 2, xs[1] + NW, bottom + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[3], bottom + NH / 2, xs[1] + NW, bottom + NH / 2,
                                   vu.t(lang, "enthält", "contains"), font_size=11))
-    p.append(vu.svg_arrow_L(xs[1], bottom + NH / 2, xs[0] + NW / 2, top + NH + 32, bend="h",
+    a.append(vu.svg_arrow_L(xs[1], bottom + NH / 2, xs[0] + NW / 2, top + NH + 32, bend="h",
                             label=vu.t(lang, "Fundort", "findspot")))
-    p.append(f'<line x1="{X}" y1="548" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="548" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-
     # ---------------- CIIC 81: the chain stays open
     y1 = 570
     text81, unclear81 = d["reading"]["ciic81"]
-    p.append(T(X, y1 + 24, "CIIC 81", size=20, weight=500))
-    p.append(_inscription(X + 110, y1 + 26, text81, unclear81))
+    b.append(T(X, y1 + 24, "CIIC 81", size=20, weight=500))
+    b.append(_inscription(X + 110, y1 + 26, text81, unclear81))
     lx = X + 110 + vu.text_width(text81, 26) * 1.12 + 26
     variants = [r for r in m["readings"]["ciic81"] if r["text"] != text81]
     for variant in variants[:2]:
         chip, w = vu.svg_chip(lx, y1 + 9, f"{variant['source_de' if de else 'source_en']}: "
                                           f"{variant['text'].split(' MAQI')[0]}", UNC, size=12)
-        p.append(chip)
+        b.append(chip)
         lx += w + 10
     chip, w = vu.svg_chip(lx, y1 + 9, "OSM: " + osm["stone81"]["inscription"].split(" MAQI")[0],
                           OSM, size=12)
-    p.append(chip)
-    p.append(T(X + 110, y1 + 54, vu.t(
+    b.append(chip)
+    b.append(T(X + 110, y1 + 54, vu.t(
         lang, "Macalister 1945: -AS · Gippert 1987: -OS · OSM hält den Streit im Tag fest",
         "Macalister 1945: -AS · Gippert 1987: -OS · OSM keeps the dispute in the tag"),
         size=13, color=vu.TEXT_MUTED, italic=True))
-    p.append(_scholars(X + 110, y1 + 68, m["scholars"]["ciic81"], lang))
+    b.append(_scholars(X + 110, y1 + 68, m["scholars"]["ciic81"], lang))
 
     lane2, ry = y1 + 112, y1 + 170
-    p.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Stein CIIC 81", "Stone CIIC 81"),
+    b.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Stein CIIC 81", "Stone CIIC 81"),
                           "Q130529871", {"G": "pot", "W": "ok", "O": "ok", "F": "ok"},
                           kind="object"))
-    p.append(vu.case_node(xs[1], ry, NW, "CASSITTAS", f"{persons['CASSITTAS']['wikidata']} · OP400067",
+    b.append(vu.case_node(xs[1], ry, NW, "CASSITTAS", f"{persons['CASSITTAS']['wikidata']} · OP400067",
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], ry, NW, "CALLITI", f"{persons['CALLITI']['wikidata']} · OP400061",
+    b.append(vu.case_node(xs[2], ry, NW, "CALLITI", f"{persons['CALLITI']['wikidata']} · OP400061",
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3], ry, NW, "Cailtrige", vu.t(
+    b.append(vu.case_node(xs[3], ry, NW, "Cailtrige", vu.t(
         lang, "Ceinéal Caollaidhe · Sippe", "Ceinéal Caollaidhe · kin group"),
         {"G": "pot", "W": "open", "O": "none", "F": "open"}, kind="concept"))
-    p.append(vu.case_node(xs[4], ry, NW, "Eoghanachta", vu.t(lang, "Dynastie", "dynasty"),
+    b.append(vu.case_node(xs[4], ry, NW, "Eoghanachta", vu.t(lang, "Dynastie", "dynasty"),
                           {"G": "check", "W": "open", "O": "none", "F": "open"}, kind="concept"))
-    p.append(vu.gnd_slot(xs[3] + NW / 2, lane2, vu.t(lang, "GND denkbar", "GND conceivable"),
+    b.append(vu.gnd_slot(xs[3] + NW / 2, lane2, vu.t(lang, "GND denkbar", "GND conceivable"),
                          "pot", ry))
-    p.append(vu.gnd_slot(xs[4] + NW / 2, lane2, vu.t(lang, "GND prüfen", "check the GND"),
+    b.append(vu.gnd_slot(xs[4] + NW / 2, lane2, vu.t(lang, "GND prüfen", "check the GND"),
                          "check", ry))
     for i, label in enumerate((vu.t(lang, "Inschrift nennt", "inscription names"),
                                "MAQI MUCOI", "O’Brien 2021", vu.t(lang, "Teil von", "part of"))):
-        p.append(vu.svg_arrow_labeled(xs[i] + NW, ry + NH / 2, xs[i + 1], ry + NH / 2, label,
+        b.append(vu.svg_arrow_labeled(xs[i] + NW, ry + NH / 2, xs[i + 1], ry + NH / 2, label,
                                       font_size=11))
     ex = xs[5] - 30
-    p.append(f'<rect x="{ex}" y="{ry}" width="260" height="{NH}" rx="10" fill="#ffffff" '
+    b.append(f'<rect x="{ex}" y="{ry}" width="260" height="{NH}" rx="10" fill="#ffffff" '
              f'stroke="{vu.OPEN_STROKE}" stroke-width="1.4" stroke-dasharray="6 4"/>')
-    p.append(T(ex + 130, ry + NH / 2, vu.t(lang, "Ort? · kein Gebiet benannt",
+    b.append(T(ex + 130, ry + NH / 2, vu.t(lang, "Ort? · kein Gebiet benannt",
                                            "place? · no territory named"),
                size=14, weight=500, color=vu.OPEN_STROKE, anchor="middle", baseline="central"))
-    p.append(vu.svg_arrow(xs[4] + NW, ry + NH / 2, ex, ry + NH / 2, dashed=True))
-    p.append(vu.hub_legend(X, lang))
-    p.append(vu.gnd_slot_legend(X, lang))
+    b.append(vu.svg_arrow(xs[4] + NW, ry + NH / 2, ex, ry + NH / 2, dashed=True))
+    p.append(vu.case_split(a, b))
+    p.append(vu.case_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

@@ -412,8 +412,7 @@ def _fig_b(d: dict, lang: str) -> str:
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.hub_legend(MX, lang))
-    p.append(vu.gnd_slot_legend(MX, lang))
+    p.append(vu.case_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -429,12 +428,14 @@ def _fig_c(d: dict, lang: str) -> str:
     X = vu.MARGIN_X
     NW, NH = 196, 58
     xs = vu.chain_xs(5, node_w=NW, x0=X)
+    a: list[str] = []          # the two examples are collected separately
+    b: list[str] = []          # and centred by ``case_split``
     t2 = m["tephra"]
 
     # ---------------- Franchthi: the chain ends at another place, 862 km away
-    p.append(T(X, 58, vu.t(lang, "Franchthi-Höhle · Fundstelle 45", "Franchthi Cave · findspot 45"),
+    a.append(T(X, 58, vu.t(lang, "Franchthi-Höhle · Fundstelle 45", "Franchthi Cave · findspot 45"),
                size=20, weight=500))
-    p.append(T(X + 330, 58, vu.t(
+    a.append(T(X + 330, 58, vu.t(
         lang, "die Tephra führt von einem Ort zum anderen — und der zweite ist selbst eine "
               "Fundstelle desselben Datensatzes",
         "the tephra leads from one place to another — and the second is itself a findspot of the "
@@ -445,39 +446,39 @@ def _fig_c(d: dict, lang: str) -> str:
         "geolod:hasCertaintyLevel " + " ".join(ci45["geolod:hasCertaintyLevel"])
         + " · geolod:hasSpatialType " + " + ".join(ci45["geolod:hasSpatialType"]),
         AGG, size=12)
-    p.append(chip)
+    a.append(chip)
 
     top, below = 150, 320
-    p.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Franchthi-Höhle", "Franchthi Cave"),
+    a.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Franchthi-Höhle", "Franchthi Cave"),
                           "Q1441331 · node 1221172611",
                           {"G": "ok", "W": "ok", "O": "ok", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], top, NW, vu.t(lang, "Tephra-Lage", "tephra layer"),
+    a.append(vu.case_node(xs[1], top, NW, vu.t(lang, "Tephra-Lage", "tephra layer"),
                           vu.t(lang, "Campanian Ignimbrite", "Campanian Ignimbrite"),
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], top, NW, vu.t(lang, "Eruption", "eruption"),
+    a.append(vu.case_node(xs[2], top, NW, vu.t(lang, "Eruption", "eruption"),
                           vu.t(lang, "ca. 39 000 Jahre vor heute", "ca. 39,000 years ago"),
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3], top, NW + 60, t2["target"]["name_de" if de else "name_en"],
+    a.append(vu.case_node(xs[3], top, NW + 60, t2["target"]["name_de" if de else "name_en"],
                           f"{t2['target']['wikidata']} · GND {t2['target']['gnd']}",
                           {"G": "ok", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
                                   vu.t(lang, "enthält", "contains"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
                                   vu.t(lang, "stammt aus", "comes from"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + NW, top + NH / 2, xs[3], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[2] + NW, top + NH / 2, xs[3], top + NH / 2,
                                   vu.t(lang, "Quelle", "source"), font_size=11))
-    p.append(T(xs[3] + (NW + 60) / 2, top - 16, vu.t(
+    a.append(T(xs[3] + (NW + 60) / 2, top - 16, vu.t(
         lang, f"{vu.fmt_num(d['tephra_km'], lang, 0)} km entfernt · im selben Datensatz "
               f"Fundstelle {t2['target']['ci_id']}",
         f"{vu.fmt_num(d['tephra_km'], lang, 0)} km away · findspot {t2['target']['ci_id']} of the "
         f"same dataset"), size=11.5, weight=500, anchor="middle"))
 
     # the second findspot's own entry is where the identifier mismatch sits
-    p.append(vu.case_node(xs[3], below, NW + 60, vu.t(lang, "was dort verlinkt ist",
+    a.append(vu.case_node(xs[3], below, NW + 60, vu.t(lang, "was dort verlinkt ist",
                                                       "what is linked there"),
                           f"{t2['target']['osm_way']} · {t2['target']['osm_node']}",
                           kind="object"))
-    p.append(vu.svg_arrow_L(xs[3] + (NW + 60) / 2, top + NH + 30, xs[3] + (NW + 60) / 2,
+    a.append(vu.svg_arrow_L(xs[3] + (NW + 60) / 2, top + NH + 30, xs[3] + (NW + 60) / 2,
                             below, bend="v", dashed=True))
     mismatch, _ = vu.svg_text_block(xs[3] - 8, below + NH + 26, vu.t(
         lang, f"im Datensatz steht Node {t2['mismatch_node']} — {t2['mismatch_node_is_de']}; "
@@ -485,7 +486,7 @@ def _fig_c(d: dict, lang: str) -> str:
         f"the dataset names node {t2['mismatch_node']} — {t2['mismatch_node_is_en']}; the "
         f"coordinate in the same row, however, lands exactly on the correct node."),
         280, size=11, color=vu.UNCERTAIN_STROKE)
-    p.append(mismatch)
+    a.append(mismatch)
 
     # what the findspot is anchored in, below
     anchors = [(vu.t(lang, "Gemeinde Ermionida", "Municipality of Ermionida"), "Q616733 · P131",
@@ -495,19 +496,16 @@ def _fig_c(d: dict, lang: str) -> str:
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate(anchors):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
+        a.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    a.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "liegt in · P131", "located in · P131")))
-
-    p.append(f'<line x1="{X}" y1="470" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="470" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     # ---------------- Liang Luar: the chain ends in prose
     y1 = 496
-    p.append(T(X, y1 + 20, vu.t(lang, "Liang Luar · SISAL-Standort 104",
+    b.append(T(X, y1 + 20, vu.t(lang, "Liang Luar · SISAL-Standort 104",
                                 "Liang Luar · SISAL site 104"), size=20, weight=500))
-    p.append(T(X + 330, y1 + 20, vu.t(
+    b.append(T(X + 330, y1 + 20, vu.t(
         lang, "dieselbe Struktur, nur endet hier jede Kante an einem Satz statt an einer ID",
         "the same structure — only here every edge ends in a sentence instead of an identifier"),
         size=13, color=vu.TEXT_MUTED, italic=True))
@@ -518,28 +516,28 @@ def _fig_c(d: dict, lang: str) -> str:
               f"kein skos:closeMatch, kein owl:sameAs",
         f"geolod:Cave · geolod:elevation_m {elevation} · "
         f"no skos:closeMatch, no owl:sameAs"), AGG, size=12)
-    p.append(chip)
+    b.append(chip)
 
     ry, ry2 = y1 + 112, y1 + 282
-    p.append(vu.case_node(xs[0], ry, NW, "Liang Luar", vu.t(lang, "SISAL 104 · ohne ID",
+    b.append(vu.case_node(xs[0], ry, NW, "Liang Luar", vu.t(lang, "SISAL 104 · ohne ID",
                                                             "SISAL 104 · no identifier"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], ry, NW, vu.t(lang, "Speläothem", "speleothem"),
+    b.append(vu.case_node(xs[1], ry, NW, vu.t(lang, "Speläothem", "speleothem"),
                           vu.t(lang, "über 2 700 δ¹⁸O-Werte", "more than 2,700 δ¹⁸O values"),
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], ry, NW, vu.t(lang, "Klimakurve", "climate record"),
+    b.append(vu.case_node(xs[2], ry, NW, vu.t(lang, "Klimakurve", "climate record"),
                           vu.t(lang, "datiert, publiziert", "dated, published"),
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3], ry, NW + 60, "Homo floresiensis",
+    b.append(vu.case_node(xs[3], ry, NW + 60, "Homo floresiensis",
                           vu.t(lang, "aus arch_note, ohne Identifikator",
                                "from arch_note, without an identifier"),
                           {"G": "open", "W": "open", "O": "none", "F": "ok"},
                           kind="concept"))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
                                   vu.t(lang, "liefert", "yields"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, ry + NH / 2, xs[2], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[1] + NW, ry + NH / 2, xs[2], ry + NH / 2,
                                   vu.t(lang, "datiert zu", "dated into"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + NW, ry + NH / 2, xs[3], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[2] + NW, ry + NH / 2, xs[3], ry + NH / 2,
                                   vu.t(lang, "Kontext für", "context for"), font_size=11,
                                   dashed=True, marker="arrow-uncertain",
                                   stroke=vu.UNCERTAIN_STROKE, label_color=vu.UNCERTAIN_STROKE))
@@ -551,7 +549,7 @@ def _fig_c(d: dict, lang: str) -> str:
         "statement can neither be confirmed nor refuted from outside — which is exactly what the "
         "identifiers did for findspots 22 and 48 above."),
         300, size=11, color=vu.UNCERTAIN_STROKE)
-    p.append(claim)
+    b.append(claim)
 
     second = [(vu.t(lang, "Kabupaten Manggarai", "Manggarai Regency"), "Q14143 · rel 11228382",
                {"G": "none", "W": "ok", "O": "ok", "F": "none"}, "place"),
@@ -560,13 +558,14 @@ def _fig_c(d: dict, lang: str) -> str:
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate(second):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
+        b.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    b.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "verortet über die Koordinate, nicht über eine Aussage",
                        "placed by its coordinate, not by a statement")))
 
-    p.append(vu.hub_legend(X, lang))
+    p.append(vu.case_split(a, b))
+    p.append(vu.case_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

@@ -318,7 +318,7 @@ def _fig_b(d: dict, lang: str) -> str:
              locator_label=vu.t(lang, "Niederschlesien", "Lower Silesia"),
              inner_label_de="Gmina Jordanów Śląski (grün) im Powiat wrocławski",
              inner_label_en="Gmina Jordanów Śląski (green) in the powiat wrocławski",
-             aside_from=3, note_x=825, note_w=560, note_dy=94,
+             aside_from=3, note_x=825, note_w=560, note_dy=104, aside_dy=112,
              headline=vu.t(lang, "erst die Woiwodschaft hat einen GND-Satz",
                            "only the voivodeship has a GND record")),
     ]
@@ -396,20 +396,20 @@ def _fig_b(d: dict, lang: str) -> str:
         # ---- the predecessor beside the chain: a place that only the GND holds
         aside = m["aside"][key]
         source = xs[band["aside_from"]] + NW / 2
-        p.append(vu.case_node(xs[1], ry + 132, NW + 40, aside["name_de" if de else "name_en"],
+        ady = band.get("aside_dy", 132)
+        p.append(vu.case_node(xs[1], ry + ady, NW + 40, aside["name_de" if de else "name_en"],
                               aside["ids_de" if de else "ids_en"], aside["hubs"],
                               kind="concept"))
         p.append(vu.svg_arrow_L(source, ry + NH + 32, xs[1] + NW + 40,
-                                ry + 132 + NH / 2, bend="v", dashed=True))
-        note_markup, _ = vu.svg_text_block(band["note_x"], ry + 132 + band["note_dy"],
+                                ry + ady + NH / 2, bend="v", dashed=True))
+        note_markup, _ = vu.svg_text_block(band["note_x"], ry + ady + band["note_dy"],
                                            aside["note_de" if de else "note_en"],
                                            band["note_w"], size=11.5, color=vu.TEXT_MUTED)
         p.append(note_markup)
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.hub_legend(MX, lang))
-    p.append(vu.gnd_slot_legend(MX, lang))
+    p.append(vu.case_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -429,11 +429,13 @@ def _fig_c(d: dict, lang: str) -> str:
     # Four columns; the lower chain's last node carries a +40 offset, so the
     # spacing is figured with that width and both halves reach the edge.
     xs = vu.chain_xs(4, node_w=NW + 40, x0=X)
+    a: list[str] = []          # the two examples are collected separately
+    b: list[str] = []          # and centred by ``case_split``
 
     # ---------------- Seelow: down to the sherd, and back up to a monument id
     head = vu.t(lang, "Seelow 20 · Katalognr. 55005", "Seelow 20 · catalogue no. 55005")
-    p.append(T(X, 58, head, size=20, weight=500))
-    p.append(T(X + vu.text_width(head, 20) + 26, 58, vu.t(
+    a.append(T(X, 58, head, size=20, weight=500))
+    a.append(T(X + vu.text_width(head, 20) + 26, 58, vu.t(
         lang, "die Kette reicht unter die Fundstelle — und endet oben bei einer Nummer, "
               "die nur die Behörde führt",
         "the chain reaches below the findspot — and ends at a number only the authority "
@@ -441,28 +443,28 @@ def _fig_c(d: dict, lang: str) -> str:
     chip, _ = vu.svg_chip(X, 74, vu.t(
         lang, f"{se['quelle_georef']} · {se['methodenbeschr']}",
         f"{se['quelle_georef']} · {m['sites']['seelow']['method_en']}"), AGG, size=12)
-    p.append(chip)
+    a.append(chip)
 
     top, below = 150, 320
     sherd = m["sherds"][0]
-    p.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Scherbe", "sherd"), sherd["wikidata"],
+    a.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Scherbe", "sherd"), sherd["wikidata"],
                           {"G": "none", "W": "ok", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], top, NW, vu.t(lang, "Fundstelle Seelow 20", "findspot Seelow 20"),
+    a.append(vu.case_node(xs[1], top, NW, vu.t(lang, "Fundstelle Seelow 20", "findspot Seelow 20"),
                           vu.t(lang, "Katalognr. 55005 · kein QID",
                                "catalogue no. 55005 · no QID"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[2], top, NW, m["sites"]["seelow"]["monument_de" if de
+    a.append(vu.case_node(xs[2], top, NW, m["sites"]["seelow"]["monument_de" if de
                                                               else "monument_en"],
                           m["sites"]["seelow"]["activity"],
                           {"G": "open", "W": "none", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3], top, NW, vu.t(lang, "Seelow", "Seelow"),
+    a.append(vu.case_node(xs[3], top, NW, vu.t(lang, "Seelow", "Seelow"),
                           "Q587069 · GND 4340023-1",
                           {"G": "ok", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
                                   vu.t(lang, "aus", "from"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
                                   vu.t(lang, "erfasst als", "recorded as"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + NW, top + NH / 2, xs[3], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[2] + NW, top + NH / 2, xs[3], top + NH / 2,
                                   vu.t(lang, "liegt in", "located in"), font_size=11))
     note, _ = vu.svg_text_block(xs[2] - 6, top + NH + 46, vu.t(
         lang, f"Die Denkmalnummer und die Aktivitätsnummer {m['sites']['seelow']['activity']} "
@@ -472,7 +474,7 @@ def _fig_c(d: dict, lang: str) -> str:
         f"identify the place unambiguously — but only inside the heritage authority. The "
         f"excavation happened because {m['sites']['seelow']['occasion_en']} was built."),
         290, size=11, color=vu.UNCERTAIN_STROKE)
-    p.append(note)
+    a.append(note)
 
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate([
@@ -483,66 +485,63 @@ def _fig_c(d: dict, lang: str) -> str:
              f"{pubs['voelker']['wikidata']} · {pubs['voelker']['short']}",
              {"G": "none", "W": "ok", "O": "none", "F": "ok"}, "concept")]):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
+        a.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    a.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "Kultur · P2596 · belegt in",
                        "culture · P2596 · documented in")))
-
-    p.append(f'<line x1="{X}" y1="470" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="470" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     # ---------------- Jordansmühl: the name survives as a term, not as a place
     y1 = 496
     head = vu.t(lang, "Jordansmühl / Jordanów Śląski · Katalognr. 7",
                 "Jordansmühl / Jordanów Śląski · catalogue no. 7")
-    p.append(T(X, y1 + 20, head, size=20, weight=500))
-    p.append(T(X + vu.text_width(head, 20) + 26, y1 + 20, vu.t(
+    b.append(T(X, y1 + 20, head, size=20, weight=500))
+    b.append(T(X + vu.text_width(head, 20) + 26, y1 + 20, vu.t(
         lang, "hier trägt der Ortsname eine ganze Kultur — und hat selbst keinen Satz",
         "here the place name carries a whole culture — and has no record of its own"),
         size=13, color=vu.TEXT_MUTED, italic=True))
     chip, _ = vu.svg_chip(X, y1 + 36, vu.t(
         lang, f"{jo['quelle_georef']} · {jo['methodenbeschr']}",
         f"{jo['quelle_georef']} · {m['sites']['jordansmuehl']['method_en']}"), AGG, size=12)
-    p.append(chip)
+    b.append(chip)
 
     ry, ry2 = y1 + 112, y1 + 282
-    p.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Fundstelle", "findspot"),
+    b.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Fundstelle", "findspot"),
                           vu.t(lang, "Katalognr. 7 · kein QID", "catalogue no. 7 · no QID"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], ry, NW, vu.t(lang, "Ortsname Jordansmühl",
-                                              "the name Jordansmühl"),
+    b.append(vu.case_node(xs[1], ry, NW + 40, vu.t(lang, "Ortsname Jordansmühl",
+                                                   "the name Jordansmühl"),
                           vu.t(lang, "deutsch vor 1945 · heute Jordanów Śląski",
                                "German before 1945 · today Jordanów Śląski"),
                           {"G": "open", "W": "ok", "O": "ok", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], ry, NW + 40, terms["jordanow"]["name_de" if de else "name_en"],
+    b.append(vu.case_node(xs[2], ry, NW + 40, terms["jordanow"]["name_de" if de else "name_en"],
                           f"GND {terms['jordanow']['gnd']} · saz · {terms['jordanow']['time']}",
                           {"G": "ok", "W": "open", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[3] + 40, ry, NW, vu.t(lang, "Gmina Jordanów Śląski",
+    b.append(vu.case_node(xs[3] + 40, ry, NW, vu.t(lang, "Gmina Jordanów Śląski",
                                                    "Gmina Jordanów Śląski"),
                           "Q2191877 · rel 3049634",
                           {"G": "none", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
                                   vu.t(lang, "heißt nach", "named after"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, ry + NH / 2, xs[2], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[1] + NW + 40, ry + NH / 2, xs[2], ry + NH / 2,
                                   vu.t(lang, "benennt, Seger 1906", "names, Seger 1906"),
                                   font_size=11))
     # the gap between these two boxes is too narrow for a label on the arrow --
     # the wording goes above it, where there is white space
-    p.append(vu.svg_arrow(xs[2] + NW + 40, ry + NH / 2, xs[3] + 40, ry + NH / 2,
+    b.append(vu.svg_arrow(xs[2] + NW + 40, ry + NH / 2, xs[3] + 40, ry + NH / 2,
                           dashed=True, marker="arrow-uncertain",
                           stroke=vu.UNCERTAIN_STROKE))
-    p.append(T((xs[2] + NW + 40 + xs[3] + 40) / 2, ry - 10,
+    b.append(T((xs[2] + NW + 40 + xs[3] + 40) / 2, ry - 10,
                vu.t(lang, "nur im Definitionstext", "only in the definition text"),
                size=11, weight=500, color=vu.UNCERTAIN_STROKE, anchor="middle"))
     quote, _ = vu.svg_text_block(xs[2] - 6, ry + NH + 46,
                                  terms["jordanow"]["definition_de" if de else "definition_en"],
                                  420, size=11.5, italic=True, color=GND["stroke"])
-    p.append(quote)
+    b.append(quote)
     note2, _ = vu.svg_text_block(xs[2] - 6, ry + NH + 112,
                                  terms["jordanow"]["note_de" if de else "note_en"],
                                  420, size=11, color=vu.UNCERTAIN_STROKE)
-    p.append(note2)
+    b.append(note2)
 
     targets = []
     for i, (title, subtitle, hubs, kind, nw) in enumerate([
@@ -554,12 +553,13 @@ def _fig_c(d: dict, lang: str) -> str:
              m['aside']['jordansmuehl']['ids_de' if de else 'ids_en'],
              {"G": "ok", "W": "open", "O": "none", "F": "none"}, "concept", NW)]):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, ry2, nw, title, subtitle, hubs, kind=kind))
+        b.append(vu.case_node(node_x, ry2, nw, title, subtitle, hubs, kind=kind))
         targets.append(node_x + nw / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    b.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "verortet aus · Karte 2 von", "georeferenced from · map 2 of")))
 
-    p.append(vu.hub_legend(X, lang))
+    p.append(vu.case_split(a, b))
+    p.append(vu.case_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

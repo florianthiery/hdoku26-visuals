@@ -88,6 +88,8 @@ Eigenschaften:
 | Drei Folien je Case Study, immer gleich gebaut | A, B und C liegen auf demselben Raster: zwei Beispielspalten bei `CASE_C1`/`CASE_C2`, Ketten mit `chain_xs(...)` bis an die Inhaltskante, Legenden unten bei `CASE_LEGEND_Y`. Der gemeinsame Teil steht seit 2026-09-29 in `hdoku26_visuals_utils.py` unter „Case-study layout contract“, nicht mehr fünfmal kopiert in den Schritten | 2026-09-29 |
 | Keine Infobox unter A und C | die Zusammenfassungs-Bänder am Fuß von Grafik A und die Schluss-Chips in Grafik C sind raus; unter der letzten Zeile steht nur noch die Status-Legende. Flo spricht diese Inhalte (Abdeckungstabelle, „die GND datiert Orte“, „Kennungen machen Fehler auffindbar“) | 2026-09-29 |
 | Fotos im Kopf von Grafik A | 150 × 150 links vom Titel, Bildnachweis darunter; zwei Aufnahmen desselben Orts teilen sich den Platz übereinander (Franchthi), statt ihn zu verbreitern — das Raster bleibt gleich, auch wo kein Bild steht (bb-5kbc, poseidon2lod) | 2026-09-29 |
+| Legende: ganz oder gar nicht | wo eine Legende steht, stehen **beide** Zeilen — die vier Hub-Farben bei `CASE_LEGEND_Y` und die GND-Spur bei `CASE_LEGEND_Y2`, 36 px auseinander, damit sie als zwei Zeilen lesbar sind. Ein Aufruf (`case_legend`), damit keine Grafik eine halbe Legende bekommt | 2026-09-29 |
+| Vertikale Aufteilung in Grafik C | die zwei Beispiele werden mit `case_split` gesetzt: der übrige Weißraum wird auf oben / Mitte / unten verteilt, außen auf `CASE_SPLIT_MARGIN` gedeckelt, so dass er sich in der Mitte um die Trennlinie sammelt statt am Fuß. Bei etwa gleich hohen Beispielen (geo-lod, poseidon2lod) landet die Linie in der Mitte; ist eines deutlich höher (Ogham), folgt sie dem Inhalt, statt hindurchzuschneiden | 2026-09-29 |
 | Reihenfolge | Grafik 2, dann 3, dann die Case Studies: Ogham fertigstellen (nach dem Fragebogen), dann Holy Wells, geo-lod, bb-5kbc, poseidon2lod — jeweils erst die Daten im Detail ansehen | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
@@ -277,6 +279,15 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - Grafik 07 A hat jetzt Fotos: Franchthi-Höhle innen (Efi tsif) über den Funden (Zde), beide CC BY-SA 4.0 via Wikimedia Commons; Liang Luar mit Team (Garry K Smith, CC0). Zuschnitte und Nachweise in `manual/geolod.yaml`.
 - `img/00`–`img/03` und `img/10` bleiben byteweise unverändert; 05–09 sind neu gebaut.
 - **Offen / an Flo:** In den EN-Grafiken von S8 stehen einige Feldwerte des Datensatzes unübersetzt (`quelle_georef`, `methode`, `kultur`, `fundstellenart`, `quellen_typ`) — gewollt, weil es Zitate aus den Daten sind; falls das stören soll, geht eine englische Kurzform.
+
+### S12 — Legende, Weißraum, letzte Engstellen
+
+**Erledigt 2026-09-29.** Zweiter Durchgang über dieselben fünfzehn Grafiken:
+
+- **Legende vollständig und mit Luft.** `case_legend` setzt beide Zeilen; vorher hatte Grafik C mancher Fallstudie nur die Hub-Farben. Zeile 1 bei 944, Zeile 2 bei 980 (vorher 24 px Abstand, jetzt 36).
+- **`case_split`.** Grafik C jeder Fallstudie sammelt ihre zwei Beispiele in zwei Listen; `case_split` misst beide mit `svg_y_span`, verteilt den Weißraum und setzt die Trennlinie dazwischen. Damit ist der leere Streifen über der Legende weg.
+- **Engstellen.** poseidon2lod C: die Homonym-Notiz lag auf der Hub-Leiste der Awaren. bb-5kbc C: „Ortsname Jordansmühl“ war breiter als sein Knoten. Ogham B: der ODbL-Nachweis klebte am Chip der zweiten Karte. bb-5kbc B und poseidon2lod B: die Notiz neben der GND-Nebenebene reichte in die Legende — dort ist jetzt `aside_dy` je Band einstellbar.
+- Geprüft: kein Textelement in einer der fünfzehn Grafiken kommt der Legende näher als 10 px; `img/00`–`img/03` und `img/10` bleiben unverändert.
 
 ### S7–S9 — weitere Case Studies
 

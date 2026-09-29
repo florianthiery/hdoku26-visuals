@@ -340,8 +340,7 @@ def _fig_b(d: dict, lang: str) -> str:
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.hub_legend(MX, lang))
-    p.append(vu.gnd_slot_legend(MX, lang))
+    p.append(vu.case_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -358,46 +357,48 @@ def _fig_c(d: dict, lang: str) -> str:
     NW, NH = 196, 58
     # Four columns, the last one wider: both halves end at the content edge.
     xs = vu.chain_xs(4, node_w=NW + 60, x0=X)
+    a: list[str] = []          # the two examples are collected separately
+    b: list[str] = []          # and centred by ``case_split``
 
     # ---------------- Lachtain: the chain stays local, and it closes
-    p.append(T(X, 58, "St. Lachtain's Well", size=20, weight=500))
-    p.append(T(X + 250, 58, vu.t(
+    a.append(T(X, 58, "St. Lachtain's Well", size=20, weight=500))
+    a.append(T(X + 250, 58, vu.t(
         lang, "Tobar Lachtain · der Name trägt den Heiligen, OSM hält ihn als Etymologie fest",
         "Tobar Lachtain · the name carries the saint, and OSM records him as the etymology"),
         size=13, color=vu.TEXT_MUTED, italic=True))
     chip, _ = vu.svg_chip(X, 74, f"OSM way {osm['lachtain']['_id']} · "
                                  f"name:etymology:wikidata={osm['lachtain']['name:etymology:wikidata']}",
                           OSM, size=12)
-    p.append(chip)
+    a.append(chip)
 
     top, below = 150, 320
-    p.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Brunnen", "well"), "Q121840779",
+    a.append(vu.case_node(xs[0], top, NW, vu.t(lang, "Brunnen", "well"), "Q121840779",
                           {"G": "none", "W": "ok", "O": "ok", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], top, NW, "Lachtín mac Tarbín", "Q18674069",
+    a.append(vu.case_node(xs[1], top, NW, "Lachtín mac Tarbín", "Q18674069",
                           {"G": "none", "W": "ok", "O": "ok", "F": "open"}, kind="concept"))
-    p.append(vu.case_node(xs[2], top, NW, "Civil Parish Freshford", "Q60554307 · Achadh Úr",
+    a.append(vu.case_node(xs[2], top, NW, "Civil Parish Freshford", "Q60554307 · Achadh Úr",
                           {"G": "pot", "W": "ok", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
                                   vu.t(lang, "benannt nach · P138", "named after · P138"),
                                   font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[1] + NW, top + NH / 2, xs[2], top + NH / 2,
                                   vu.t(lang, "Abt von", "abbot of"), font_size=11))
-    p.append(T(xs[1] + NW + 6, top - 12, vu.t(
+    a.append(T(xs[1] + NW + 6, top - 12, vu.t(
         lang, "aus der Beschreibung, nicht als Aussage",
         "from the description, not a statement"), size=10.5, color=vu.UNCERTAIN_STROKE))
     ex = xs[3]
-    p.append(f'<rect x="{ex}" y="{top}" width="{NW + 60}" height="{NH}" rx="10" fill="#ffffff" '
+    a.append(f'<rect x="{ex}" y="{top}" width="{NW + 60}" height="{NH}" rx="10" fill="#ffffff" '
              f'stroke="{vu.OPEN_STROKE}" stroke-width="1.4" stroke-dasharray="6 4"/>')
-    p.append(T(ex + (NW + 60) / 2, top + NH / 2 - 8, vu.t(lang, "GND: 0 Treffer", "GND: 0 hits"),
+    a.append(T(ex + (NW + 60) / 2, top + NH / 2 - 8, vu.t(lang, "GND: 0 Treffer", "GND: 0 hits"),
                size=14, weight=500, color=vu.OPEN_STROKE, anchor="middle", baseline="central"))
-    p.append(T(ex + (NW + 60) / 2, top + NH / 2 + 12,
+    a.append(T(ex + (NW + 60) / 2, top + NH / 2 + 12,
                m["saints"]["lachtain"]["reach_de" if de else "reach_en"], size=11,
                color=vu.OPEN_STROKE, anchor="middle", baseline="central"))
-    p.append(vu.svg_arrow_elbow(xs[1] + NW / 2, top, ex + (NW + 60) / 2, top,
+    a.append(vu.svg_arrow_elbow(xs[1] + NW / 2, top, ex + (NW + 60) / 2, top,
                                 top - 34, dashed=True,
                                 label=vu.t(lang, "in der GND gesucht", "looked up in the GND")))
     # the parish contains the well again: the chain closes
-    p.append(vu.svg_arrow_elbow(xs[2] + NW / 2, top + NH + 30, xs[0] + NW / 2, top + NH + 30,
+    a.append(vu.svg_arrow_elbow(xs[2] + NW / 2, top + NH + 30, xs[0] + NW / 2, top + NH + 30,
                                 top + NH + 52,
                                 label=vu.t(lang, "enthält den Brunnen", "contains the well")))
     # what the well is said to cure, and who paid for it
@@ -410,44 +411,41 @@ def _fig_c(d: dict, lang: str) -> str:
     targets = []
     for i, (title, subtitle, hubs) in enumerate(cures):
         node_x = xs[i + 1] - 40
-        p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind="concept"))
+        a.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind="concept"))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    a.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "heilt · P2175 · bedeutende Person · P3342",
                        "cures · P2175 · significant person · P3342")))
 
-    p.append(f'<line x1="{X}" y1="452" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="452" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-
     # ---------------- Fiachra: the chain reaches the GND and France
     y1 = 476
-    p.append(T(X, y1 + 20, "St. Fiachra's Well", size=20, weight=500))
-    p.append(T(X + 250, y1 + 20, vu.t(
+    b.append(T(X, y1 + 20, "St. Fiachra's Well", size=20, weight=500))
+    b.append(T(X + 250, y1 + 20, vu.t(
         lang, "derselbe Bau, andere Reichweite: der Patron wird international verehrt",
         "the same kind of structure, a different reach: the patron is venerated internationally"),
         size=13, color=vu.TEXT_MUTED, italic=True))
     chip, _ = vu.svg_chip(X, y1 + 36, f"OSM node {osm['fiachra']['_id']} · "
                                       f"name:etymology:wikidata={osm['fiachra']['name:etymology:wikidata']}",
                           OSM, size=12)
-    p.append(chip)
+    b.append(chip)
 
     ry, ry2 = y1 + 112, y1 + 282
-    p.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Brunnen", "well"), "Q121842432",
+    b.append(vu.case_node(xs[0], ry, NW, vu.t(lang, "Brunnen", "well"), "Q121842432",
                           {"G": "none", "W": "ok", "O": "ok", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], ry, NW, "Fiacre", "Q953927 · P227",
+    b.append(vu.case_node(xs[1], ry, NW, "Fiacre", "Q953927 · P227",
                           {"G": "ok", "W": "ok", "O": "ok", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2], ry, NW, "Fiacrius", f"GND {m['saints']['fiacre']['gnd']}",
+    b.append(vu.case_node(xs[2], ry, NW, "Fiacrius", f"GND {m['saints']['fiacre']['gnd']}",
                           {"G": "ok", "W": "ok", "O": "none", "F": "none"}, kind="concept"))
-    p.append(vu.case_node(xs[3], ry, NW + 60, vu.t(lang, "Irland und Frankreich",
+    b.append(vu.case_node(xs[3], ry, NW + 60, vu.t(lang, "Irland und Frankreich",
                                                    "Ireland and France"),
                           m["saints"]["fiacre"]["gnd_countries"],
                           {"G": "ok", "W": "ok", "O": "ok", "F": "open"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
                                   vu.t(lang, "benannt nach · P138", "named after · P138"),
                                   font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW, ry + NH / 2, xs[2], ry + NH / 2, "P227",
+    b.append(vu.svg_arrow_labeled(xs[1] + NW, ry + NH / 2, xs[2], ry + NH / 2, "P227",
                                   font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + NW, ry + NH / 2, xs[3], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[2] + NW, ry + NH / 2, xs[3], ry + NH / 2,
                                   vu.t(lang, "Länderbezug", "country link"), font_size=11))
     second = [(vu.t(lang, "Festtage", "feast days"), "P841 · 2×",
                {"G": "none", "W": "ok", "O": "none", "F": "none"}, "concept"),
@@ -456,13 +454,14 @@ def _fig_c(d: dict, lang: str) -> str:
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate(second):
         node_x = xs[i + 1] - 40
-        p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
+        b.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    b.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "gefeiert an · P841 · liegt in · P131",
                        "celebrated on · P841 · located in · P131")))
 
-    p.append(vu.hub_legend(X, lang))
+    p.append(vu.case_split(a, b))
+    p.append(vu.case_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

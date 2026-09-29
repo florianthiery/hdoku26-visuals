@@ -3,6 +3,7 @@
 <rect x="0" y="0" width="1750" height="1000" fill="#ffffff"/>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="arrow-uncertain" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a03030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 
+<g transform="translate(0,27.3)">
 <text x="60.0" y="58.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">AITI_119 · Lechtal</text>
 <text x="287.6" y="58.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">die Verwandtschaft steht als Zeichenkette im Gruppennamen — und der Fundort an einer Adresse</text>
 <rect x="60.0" y="74.0" width="302.2" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
@@ -87,7 +88,9 @@
 <line x1="198.0" y1="298.0" x2="198.0" y2="320.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
 <line x1="642.7" y1="298.0" x2="642.7" y2="320.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text x="168.0" y="289.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Kultur · benachbarte Fundstellen desselben Pakets</text>
-<line x1="60" y1="470" x2="1690" y2="470" stroke="#888780" stroke-width="1"/>
+</g>
+<line x1="60" y1="444.9" x2="1690" y2="444.9" stroke="#888780" stroke-width="1"/>
+<g transform="translate(0,-37.5)">
 <text x="60.0" y="516.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">RKC001 · Mitteltheiß</text>
 <text x="310.0" y="516.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">hier hat der Fundplatz einen Namen — und die Landschaft darüber gibt es nur in der GND</text>
 <rect x="60.0" y="532.0" width="490.4" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
@@ -171,14 +174,21 @@
 <line x1="198.0" y1="756.0" x2="198.0" y2="778.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
 <line x1="642.7" y1="756.0" x2="642.7" y2="778.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
 <text x="168.0" y="747.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Kultur · Verwaltung</text>
-<text x="100.0" y="870.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">daneben Awaren (Dagestaner), GND 7582513-2 — derselbe Name, ein</text>
-<text x="100.0" y="884.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">anderes Volk</text>
-<rect x="60.0" y="952.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
-<text x="84.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
-<rect x="250.0" y="952.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
-<text x="274.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
-<rect x="440.0" y="952.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
-<text x="464.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
-<rect x="630.0" y="952.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
-<text x="654.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Fachdaten</text>
+<text x="100.0" y="898.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">daneben Awaren (Dagestaner), GND 7582513-2 — derselbe Name, ein</text>
+<text x="100.0" y="912.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">anderes Volk</text>
+</g>
+<rect x="60.0" y="944.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="84.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
+<rect x="250.0" y="944.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="274.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
+<rect x="440.0" y="944.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="464.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
+<rect x="630.0" y="944.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="654.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Fachdaten</text>
+<rect x="60.0" y="971" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="112.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Satz vorhanden</text>
+<rect x="272.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="324.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Eintrag denkbar (GND-Planung)</text>
+<rect x="589.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="641.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vermutlich vorhanden, zu prüfen</text>
 </svg>

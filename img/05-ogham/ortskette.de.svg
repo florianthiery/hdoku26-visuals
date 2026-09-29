@@ -214,9 +214,9 @@
 <text x="76.0" y="820.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">Fundort: Low · Macalister 1945, 170</text>
 <text x="76.0" y="836.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">Ausstellungsort: High · Survey vor Ort</text>
 <text x="76.0" y="852.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">Site-Punkte: OpenStreetMap · CISP · Ogham in 3D · SMR · townlands.ie</text>
-<rect x="60.0" y="886.0" width="544.2" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
-<text x="332.1" y="897.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Ogham Site Q85395557: fünf Koordinaten mit je eigener Quelle, 586 m Spannweite</text>
-<text x="530.0" y="914.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="10.5" fill="#5f5e5a">Flächen: © OpenStreetMap-Mitwirkende, ODbL</text>
+<rect x="60.0" y="884.0" width="544.2" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="332.1" y="895.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Ogham Site Q85395557: fünf Koordinaten mit je eigener Quelle, 586 m Spannweite</text>
+<text x="530.0" y="920.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="10.5" fill="#5f5e5a">Flächen: © OpenStreetMap-Mitwirkende, ODbL</text>
 <rect x="575.0" y="670.0" width="186.0" height="58" rx="10" fill="#ffffff" stroke="#5f5e5a" stroke-width="1.4"/>
 <text x="668.0" y="691.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">Stein CIIC 178</text>
 <text x="668.0" y="711.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10.5" fill="#5f5e5a">Q126503090 · node 5145413640</text>
@@ -298,18 +298,18 @@
 <text x="946.8" y="895.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
 <path d="M 668.0 760.0 L 668.0 849.0 L 807.2 849.0" fill="none" stroke="#73726c" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
 <text x="737.6" y="839.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">P189</text>
-<rect x="60.0" y="952.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
-<text x="84.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
-<rect x="250.0" y="952.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
-<text x="274.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
-<rect x="440.0" y="952.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
-<text x="464.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
-<rect x="630.0" y="952.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
-<text x="654.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Fachdaten</text>
-<rect x="60.0" y="967" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
-<text x="112.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Satz vorhanden</text>
-<rect x="272.0" y="967" width="44" height="18" rx="9" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
-<text x="324.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Eintrag denkbar (GND-Planung)</text>
-<rect x="589.0" y="967" width="44" height="18" rx="9" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
-<text x="641.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vermutlich vorhanden, zu prüfen</text>
+<rect x="60.0" y="944.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="84.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
+<rect x="250.0" y="944.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="274.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
+<rect x="440.0" y="944.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="464.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
+<rect x="630.0" y="944.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="654.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Fachdaten</text>
+<rect x="60.0" y="971" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="112.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Satz vorhanden</text>
+<rect x="272.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="324.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND-Eintrag denkbar (GND-Planung)</text>
+<rect x="589.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="641.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vermutlich vorhanden, zu prüfen</text>
 </svg>

@@ -184,18 +184,18 @@
 <text x="575.0" y="436.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">The GND record 4228929-4 for the cave has not changed since 2021 — Q1441331 does not point at it, and the record itself carries no coordinate. Of the two gaps,</text>
 <text x="575.0" y="452.2" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">the link is the smaller one.</text>
 <line x1="60" y1="505" x2="1690" y2="505" stroke="#888780" stroke-width="1"/>
-<rect x="60.0" y="952.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
-<text x="84.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
-<rect x="250.0" y="952.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
-<text x="274.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
-<rect x="440.0" y="952.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
-<text x="464.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
-<rect x="630.0" y="952.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
-<text x="654.0" y="960.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">research data</text>
-<rect x="60.0" y="967" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
-<text x="112.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND record exists</text>
-<rect x="265.0" y="967" width="44" height="18" rx="9" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
-<text x="317.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND entry conceivable (GND plans)</text>
-<rect x="582.0" y="967" width="44" height="18" rx="9" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
-<text x="634.0" y="977.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">probably exists, to be checked</text>
+<rect x="60.0" y="944.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="84.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
+<rect x="250.0" y="944.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="274.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
+<rect x="440.0" y="944.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="464.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
+<rect x="630.0" y="944.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="654.0" y="952.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">research data</text>
+<rect x="60.0" y="971" width="44" height="18" rx="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="112.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND record exists</text>
+<rect x="265.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="317.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">GND entry conceivable (GND plans)</text>
+<rect x="582.0" y="971" width="44" height="18" rx="9" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="634.0" y="981.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">probably exists, to be checked</text>
 </svg>

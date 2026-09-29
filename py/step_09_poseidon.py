@@ -318,7 +318,7 @@ def _fig_b(d: dict, lang: str) -> str:
              inner_label_en="Rákóczifalva — there is nothing where the field is",
              headline=vu.t(lang, "der Name liegt daneben, nicht darunter",
                            "the name sits beside the levels, not below them"),
-             aside_from=4, note_x=767, note_w=620, note_dy=96),
+             aside_from=4, note_x=767, note_w=620, note_dy=106, aside_dy=112),
     ]
 
     for band in bands:
@@ -378,20 +378,20 @@ def _fig_b(d: dict, lang: str) -> str:
         # ---- the level beside the chain that only the GND holds
         aside = m["aside"][key]
         source = xs[band["aside_from"]] + NW / 2
-        p.append(vu.case_node(xs[1], ry + 132, NW + 60, aside["name_de" if de else "name_en"],
+        ady = band.get("aside_dy", 132)
+        p.append(vu.case_node(xs[1], ry + ady, NW + 60, aside["name_de" if de else "name_en"],
                               aside["ids_de" if de else "ids_en"], aside["hubs"],
                               kind="concept"))
         p.append(vu.svg_arrow_L(source, ry + NH + 32, xs[1] + NW + 60,
-                                ry + 132 + NH / 2, bend="v", dashed=True))
-        note, _ = vu.svg_text_block(band["note_x"], ry + 132 + band["note_dy"],
+                                ry + ady + NH / 2, bend="v", dashed=True))
+        note, _ = vu.svg_text_block(band["note_x"], ry + ady + band["note_dy"],
                                     aside["note_de" if de else "note_en"],
                                     band["note_w"], size=11.5, color=vu.TEXT_MUTED)
         p.append(note)
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.hub_legend(MX, lang))
-    p.append(vu.gnd_slot_legend(MX, lang))
+    p.append(vu.case_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -405,6 +405,8 @@ def _fig_c(d: dict, lang: str) -> str:
     aiti, rkc = d["row"]["lechtal"], d["row"]["tisza"]
     p = [vu.svg_open(vu.t(lang, "Der Graph dahinter: eine Familie im Label, eine Landschaft ohne Grenze",
                           "The graph behind it: a family in a label, a landscape without a boundary"))]
+    a: list[str] = []          # the two examples are collected separately and
+    b: list[str] = []          # then centred in their half by ``case_split``
     X = vu.MARGIN_X
     NW, NH = 196, 58
     # Four columns; the widest node of the last one is NW + 100 with its offset,
@@ -413,8 +415,8 @@ def _fig_c(d: dict, lang: str) -> str:
 
     # ---------------- Lechtal: the pedigree is packed into a string
     head = vu.t(lang, "AITI_119 · Lechtal", "AITI_119 · Lech valley")
-    p.append(T(X, 58, head, size=20, weight=500))
-    p.append(T(X + vu.text_width(head, 20) + 26, 58, vu.t(
+    a.append(T(X, 58, head, size=20, weight=500))
+    a.append(T(X + vu.text_width(head, 20) + 26, 58, vu.t(
         lang, "die Verwandtschaft steht als Zeichenkette im Gruppennamen — und der Fundort "
               "an einer Adresse",
         "the kinship sits in the group name as a string — and the findspot at an address"),
@@ -422,27 +424,27 @@ def _fig_c(d: dict, lang: str) -> str:
     chip, _ = vu.svg_chip(X, 74, f"¹⁴C {_val(aiti, 'Date_C14_Labnr')} · "
                                  f"{_val(aiti, 'Date_BC_AD_Start')}/{_val(aiti, 'Date_BC_AD_Stop')} · "
                                  f"Y {_val(aiti, 'Y_Haplogroup')}", AGG, size=12)
-    p.append(chip)
+    a.append(chip)
 
     top, below = 150, 320
-    p.append(vu.case_node(xs[0], top, NW, "AITI_119",
+    a.append(vu.case_node(xs[0], top, NW, "AITI_119",
                           vu.t(lang, "männlich · Lechtal", "male · Lech valley"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], top, NW + 60, vu.t(lang, "Familie", "family"),
+    a.append(vu.case_node(xs[1], top, NW + 60, vu.t(lang, "Familie", "family"),
                           vu.t(lang, f"{len(d['family'])} Individuen im Gruppennamen",
                                f"{len(d['family'])} individuals in the group name"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.case_node(xs[2] + 60, top, NW, vu.t(lang, "Fundplatz", "discovery site"),
+    a.append(vu.case_node(xs[2] + 60, top, NW, vu.t(lang, "Fundplatz", "discovery site"),
                           vu.t(lang, "Blank Node", "blank node"),
                           {"G": "none", "W": "none", "O": "none", "F": "open"}, kind="object"))
-    p.append(vu.case_node(xs[3] + 60, top, NW + 40, "Gewerbegebiet Kleinaitingen",
+    a.append(vu.case_node(xs[3] + 60, top, NW + 40, "Gewerbegebiet Kleinaitingen",
                           "way 376729440",
                           {"G": "none", "W": "none", "O": "ok", "F": "ok"}))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[0] + NW, top + NH / 2, xs[1], top + NH / 2,
                                   vu.t(lang, "Teil von", "part of"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW + 60, top + NH / 2, xs[2] + 60, top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[1] + NW + 60, top + NH / 2, xs[2] + 60, top + NH / 2,
                                   vu.t(lang, "gefunden an", "found at"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + 60 + NW, top + NH / 2, xs[3] + 60, top + NH / 2,
+    a.append(vu.svg_arrow_labeled(xs[2] + 60 + NW, top + NH / 2, xs[3] + 60, top + NH / 2,
                                   vu.t(lang, "liegt in", "lies in"), font_size=11))
     if d["family"]:
         sample = d["family"][0][1]
@@ -452,7 +454,7 @@ def _fig_c(d: dict, lang: str) -> str:
             f"The group name reads “{sample}”. The kinship is machine-readable — but as a "
             f"string, not as a statement."),
             500, size=11, color=vu.UNCERTAIN_STROKE)
-        p.append(quote)
+        a.append(quote)
 
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate([
@@ -466,20 +468,17 @@ def _fig_c(d: dict, lang: str) -> str:
                   f"{m['places']['augsburg_haunstetten']['gnd']}"),
              {"G": "ok", "W": "open", "O": "ok", "F": "ok"}, "place")]):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
+        a.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    a.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "Kultur · benachbarte Fundstellen desselben Pakets",
                        "culture · neighbouring findspots of the same package")))
-
-    p.append(f'<line x1="{X}" y1="470" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="470" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     # ---------------- Tisza: the landscape the GND has and OSM has not
     y1 = 496
     head = vu.t(lang, "RKC001 · Mitteltheiß", "RKC001 · Middle Tisza")
-    p.append(T(X, y1 + 20, head, size=20, weight=500))
-    p.append(T(X + vu.text_width(head, 20) + 26, y1 + 20, vu.t(
+    b.append(T(X, y1 + 20, head, size=20, weight=500))
+    b.append(T(X + vu.text_width(head, 20) + 26, y1 + 20, vu.t(
         lang, "hier hat der Fundplatz einen Namen — und die Landschaft darüber gibt es nur "
               "in der GND",
         "here the findspot has a name — and the landscape above it exists only in the GND"),
@@ -490,28 +489,28 @@ def _fig_c(d: dict, lang: str) -> str:
         f"dated {_val(rkc, 'Date_BC_AD_Start')}–{_val(rkc, 'Date_BC_AD_Stop')} · "
         f"Date_Type {_val(rkc, 'Date_Type')} · {d['n']['tisza']} individuals at the findspot"),
         AGG, size=12)
-    p.append(chip)
+    b.append(chip)
 
     ry, ry2 = y1 + 112, y1 + 282
-    p.append(vu.case_node(xs[0], ry, NW, "RKC001",
+    b.append(vu.case_node(xs[0], ry, NW, "RKC001",
                           vu.t(lang, "weiblich · Awarenzeit", "female · Avar period"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[1], ry, NW + 40, "Bagi-földek",
+    b.append(vu.case_node(xs[1], ry, NW + 40, "Bagi-földek",
                           vu.t(lang, "Flurname · ohne ID", "field name · no id"),
                           {"G": "none", "W": "none", "O": "none", "F": "ok"}, kind="object"))
-    p.append(vu.case_node(xs[2] + 40, ry, NW, "Rákóczifalva",
+    b.append(vu.case_node(xs[2] + 40, ry, NW, "Rákóczifalva",
                           f"Q945191 · GND {m['places']['rakoczifalva']['gnd']}",
                           {"G": "ok", "W": "ok", "O": "ok", "F": "none"}))
-    p.append(vu.case_node(xs[3] + 40, ry, NW + 40,
+    b.append(vu.case_node(xs[3] + 40, ry, NW + 40,
                           vu.t(lang, "Mitteltheiß", "Middle Tisza"),
                           vu.t(lang, f"GND-Familie · {m['gnd_probe']['theiss_hits']} Treffer",
                                f"GND family · {m['gnd_probe']['theiss_hits']} hits"),
                           {"G": "ok", "W": "open", "O": "none", "F": "ok"}, kind="concept"))
-    p.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[0] + NW, ry + NH / 2, xs[1], ry + NH / 2,
                                   vu.t(lang, "gefunden auf", "found on"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[1] + NW + 40, ry + NH / 2, xs[2] + 40, ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[1] + NW + 40, ry + NH / 2, xs[2] + 40, ry + NH / 2,
                                   vu.t(lang, "Flur von", "field of"), font_size=11))
-    p.append(vu.svg_arrow_labeled(xs[2] + 40 + NW, ry + NH / 2, xs[3] + 40, ry + NH / 2,
+    b.append(vu.svg_arrow_labeled(xs[2] + 40 + NW, ry + NH / 2, xs[3] + 40, ry + NH / 2,
                                   vu.t(lang, "liegt an der", "lies on the"), font_size=11))
     note, _ = vu.svg_text_block(xs[2] + 40, ry + NH + 44, vu.t(
         lang, f"Die GND führt Theiß selbst als {m['gnd_probe']['theiss_gnd']} (gin und gik) und "
@@ -521,7 +520,7 @@ def _fig_c(d: dict, lang: str) -> str:
         f"whole family of landscapes besides. OpenStreetMap has no boundary for them, Wikidata "
         f"no item matching “MiddleTisza”."),
         430, size=11, color=GND["stroke"])
-    p.append(note)
+    b.append(note)
 
     targets = []
     for i, (title, subtitle, hubs, kind) in enumerate([
@@ -531,16 +530,17 @@ def _fig_c(d: dict, lang: str) -> str:
             ("Szolnoki járás", "Q831079 · rel 2376095",
              {"G": "none", "W": "ok", "O": "ok", "F": "none"}, "place")]):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
+        b.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    b.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "Kultur · Verwaltung", "culture · administration")))
-    homonym, _ = vu.svg_text_block(xs[0] + 40, ry2 + NH + 34,
+    homonym, _ = vu.svg_text_block(xs[0] + 40, ry2 + NH + 62,
                                    terms["awaren"]["homonym_de" if de else "homonym_en"],
                                    420, size=11, color=vu.UNCERTAIN_STROKE)
-    p.append(homonym)
+    b.append(homonym)
 
-    p.append(vu.hub_legend(X, lang))
+    p.append(vu.case_split(a, b))
+    p.append(vu.case_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

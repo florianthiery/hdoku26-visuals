@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import re
 from pathlib import Path
 
 # --------------------------------------------------------------------------- #
@@ -955,18 +956,26 @@ UNCERTAIN = {"fill": UNCERTAIN_FILL, "stroke": UNCERTAIN_STROKE}
 #              status legend at CASE_LEGEND_Y.
 #   figure B   map on the left, chain of places on the right, laid out with
 #              ``chain_xs`` so that the last node ends at the content edge;
-#              hub legend at CASE_LEGEND_Y
-#   figure C   same chain rule, same legend, nothing else below it
+#              both legend rows at CASE_LEGEND_Y / CASE_LEGEND_Y2
+#   figure C   same chain rule, same two legend rows, nothing else below them;
+#              the two examples are stacked with ``case_split``, which puts the
+#              rule in the middle and shares the leftover white space
 #
 # House rule since 2026-09-29: no summary band and no closing chip at the
 # bottom of A or C. What such a band used to say is said out loud instead.
+# House rule since 2026-09-29 (second pass): if the legend appears at all it
+# appears whole -- both rows, on every figure B and C of every case study.
 # --------------------------------------------------------------------------- #
 CASE_C1, CASE_C2, CASE_CW = 250, 975, 715
 CASE_ROW_TOP = 174
 CASE_ROW_TOP_IMG = 250      # caption at 214, divider at 238, first row at 250
 CASE_RULE_Y = 158           # divider under a header without a photograph
 CASE_RULE_Y_IMG = 238
-CASE_LEGEND_Y = 952
+CASE_LEGEND_Y = 944         # row 1: the four hub colours
+CASE_LEGEND_Y2 = 980        # row 2: the GND lane; 36 apart, so the two read as
+                            # two rows and not as one crowded block
+CASE_SPLIT_TOP = 38         # content area of a two-example figure B or C ...
+CASE_SPLIT_BOTTOM = 906     # ... down to here, above the legend
 CASE_CHAIN_X0 = 575          # figure B: right of the map
 CASE_NODE_W = 196
 CASE_NODE_H = 58
@@ -1230,7 +1239,90 @@ def case_fan(sx: float, sy: float, rail_y: float, targets: list[float], label: s
     return "\n".join(parts)
 
 
-def gnd_slot_legend(x: float, lang: str, *, y: float = CASE_LEGEND_Y + 24) -> str:
+_Y_ATTRS = re.compile(r'\b(?:y|y1|y2|cy)="(-?\d+(?:\.\d+)?)"')
+_RECT = re.compile(r'<(?:rect|image)\b[^>]*?\by="(-?\d+(?:\.\d+)?)"[^>]*?'
+                   r'\bheight="(-?\d+(?:\.\d+)?)"')
+_RECT2 = re.compile(r'<(?:rect|image)\b[^>]*?\bheight="(-?\d+(?:\.\d+)?)"[^>]*?'
+                    r'\by="(-?\d+(?:\.\d+)?)"')
+_TEXT = re.compile(r'<text\b[^>]*?\by="(-?\d+(?:\.\d+)?)"[^>]*?font-size="(\d+(?:\.\d+)?)"')
+_PATH = re.compile(r'\bd="([^"]+)"')
+_NUM = re.compile(r'-?\d+(?:\.\d+)?')
+
+
+def svg_y_span(parts: list[str]) -> tuple[float, float]:
+    """How far a block of SVG fragments reaches vertically, in user units.
+
+    Only used at build time to centre the two halves of a figure (``case_split``)
+    -- it reads the y attributes, rect and image heights, text baselines and the
+    coordinates of path data. It is an estimate, not a renderer: a few units
+    either way only move a block a few units, it cannot produce a wrong figure.
+    """
+    lo, hi = float("inf"), float("-inf")
+
+    def note(*ys):
+        nonlocal lo, hi
+        for v in ys:
+            lo, hi = min(lo, v), max(hi, v)
+
+    for frag in parts:
+        for m in _Y_ATTRS.finditer(frag):
+            note(float(m.group(1)))
+        for m in _RECT.finditer(frag):
+            note(float(m.group(1)) + float(m.group(2)))
+        for m in _RECT2.finditer(frag):
+            note(float(m.group(2)) + float(m.group(1)))
+        for m in _TEXT.finditer(frag):
+            base, size = float(m.group(1)), float(m.group(2))
+            note(base - size, base + size * 0.3)
+        for m in _PATH.finditer(frag):
+            nums = [float(n) for n in _NUM.findall(m.group(1))]
+            note(*nums[1::2])
+    if lo > hi:
+        return 0.0, 0.0
+    return lo, hi
+
+
+CASE_SPLIT_MARGIN = 56      # most the outer white space may grow to
+
+
+def case_split(top: list[str], bottom: list[str], *, rule: bool = True) -> str:
+    """Two stacked example blocks, with the left-over white space shared out.
+
+    Each block is drawn in its own coordinates and then translated. Whatever
+    room is left after both blocks have what they need is split three ways --
+    above the first, between the two, below the second -- with the outer two
+    capped at ``CASE_SPLIT_MARGIN`` so that the surplus collects in the middle,
+    around the rule, instead of at the foot of the figure. Where the two
+    examples are about the same height (geo-lod, poseidon2lod) the rule
+    therefore lands in the middle; where one is much taller (Ogham) it follows
+    the content rather than cutting through it.
+    """
+    spans = [svg_y_span(top), svg_y_span(bottom)]
+    heights = [y1 - y0 for y0, y1 in spans]
+    slack = (CASE_SPLIT_BOTTOM - CASE_SPLIT_TOP) - sum(heights)
+    outer = max(0.0, min(slack / 3, CASE_SPLIT_MARGIN))
+    middle = max(26.0, slack - 2 * outer)
+
+    out, cursor = [], CASE_SPLIT_TOP + outer
+    for parts, (y0, _), h in zip((top, bottom), spans, heights):
+        dy = round(cursor - y0, 1)
+        out.append(f'<g transform="translate(0,{dy})">\n' + "\n".join(parts) + "\n</g>")
+        if rule and not out[1:2]:
+            y = round(cursor + h + middle / 2, 1)
+            out.append(f'<line x1="{MARGIN_X}" y1="{y}" x2="{CANVAS_W - MARGIN_X}" y2="{y}" '
+                       f'stroke="{LINE_NEUTRAL}" stroke-width="1"/>')
+        cursor += h + middle
+    return "\n".join(out)
+
+
+def case_legend(x: float, lang: str) -> str:
+    """Both legend rows, the way every figure B and C carries them: the four
+    hub colours above, the GND lane below. One call, so no figure can end up
+    with half a key."""
+    return hub_legend(x, lang) + "\n" + gnd_slot_legend(x, lang)
+
+
+def gnd_slot_legend(x: float, lang: str, *, y: float = CASE_LEGEND_Y2) -> str:
     """Key for the GND lane above a chain of places (figure B of every case
     study): a record that exists, one that would be conceivable under the GND's
     own plans, and one that is probably there but was not checked."""
