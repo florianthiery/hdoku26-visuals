@@ -85,6 +85,9 @@ Eigenschaften:
 | Zwei Beispiele pro Case Study | ja, aber nur wenn sich die beiden **geografisch** unterscheiden (bei Ogham: Fundort ≠ Standort gegen Fundort = Standort); zwei gleichartige Beispiele kosten Platz ohne Aussage | 2026-09-28 |
 | Karten in den Case Studies | immer mit OSM-Geometrie anreichern, nach dem Muster aus S5: nächstgrößere Einheit als Fläche, kleinere darin, Objekt als Marker — die Karte trägt genau die Ebenen, die rechts in der Kette stehen; je Case Study eine Overpass-Abfrage (`out geom`), Datei nach `data/raw/osm/`, gerundet auf 5 Nachkommastellen; gezeichnete OSM-Geometrie bekommt die ODbL-Namensnennung unter der Karte | 2026-09-28 |
 | Grafik C | nur dort, wo der fachliche Graph wirklich zu einem Ort zurückführt; sonst nur A und B | 2026-09-28 |
+| Drei Folien je Case Study, immer gleich gebaut | A, B und C liegen auf demselben Raster: zwei Beispielspalten bei `CASE_C1`/`CASE_C2`, Ketten mit `chain_xs(...)` bis an die Inhaltskante, Legenden unten bei `CASE_LEGEND_Y`. Der gemeinsame Teil steht seit 2026-09-29 in `hdoku26_visuals_utils.py` unter „Case-study layout contract“, nicht mehr fünfmal kopiert in den Schritten | 2026-09-29 |
+| Keine Infobox unter A und C | die Zusammenfassungs-Bänder am Fuß von Grafik A und die Schluss-Chips in Grafik C sind raus; unter der letzten Zeile steht nur noch die Status-Legende. Flo spricht diese Inhalte (Abdeckungstabelle, „die GND datiert Orte“, „Kennungen machen Fehler auffindbar“) | 2026-09-29 |
+| Fotos im Kopf von Grafik A | 150 × 150 links vom Titel, Bildnachweis darunter; zwei Aufnahmen desselben Orts teilen sich den Platz übereinander (Franchthi), statt ihn zu verbreitern — das Raster bleibt gleich, auch wo kein Bild steht (bb-5kbc, poseidon2lod) | 2026-09-29 |
 | Reihenfolge | Grafik 2, dann 3, dann die Case Studies: Ogham fertigstellen (nach dem Fragebogen), dann Holy Wells, geo-lod, bb-5kbc, poseidon2lod — jeweils erst die Daten im Detail ansehen | 2026-09-22 |
 
 ### A5 Was in welchem Chat hochgeladen wird
@@ -263,6 +266,17 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - **Fehlende Kante:** fünf Lücken, vier davon eine Aussage weit (P227 bei Franchthi, der OSM-Tag bei CIIC 81, P402 bei Freshford, das Mapping von „MiddleTisza"), eine braucht wirklich einen Normdatensatz (Jordanów Śląski). Schlusssatz: der Fluss läuft schon in beide Richtungen, die Koordinate im GND-Satz zu Seelow stammt aus GeoNames.
 - **Tiefe der Verortung:** fünf Stufen von Land bis Einzelobjekt, zehn Beispiele, je vier Balken. Abgelesen aus den Ortsketten der Fallstudien. Befund: die Fachdaten reichen fast immer am tiefsten, weil sie die Fundstelle *sind*; die GND ist nicht flach, sondern **ungleichmäßig** — einmal bis zum Denkmal (Ringfort Garranes), einmal bis zur Höhle selbst (Franchthi), dreimal nur bis zum Land.
 - **Offen / an Flo:** Die Tiefenwerte in `abschluss.yaml` sind aus den Grafiken B der Fallstudien abgelesen und dort doppelt gehalten. Wenn sich an einer Ortskette etwas ändert, muss die Tabelle nachgezogen werden; das Feld `source` sagt jeweils wo.
+
+### S11 — Vereinheitlichung der fünf Fallstudien
+
+**Erledigt 2026-09-29.** Kein neuer Inhalt, nur ein gemeinsames Raster:
+
+- Der bis dahin fünfmal kopierte Code steht jetzt in `py/hdoku26_visuals_utils.py` unter „Case-study layout contract“: `case_header`, `case_cell`, `case_row`, `case_map`, `case_locator`, `case_fan`, `geo_*`, `hub_legend`, `gnd_slot_legend`, `chain_xs` sowie `load_wikidata`, `load_geojson` und `chain_node`. Die Zahlen des Rasters (`CASE_C1`, `CASE_C2`, `CASE_CW`, `CASE_ROW_TOP`, `CASE_ROW_TOP_IMG`, `CASE_RULE_Y`, `CASE_LEGEND_Y`) sind der Vertrag; die Schritte 05–09 rechnen nicht mehr selbst.
+- Die Infoboxen am Fuß von A und die Schluss-Chips in C sind entfernt.
+- Ketten in B und C laufen mit `chain_xs(...)` bis an die Inhaltskante, statt rechts Platz zu lassen.
+- Grafik 07 A hat jetzt Fotos: Franchthi-Höhle innen (Efi tsif) über den Funden (Zde), beide CC BY-SA 4.0 via Wikimedia Commons; Liang Luar mit Team (Garry K Smith, CC0). Zuschnitte und Nachweise in `manual/geolod.yaml`.
+- `img/00`–`img/03` und `img/10` bleiben byteweise unverändert; 05–09 sind neu gebaut.
+- **Offen / an Flo:** In den EN-Grafiken von S8 stehen einige Feldwerte des Datensatzes unübersetzt (`quelle_georef`, `methode`, `kultur`, `fundstellenart`, `quellen_typ`) — gewollt, weil es Zitate aus den Daten sind; falls das stören soll, geht eine englische Kurzform.
 
 ### S7–S9 — weitere Case Studies
 

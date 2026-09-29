@@ -65,11 +65,6 @@ T = vu.svg_text
 # --------------------------------------------------------------------------- #
 # Loading
 # --------------------------------------------------------------------------- #
-def _wd(qid: str) -> dict:
-    data = json.loads((RAW / "wikidata" / f"{qid}.json").read_text(encoding="utf-8"))
-    return next(iter(data["entities"].values()))
-
-
 def _fsl(qid: str) -> dict:
     data = json.loads((RAW / "fuzzy-sl" / f"{qid}.json").read_text(encoding="utf-8"))
     return next(iter(data["entities"].values()))
@@ -134,7 +129,7 @@ def load() -> dict:
     d = {
         "m": manual,
         "places": places,
-        "wd": {qid: _wd(qid) for qid in (
+        "wd": {qid: vu.load_wikidata(qid) for qid in (
             "Q130529871", "Q126503090", "Q69385525", "Q85395557", "Q141591358",
             "Q104295278", "Q104309699", "Q26716192", "Q59419929", "Q20616069")},
         "fsl": {"Q74": _fsl("Q74"), "Q131": _fsl("Q131")},
@@ -191,31 +186,12 @@ def _reference_label(claim: dict) -> str:
 # --------------------------------------------------------------------------- #
 # Figure A -- who holds what
 # --------------------------------------------------------------------------- #
-CHIP_STYLES = {"ok": None, "gnd": GND, "open": OPEN, "unc": UNC}
-
-
-def _cell(x: float, y: float, w: float, h: float, colors: dict, status: str,
-          headline: str, chips: list[tuple[str, str]]) -> str:
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="10" '
-             f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.2" stroke-opacity="0.6"/>']
-    parts.append(vu.status_icon(x + 24, y + 24, status, UNC if status == "unc" else colors))
-    parts.append(T(x + 46, y + 25, headline, size=14, weight=500, baseline="central"))
-    cy = y + 46
-    for label, style in chips:
-        chip_colors = CHIP_STYLES[style] or colors
-        markup, _ = vu.svg_chip(x + 14, cy, label, chip_colors, width=w - 28, align="start",
-                                dashed=(style == "open"))
-        parts.append(markup)
-        cy += 28
-    return "\n".join(parts)
-
-
 def _fig_a(d: dict, lang: str) -> str:
     m = d["m"]
     p = [vu.svg_open(vu.t(lang, "Wer hält was: zwei Ogham-Steine",
                           "Who holds what: two Ogham stones"))]
     LX = vu.MARGIN_X
-    C1, C2, CW = 250, 975, 715
+    C1, C2, CW = vu.CASE_C1, vu.CASE_C2, vu.CASE_CW
     SUB = (CW - 12) / 2
 
     for cx, key, note_de, note_en in (
@@ -224,18 +200,14 @@ def _fig_a(d: dict, lang: str) -> str:
             (C2, "ciic178", "Fundort ist Standort · 1839 wieder aufgerichtet",
              "findspot is the current location · re-erected 1839")):
         img = m["images"][key]
-        crop = tuple(img["crop"]) if img["crop"] else None
-        p.append(vu.svg_image_crop(cx, 50, 150, 150, RAW / "images" / img["file"], crop))
-        p.append(T(cx + 170, 82, m["stones"][key][f"title_{'de' if lang == 'de' else 'en'}"],
-                   size=22, weight=500))
         stone = m["stones"][key]
-        p.append(T(cx + 170, 110, f"{stone['epidoc']} · CISP {stone['cisp']} · "
-                                  f"lod.ogham.link {stone['ogham_lod']}", size=13,
-                   color=vu.TEXT_MUTED))
-        chip, _ = vu.svg_chip(cx + 170, 128, vu.t(lang, note_de, note_en), AGG, size=12.5, h=26)
-        p.append(chip)
-        p.append(T(cx, 214, img[f"caption_{'de' if lang == 'de' else 'en'}"] + " · " + img["credit"],
-                   size=10.5, color=vu.TEXT_MUTED))
+        sfx = "de" if lang == "de" else "en"
+        p.append(vu.case_header(
+            cx, stone[f"title_{sfx}"],
+            f"{stone['epidoc']} · CISP {stone['cisp']} · lod.ogham.link {stone['ogham_lod']}",
+            vu.t(lang, note_de, note_en), AGG,
+            image=RAW / "images" / img["file"], crop=img["crop"],
+            caption=img[f"caption_{sfx}"] + " · " + img["credit"]))
 
     p.append(T(C1 + 14, 248, vu.t(lang, "Fundort", "findspot"), size=15, weight=500))
     p.append(T(C1 + SUB + 26, 248, vu.t(lang, "Standort heute", "current location"),
@@ -342,11 +314,11 @@ def _fig_a(d: dict, lang: str) -> str:
             p.append(T(LX + 22, y + 30 + i * 20, line + suffix, size=16, weight=500,
                        color=colors["stroke"]))
         pad = 8
-        p.append(_cell(C1, y + pad, SUB, h - 2 * pad, colors, *cells[0]))
-        p.append(_cell(C1 + SUB + 12, y + pad, SUB, h - 2 * pad, colors, *cells[1]))
-        p.append(_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[2]))
+        p.append(vu.case_cell(C1, y + pad, SUB, h - 2 * pad, colors, *cells[0]))
+        p.append(vu.case_cell(C1 + SUB + 12, y + pad, SUB, h - 2 * pad, colors, *cells[1]))
+        p.append(vu.case_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[2]))
 
-    p.append(vu.status_legend(LX, 950, [
+    p.append(vu.status_legend(LX, vu.CASE_LEGEND_Y, [
         ("ok", vu.t(lang, "vorhanden", "present")),
         ("up", vu.t(lang, "eine Ebene höher", "one level up")),
         ("none", vu.t(lang, "fehlt", "missing")),
@@ -371,10 +343,8 @@ def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str,
     def project(lon: float, lat: float) -> tuple[float, float]:
         return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
 
-    parts = [f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
-             f'rx="12"/></clipPath></defs>',
-             f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{vu.SEA_FILL}"/>',
-             f'<g clip-path="url(#{clip_id})">']
+    markup, _ = vu.case_map(x, y, w, h, bbox, clip_id, fill=vu.SEA_FILL)
+    parts = [markup]
     if coastline:
         rings = json.loads((RAW / "naturalearth" / "ireland_outline.json").read_text(encoding="utf-8"))
         for poly in rings:
@@ -383,15 +353,6 @@ def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str,
             parts.append(f'<path d="{path}" fill="{vu.LAND_FILL}" stroke="{vu.LAND_STROKE}" '
                          f'stroke-width="1"/>')
     return "\n".join(parts), project
-
-
-def _map_frame(x: float, y: float, w: float, h: float) -> str:
-    """Closes the clip group opened by :func:`_map` and draws the frame; every
-    overlay (boundaries, markers) goes between the two, so nothing spills over
-    the edge of the map."""
-    return ('</g>'
-            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
-            f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
 
 
 def _locator(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str) -> str:
@@ -421,45 +382,6 @@ def _locator(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str) 
     return "\n".join(parts)
 
 
-def _feature(d: dict, osm_id: str) -> dict:
-    return next(f for f in d["geo"]["features"] if f["properties"]["@id"] == osm_id)
-
-
-def _rings(feature: dict) -> list[list[list[float]]]:
-    """Outer rings of a (Multi)Polygon, as lists of [lon, lat]."""
-    geometry = feature["geometry"]
-    if geometry["type"] == "Polygon":
-        return [geometry["coordinates"][0]]
-    return [polygon[0] for polygon in geometry["coordinates"]]
-
-
-def _path(ring: list[list[float]], project, *, min_step: float = 0.45) -> str:
-    """Ring as an SVG path, thinned to the drawing scale: a point closer than
-    ``min_step`` pixels to the one before it adds nothing to a printed map and
-    would only bloat the SVG (the barony has 9,600 of them)."""
-    points, last = [], None
-    for lon, lat in ring:
-        x, y = project(lon, lat)
-        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
-            points.append((x, y))
-            last = (x, y)
-    if len(points) < 3:
-        return ""
-    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + " Z"
-
-
-def _draw_feature(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0,
-                  dashed: bool = False) -> str:
-    dash = ' stroke-dasharray="5 4"' if dashed else ""
-    parts = []
-    for ring in _rings(feature):
-        path = _path(ring, project)
-        if path:
-            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
-                         f'stroke-width="{width}"{dash}/>')
-    return "\n".join(parts)
-
-
 def _fsl_mark(x: float, y: float, number: str, certainty: str) -> str:
     parts = []
     if certainty == "Low":
@@ -468,12 +390,6 @@ def _fsl_mark(x: float, y: float, number: str, certainty: str) -> str:
                      f'stroke-dasharray="5 4"/>')
     parts.append(vu.svg_marker(x, y, number, {"fill": "#ffffff", "stroke": vu.TEXT_DARK}))
     return "\n".join(parts)
-
-
-def _backdrop(x: float, y: float, w: float, h: float) -> str:
-    """Soft white panel behind a text block that sits on top of a map."""
-    return (f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="8" '
-            f'fill="#ffffff" fill-opacity="0.82"/>')
 
 
 def _note(x: float, y: float, lines: list[str], anchor: str = "start") -> str:
@@ -490,7 +406,7 @@ def _fig_b(d: dict, lang: str) -> str:
                           "Chains of places: findspot and current location"))]
     MX, MW = vu.MARGIN_X, 470
     NW, NH = 186, 58
-    xs = [575 + i * 226 for i in range(5)]
+    xs = vu.chain_xs(5, node_w=NW)
 
     # ---------------- CIIC 81
     y0 = 40
@@ -501,11 +417,11 @@ def _fig_b(d: dict, lang: str) -> str:
     bbox81 = (-9.40, -8.02, 51.58, 52.10)
     markup, project = _map(MX, y0 + 34, MW, 372, bbox81, "map-ciic81")
     p.append(markup)
-    p.append(_draw_feature(_feature(d, "relation/6408043"), project,
+    p.append(vu.geo_draw(vu.geo_feature(d["geo"], "relation/6408043"), project,
                            fill=OSM["fill"], stroke=OSM["stroke"], width=1.2))
-    p.append(_draw_feature(_feature(d, "relation/6168494"), project,
+    p.append(vu.geo_draw(vu.geo_feature(d["geo"], "relation/6168494"), project,
                            fill="#ffffff", stroke=vu.TEXT_DARK, width=1.2))
-    p.append(_map_frame(MX, y0 + 34, MW, 372))
+    p.append(vu.case_map_frame(MX, y0 + 34, MW, 372))
     p.append(_locator(MX + MW - 116, y0 + 48, 102, 128, bbox81, "loc-ciic81"))
     p.append(T(MX + 14, y0 + 34 + 24, vu.t(lang, "Baronie Kinalmeaky · Townland Garranes",
                                            "Barony Kinalmeaky · Townland Garranes"),
@@ -513,7 +429,7 @@ def _fig_b(d: dict, lang: str) -> str:
     points = d["fsl_points"]["ciic81"]
     labels = m["fuzzy_sl"]["statements"]["ciic81"]
     key_y = y0 + 300
-    p.append(_backdrop(MX + 12, key_y - 26, 330, 96))
+    p.append(vu.case_backdrop(MX + 12, key_y - 26, 330, 96))
     for i, (point, meta) in enumerate(zip(points, labels)):
         mx, my = project(point["lon"], point["lat"])
         p.append(_fsl_mark(mx, my, str(i + 1), meta["certainty"]))
@@ -612,11 +528,11 @@ def _fig_b(d: dict, lang: str) -> str:
     bbox178 = (-10.620, -10.290, 52.055, 52.185)
     markup, project = _map(MX, y0 + 34, MW, 322, bbox178, "map-ciic178", coastline=False)
     p.append(markup)
-    p.append(_draw_feature(_feature(d, "relation/5304974"), project,
+    p.append(vu.geo_draw(vu.geo_feature(d["geo"], "relation/5304974"), project,
                            fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.0))
-    p.append(_draw_feature(_feature(d, "relation/4250372"), project,
+    p.append(vu.geo_draw(vu.geo_feature(d["geo"], "relation/4250372"), project,
                            fill=OSM["fill"], stroke=OSM["stroke"], width=1.2))
-    p.append(_map_frame(MX, y0 + 34, MW, 322))
+    p.append(vu.case_map_frame(MX, y0 + 34, MW, 322))
     p.append(_locator(MX + MW - 116, y0 + 48, 102, 128, bbox178, "loc-ciic178"))
     p.append(T(MX + 14, y0 + 34 + 24, vu.t(
         lang, "Baronie Corkaguiny (Fläche) · Townland Coumeenoole North (grün)",
@@ -629,7 +545,7 @@ def _fig_b(d: dict, lang: str) -> str:
         px, py = project(point["lon"], point["lat"])
         p.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="5" fill="#ffffff" '
                  f'stroke="{vu.UNCERTAIN_STROKE}" stroke-width="1.6"/>')
-    p.append(_backdrop(MX + 8, y0 + 262, 400, 88))
+    p.append(vu.case_backdrop(MX + 8, y0 + 262, 400, 88))
     p.append(_note(MX + 16, y0 + 282, [
         vu.t(lang, "Stein: zwei fuzzy-sl-Aussagen auf einem Punkt",
              "stone: two fuzzy-sl statements on one point"),
@@ -688,39 +604,10 @@ def _fig_b(d: dict, lang: str) -> str:
     p.append(vu.svg_arrow_L(xs[0] + NW / 2, ry + NH + 32, xs[1], ry + 150 + NH / 2, bend="v",
                             dashed=True, label="P189"))
 
-    p.append(vu.svg_legend(MX, 938, [
-        (vu.t(lang, "GND", "GND"), GND),
-        (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM),
-        (vu.t(lang, "Fach-Hubs", "subject hubs"), AGG),
-    ], columns=4, col_w=190))
-    p.append(_gnd_legend(vu.MARGIN_X, 972, lang))
+    p.append(vu.hub_legend(MX, lang))
+    p.append(vu.gnd_slot_legend(vu.MARGIN_X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
-
-
-def _gnd_legend(x: float, y: float, lang: str) -> str:
-    entries = [
-        ("ok", vu.t(lang, "GND-Satz vorhanden", "GND record exists")),
-        ("pot", vu.t(lang, "GND-Eintrag denkbar (GND-Planung)",
-                     "GND entry conceivable (GND plans)")),
-        ("check", vu.t(lang, "vermutlich vorhanden, zu prüfen", "probably exists, to be checked")),
-    ]
-    parts, cx = [], x
-    for kind, label in entries:
-        if kind == "ok":
-            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" '
-                   f'fill="{GND["fill"]}" stroke="{GND["stroke"]}" stroke-width="1.4"/>')
-        elif kind == "pot":
-            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" fill="#ffffff" '
-                   f'stroke="{GND["stroke"]}" stroke-width="1.4" stroke-dasharray="5 3"/>')
-        else:
-            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" fill="#ffffff" '
-                   f'stroke="{vu.OPEN_STROKE}" stroke-width="1.2" stroke-dasharray="3 3"/>')
-        parts.append(box)
-        parts.append(T(cx + 52, y + 1, label, size=12.5, baseline="central"))
-        cx += 52 + vu.text_width(label, 12.5) + 34
-    return "\n".join(parts)
 
 
 # --------------------------------------------------------------------------- #
@@ -765,7 +652,7 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind the inscription leads back to a place"))]
     X = vu.MARGIN_X
     NW, NH = 172, 58
-    xs = [X + i * 280 for i in range(6)]
+    xs = vu.chain_xs(6, node_w=NW, x0=X)
     persons, words = m["persons"], m["words"]
 
     # ---------------- CIIC 178: the chain closes
@@ -833,13 +720,6 @@ def _fig_c(d: dict, lang: str) -> str:
                                   vu.t(lang, "enthält", "contains"), font_size=11))
     p.append(vu.svg_arrow_L(xs[1], bottom + NH / 2, xs[0] + NW / 2, top + NH + 32, bend="h",
                             label=vu.t(lang, "Fundort", "findspot")))
-    chip, _ = vu.svg_chip(X, bottom + 92, vu.t(
-        lang, "DOVINIA führt über die Sippe zur Baronie – und die enthält den Fundort "
-              "(McManus 1991, 111).",
-        "DOVINIA leads through the kin group to the barony – and the barony contains the "
-        "findspot (McManus 1991, 111)."), WD, size=13, h=28)
-    p.append(chip)
-
     p.append(f'<line x1="{X}" y1="548" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="548" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
@@ -892,19 +772,8 @@ def _fig_c(d: dict, lang: str) -> str:
                                            "place? · no territory named"),
                size=14, weight=500, color=vu.OPEN_STROKE, anchor="middle", baseline="central"))
     p.append(vu.svg_arrow(xs[4] + NW, ry + NH / 2, ex, ry + NH / 2, dashed=True))
-    chip, _ = vu.svg_chip(X, ry + 96, vu.t(
-        lang, "Hier bleibt die Kette offen: Die Sippe ist belegt, ein Gebiet mit Geometrie nicht.",
-        "Here the chain stays open: the kin group is attested, a territory with a geometry is not."),
-        OPEN, size=13, h=28, dashed=True)
-    p.append(chip)
-
-    p.append(vu.svg_legend(X, 938, [
-        (vu.t(lang, "GND", "GND"), GND),
-        (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM),
-        (vu.t(lang, "Fach-Hubs", "subject hubs"), AGG),
-    ], columns=4, col_w=190))
-    p.append(_gnd_legend(X, 972, lang))
+    p.append(vu.hub_legend(X, lang))
+    p.append(vu.gnd_slot_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

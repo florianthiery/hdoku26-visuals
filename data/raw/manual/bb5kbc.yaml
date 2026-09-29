@@ -220,6 +220,9 @@ publications:
     title_en: "Zur bandkeramischen Besiedlung im Bereich der unteren Weichsel und Oder"
     kind_de: "Blätter der Deutschen Vorgeschichte 7, S. 18–52"
     kind_en: "Blätter der Deutschen Vorgeschichte 7, pp. 18–52"
+    # Kurzform für den Knoten in Grafik C, wo die volle Zeile nicht hineinpasst
+    kind_short_de: "Blätter d. Dt. Vorgeschichte 7"
+    kind_short_en: "Blätter d. Dt. Vorgeschichte 7"
 
 sherds:
   - wikidata: Q139477253

@@ -50,6 +50,31 @@ sites:
     note_de: "Klimaarchiv mit über 2 700 δ¹⁸O-Werten — und ohne jeden Identifikator"
     note_en: "a climate archive with more than 2,700 δ¹⁸O values — and no identifier at all"
 
+# Die Fotos im Kopf von Grafik A. Für Franchthi liegen zwei Aufnahmen vor;
+# sie teilen sich den Bildplatz übereinander, statt ihn zu verbreitern, damit
+# das Raster dasselbe bleibt wie bei Ogham und Holy Wells.
+# ``crop``: x0, y0, x1, y1 in Bildpixeln.
+images:
+  franchthi:
+    - file: franchthi-interior-efitsif.jpg
+      crop: [250, 40, 960, 380]
+      credit: "Efi tsif, CC BY-SA 4.0, via Wikimedia Commons"
+    - file: franchthi-finds-zde.jpg
+      crop: [0, 60, 960, 520]
+      credit: "Zde, CC BY-SA 4.0, via Wikimedia Commons"
+  liangluar:
+    - file: liangluar-team-smith.jpg
+      crop: [0, 150, 542, 692]
+      credit: "Garry K Smith, CC0"
+
+captions:
+  franchthi:
+    de: "Höhle und Funde · Efi tsif / Zde, CC BY-SA 4.0, via Wikimedia Commons"
+    en: "the cave and its finds · Efi tsif / Zde, CC BY-SA 4.0, via Wikimedia Commons"
+  liangluar:
+    de: "Das Forschungsteam vor Ort auf Flores, Indonesien · Garry K Smith, CC0"
+    en: "The research team on site in Flores, Indonesia · Garry K Smith, CC0"
+
 # Die Ortsketten. Was keine eigene Wikidata-JSON hat, steht hier mit Label und
 # den IDs, die in den OSM-Exporten stehen.
 chain:

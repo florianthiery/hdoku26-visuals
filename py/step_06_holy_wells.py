@@ -63,11 +63,6 @@ T = vu.svg_text
 # --------------------------------------------------------------------------- #
 # Loading
 # --------------------------------------------------------------------------- #
-def _wd(qid: str) -> dict:
-    data = json.loads((RAW / "wikidata" / f"{qid}.json").read_text(encoding="utf-8"))
-    return next(iter(data["entities"].values()))
-
-
 def _osm_tags(filename: str) -> dict:
     root = ET.parse(RAW / "osm" / filename).getroot()
     element = root[0]
@@ -114,7 +109,7 @@ def load() -> dict:
             "Q180231", "Q873607", "Q126443484", "Q126443332")
     d = {
         "m": manual,
-        "wd": {qid: _wd(qid) for qid in qids},
+        "wd": {qid: vu.load_wikidata(qid) for qid in qids},
         "osm": {"lachtain": _osm_tags("way_935503837.xml"),
                 "fiachra": _osm_tags("node_8515265450.xml")},
         "geo": json.loads((RAW / "osm" / "boundaries-kilkenny.geojson").read_text(encoding="utf-8")),
@@ -128,10 +123,6 @@ def load() -> dict:
     return d
 
 
-def _feature(d: dict, osm_id: str) -> dict:
-    return next(f for f in d["geo"]["features"] if f["properties"]["@id"] == osm_id)
-
-
 def _parish_features(d: dict, logainm: str) -> list[dict]:
     """Every OSM relation carrying this Logainm reference. Freshford is mapped
     as two of them (the parish has a detached part), and Wikidata's P402 names
@@ -142,64 +133,16 @@ def _parish_features(d: dict, logainm: str) -> list[dict]:
             and f["properties"].get("logainm:ref") == logainm]
 
 
-def _rings(feature: dict) -> list[list[list[float]]]:
-    geometry = feature["geometry"]
-    if geometry["type"] == "Polygon":
-        return [geometry["coordinates"][0]]
-    return [polygon[0] for polygon in geometry["coordinates"]]
-
-
-def _path(ring: list[list[float]], project, *, min_step: float = 0.45) -> str:
-    points, last = [], None
-    for lon, lat in ring:
-        x, y = project(lon, lat)
-        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
-            points.append((x, y))
-            last = (x, y)
-    if len(points) < 3:
-        return ""
-    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + " Z"
-
-
-def _draw(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0) -> str:
-    parts = []
-    for ring in _rings(feature):
-        path = _path(ring, project)
-        if path:
-            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
-                         f'stroke-width="{width}"/>')
-    return "\n".join(parts)
-
-
 # --------------------------------------------------------------------------- #
 # Figure A -- who holds what
 # --------------------------------------------------------------------------- #
-CHIP_STYLES = {"ok": None, "gnd": GND, "open": OPEN, "unc": UNC}
-
-
-def _cell(x: float, y: float, w: float, h: float, colors: dict, status: str,
-          headline: str, chips: list[tuple[str, str]]) -> str:
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="10" '
-             f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.2" stroke-opacity="0.6"/>']
-    parts.append(vu.status_icon(x + 24, y + 24, status, UNC if status == "unc" else colors))
-    parts.append(T(x + 46, y + 25, headline, size=14, weight=500, baseline="central"))
-    cy = y + 46
-    for label, style in chips:
-        chip_colors = CHIP_STYLES[style] or colors
-        markup, _ = vu.svg_chip(x + 14, cy, label, chip_colors, width=w - 28, align="start",
-                                dashed=(style == "open"))
-        parts.append(markup)
-        cy += 28
-    return "\n".join(parts)
-
-
 def _fig_a(d: dict, lang: str) -> str:
     m, osm, c = d["m"], d["osm"], d["counts"]
     de = lang == "de"
     p = [vu.svg_open(vu.t(lang, "Wer hält was: zwei heilige Quellen",
                           "Who holds what: two holy wells"))]
     LX = vu.MARGIN_X
-    C1, C2, CW = 250, 975, 715
+    C1, C2, CW = vu.CASE_C1, vu.CASE_C2, vu.CASE_CW
 
     for cx, key, note_de, note_en in (
             (C1, "lachtain", m["wells"]["lachtain"]["geometry_de"],
@@ -207,19 +150,16 @@ def _fig_a(d: dict, lang: str) -> str:
             (C2, "fiachra", m["wells"]["fiachra"]["geometry_de"],
              m["wells"]["fiachra"]["geometry_en"])):
         img = m["images"][key]
-        crop = tuple(img["crop"]) if img["crop"] else None
-        p.append(vu.svg_image_crop(cx, 50, 150, 150, RAW / "images" / img["file"], crop))
         well = m["wells"][key]
-        p.append(T(cx + 170, 82, well["title_de" if de else "title_en"], size=22, weight=500))
-        p.append(T(cx + 170, 110, f"{well['wikidata']} · SMR {well['smr']} · "
-                                  f"{well['inventory']}", size=13, color=vu.TEXT_MUTED))
-        chip, _ = vu.svg_chip(cx + 170, 128, vu.t(lang, note_de, note_en), AGG, size=12.5, h=26)
-        p.append(chip)
-        p.append(T(cx, 214, img["caption_de" if de else "caption_en"] + " · " + img["credit"],
-                   size=10.5, color=vu.TEXT_MUTED))
+        p.append(vu.case_header(
+            cx, well["title_de" if de else "title_en"],
+            f"{well['wikidata']} · SMR {well['smr']} · {well['inventory']}",
+            vu.t(lang, note_de, note_en), AGG,
+            image=RAW / "images" / img["file"], crop=img["crop"],
+            caption=img["caption_de" if de else "caption_en"] + " · " + img["credit"]))
 
-    p.append(f'<line x1="{C1}" y1="238" x2="{C2 + CW}" y2="238" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
+    p.append(f'<line x1="{C1}" y1="{vu.CASE_RULE_Y_IMG}" x2="{C2 + CW}" '
+             f'y2="{vu.CASE_RULE_Y_IMG}" stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     rows = [
         ("GND", GND, 250, 112, [
@@ -292,28 +232,10 @@ def _fig_a(d: dict, lang: str) -> str:
             p.append(T(LX + 22, y + 30 + i * 20, line + suffix, size=16, weight=500,
                        color=colors["stroke"]))
         pad = 8
-        p.append(_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
-        p.append(_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
+        p.append(vu.case_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
+        p.append(vu.case_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
 
-    # the project band: the community's own model, and what the corpus looks like
-    band_y = 912
-    p.append(f'<rect x="{LX}" y="{band_y}" width="{C2 + CW - LX}" height="52" rx="12" '
-             f'fill="{WD["fill"]}" fill-opacity="0.5"/>')
-    p.append(T(LX + 20, band_y + 20, vu.t(
-        lang, f"WikiProject HolyWells ({m['project']['wikidata']}): ein dokumentiertes Modell mit "
-              f"Belegpflicht — {m['project']['model_de'][0]}",
-        f"WikiProject HolyWells ({m['project']['wikidata']}): a documented model that requires "
-        f"references — {m['project']['model_en'][0]}"), size=12.5, weight=500))
-    p.append(T(LX + 20, band_y + 39, vu.t(
-        lang, f"{c['wells']} Brunnen mit Koordinate und Patron · {c['smr']} mit SMR · "
-              f"{c['osm']} mit OSM-Node (Wege wie bei Lachtain zählt die Abfrage nicht mit) · "
-              f"{c['diocese']} mit Diözese · {c['female']} nach einer Heiligen, {c['male']} nach einem Heiligen",
-        f"{c['wells']} wells with coordinate and patron · {c['smr']} with an SMR · "
-        f"{c['osm']} with an OSM node (ways such as Lachtain's are not counted by that query) · "
-        f"{c['diocese']} with a diocese · {c['female']} named after a female saint, "
-        f"{c['male']} after a male one"), size=12, color=vu.TEXT_MUTED))
-
-    p.append(vu.status_legend(LX, 978, [
+    p.append(vu.status_legend(LX, vu.CASE_LEGEND_Y, [
         ("ok", vu.t(lang, "vorhanden", "present")),
         ("none", vu.t(lang, "fehlt", "missing")),
         ("open", vu.t(lang, "offen", "open")),
@@ -325,49 +247,6 @@ def _fig_a(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure B -- the chain of places
 # --------------------------------------------------------------------------- #
-def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str):
-    lon0, lon1, lat0, lat1 = bbox
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min(w / ((lon1 - lon0) * k), h / (lat1 - lat0))
-    ox = x + (w - (lon1 - lon0) * k * s) / 2
-    oy = y + (h - (lat1 - lat0) * s) / 2
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
-
-    parts = [f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
-             f'rx="12"/></clipPath></defs>',
-             f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#f7f6f2"/>',
-             f'<g clip-path="url(#{clip_id})">']
-    return "\n".join(parts), project
-
-
-def _map_frame(x: float, y: float, w: float, h: float) -> str:
-    return ('</g>'
-            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
-            f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
-
-
-def _locator(d: dict, x: float, y: float, w: float, h: float, point: tuple) -> str:
-    """County Kilkenny with its civil parishes, and a dot where the well is."""
-    county = _feature(d, "relation/285980")
-    lons = [c[0] for ring in _rings(county) for c in ring]
-    lats = [c[1] for ring in _rings(county) for c in ring]
-    lon0, lon1, lat0, lat1 = min(lons), max(lons), min(lats), max(lats)
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min((w - 12) / ((lon1 - lon0) * k), (h - 12) / (lat1 - lat0))
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return x + 6 + (lon - lon0) * k * s, y + 6 + (lat1 - lat) * s
-
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="8" fill="#ffffff" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>',
-             _draw(county, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=0.8)]
-    px, py = project(*point)
-    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="{vu.TEXT_DARK}"/>')
-    return "\n".join(parts)
-
-
 def _fig_b(d: dict, lang: str) -> str:
     m, osm = d["m"], d["osm"]
     de = lang == "de"
@@ -375,7 +254,7 @@ def _fig_b(d: dict, lang: str) -> str:
                           "Chains of places: well, civil parish, county"))]
     MX, MW = vu.MARGIN_X, 470
     NW, NH = 196, 58
-    xs = [575 + i * 250 for i in range(4)]
+    xs = vu.chain_xs(4, node_w=NW)
 
     bands = [
         ("lachtain", 40, 372, "way", vu.t(lang, "Fläche in OSM · P10689", "an area in OSM · P10689")),
@@ -387,20 +266,22 @@ def _fig_b(d: dict, lang: str) -> str:
         p.append(T(MX, y0 + 16, well["title_de" if de else "title_en"], size=20, weight=500))
         p.append(T(MX + 330, y0 + 16, note, size=14, color=vu.TEXT_MUTED))
 
-        markup, project = _map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
+        markup, project = vu.case_map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
         p.append(markup)
-        p.append(_draw(_feature(d, "relation/285980"), project,
+        p.append(vu.geo_draw(vu.geo_feature(d["geo"], "relation/285980"), project,
                        fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.0))
         for feature in d["geo"]["features"]:
             if feature["properties"].get("boundary") == "civil_parish":
-                p.append(_draw(feature, project, fill="none", stroke=vu.LAND_STROKE, width=0.8))
+                p.append(vu.geo_draw(feature, project, fill="none", stroke=vu.LAND_STROKE, width=0.8))
         parts_of_parish = _parish_features(d, parish["logainm"])
         for feature in parts_of_parish:
-            p.append(_draw(feature, project, fill=OSM["fill"], stroke=OSM["stroke"], width=1.4))
+            p.append(vu.geo_draw(feature, project, fill=OSM["fill"], stroke=OSM["stroke"], width=1.4))
         px, py = project(*d["point"][key])
         p.append(vu.svg_marker(px, py, "1", {"fill": "#ffffff", "stroke": vu.TEXT_DARK}))
-        p.append(_map_frame(MX, y0 + 34, MW, map_h))
-        p.append(_locator(d, MX + MW - 116, y0 + 48, 102, 128, d["point"][key]))
+        p.append(vu.case_map_frame(MX, y0 + 34, MW, map_h))
+        p.append(vu.case_locator(vu.geo_feature(d["geo"], "relation/285980"),
+                                 MX + MW - 116, y0 + 34 + map_h - 140, 102, 128,
+                                 m["county"]["name"], point=d["point"][key]))
         p.append(T(MX + 14, y0 + 58, vu.t(
             lang, f"Civil Parish {parish['name']} (grün) in den Pfarreien von Kilkenny",
             f"civil parish {parish['name']} (green) among the parishes of Kilkenny"),
@@ -459,10 +340,8 @@ def _fig_b(d: dict, lang: str) -> str:
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.svg_legend(MX, 938, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fach-Hubs", "subject hubs"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(MX, lang))
+    p.append(vu.gnd_slot_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -470,21 +349,6 @@ def _fig_b(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure C -- the saint behind the well
 # --------------------------------------------------------------------------- #
-def _fan(sx: float, sy: float, rail_y: float, targets: list[float], label: str = "",
-         *, dashed: bool = False) -> str:
-    """One source, several targets: down to a shared rail, along it, then one
-    short arrow into each target. Keeps the legs from running through the
-    boxes that sit between them."""
-    dash = ' stroke-dasharray="6 4"' if dashed else ""
-    parts = [f'<path d="M {sx:.1f} {sy:.1f} L {sx:.1f} {rail_y:.1f} L {max(targets):.1f} '
-             f'{rail_y:.1f}" fill="none" stroke="{vu.ARROW_STROKE}" stroke-width="1.6"{dash}/>']
-    for tx in targets:
-        parts.append(vu.svg_arrow(tx, rail_y, tx, rail_y + 22, dashed=dashed))
-    if label:
-        parts.append(T(sx + 10, rail_y - 9, label, size=11.5, weight=500))
-    return "\n".join(parts)
-
-
 def _fig_c(d: dict, lang: str) -> str:
     m, osm = d["m"], d["osm"]
     de = lang == "de"
@@ -492,7 +356,8 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind the well: the saint and his place"))]
     X = vu.MARGIN_X
     NW, NH = 196, 58
-    xs = [X + i * 300 for i in range(5)]
+    # Four columns, the last one wider: both halves end at the content edge.
+    xs = vu.chain_xs(4, node_w=NW + 60, x0=X)
 
     # ---------------- Lachtain: the chain stays local, and it closes
     p.append(T(X, 58, "St. Lachtain's Well", size=20, weight=500))
@@ -547,7 +412,7 @@ def _fig_c(d: dict, lang: str) -> str:
         node_x = xs[i + 1] - 40
         p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind="concept"))
         targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "heilt · P2175 · bedeutende Person · P3342",
                        "cures · P2175 · significant person · P3342")))
 
@@ -593,23 +458,11 @@ def _fig_c(d: dict, lang: str) -> str:
         node_x = xs[i + 1] - 40
         p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "gefeiert an · P841 · liegt in · P131",
                        "celebrated on · P841 · located in · P131")))
 
-    chip, _ = vu.svg_chip(X, 908, vu.t(
-        lang, "Zwei Brunnen, 17 km auseinander, nach demselben Modell erfasst: beim einen endet "
-              "die Kette beim lokalen Abt, dessen Namen die Pfarrei trägt, beim anderen führt sie "
-              "über die GND bis nach Frankreich.",
-        "Two wells, 17 km apart, recorded on the same model: for one the chain ends with the "
-        "local abbot whose name the parish carries, for the other it runs through the GND as far "
-        "as France."), WD, size=13, h=28)
-    p.append(chip)
-
-    p.append(vu.svg_legend(X, 950, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fach-Hubs", "subject hubs"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

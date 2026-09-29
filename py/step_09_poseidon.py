@@ -153,87 +153,29 @@ def load() -> dict:
     return d
 
 
-def _feature(collection: dict, osm_id: str) -> dict:
-    return next(f for f in collection["features"] if f["properties"]["@id"] == osm_id)
-
-
-def _rings(feature: dict) -> list[list[list[float]]]:
-    geometry = feature["geometry"]
-    if geometry["type"] == "Polygon":
-        return [geometry["coordinates"][0]]
-    if geometry["type"] == "LineString":
-        return [geometry["coordinates"]]
-    return [polygon[0] for polygon in geometry["coordinates"]]
-
-
-def _path(ring: list[list[float]], project, *, close: bool = True,
-          min_step: float = 0.4) -> str:
-    points, last = [], None
-    for lon, lat in ring:
-        x, y = project(lon, lat)
-        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
-            points.append((x, y))
-            last = (x, y)
-    if len(points) < 2:
-        return ""
-    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + (" Z" if close else "")
-
-
-def _draw(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0) -> str:
-    close = feature["geometry"]["type"] != "LineString"
-    parts = []
-    for ring in _rings(feature):
-        path = _path(ring, project, close=close)
-        if path:
-            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
-                         f'stroke-width="{width}" stroke-linejoin="round"/>')
-    return "\n".join(parts)
-
-
 # --------------------------------------------------------------------------- #
 # Figure A -- who holds what
 # --------------------------------------------------------------------------- #
-CHIP_STYLES = {"ok": None, "gnd": GND, "open": OPEN, "unc": UNC}
-
-
-def _cell(x: float, y: float, w: float, h: float, colors: dict, status: str,
-          headline: str, chips: list[tuple[str, str]]) -> str:
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="10" '
-             f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.2" stroke-opacity="0.6"/>']
-    parts.append(vu.status_icon(x + 24, y + 24, status, UNC if status == "unc" else colors))
-    parts.append(T(x + 46, y + 25, headline, size=14, weight=500, baseline="central"))
-    cy = y + 46
-    for label, style in chips:
-        chip_colors = CHIP_STYLES[style] or colors
-        markup, _ = vu.svg_chip(x + 14, cy, label, chip_colors, width=w - 28, align="start",
-                                dashed=(style == "open"))
-        parts.append(markup)
-        cy += 28
-    return "\n".join(parts)
-
-
 def _fig_a(d: dict, lang: str) -> str:
     m, cov, probe = d["m"], d["cov"], d["m"]["gnd_probe"]
     de = lang == "de"
     p = [vu.svg_open(vu.t(lang, "Wer hält was: zwei Arten von Ortsnamen",
                           "Who holds what: two kinds of place name"))]
     LX = vu.MARGIN_X
-    C1, C2, CW = 250, 975, 715
+    C1, C2, CW = vu.CASE_C1, vu.CASE_C2, vu.CASE_CW
 
     for cx, key, colors in ((C1, "lechtal", OSM), (C2, "tisza", GND)):
         site = m["sites"][key]
         row = d["row"][key]
-        p.append(T(cx, 74, site["title_de" if de else "title_en"], size=21, weight=500))
-        p.append(T(cx, 100, vu.t(
-            lang, f"{site['individual']} · {site['package']} · {d['n'][key]} Individuen "
-                  f"an diesem Ort",
-            f"{site['individual']} · {site['package']} · {d['n'][key]} individuals at this place"),
-            size=13, color=vu.TEXT_MUTED))
-        chip, _ = vu.svg_chip(cx, 114, site["kind_de" if de else "kind_en"], colors,
-                              size=12.5, h=26)
-        p.append(chip)
+        p.append(vu.case_header(
+            cx, site["title_de" if de else "title_en"],
+            vu.t(lang, f"{site['individual']} · {site['package']} · {d['n'][key]} Individuen "
+                       f"an diesem Ort",
+                 f"{site['individual']} · {site['package']} · {d['n'][key]} individuals at "
+                 f"this place"),
+            site["kind_de" if de else "kind_en"], colors))
 
-    p.append(f'<line x1="{LX}" y1="158" x2="{C2 + CW}" y2="158" '
+    p.append(f'<line x1="{LX}" y1="{vu.CASE_RULE_Y}" x2="{C2 + CW}" y2="{vu.CASE_RULE_Y}" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     lech_locs = m["lechtal_locations"]
@@ -333,57 +275,10 @@ def _fig_a(d: dict, lang: str) -> str:
             p.append(T(LX + 22, y + 30 + i * 20, line + suffix, size=16, weight=500,
                        color=colors["stroke"]))
         pad = 8
-        p.append(_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
-        p.append(_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
+        p.append(vu.case_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
+        p.append(vu.case_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
 
-    # ---- band: how far down the retrofitted links reach, over the whole corpus
-    band_y, band_w = 800, C2 + CW - LX
-    p.append(f'<rect x="{LX}" y="{band_y}" width="{band_w}" height="94" rx="12" '
-             f'fill="{WD["fill"]}" fill-opacity="0.5"/>')
-    p.append(T(LX + 20, band_y + 22, vu.t(
-        lang, "Poseidon trägt keine Gazetteer-Kennung; poseidon2lod hängt sie nachträglich an. "
-              "Wie weit das reicht:",
-        "Poseidon carries no gazetteer identifier; poseidon2lod adds them afterwards. "
-        "How far that reaches:"), size=13, weight=500))
-    labels = [("DiscoverySite", vu.t(lang, "Fundplatz", "discovery site")),
-              ("Site", vu.t(lang, "Fundplatzname", "site name")),
-              ("Place", vu.t(lang, "Ort", "place")),
-              ("Country", vu.t(lang, "Land", "country"))]
-    bx = LX + 20
-    for kind, label in labels:
-        matched = cov[f"rdf.{kind}_matched"]
-        total = matched + cov[f"rdf.{kind}_unmatched"]
-        share = matched / total if total else 0
-        p.append(T(bx, band_y + 46, f"{label} ({kind})", size=12, weight=500))
-        p.append(f'<rect x="{bx}" y="{band_y + 54}" width="260" height="14" rx="4" '
-                 f'fill="#ffffff" stroke="{vu.OPEN_STROKE}" stroke-width="1"/>')
-        if share:
-            p.append(f'<rect x="{bx}" y="{band_y + 54}" width="{260 * share:.1f}" height="14" '
-                     f'rx="4" fill="{WD["stroke"]}"/>')
-        p.append(T(bx, band_y + 84, vu.t(
-            lang, f"{matched} von {total} verknüpft", f"{matched} of {total} linked"),
-            size=11.5, color=vu.TEXT_MUTED))
-        bx += 290
-    p.append(T(LX + 20 + 3 * 290 + 270, band_y + 62, vu.t(
-        lang, "Das einzige Land ohne Treffer\nheißt „BotswanaOrNamibia“.",
-        "The only country without a match\nis called “BotswanaOrNamibia”."),
-        size=11.5, color=vu.UNCERTAIN_STROKE, baseline="central"))
-
-    p.append(T(LX + 20, 918, vu.t(
-        lang, f"{cov['janno.individuals']} Individuen in {cov['janno.packages']} Paketen · "
-              f"Site nur in {cov['janno.packages_with_site']} Paketen · "
-              f"{cov['janno.with_site']} mit Fundplatzname, {cov['janno.with_location']} mit Ort, "
-              f"{cov['janno.with_coords']} mit Koordinate · Country_ISO bei "
-              f"{cov['janno.with_country_iso']} · {cov['janno.country_strings']} verschiedene "
-              f"Länder-Schreibweisen",
-        f"{cov['janno.individuals']} individuals in {cov['janno.packages']} packages · "
-        f"Site only in {cov['janno.packages_with_site']} of them · "
-        f"{cov['janno.with_site']} with a site name, {cov['janno.with_location']} with a place, "
-        f"{cov['janno.with_coords']} with a coordinate · Country_ISO on "
-        f"{cov['janno.with_country_iso']} · {cov['janno.country_strings']} different country "
-        f"spellings"), size=12, color=vu.TEXT_MUTED))
-
-    p.append(vu.status_legend(LX, 962, [
+    p.append(vu.status_legend(LX, vu.CASE_LEGEND_Y, [
         ("ok", vu.t(lang, "vorhanden", "present")),
         ("none", vu.t(lang, "fehlt", "missing")),
         ("open", vu.t(lang, "offen", "open")),
@@ -396,57 +291,6 @@ def _fig_a(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure B -- the chain of places
 # --------------------------------------------------------------------------- #
-def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str):
-    lon0, lon1, lat0, lat1 = bbox
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min(w / ((lon1 - lon0) * k), h / (lat1 - lat0))
-    ox = x + (w - (lon1 - lon0) * k * s) / 2
-    oy = y + (h - (lat1 - lat0) * s) / 2
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
-
-    parts = [f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
-             f'rx="12"/></clipPath></defs>',
-             f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#f7f6f2"/>',
-             f'<g clip-path="url(#{clip_id})">']
-    return "\n".join(parts), project
-
-
-def _map_frame(x: float, y: float, w: float, h: float) -> str:
-    return ('</g>'
-            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
-            f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
-
-
-def _locator(feature: dict, x: float, y: float, w: float, h: float,
-             point: tuple, label: str) -> str:
-    lons = [c[0] for ring in _rings(feature) for c in ring]
-    lats = [c[1] for ring in _rings(feature) for c in ring]
-    lon0, lon1, lat0, lat1 = min(lons), max(lons), min(lats), max(lats)
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min((w - 12) / ((lon1 - lon0) * k), (h - 26) / (lat1 - lat0))
-    ox = x + 6 + ((w - 12) - (lon1 - lon0) * k * s) / 2
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return ox + (lon - lon0) * k * s, y + 6 + (lat1 - lat) * s
-
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="8" fill="#ffffff" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>',
-             _draw(feature, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=0.8)]
-    px, py = project(*point)
-    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="{vu.TEXT_DARK}"/>')
-    parts.append(T(x + w / 2, y + h - 10, label, size=10, color=vu.TEXT_MUTED, anchor="middle"))
-    return "\n".join(parts)
-
-
-def _chain_node(node: dict, lang: str, x: float, y: float, w: float) -> str:
-    de = lang == "de"
-    title = node["name_de" if de else "name_en"]
-    ids = node.get("ids") or node["ids_de" if de else "ids_en"]
-    return vu.case_node(x, y, w, title, ids, node["hubs"], kind=node["kind"])
-
-
 def _fig_b(d: dict, lang: str) -> str:
     m = d["m"]
     de = lang == "de"
@@ -454,7 +298,7 @@ def _fig_b(d: dict, lang: str) -> str:
                           "Chains of places: an industrial estate and a field"))]
     MX, MW = vu.MARGIN_X, 430
     NW, NH = 176, 58
-    xs = [535 + i * 232 for i in range(5)]
+    xs = vu.chain_xs(5, node_w=NW, x0=535)
 
     bands = [
         dict(key="lechtal", y0=40, map_h=340, collection="lechtal",
@@ -481,28 +325,29 @@ def _fig_b(d: dict, lang: str) -> str:
         key, y0, map_h = band["key"], band["y0"], band["map_h"]
         site = m["sites"][key]
         collection = d["geo"][band["collection"]]
-        outer = _feature(collection, band["outer"])
-        locator = _feature(collection, band["locator"])
+        outer = vu.geo_feature(collection, band["outer"])
+        locator = vu.geo_feature(collection, band["locator"])
 
         title = site["title_de" if de else "title_en"]
         p.append(T(MX, y0 + 16, title, size=19, weight=500))
         p.append(T(MX + vu.text_width(title, 19) + 26, y0 + 16, band["headline"],
                    size=13, color=vu.TEXT_MUTED))
 
-        markup, project = _map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
+        markup, project = vu.case_map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
         p.append(markup)
-        p.append(_draw(outer, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.2))
+        p.append(vu.geo_draw(outer, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.2))
         for osm_id in band["extra"]:
-            feature = _feature(collection, osm_id)
+            feature = vu.geo_feature(collection, osm_id)
             named = "name" in feature["properties"]
-            p.append(_draw(feature, project, fill=OSM["fill"] if named else "#eceee7",
+            p.append(vu.geo_draw(feature, project, fill=OSM["fill"] if named else "#eceee7",
                            stroke=OSM["stroke"] if named else vu.LAND_STROKE,
                            width=1.4 if named else 1.0))
         px, py = project(*d["point"][key])
         p.append(vu.svg_marker(px, py, "1", {"fill": "#ffffff", "stroke": vu.TEXT_DARK}))
-        p.append(_map_frame(MX, y0 + 34, MW, map_h))
-        p.append(_locator(locator, MX + MW - 116, y0 + 34 + map_h - 140, 102, 128,
-                          d["point"][key], band["locator_label"]))
+        p.append(vu.case_map_frame(MX, y0 + 34, MW, map_h))
+        p.append(vu.case_locator(locator, MX + MW - 116, y0 + 34 + map_h - 140,
+                                 102, 128, band["locator_label"],
+                                 point=d["point"][key]))
         label = vu.t(lang, band["inner_label_de"], band["inner_label_en"])
         p.append(f'<rect x="{MX + 8}" y="{y0 + 46}" width="{vu.text_width(label, 11.5) + 16:.0f}" '
                  f'height="22" rx="6" fill="#ffffff" fill-opacity="0.85"/>')
@@ -518,7 +363,7 @@ def _fig_b(d: dict, lang: str) -> str:
         lane, ry = y0 + 44, y0 + 150
         chain = m["chain"][key]
         for i, node in enumerate(chain):
-            p.append(_chain_node(node, lang, xs[i], ry, NW))
+            p.append(vu.chain_node(node, lang, xs[i], ry, NW))
             slot = node.get("gnd_slot")
             if slot:
                 label_text, kind = slot
@@ -545,10 +390,8 @@ def _fig_b(d: dict, lang: str) -> str:
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.svg_legend(MX, 938, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fachdaten", "research data"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(MX, lang))
+    p.append(vu.gnd_slot_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -556,18 +399,6 @@ def _fig_b(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure C -- what hangs off the individual
 # --------------------------------------------------------------------------- #
-def _fan(sx: float, sy: float, rail_y: float, targets: list[float], label: str = "",
-         *, dashed: bool = False) -> str:
-    dash = ' stroke-dasharray="6 4"' if dashed else ""
-    parts = [f'<path d="M {sx:.1f} {sy:.1f} L {sx:.1f} {rail_y:.1f} L {max(targets):.1f} '
-             f'{rail_y:.1f}" fill="none" stroke="{vu.ARROW_STROKE}" stroke-width="1.6"{dash}/>']
-    for tx in targets:
-        parts.append(vu.svg_arrow(tx, rail_y, tx, rail_y + 22, dashed=dashed))
-    if label:
-        parts.append(T(sx + 10, rail_y - 9, label, size=11.5, weight=500))
-    return "\n".join(parts)
-
-
 def _fig_c(d: dict, lang: str) -> str:
     m, terms = d["m"], d["m"]["terms"]
     de = lang == "de"
@@ -576,7 +407,9 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind it: a family in a label, a landscape without a boundary"))]
     X = vu.MARGIN_X
     NW, NH = 196, 58
-    xs = [X + i * 300 for i in range(5)]
+    # Four columns; the widest node of the last one is NW + 100 with its offset,
+    # so both halves finish at the content edge.
+    xs = vu.chain_xs(4, node_w=NW + 100, x0=X)
 
     # ---------------- Lechtal: the pedigree is packed into a string
     head = vu.t(lang, "AITI_119 · Lechtal", "AITI_119 · Lech valley")
@@ -635,7 +468,7 @@ def _fig_c(d: dict, lang: str) -> str:
         node_x = xs[i] + 40
         p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "Kultur · benachbarte Fundstellen desselben Pakets",
                        "culture · neighbouring findspots of the same package")))
 
@@ -700,26 +533,14 @@ def _fig_c(d: dict, lang: str) -> str:
         node_x = xs[i] + 40
         p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "Kultur · Verwaltung", "culture · administration")))
     homonym, _ = vu.svg_text_block(xs[0] + 40, ry2 + NH + 34,
                                    terms["awaren"]["homonym_de" if de else "homonym_en"],
                                    420, size=11, color=vu.UNCERTAIN_STROKE)
     p.append(homonym)
 
-    chip, _ = vu.svg_chip(X, 916, vu.t(
-        lang, f"Zwei Fundorte, {vu.fmt_num(d['km'], lang, 0)} km auseinander: den einen Namen "
-              f"führt OpenStreetMap bis zur Hausnummer und keine Normdatei, den anderen führt "
-              f"die GND als Landschaft und keine Karte.",
-        f"Two findspots, {vu.fmt_num(d['km'], lang, 0)} km apart: one name OpenStreetMap carries "
-        f"down to the house number and no authority file does; the other the GND carries as a "
-        f"landscape and no map does."), AGG, size=13, h=28)
-    p.append(chip)
-
-    p.append(vu.svg_legend(X, 962, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fachdaten", "research data"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

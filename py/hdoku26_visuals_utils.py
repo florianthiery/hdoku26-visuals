@@ -937,3 +937,320 @@ def status_legend(x: float, y: float, entries: list[tuple[str, str]], *, size: f
 
 
 UNCERTAIN = {"fill": UNCERTAIN_FILL, "stroke": UNCERTAIN_STROKE}
+
+
+# --------------------------------------------------------------------------- #
+# Case-study layout contract (steps 05-09)
+# ========================================
+# Everything below was copied between the five case-study modules until
+# 2026-09-29 and is now shared, so that the figures of one case study look
+# exactly like the figures of the next. The numbers are the contract:
+#
+#   figure A   two example columns at CASE_C1 / CASE_C2, width CASE_CW, each
+#              headed by ``case_header``; with photographs the picture sits in
+#              a 150x150 box (two of them share it, stacked), the credit line
+#              runs at CASE_CAPTION_Y, the divider at CASE_RULE_Y_IMG and the
+#              hub rows start at CASE_ROW_TOP_IMG -- without, at CASE_RULE_Y
+#              and CASE_ROW_TOP. The only thing under the last row is the
+#              status legend at CASE_LEGEND_Y.
+#   figure B   map on the left, chain of places on the right, laid out with
+#              ``chain_xs`` so that the last node ends at the content edge;
+#              hub legend at CASE_LEGEND_Y
+#   figure C   same chain rule, same legend, nothing else below it
+#
+# House rule since 2026-09-29: no summary band and no closing chip at the
+# bottom of A or C. What such a band used to say is said out loud instead.
+# --------------------------------------------------------------------------- #
+CASE_C1, CASE_C2, CASE_CW = 250, 975, 715
+CASE_ROW_TOP = 174
+CASE_ROW_TOP_IMG = 250      # caption at 214, divider at 238, first row at 250
+CASE_RULE_Y = 158           # divider under a header without a photograph
+CASE_RULE_Y_IMG = 238
+CASE_LEGEND_Y = 952
+CASE_CHAIN_X0 = 575          # figure B: right of the map
+CASE_NODE_W = 196
+CASE_NODE_H = 58
+
+CHIP_STYLES_OPEN = {"fill": "#ffffff", "stroke": OPEN_STROKE}
+
+
+def load_wikidata(qid: str) -> dict:
+    """The one entity out of a Special:EntityData JSON under ``data/raw/wikidata``."""
+    import json
+    data = json.loads((DATA_RAW / "wikidata" / f"{qid}.json").read_text(encoding="utf-8"))
+    return next(iter(data["entities"].values()))
+
+
+def load_geojson(name: str) -> dict:
+    """An Overpass export under ``data/raw/osm``, by file stem."""
+    import json
+    return json.loads((DATA_RAW / "osm" / f"{name}.geojson").read_text(encoding="utf-8"))
+
+
+def chain_node(node: dict, lang: str, x: float, y: float, w: float) -> str:
+    """One node of a chain in figure B, from a ``chain:`` entry of the case
+    study's YAML. ``ids`` may be language-neutral (``ids``) or split
+    (``ids_de``/``ids_en``)."""
+    de = lang == "de"
+    ids = node.get("ids") or node["ids_de" if de else "ids_en"]
+    return case_node(x, y, w, node["name_de" if de else "name_en"], ids,
+                     node["hubs"], kind=node["kind"])
+
+
+def chain_xs(count: int, *, node_w: float = CASE_NODE_W, x0: float = CASE_CHAIN_X0,
+             x1: float = CONTENT_X1) -> list[float]:
+    """Left edges of ``count`` chain nodes, spread so that the last one ends
+    exactly at ``x1``. Introduced 2026-09-29: the chains used to sit on a fixed
+    250 px grid and left the right third of the canvas empty."""
+    if count < 2:
+        return [x0]
+    step = (x1 - node_w - x0) / (count - 1)
+    return [x0 + i * step for i in range(count)]
+
+
+def case_chip_colors(style: str, colors: dict) -> dict:
+    """Colour of one chip inside a case-study cell: ``ok`` takes the row's own
+    colour, ``gnd`` the ochre, ``open`` the dashed grey, ``unc`` the accent."""
+    return {"ok": colors, "gnd": GND, "open": CHIP_STYLES_OPEN, "unc": UNCERTAIN}[style]
+
+
+def case_cell(x: float, y: float, w: float, h: float, colors: dict, status: str,
+              headline: str, chips: list[tuple[str, str]]) -> str:
+    """One cell of figure A: a status symbol, a headline, and a column of
+    full-width chips."""
+    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="10" '
+             f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.2" stroke-opacity="0.6"/>',
+             status_icon(x + 24, y + 24, status, UNCERTAIN if status == "unc" else colors),
+             svg_text(x + 46, y + 25, headline, size=14, weight=500, baseline="central")]
+    cy = y + 46
+    for label, style in chips:
+        markup, _ = svg_chip(x + 14, cy, label, case_chip_colors(style, colors),
+                             width=w - 28, align="start", dashed=(style == "open"))
+        parts.append(markup)
+        cy += 28
+    return "\n".join(parts)
+
+
+def case_row(y: float, h: float, name: str, colors: dict, cells: list[tuple],
+             *, widths: list[tuple[float, float]] | None = None) -> str:
+    """One hub row of figure A: the tinted band with its coloured spine and
+    label, and the cells inside it. ``widths`` gives (x, width) per cell and
+    defaults to the two example columns."""
+    widths = widths or [(CASE_C1, CASE_CW), (CASE_C2, CASE_CW)]
+    parts = [f'<rect x="{MARGIN_X}" y="{y}" width="{CASE_C2 + CASE_CW - MARGIN_X}" height="{h}" '
+             f'rx="12" fill="{colors["fill"]}" fill-opacity="0.45"/>',
+             f'<rect x="{MARGIN_X}" y="{y}" width="8" height="{h}" rx="3" '
+             f'fill="{colors["stroke"]}"/>']
+    lines = name.split(" / ")
+    for i, line in enumerate(lines):
+        suffix = " /" if i < len(lines) - 1 else ""
+        parts.append(svg_text(MARGIN_X + 22, y + 30 + i * 20, line + suffix, size=16, weight=500,
+                              color=colors["stroke"]))
+    pad = 8
+    for (cx, cw), cell in zip(widths, cells):
+        parts.append(case_cell(cx, y + pad, cw, h - 2 * pad, colors, *cell))
+    return "\n".join(parts)
+
+
+CASE_IMG_X, CASE_IMG_Y, CASE_IMG_S = 0, 50, 150   # x relative to the column
+CASE_IMG_GAP = 6                                   # between two stacked photographs
+CASE_CAPTION_Y = 214
+
+
+def case_header(x: float, title: str, ids: str, note: str, colors: dict, *,
+                image: "Path | None" = None, crop: tuple | None = None,
+                images: "list | None" = None, caption: str = "") -> str:
+    """The header of one example column in figure A.
+
+    With a photograph the image sits in a 150x150 box left of the text and the
+    rows below start at ``CASE_ROW_TOP_IMG``; without one the text starts at
+    ``x`` and the rows start at ``CASE_ROW_TOP``. The grid is the same either
+    way, so a column with a picture and one without still line up.
+
+    ``images`` takes a list of ``(path, crop)`` pairs and stacks them inside
+    that same box -- two photographs of one site share the slot rather than
+    widening it. ``image``/``crop`` is the one-picture shorthand.
+    """
+    shots = list(images or [])
+    if image is not None:
+        shots.append((image, crop))
+    tx = x + 170 if shots else x
+    parts = []
+    n = len(shots)
+    if n:
+        ih = (CASE_IMG_S - CASE_IMG_GAP * (n - 1)) / n
+        for i, (path, cr) in enumerate(shots):
+            parts.append(svg_image_crop(x + CASE_IMG_X, CASE_IMG_Y + i * (ih + CASE_IMG_GAP),
+                                        CASE_IMG_S, ih, path,
+                                        tuple(cr) if cr else None))
+    parts.append(svg_text(tx, 82 if shots else 74, title, size=22, weight=500))
+    parts.append(svg_text(tx, 110 if shots else 100, ids, size=13, color=TEXT_MUTED))
+    chip, _ = svg_chip(tx, 128 if shots else 114, note, colors, size=12.5, h=26)
+    parts.append(chip)
+    if shots and caption:
+        parts.append(svg_text(x, CASE_CAPTION_Y, caption, size=10.5, color=TEXT_MUTED))
+    return "\n".join(parts)
+
+
+def hub_legend(x: float, lang: str, *, y: float = CASE_LEGEND_Y) -> str:
+    """The four-colour key under figures B and C, identical in every case
+    study."""
+    return svg_legend(x, y, [
+        ("GND", GND),
+        (t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), COMMUNITY),
+        ("OpenStreetMap", OSM),
+        (t(lang, "Fachdaten", "research data"), AGGREGATOR),
+    ], columns=4, col_w=190)
+
+
+# --------------------------------------------------------------------------- #
+# Maps. ``case_map`` opens a clipped group, ``case_map_frame`` closes it and
+# draws the outline; every overlay goes between the two so nothing spills over
+# the edge.
+# --------------------------------------------------------------------------- #
+def case_map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str,
+             *, fill: str = "#f7f6f2"):
+    lon0, lon1, lat0, lat1 = bbox
+    k = math.cos(math.radians((lat0 + lat1) / 2))
+    s = min(w / ((lon1 - lon0) * k), h / (lat1 - lat0))
+    ox = x + (w - (lon1 - lon0) * k * s) / 2
+    oy = y + (h - (lat1 - lat0) * s) / 2
+
+    def project(lon: float, lat: float) -> tuple[float, float]:
+        return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
+
+    markup = "\n".join([
+        f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
+        f'rx="12"/></clipPath></defs>',
+        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{fill}"/>',
+        f'<g clip-path="url(#{clip_id})">'])
+    return markup, project
+
+
+def case_map_frame(x: float, y: float, w: float, h: float) -> str:
+    return ('</g>'
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
+            f'stroke="{LINE_NEUTRAL}" stroke-width="1.2"/>')
+
+
+def geo_rings(feature: dict) -> list[list[list[float]]]:
+    """Outer rings of a (Multi)Polygon, or the single run of a LineString."""
+    geometry = feature["geometry"]
+    if geometry["type"] == "Polygon":
+        return [geometry["coordinates"][0]]
+    if geometry["type"] == "LineString":
+        return [geometry["coordinates"]]
+    return [polygon[0] for polygon in geometry["coordinates"]]
+
+
+def geo_path(ring: list[list[float]], project, *, close: bool = True,
+             min_step: float = 0.45) -> str:
+    """Ring as an SVG path, thinned to the drawing scale: a point closer than
+    ``min_step`` pixels to the one before it adds nothing to a printed map and
+    would only bloat the SVG."""
+    points, last = [], None
+    for lon, lat in ring:
+        x, y = project(lon, lat)
+        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
+            points.append((x, y))
+            last = (x, y)
+    if len(points) < (3 if close else 2):
+        return ""
+    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + (" Z" if close else "")
+
+
+def geo_draw(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0,
+             dashed: bool = False) -> str:
+    close = feature["geometry"]["type"] != "LineString"
+    dash = ' stroke-dasharray="5 4"' if dashed else ""
+    parts = []
+    for ring in geo_rings(feature):
+        path = geo_path(ring, project, close=close)
+        if path:
+            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
+                         f'stroke-width="{width}" stroke-linejoin="round"{dash}/>')
+    return "\n".join(parts)
+
+
+def geo_feature(collection: dict, osm_id: str) -> dict:
+    return next(f for f in collection["features"] if f["properties"]["@id"] == osm_id)
+
+
+def case_locator(feature: dict, x: float, y: float, w: float, h: float, label: str,
+                 *, point: tuple | None = None, window: tuple | None = None) -> str:
+    """Small locator in the corner of a map: the next level up, with either a
+    dot on the findspot or a rectangle around the map window."""
+    lons = [c[0] for ring in geo_rings(feature) for c in ring]
+    lats = [c[1] for ring in geo_rings(feature) for c in ring]
+    lon0, lon1, lat0, lat1 = min(lons), max(lons), min(lats), max(lats)
+    k = math.cos(math.radians((lat0 + lat1) / 2))
+    s = min((w - 12) / ((lon1 - lon0) * k), (h - 26) / (lat1 - lat0))
+    ox = x + 6 + ((w - 12) - (lon1 - lon0) * k * s) / 2
+
+    def project(lon: float, lat: float) -> tuple[float, float]:
+        return ox + (lon - lon0) * k * s, y + 6 + (lat1 - lat) * s
+
+    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="8" fill="#ffffff" '
+             f'stroke="{LINE_NEUTRAL}" stroke-width="1"/>',
+             geo_draw(feature, project, fill=LAND_FILL, stroke=LAND_STROKE, width=0.8)]
+    if point is not None:
+        px, py = project(*point)
+        parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="{TEXT_DARK}"/>')
+    if window is not None:
+        wlon0, wlon1, wlat0, wlat1 = window
+        wx0, wy0 = project(wlon0, wlat1)
+        wx1, wy1 = project(wlon1, wlat0)
+        parts.append(f'<rect x="{min(wx0, wx1) - 3:.1f}" y="{min(wy0, wy1) - 3:.1f}" '
+                     f'width="{max(abs(wx1 - wx0), 7):.1f}" '
+                     f'height="{max(abs(wy1 - wy0), 7):.1f}" fill="none" '
+                     f'stroke="{TEXT_DARK}" stroke-width="1.4"/>')
+    if label:
+        parts.append(svg_text(x + w / 2, y + h - 10, label, size=10, color=TEXT_MUTED,
+                              anchor="middle"))
+    return "\n".join(parts)
+
+
+def case_backdrop(x: float, y: float, w: float, h: float, *, opacity: float = 0.85) -> str:
+    """Soft white panel behind a text block that sits on top of a map."""
+    return (f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="8" '
+            f'fill="#ffffff" fill-opacity="{opacity}"/>')
+
+
+def case_fan(sx: float, sy: float, rail_y: float, targets: list[float], label: str = "",
+             *, dashed: bool = False) -> str:
+    """One source, several targets: down to a shared rail, along it, then one
+    short arrow into each target -- keeps the legs out of the boxes between."""
+    dash = ' stroke-dasharray="6 4"' if dashed else ""
+    parts = [f'<path d="M {sx:.1f} {sy:.1f} L {sx:.1f} {rail_y:.1f} L {max(targets):.1f} '
+             f'{rail_y:.1f}" fill="none" stroke="{ARROW_STROKE}" stroke-width="1.6"{dash}/>']
+    for tx in targets:
+        parts.append(svg_arrow(tx, rail_y, tx, rail_y + 22, dashed=dashed))
+    if label:
+        parts.append(svg_text(sx + 10, rail_y - 9, label, size=11.5, weight=500))
+    return "\n".join(parts)
+
+
+def gnd_slot_legend(x: float, lang: str, *, y: float = CASE_LEGEND_Y + 24) -> str:
+    """Key for the GND lane above a chain of places (figure B of every case
+    study): a record that exists, one that would be conceivable under the GND's
+    own plans, and one that is probably there but was not checked."""
+    entries = [
+        ("ok", t(lang, "GND-Satz vorhanden", "GND record exists")),
+        ("pot", t(lang, "GND-Eintrag denkbar (GND-Planung)", "GND entry conceivable (GND plans)")),
+        ("check", t(lang, "vermutlich vorhanden, zu prüfen", "probably exists, to be checked")),
+    ]
+    parts, cx = [], x
+    for kind, label in entries:
+        if kind == "ok":
+            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" '
+                   f'fill="{GND["fill"]}" stroke="{GND["stroke"]}" stroke-width="1.4"/>')
+        elif kind == "pot":
+            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" fill="#ffffff" '
+                   f'stroke="{GND["stroke"]}" stroke-width="1.4" stroke-dasharray="5 3"/>')
+        else:
+            box = (f'<rect x="{cx:.1f}" y="{y - 9}" width="44" height="18" rx="9" fill="#ffffff" '
+                   f'stroke="{OPEN_STROKE}" stroke-width="1.2" stroke-dasharray="3 3"/>')
+        parts.append(box)
+        parts.append(svg_text(cx + 52, y + 1, label, size=12.5, baseline="central"))
+        cx += 52 + text_width(label, 12.5) + 34
+    return "\n".join(parts)

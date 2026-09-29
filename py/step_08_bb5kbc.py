@@ -70,15 +70,6 @@ LEVELS = ("GEMEINDE", "KREIS", "BUNDESLAND", "LAND")
 # --------------------------------------------------------------------------- #
 # Loading
 # --------------------------------------------------------------------------- #
-def _wd(qid: str) -> dict:
-    data = json.loads((RAW / "wikidata" / f"{qid}.json").read_text(encoding="utf-8"))
-    return next(iter(data["entities"].values()))
-
-
-def _geo(name: str) -> dict:
-    return json.loads((RAW / "osm" / f"{name}.geojson").read_text(encoding="utf-8"))
-
-
 def _rows() -> list[dict]:
     with (RAW / "bb5kbc" / "fst_wgs84.csv").open(encoding="utf-8-sig") as fh:
         return list(csv.DictReader(fh))
@@ -147,13 +138,13 @@ def load() -> dict:
         "nearby": nearby,
         "cov": _coverage(rows),
         "tot": _totals(rows),
-        "wd": {qid: _wd(qid) for qid in
+        "wd": {qid: vu.load_wikidata(qid) for qid in
                ("Q587069", "Q6181", "Q1208", "Q2191877", "Q715974", "Q54150",
                 "Q139304626", "Q139304635", "Q139477253", "Q139477652",
                 "Q486972", "Q59496158", "Q959782")},
-        "geo": {"seelow": _geo("boundaries-seelow"),
-                "jordanow": _geo("boundaries-jordanow"),
-                "wide": _geo("boundaries-bb-ds")},
+        "geo": {"seelow": vu.load_geojson("boundaries-seelow"),
+                "jordanow": vu.load_geojson("boundaries-jordanow"),
+                "wide": vu.load_geojson("boundaries-bb-ds")},
     }
     d["point"] = {key: (float(r["wgs84_x"]), float(r["wgs84_y"]))
                   for key, r in d["row"].items()}
@@ -167,61 +158,9 @@ def _p227(entity: dict) -> str | None:
     return claims[0]["mainsnak"]["datavalue"]["value"] if claims else None
 
 
-def _feature(collection: dict, osm_id: str) -> dict:
-    return next(f for f in collection["features"] if f["properties"]["@id"] == osm_id)
-
-
-def _rings(feature: dict) -> list[list[list[float]]]:
-    geometry = feature["geometry"]
-    if geometry["type"] == "Polygon":
-        return [geometry["coordinates"][0]]
-    return [polygon[0] for polygon in geometry["coordinates"]]
-
-
-def _path(ring: list[list[float]], project, *, min_step: float = 0.45) -> str:
-    points, last = [], None
-    for lon, lat in ring:
-        x, y = project(lon, lat)
-        if last is None or abs(x - last[0]) >= min_step or abs(y - last[1]) >= min_step:
-            points.append((x, y))
-            last = (x, y)
-    if len(points) < 3:
-        return ""
-    return "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points) + " Z"
-
-
-def _draw(feature: dict, project, *, fill: str, stroke: str, width: float = 1.0) -> str:
-    parts = []
-    for ring in _rings(feature):
-        path = _path(ring, project)
-        if path:
-            parts.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" '
-                         f'stroke-width="{width}"/>')
-    return "\n".join(parts)
-
-
 # --------------------------------------------------------------------------- #
 # Figure A -- who holds what
 # --------------------------------------------------------------------------- #
-CHIP_STYLES = {"ok": None, "gnd": GND, "open": OPEN, "unc": UNC}
-
-
-def _cell(x: float, y: float, w: float, h: float, colors: dict, status: str,
-          headline: str, chips: list[tuple[str, str]]) -> str:
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="10" '
-             f'fill="#ffffff" stroke="{colors["stroke"]}" stroke-width="1.2" stroke-opacity="0.6"/>']
-    parts.append(vu.status_icon(x + 24, y + 24, status, UNC if status == "unc" else colors))
-    parts.append(T(x + 46, y + 25, headline, size=14, weight=500, baseline="central"))
-    cy = y + 46
-    for label, style in chips:
-        chip_colors = CHIP_STYLES[style] or colors
-        markup, _ = vu.svg_chip(x + 14, cy, label, chip_colors, width=w - 28, align="start",
-                                dashed=(style == "open"))
-        parts.append(markup)
-        cy += 28
-    return "\n".join(parts)
-
-
 def _fig_a(d: dict, lang: str) -> str:
     m, cov, tot = d["m"], d["cov"], d["tot"]
     se, jo = d["row"]["seelow"], d["row"]["jordansmuehl"]
@@ -230,23 +169,21 @@ def _fig_a(d: dict, lang: str) -> str:
     p = [vu.svg_open(vu.t(lang, "Wer hält was: zwei Fundstellen derselben Kultur, zwei Länder",
                           "Who holds what: two findspots of one culture, two countries"))]
     LX = vu.MARGIN_X
-    C1, C2, CW = 250, 975, 715
+    C1, C2, CW = vu.CASE_C1, vu.CASE_C2, vu.CASE_CW
 
     for cx, site, row, note_de, note_en, colors in (
             (C1, m["sites"]["seelow"], se, site_note := None, None, WD),
             (C2, m["sites"]["jordansmuehl"], jo, None, None, OPEN)):
-        p.append(T(cx, 74, site["title_de" if de else "title_en"], size=22, weight=500))
-        p.append(T(cx, 100, vu.t(
-            lang, f"Katalognr. {row['katalognr']} · {row['kultur']} · {row['fundstellenart']} · "
-                  f"{row['quellen_typ']}",
-            f"catalogue no. {row['katalognr']} · {row['kultur']} · {row['fundstellenart']} · "
-            f"{row['quellen_typ']}"), size=13, color=vu.TEXT_MUTED))
-        chip, _ = vu.svg_chip(cx, 114, vu.t(
-            lang, f"{site['claim_de']} · ±{row['genauigkeit_m']} m",
-            f"{site['claim_en']} · ±{row['genauigkeit_m']} m"), colors, size=12.5, h=26)
-        p.append(chip)
+        p.append(vu.case_header(
+            cx, site["title_de" if de else "title_en"],
+            vu.t(lang, f"Katalognr. {row['katalognr']} · {row['kultur']} · "
+                       f"{row['fundstellenart']} · {row['quellen_typ']}",
+                 f"catalogue no. {row['katalognr']} · {row['kultur']} · "
+                 f"{row['fundstellenart']} · {row['quellen_typ']}"),
+            vu.t(lang, f"{site['claim_de']} · ±{row['genauigkeit_m']} m",
+                 f"{site['claim_en']} · ±{row['genauigkeit_m']} m"), colors))
 
-    p.append(f'<line x1="{LX}" y1="158" x2="{C2 + CW}" y2="158" '
+    p.append(f'<line x1="{LX}" y1="{vu.CASE_RULE_Y}" x2="{C2 + CW}" y2="{vu.CASE_RULE_Y}" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
 
     rows = [
@@ -341,68 +278,10 @@ def _fig_a(d: dict, lang: str) -> str:
             p.append(T(LX + 22, y + 30 + i * 20, line + suffix, size=16, weight=500,
                        color=colors["stroke"]))
         pad = 8
-        p.append(_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
-        p.append(_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
+        p.append(vu.case_cell(C1, y + pad, CW, h - 2 * pad, colors, *cells[0]))
+        p.append(vu.case_cell(C2, y + pad, CW, h - 2 * pad, colors, *cells[1]))
 
-    # ---- band 1: how far down each hub reaches, per level and country
-    band_y, band_w = 800, C2 + CW - LX
-    p.append(f'<rect x="{LX}" y="{band_y}" width="{band_w}" height="86" rx="12" '
-             f'fill="{AGG["fill"]}" fill-opacity="0.6"/>')
-    p.append(T(LX + 20, band_y + 22, vu.t(
-        lang, f"Wie weit die Hubs hinunterreichen — verschiedene Orte im Datensatz "
-              f"({tot['n']} Fundstellen, {tot['de']} in Deutschland, {tot['pl']} in Polen)",
-        f"How far down each hub reaches — distinct places in the dataset "
-        f"({tot['n']} findspots, {tot['de']} in Germany, {tot['pl']} in Poland)"),
-        size=13, weight=500))
-    headers = [("", 20), (vu.t(lang, "Orte", "places"), 330), ("Getty TGN", 420),
-               ("iDAI.gazetteer", 530), ("OpenStreetMap", 660), ("GeoNames", 790)]
-    for label, dx in headers:
-        p.append(T(LX + dx, band_y + 42, label, size=11.5, color=vu.TEXT_MUTED))
-    level_names = {
-        "GEMEINDE": vu.t(lang, "Gemeinde / Gmina", "municipality / gmina"),
-        "KREIS": vu.t(lang, "Kreis / Powiat", "district / powiat"),
-    }
-    row_y = band_y + 58
-    for level in ("GEMEINDE", "KREIS"):
-        cells = [level_names[level]]
-        for country, flag in (("Deutschland", "DE"), ("Polen", "PL")):
-            c = cov[level][country]
-            cells.append((flag, c))
-        line = f"{cells[0]}"
-        p.append(T(LX + 20, row_y, line, size=12, weight=500))
-        for k, (flag, c) in enumerate(cells[1:]):
-            dx = 330 + 0
-            offsets = (330, 420, 530, 660, 790)
-            values = (c["n"], c["tgn"], c["idai"], c["osm"], c["geonames"])
-            for off, value in zip(offsets, values):
-                colour = (vu.UNCERTAIN_STROKE if value == 0 else vu.TEXT_DARK)
-                p.append(T(LX + off + k * 46, row_y, f"{flag} {value}", size=12, color=colour))
-        row_y += 20
-    p.append(T(LX + 900, band_y + 58, vu.t(
-        lang, "Getty TGN und iDAI.gazetteer enden an der Grenze;",
-        "Getty TGN and the iDAI.gazetteer stop at the border;"), size=12))
-    p.append(T(LX + 900, band_y + 78, vu.t(
-        lang, "OSM trägt beide Seiten, auf der polnischen anteilig sogar besser.",
-        "OSM carries both sides, on the Polish one proportionally even better."), size=12))
-
-    # ---- band 2: the one thing the GND does that neither of the others does
-    band2 = 898
-    p.append(f'<rect x="{LX}" y="{band2}" width="{band_w}" height="52" rx="12" '
-             f'fill="{GND["fill"]}" fill-opacity="0.65"/>')
-    p.append(T(LX + 20, band2 + 21, vu.t(
-        lang, "Was die GND kann und die anderen beiden nicht: Orte datieren",
-        "What the GND does that neither of the others does: it dates places"),
-        size=13, weight=500, color=GND["stroke"]))
-    p.append(T(LX + 20, band2 + 40, vu.t(
-        lang, f"{probe['seelow_hits_de']} · 4336493-7 beginnt 1992 und nennt Bad Freienwalde, "
-              f"Seelow und Strausberg als Vorgänger · Niederschlesien gibt es zweimal: "
-              f"Provinz 4042237-9 (1919–1938, 1941–1945) und Woiwodschaft 4596748-9",
-        f"{probe['seelow_hits_en']} · 4336493-7 begins in 1992 and names Bad Freienwalde, "
-        f"Seelow and Strausberg as its predecessors · Lower Silesia exists twice: "
-        f"province 4042237-9 (1919–1938, 1941–1945) and voivodeship 4596748-9"),
-        size=12, color=vu.TEXT_MUTED))
-
-    p.append(vu.status_legend(LX, 968, [
+    p.append(vu.status_legend(LX, vu.CASE_LEGEND_Y, [
         ("ok", vu.t(lang, "vorhanden", "present")),
         ("none", vu.t(lang, "fehlt", "missing")),
         ("open", vu.t(lang, "offen", "open")),
@@ -415,57 +294,6 @@ def _fig_a(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure B -- the chain of places
 # --------------------------------------------------------------------------- #
-def _map(x: float, y: float, w: float, h: float, bbox: tuple, clip_id: str):
-    lon0, lon1, lat0, lat1 = bbox
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min(w / ((lon1 - lon0) * k), h / (lat1 - lat0))
-    ox = x + (w - (lon1 - lon0) * k * s) / 2
-    oy = y + (h - (lat1 - lat0) * s) / 2
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return ox + (lon - lon0) * k * s, oy + (lat1 - lat) * s
-
-    parts = [f'<defs><clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" '
-             f'rx="12"/></clipPath></defs>',
-             f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#f7f6f2"/>',
-             f'<g clip-path="url(#{clip_id})">']
-    return "\n".join(parts), project
-
-
-def _map_frame(x: float, y: float, w: float, h: float) -> str:
-    return ('</g>'
-            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="none" '
-            f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1.2"/>')
-
-
-def _locator(feature: dict, x: float, y: float, w: float, h: float,
-             point: tuple, label: str) -> str:
-    lons = [c[0] for ring in _rings(feature) for c in ring]
-    lats = [c[1] for ring in _rings(feature) for c in ring]
-    lon0, lon1, lat0, lat1 = min(lons), max(lons), min(lats), max(lats)
-    k = math.cos(math.radians((lat0 + lat1) / 2))
-    s = min((w - 12) / ((lon1 - lon0) * k), (h - 26) / (lat1 - lat0))
-    ox = x + 6 + ((w - 12) - (lon1 - lon0) * k * s) / 2
-
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        return ox + (lon - lon0) * k * s, y + 6 + (lat1 - lat) * s
-
-    parts = [f'<rect x="{x:.1f}" y="{y:.1f}" width="{w}" height="{h}" rx="8" fill="#ffffff" '
-             f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>',
-             _draw(feature, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=0.8)]
-    px, py = project(*point)
-    parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="{vu.TEXT_DARK}"/>')
-    parts.append(T(x + w / 2, y + h - 10, label, size=10, color=vu.TEXT_MUTED, anchor="middle"))
-    return "\n".join(parts)
-
-
-def _chain_node(node: dict, lang: str, x: float, y: float, w: float) -> str:
-    de = lang == "de"
-    title = node["name_de" if de else "name_en"]
-    ids = node.get("ids") or node["ids_de" if de else "ids_en"]
-    return vu.case_node(x, y, w, title, ids, node["hubs"], kind=node["kind"])
-
-
 def _fig_b(d: dict, lang: str) -> str:
     m = d["m"]
     de = lang == "de"
@@ -473,7 +301,7 @@ def _fig_b(d: dict, lang: str) -> str:
                           "Chains of places across a border — and across time"))]
     MX, MW = vu.MARGIN_X, 470
     NW, NH = 196, 58
-    xs = [575 + i * 250 for i in range(4)]
+    xs = vu.chain_xs(4, node_w=NW)
 
     bands = [
         dict(key="seelow", y0=40, map_h=342, collection="seelow", wide="relation/62504",
@@ -499,19 +327,19 @@ def _fig_b(d: dict, lang: str) -> str:
         key, y0, map_h = band["key"], band["y0"], band["map_h"]
         site = m["sites"][key]
         collection = d["geo"][band["collection"]]
-        outer = _feature(collection, band["outer"])
-        inner = _feature(collection, band["inner"])
-        wide = _feature(d["geo"]["wide"], band["wide"])
+        outer = vu.geo_feature(collection, band["outer"])
+        inner = vu.geo_feature(collection, band["inner"])
+        wide = vu.geo_feature(d["geo"]["wide"], band["wide"])
 
         title = site["title_de" if de else "title_en"]
         p.append(T(MX, y0 + 16, title, size=19, weight=500))
         p.append(T(MX + vu.text_width(title, 19) + 26, y0 + 16, band["headline"],
                    size=13.5, color=vu.TEXT_MUTED))
 
-        markup, project = _map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
+        markup, project = vu.case_map(MX, y0 + 34, MW, map_h, tuple(m["maps"][key]), f"map-{key}")
         p.append(markup)
-        p.append(_draw(outer, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.2))
-        p.append(_draw(inner, project, fill=OSM["fill"], stroke=OSM["stroke"], width=1.4))
+        p.append(vu.geo_draw(outer, project, fill=vu.LAND_FILL, stroke=vu.LAND_STROKE, width=1.2))
+        p.append(vu.geo_draw(inner, project, fill=OSM["fill"], stroke=OSM["stroke"], width=1.4))
         px, py = project(*d["point"][key])
         p.append(vu.svg_marker(px, py, "1", {"fill": "#ffffff", "stroke": vu.TEXT_DARK}))
         # the Polish side carries two more findspots of the same gmina, one of
@@ -523,9 +351,10 @@ def _fig_b(d: dict, lang: str) -> str:
                                        r=12))
             p.append(vu.svg_marker(px - 17, py + 17, "2", {"fill": "#ffffff",
                                                            "stroke": vu.TEXT_DARK}, r=12))
-        p.append(_map_frame(MX, y0 + 34, MW, map_h))
-        p.append(_locator(wide, MX + MW - 116, y0 + 34 + map_h - 140, 102, 128,
-                          d["point"][key], band["locator_label"]))
+        p.append(vu.case_map_frame(MX, y0 + 34, MW, map_h))
+        p.append(vu.case_locator(wide, MX + MW - 116, y0 + 34 + map_h - 140,
+                                 102, 128, band["locator_label"],
+                                 point=d["point"][key]))
         label = vu.t(lang, band["inner_label_de"], band["inner_label_en"])
         p.append(f'<rect x="{MX + 8}" y="{y0 + 46}" width="{vu.text_width(label, 11.5) + 16:.0f}" '
                  f'height="22" rx="6" fill="#ffffff" fill-opacity="0.82"/>')
@@ -551,7 +380,7 @@ def _fig_b(d: dict, lang: str) -> str:
         lane, ry = y0 + 44, y0 + 150
         chain = m["chain"][key]
         for i, node in enumerate(chain):
-            p.append(_chain_node(node, lang, xs[i], ry, NW))
+            p.append(vu.chain_node(node, lang, xs[i], ry, NW))
             slot = node.get("gnd_slot")
             if slot:
                 label_text, kind = slot
@@ -579,10 +408,8 @@ def _fig_b(d: dict, lang: str) -> str:
 
     p.append(f'<line x1="{MX}" y1="505" x2="{vu.CANVAS_W - vu.MARGIN_X}" y2="505" '
              f'stroke="{vu.LINE_NEUTRAL}" stroke-width="1"/>')
-    p.append(vu.svg_legend(MX, 938, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fachdaten", "research data"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(MX, lang))
+    p.append(vu.gnd_slot_legend(MX, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 
@@ -590,18 +417,6 @@ def _fig_b(d: dict, lang: str) -> str:
 # --------------------------------------------------------------------------- #
 # Figure C -- what hangs off the findspot
 # --------------------------------------------------------------------------- #
-def _fan(sx: float, sy: float, rail_y: float, targets: list[float], label: str = "",
-         *, dashed: bool = False) -> str:
-    dash = ' stroke-dasharray="6 4"' if dashed else ""
-    parts = [f'<path d="M {sx:.1f} {sy:.1f} L {sx:.1f} {rail_y:.1f} L {max(targets):.1f} '
-             f'{rail_y:.1f}" fill="none" stroke="{vu.ARROW_STROKE}" stroke-width="1.6"{dash}/>']
-    for tx in targets:
-        parts.append(vu.svg_arrow(tx, rail_y, tx, rail_y + 22, dashed=dashed))
-    if label:
-        parts.append(T(sx + 10, rail_y - 9, label, size=11.5, weight=500))
-    return "\n".join(parts)
-
-
 def _fig_c(d: dict, lang: str) -> str:
     m = d["m"]
     de = lang == "de"
@@ -611,7 +426,9 @@ def _fig_c(d: dict, lang: str) -> str:
                           "The graph behind it: the sherd and the place name"))]
     X = vu.MARGIN_X
     NW, NH = 196, 58
-    xs = [X + i * 300 for i in range(5)]
+    # Four columns; the lower chain's last node carries a +40 offset, so the
+    # spacing is figured with that width and both halves reach the edge.
+    xs = vu.chain_xs(4, node_w=NW + 40, x0=X)
 
     # ---------------- Seelow: down to the sherd, and back up to a monument id
     head = vu.t(lang, "Seelow 20 · Katalognr. 55005", "Seelow 20 · catalogue no. 55005")
@@ -668,7 +485,7 @@ def _fig_c(d: dict, lang: str) -> str:
         node_x = xs[i] + 40
         p.append(vu.case_node(node_x, below, NW, title, subtitle, hubs, kind=kind))
         targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
+    p.append(vu.case_fan(xs[0] + NW / 2, top + NH + 30, below - 22, targets,
                   vu.t(lang, "Kultur · P2596 · belegt in",
                        "culture · P2596 · documented in")))
 
@@ -728,32 +545,21 @@ def _fig_c(d: dict, lang: str) -> str:
     p.append(note2)
 
     targets = []
-    for i, (title, subtitle, hubs, kind) in enumerate([
+    for i, (title, subtitle, hubs, kind, nw) in enumerate([
             (pubs["richthofen"]["short"],
-             f"{pubs['richthofen']['wikidata']} · {pubs['richthofen']['kind_de' if de else 'kind_en']}",
-             {"G": "none", "W": "ok", "O": "none", "F": "ok"}, "concept"),
+             f"{pubs['richthofen']['wikidata']} · "
+             f"{pubs['richthofen']['kind_short_de' if de else 'kind_short_en']}",
+             {"G": "none", "W": "ok", "O": "none", "F": "ok"}, "concept", NW + 64),
             (m["aside"]["jordansmuehl"]["name_de" if de else "name_en"],
              m['aside']['jordansmuehl']['ids_de' if de else 'ids_en'],
-             {"G": "ok", "W": "open", "O": "none", "F": "none"}, "concept")]):
+             {"G": "ok", "W": "open", "O": "none", "F": "none"}, "concept", NW)]):
         node_x = xs[i] + 40
-        p.append(vu.case_node(node_x, ry2, NW, title, subtitle, hubs, kind=kind))
-        targets.append(node_x + NW / 2)
-    p.append(_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
+        p.append(vu.case_node(node_x, ry2, nw, title, subtitle, hubs, kind=kind))
+        targets.append(node_x + nw / 2)
+    p.append(vu.case_fan(xs[0] + NW / 2, ry + NH + 30, ry2 - 22, targets,
                   vu.t(lang, "verortet aus · Karte 2 von", "georeferenced from · map 2 of")))
 
-    chip, _ = vu.svg_chip(X, 916, vu.t(
-        lang, f"Zwei Fundstellen derselben Kultur, {vu.fmt_num(d['km'], lang, 0)} km auseinander: "
-              f"bei der einen hat jede Ebene über der Fundstelle einen GND-Satz, bei der anderen "
-              f"überlebt der Ortsname in der GND nur als Name einer Kultur.",
-        f"Two findspots of the same culture, {vu.fmt_num(d['km'], lang, 0)} km apart: for one, "
-        f"every level above the findspot has a GND record; for the other, the place name "
-        f"survives in the GND only as the name of a culture."), AGG, size=13, h=28)
-    p.append(chip)
-
-    p.append(vu.svg_legend(X, 962, [
-        ("GND", GND), (vu.t(lang, "Wikidata / Wikibase", "Wikidata / Wikibase"), WD),
-        ("OpenStreetMap", OSM), (vu.t(lang, "Fachdaten", "research data"), AGG),
-    ], columns=4, col_w=190))
+    p.append(vu.hub_legend(X, lang))
     p.append(vu.svg_close())
     return "\n".join(p)
 

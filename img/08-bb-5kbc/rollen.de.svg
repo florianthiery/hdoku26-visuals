@@ -101,47 +101,12 @@
 <text x="999.0" y="739.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Datierung -4800 bis -4350 · perio.do</text>
 <rect x="989.0" y="756.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
 <text x="999.0" y="767.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">„die Gemeinde wurde in digitalen Kartenwerken nachgeschlagen und der ungefähre Mittelpunkt der Gemeinde ausgelesen“</text>
-<rect x="60" y="800" width="1630" height="86" rx="12" fill="#e8e8e8" fill-opacity="0.6"/>
-<text x="80.0" y="822.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-weight="500" fill="#2c2c2a">Wie weit die Hubs hinunterreichen — verschiedene Orte im Datensatz (540 Fundstellen, 350 in Deutschland, 178 in Polen)</text>
-<text x="80.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a"></text>
-<text x="390.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Orte</text>
-<text x="480.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Getty TGN</text>
-<text x="590.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">iDAI.gazetteer</text>
-<text x="720.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">OpenStreetMap</text>
-<text x="850.0" y="842.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">GeoNames</text>
-<text x="80.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Gemeinde / Gmina</text>
-<text x="390.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 239</text>
-<text x="480.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 42</text>
-<text x="590.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 2</text>
-<text x="720.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 108</text>
-<text x="850.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 105</text>
-<text x="436.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 74</text>
-<text x="526.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">PL 0</text>
-<text x="636.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">PL 0</text>
-<text x="766.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 64</text>
-<text x="896.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 64</text>
-<text x="80.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Kreis / Powiat</text>
-<text x="390.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 37</text>
-<text x="480.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 13</text>
-<text x="590.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 1</text>
-<text x="720.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 17</text>
-<text x="850.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">DE 17</text>
-<text x="436.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 45</text>
-<text x="526.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">PL 0</text>
-<text x="636.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#a03030">PL 0</text>
-<text x="766.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 38</text>
-<text x="896.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">PL 38</text>
-<text x="960.0" y="858.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Getty TGN und iDAI.gazetteer enden an der Grenze;</text>
-<text x="960.0" y="878.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OSM trägt beide Seiten, auf der polnischen anteilig sogar besser.</text>
-<rect x="60" y="898" width="1630" height="52" rx="12" fill="#f3e6d6" fill-opacity="0.65"/>
-<text x="80.0" y="919.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-weight="500" fill="#8a5a2a">Was die GND kann und die anderen beiden nicht: Orte datieren</text>
-<text x="80.0" y="938.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">Suche „Seelow“, Filter Geografikum: Treffer als gik, giv, giz, gin und gir · 4336493-7 beginnt 1992 und nennt Bad Freienwalde, Seelow und Strausberg als Vorgänger · Niederschlesien gibt es zweimal: Provinz 4042237-9 (1919–1938, 1941–1945) und Woiwodschaft 4596748-9</text>
-<circle cx="70.0" cy="968.0" r="10" fill="#386870"/><path d="M 64.0 968.0 L 68.0 973.0 L 76.0 963.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="86.0" y="969.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vorhanden</text>
-<circle cx="199.0" cy="968.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 194.0 963.0 L 204.0 973.0 M 204.0 963.0 L 194.0 973.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
-<text x="215.0" y="969.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">fehlt</text>
-<circle cx="300.0" cy="968.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6" stroke-dasharray="3 3"/><text x="300.0" y="969.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#9a9890">?</text>
-<text x="316.0" y="969.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">offen</text>
-<circle cx="401.0" cy="968.0" r="10" fill="#f5dede" stroke="#a03030" stroke-width="2"/><text x="401.0" y="969.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#a03030">?</text>
-<text x="417.0" y="969.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">im Datensatz vermerkt</text>
+<circle cx="70.0" cy="952.0" r="10" fill="#386870"/><path d="M 64.0 952.0 L 68.0 957.0 L 76.0 947.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="86.0" y="953.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vorhanden</text>
+<circle cx="199.0" cy="952.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 194.0 947.0 L 204.0 957.0 M 204.0 947.0 L 194.0 957.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
+<text x="215.0" y="953.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">fehlt</text>
+<circle cx="300.0" cy="952.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6" stroke-dasharray="3 3"/><text x="300.0" y="953.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#9a9890">?</text>
+<text x="316.0" y="953.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">offen</text>
+<circle cx="401.0" cy="952.0" r="10" fill="#f5dede" stroke="#a03030" stroke-width="2"/><text x="401.0" y="953.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#a03030">?</text>
+<text x="417.0" y="953.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">im Datensatz vermerkt</text>
 </svg>
