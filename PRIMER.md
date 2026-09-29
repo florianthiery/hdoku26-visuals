@@ -111,7 +111,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/06-holy-wells/`) |
 | S7 | Case Study geo-lod (CI-Fundstelle, SISAL-Höhle) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/07-geo-lod/`) |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | erledigt 2026-09-29 (Grafiken A, B, C in `img/08-bb-5kbc/`) |
-| S9 | Case Study poseidon2lod (aDNA) | S1 | offen |
+| S9 | Case Study poseidon2lod (aDNA) | S1 | erledigt 2026-09-29 (Grafiken A, B, C in `img/09-poseidon/`) |
 
 S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
@@ -232,6 +232,23 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - **Hinweis, kein Folieninhalt:** Bolko von Richthofen, Autor der Karte von 1930, war ein Vertreter der völkisch-nationalistischen Vorgeschichtsforschung der Zwischenkriegszeit und in den deutsch-polnischen Grenzdebatten aktiv. Die Grafiken nennen nur Autor, Titel und Jahr; falls im Publikum jemand nachfragt, ist der Kontext hiermit notiert.
 - OSM-Flächen aus drei `is_in`-Overpass-Abfragen, Ringe mit Douglas-Peucker ausgedünnt (0,0004° für Kreis- und Gemeindeebene, 0,002° für die beiden Locator-Umrisse) und auf 5 Nachkommastellen gerundet.
 
+### S9 — Case Study poseidon2lod
+
+**Ziel:** AITI_119 aus dem Lechtal gegen RKC001 aus Rákóczifalva – Bagi-földek. Der Kontrast ist die **Art des Ortsnamens**, nicht die Datenqualität: moderne Adresse gegen Flurname. Jeder Hub gewinnt auf einer Seite.
+
+**Abnahme:** wie S2.
+
+#### Erledigt 2026-09-29
+
+- `py/step_09_poseidon.py` baut `rollen`, `ortskette`, `graph-dahinter` in DE und EN. Die Korpuszahlen stehen in `poseidon/spatial-coverage.csv`, weil weder das Community Archive (213 Pakete) noch `poseidon_LOD.ttl` (149 MB, Git LFS) ins Repo passen; der Kopf der Datei hält fest, wie gezählt wurde.
+- **Der Chiasmus, empirisch belegt:** OSM führt `way/376729440` mit `landuse=commercial` und dem Namen **„Gewerbegebiet Kleinaitingen"** sowie den **Unteren Talweg** als benannte Straße — an ihr hängen fünf Ortsangaben desselben Pakets mit Hausnummern. Eine Abfrage nach **„Bagi-földek"** im 3-km-Umkreis liefert dagegen **null Objekte**. Umgekehrt hat die **GND 35 Geografika zur Theiß** (gik 15, gin 7, giz 7, giv 1, giw 1), darunter Theiß-Gebiet, Obere Theiß, Theißwinkel und die ungarischen Formen **Tiszamente** und **Tiszántúl** — genau die Art von Landschaft, die „MiddleTisza" meint, und OSM hat für keine davon eine Grenze. „Bagi-földek": 0 GND-Treffer.
+- **Zeitmodellierung, zum zweiten Mal:** Sieben Fundstellen des Lech-Pakets liegen in **Haunstetten**. Die GND führt es zweimal — 2012911-7 bis 30.06.1972 als eigene Gemeinde, danach 4096014-6 als Augsburg-Haunstetten mit Überordnung Augsburg. GeoNames hat für beide dieselbe ID 2909053. Das steht in Grafik B als Ebene daneben, wie der Landkreis Seelow in S8.
+- **Was das nachträgliche Verknüpfen leistet** (aus `poseidon_LOD.ttl` gezählt): `arno:DiscoverySite` 0 von 3292 verknüpft, `arno:Site` 355 von 955, `arno:Place` 984 von 2968, `arno:Country` 146 von 147 — und das einzige Land ohne Treffer heißt **„BotswanaOrNamibia"**. Beide Beispiele enden auf Länderebene, aber aus verschiedenen Gründen: links fehlt die Site-Spalte im Paket ganz (im RDF ein Blank Node „Unknown Site"), rechts ist der Site-Knoten da und nicht auflösbar.
+- Grafik C: links steckt die Verwandtschaft als Zeichenkette im `Group_Name` (`…brother.AITI_119.brother.AITI_86.son.AITI_87`) — maschinenlesbar, aber als String, nicht als Aussage. Rechts führt die Kette über die Flur zur Gemeinde und daneben zur Theiß-Familie der GND.
+- **Befund fürs Repo, nicht für die Folie:** Die Länder-QIDs in `poseidon_LOD.ttl` sind überwiegend nicht die Standard-Items — Germany Q41304 statt Q183, Hungary Q16410 statt Q28, Poland Q171348 statt Q36, Greece Q11772 statt Q41, USA Q229623 statt Q30 und weitere; richtig sind China Q148, Mongolei Q711, Tschechien Q213. Ursache ist vermutlich die Annahme in `queryWikidata.py`, es könne keine zwei Länder mit demselben Label geben — das stimmt für gegenwärtige Staaten, nicht für Wikidata mit seinen historischen Vorgängern. Ein zusätzlicher Filter auf `P31 wd:Q6256` sollte es beheben.
+- **Offen / an Flo:** `owl:sameAs` kommt in den 149 MB genau zweimal vor; die Modellierung setzt konsequent auf `arno:closeMatch`. Das ist als bewusste Entscheidung im README begründet und in Grafik A entsprechend neutral dargestellt.
+- Karten diesmal kleinräumig (3 × 2,5 km bzw. Gemeindeausschnitt), weil die Fallstudie von der Art des Namens handelt und die nur im Nahbereich sichtbar ist. Locator sind Landkreis Augsburg und Kreis Szolnok. Die Bundesland-Ebene war über `is_in` nicht zu bekommen (Overpass-Timeout) und wird nicht gebraucht.
+
 ### S7–S9 — weitere Case Studies
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
@@ -243,7 +260,7 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 | S6 Holy Wells | St. Lachtain's Well (Q121840779): Wikidata, OSM-Way, SMR, dúchas, Namenspatron | ein Brunnen, den praktisch nur OSM und dúchas kennen | Wer hält den Ort überhaupt? | Brunnen, Townland, Civil Parish |
 | S7 geo-lod | CI-Fundstelle 45 Franchthi-Höhle (Q1441331, OSM-Node 1221172611, `fsl:high`) | SISAL-Standort 104 Liang Luar (kein QID, kein OSM-Objekt) | wie tief reicht die Verortung — bis auf die Höhle oder erst bis zur Insel | Gemeinde Ermionida in Argolis; Kabupaten Manggarai auf Flores |
 | S8 bb-5kbc | Seelow 20 (Katalognr. 55005), SBK-Siedlung, aus den BLDAM-Denkmaldaten, ±0 m | Jordansmühl / Jordanów Śląski (Katalognr. 7), SBK, „Mittelpunkt der Gemeinde“ aus einer Karte von 1930, ±3000 m | GND-Satz und Gemeinde auf der einen, anderes nationales Register auf der anderen Seite — Internationalität wird gezeigt, nicht behauptet | Gemeinde bzw. Gmina, Staatsgrenze |
-| S9 poseidon2lod | Individuum von einer gut publizierten Fundstelle | Individuum, das nur über eine aggregierte Sammlung hängt | Wie weit reicht die Kette vom Individuum zum Ort? | Fundstelle, Verwaltungseinheit |
+| S9 poseidon2lod | AITI_119, Lechtal: der Fundort heißt nach einem Gewerbegebiet | RKC001, Rákóczifalva – Bagi-földek: der Fundort heißt nach einer Flur | welche **Art** von Ortsname den Fundort benennt — und welcher Hub ihn führt | Gemeinde, Gewerbegebiet, Straße; Gemeinde, Kreis |
 
 Grafik C ist bei S6 gesetzt (Heiliger, Patrozinium, Kirche — bei Personen ist die GND dicht, die Kette trifft sie also von der anderen Seite) und bei S8 wahrscheinlich; bei S7 und S9 erst nach einem Blick in die Daten entscheiden.
 

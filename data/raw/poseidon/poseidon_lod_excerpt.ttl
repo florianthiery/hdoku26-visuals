@@ -1,0 +1,146 @@
+# Reduced excerpt from rdf/poseidon_LOD.ttl of
+# https://github.com/archaeonatural-cloud/poseidon2lod (CC BY 4.0).
+# Only the two individuals this figure set uses and the spatial nodes they
+# hang on; the full file is 149 MB (Git LFS). The provenance lists
+# (prov:wasDerivedFrom, prov:wasGeneratedBy, prov:wasAttributedTo) and the
+# repeated rdfs:comment lines were dropped -- they are per-package and run
+# to hundreds of entries on the Country nodes. Everything else is verbatim.
+
+@prefix arno: <http://archaeonatural.cloud/ont/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix orcid: <http://orcid.org/> .
+@prefix poseidon: <http://archaeonatural.cloud/poseidon/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+poseidon:aDNASample_40543a7c-1eee-5278-b28d-eff0a9fab531 a arno:aDNASample,
+        prov:Entity ;
+    rdfs:label "RKC001" ;
+    arno:datedBy poseidon:Dating_40543a7c-1eee-5278-b28d-eff0a9fab531 ;
+    arno:foundAtDiscoverySite poseidon:DiscoverySite_07faf019-12d0-5050-9ac5-8b26e0566de4 ;
+    arno:hasAlternativeID "RKC001.A0101" ;
+    arno:hasCaptureType poseidon:CaptureType_50e544e8-12b2-5866-a6a7-277aabde43a4 ;
+    arno:hasGeneticSex arno:GeneticSex_Female ;
+    arno:hasGenotypePloidy arno:GenotypePloidy_haploid ;
+    arno:hasID "RKC001" ;
+    arno:hasPrimaryContact poseidon:Person_7cf1018f-4618-532e-b26d-17ef775db614 ;
+    arno:hasSNPCount 549695 ;
+    arno:measuredDamage 0.14 ;
+    arno:measuredSNPCoverage 1.26 ;
+    arno:ofSourceTissue poseidon:SourceTissue_297c95ae-c575-596e-a323-a4516e435314 ;
+    arno:partOfGroup poseidon:Group_c2cdd51f-82bc-575c-b08f-2d06bb106d05 ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "RKC001" .
+
+poseidon:aDNASample_82cf996a-9913-5973-bc17-e0b9b806e9ca a arno:aDNASample,
+        prov:Entity ;
+    rdfs:label "AITI_119" ;
+    arno:datedBy poseidon:Dating_6fda3392-529c-54a5-86c1-85aeae2ae3dc ;
+    arno:foundAtDiscoverySite poseidon:DiscoverySite_d42a1276-58be-5eb6-b152-2b33846e075d ;
+    arno:fromGeneticSourceAccession poseidon:GeneticSourceAccession_8215000d-7af5-53a8-84e6-297b9c98bc84 ;
+    arno:hasCaptureType poseidon:CaptureType_f0893ff4-9dde-5250-b0f5-4835c5947888 ;
+    arno:hasCollectionID "AITI_119" ;
+    arno:hasGeneticSex arno:GeneticSex_Male ;
+    arno:hasGenotypePloidy arno:GenotypePloidy_haploid ;
+    arno:hasID "AITI_119" ;
+    arno:hasLibraryCount 1 ;
+    arno:hasNote "PASS (literature)"@en ;
+    arno:hasPrimaryContact poseidon:Person_1b0f4f45-ec5d-5106-8fe2-8f449144eb87 ;
+    arno:hasSNPCount 548554 ;
+    arno:measuredSNPCoverage 0.804863 ;
+    arno:ofSourceTissue poseidon:SourceTissue_fa1ac050-af4a-5fdf-9eba-a5414b48bc15 ;
+    arno:partOfGroup poseidon:Group_0ff711b0-31b0-5006-8741-2cf98d0d6249 ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "AITI_119" .
+
+poseidon:Country_60de1720-9d8a-570d-9371-824de3fd116a a arno:Country,
+        prov:Entity ;
+    rdfs:label "Hungary"@en ;
+    arno:closeMatch <http://www.geonames.org/countries/HU/hungary>,
+        wikidata:Q16410 ;
+    arno:hasExternalIdentifier <http://www.geonames.org/countries/HU/hungary>,
+        wikidata:Q16410 ;
+    arno:hasISOCode "HU" ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "Hungary"@en .
+
+poseidon:Country_91363d85-a229-5295-a9c9-47895737bcea a arno:Country,
+        prov:Entity ;
+    rdfs:label "Germany"@en ;
+    arno:closeMatch <http://www.geonames.org/countries/DE/germany>,
+        wikidata:Q41304 ;
+    arno:hasExternalIdentifier <http://www.geonames.org/countries/DE/germany>,
+        wikidata:Q41304 ;
+    arno:hasISOCode "DE" ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "Germany"@en .
+
+poseidon:DiscoverySite_07faf019-12d0-5050-9ac5-8b26e0566de4 a arno:DiscoverySite,
+        prov:Entity ;
+    rdfs:label "Discovery Site at POINT (20.227939 47.09162)" ;
+    arno:atSite poseidon:Site_16b608e0-5f34-59e9-a7ce-7bbe618ec102 ;
+    arno:hasRepresentativePoint poseidon:Geom_3e416659-59b0-5149-a227-bff9f9c75a0a ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    geosparql:hasGeometry poseidon:Geom_3e416659-59b0-5149-a227-bff9f9c75a0a ;
+    skos:prefLabel "Discovery Site at POINT (20.227939 47.09162)" .
+
+poseidon:DiscoverySite_d42a1276-58be-5eb6-b152-2b33846e075d a arno:DiscoverySite,
+        prov:Entity ;
+    rdfs:label "Discovery Site at POINT (10.84499 48.22281)" ;
+    arno:atSite [ a arno:Site,
+                arno:Unknown,
+                prov:Entity ;
+            rdfs:label "Unknown Site used for transitive information flow or to represent attribute information"@en ;
+            arno:atPlace poseidon:Place_fea5d3a6-dd4e-5051-8d2c-e23ef2a72dee ;
+            dct:creator orcid:0000-0002-3246-3531,
+                orcid:0009-0005-1140-3352 ;
+            dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+            skos:prefLabel "Unknown Site used for transitive information flow or to represent attribute information"@en ] ;
+    arno:hasRepresentativePoint poseidon:Geom_6d5330fa-27fb-583a-8ff5-b1c7fa3387b0 ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    geosparql:hasGeometry poseidon:Geom_6d5330fa-27fb-583a-8ff5-b1c7fa3387b0 ;
+    skos:prefLabel "Discovery Site at POINT (10.84499 48.22281)" .
+
+poseidon:Place_e25327e8-ba18-51b4-94b7-0f0fdf54b457 a arno:Place,
+        prov:Entity ;
+    rdfs:label "MiddleTisza"@en ;
+    arno:inCountry poseidon:Country_60de1720-9d8a-570d-9371-824de3fd116a ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "MiddleTisza"@en .
+
+poseidon:Place_fea5d3a6-dd4e-5051-8d2c-e23ef2a72dee a arno:Place,
+        prov:Entity ;
+    rdfs:label "Kleinaitingen-Gewerbegebiet Nord"@en ;
+    arno:inCountry poseidon:Country_91363d85-a229-5295-a9c9-47895737bcea ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "Kleinaitingen-Gewerbegebiet Nord"@en .
+
+poseidon:Site_16b608e0-5f34-59e9-a7ce-7bbe618ec102 a arno:Site,
+        prov:Entity ;
+    rdfs:label "Rákóczifalva - Bagi-földek"@en ;
+    arno:atPlace poseidon:Place_e25327e8-ba18-51b4-94b7-0f0fdf54b457 ;
+    dct:creator orcid:0000-0002-3246-3531,
+        orcid:0009-0005-1140-3352 ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+    skos:prefLabel "Rákóczifalva - Bagi-földek"@en .
+

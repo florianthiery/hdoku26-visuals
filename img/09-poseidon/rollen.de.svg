@@ -1,0 +1,130 @@
+<svg width="1750" height="1000" viewBox="0 0 1750 1000" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Wer hält was: zwei Arten von Ortsnamen</title>
+<rect x="0" y="0" width="1750" height="1000" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="arrow-uncertain" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a03030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<text x="250.0" y="74.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="21" font-weight="500" fill="#2c2c2a">Kleinaitingen-Gewerbegebiet Nord · Lechtal, Bayern</text>
+<text x="250.0" y="100.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" fill="#5f5e5a">AITI_119 · 2019_Mittnik_BAEurope · 31 Individuen an diesem Ort</text>
+<rect x="250.0" y="114.0" width="265.0" height="26" rx="13.0" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.2"/>
+<text x="382.5" y="127.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#2c2c2a">der Fundort heißt wie das Baugebiet</text>
+<text x="975.0" y="74.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="21" font-weight="500" fill="#2c2c2a">Rákóczifalva – Bagi-földek · Mitteltheiß, Ungarn</text>
+<text x="975.0" y="100.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" fill="#5f5e5a">RKC001 · 2024_GnecchiRuscone_CarpathianBasinAvarPedigrees · 341 Individuen an diesem Ort</text>
+<rect x="975.0" y="114.0" width="230.0" height="26" rx="13.0" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.2"/>
+<text x="1090.0" y="127.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#2c2c2a">der Fundort heißt wie die Flur</text>
+<line x1="60" y1="158" x2="1690" y2="158" stroke="#888780" stroke-width="1"/>
+<rect x="60" y="174" width="1630" height="168" rx="12" fill="#e8e8e8" fill-opacity="0.45"/>
+<rect x="60" y="174" width="8" height="168" rx="3" fill="#666666"/>
+<text x="82.0" y="204.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="16" font-weight="500" fill="#666666">der Ortsname</text>
+<rect x="250.0" y="182.0" width="715.0" height="152.0" rx="10" fill="#ffffff" stroke="#666666" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="274.0" cy="206.0" r="13" fill="#666666"/><path d="M 268.0 206.0 L 272.0 211.0 L 280.0 201.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="296.0" y="207.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">moderne Adressen, Baugebiete, eine Kiesgrube</text>
+<rect x="264.0" y="228.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="274.0" y="239.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Oberottmarshausen-Kiesgrube Lauter · 20</text>
+<rect x="264.0" y="256.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="274.0" y="267.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Königsbrunn-Obere Kreuzstraße, Baugebiet 110 · 18</text>
+<rect x="264.0" y="284.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="274.0" y="295.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Haunstetten-Unterer Talweg 58–62 · 7</text>
+<rect x="264.0" y="312.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="274.0" y="323.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Königsbrunn-Ampack (Firmengelände) · Friedberg-Metzgerwäldchen</text>
+<rect x="975.0" y="182.0" width="715.0" height="152.0" rx="10" fill="#ffffff" stroke="#666666" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="999.0" cy="206.0" r="13" fill="#666666"/><path d="M 993.0 206.0 L 997.0 211.0 L 1005.0 201.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1021.0" y="207.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">Gemeinde und Flurname, dazu eine Landschaft</text>
+<rect x="989.0" y="228.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="999.0" y="239.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Site: Rákóczifalva – Bagi-földek</text>
+<rect x="989.0" y="256.0" width="687.0" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="999.0" y="267.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Location: MiddleTisza — eine Forschungslandschaft</text>
+<rect x="989.0" y="284.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="999.0" y="295.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">sechs Schreibweisen im Archiv: MiddleTisza, UpperTisza, Tisza region, Transtisza region …</text>
+<rect x="60" y="350" width="1630" height="140" rx="12" fill="#e3eed9" fill-opacity="0.45"/>
+<rect x="60" y="350" width="8" height="140" rx="3" fill="#4f7a2a"/>
+<text x="82.0" y="380.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="16" font-weight="500" fill="#4f7a2a">OpenStreetMap</text>
+<rect x="250.0" y="358.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#4f7a2a" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="274.0" cy="382.0" r="13" fill="#4f7a2a"/><path d="M 268.0 382.0 L 272.0 387.0 L 280.0 377.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="296.0" y="383.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">bis zur Hausnummer verzeichnet</text>
+<rect x="264.0" y="404.0" width="687.0" height="22" rx="11.0" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.2"/>
+<text x="274.0" y="415.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">OSM kennt die Fläche: way 376729440, landuse=commercial, benannt</text>
+<rect x="264.0" y="432.0" width="687.0" height="22" rx="11.0" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.2"/>
+<text x="274.0" y="443.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Unterer Talweg · way 33401827 · way 186888644 · highway=tertiary</text>
+<rect x="264.0" y="460.0" width="687.0" height="22" rx="11.0" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.2"/>
+<text x="274.0" y="471.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">fünf Einträge an dieser Straße: 58–62 · 85 · 85 I, northern group · 89 · 121</text>
+<rect x="975.0" y="358.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#4f7a2a" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="999.0" cy="382.0" r="13" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 994.0 377.0 L 1004.0 387.0 M 1004.0 377.0 L 994.0 387.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
+<text x="1021.0" y="383.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">die Flur fehlt, die Gemeinde ist da</text>
+<rect x="989.0" y="404.0" width="687.0" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="999.0" y="415.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">OSM kennt „Bagi-földek“ nicht: 0 Objekte im 3-km-Umkreis</text>
+<rect x="989.0" y="432.0" width="687.0" height="22" rx="11.0" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.2"/>
+<text x="999.0" y="443.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">rel 1273070 Rákóczifalva · admin_level=8</text>
+<rect x="989.0" y="460.0" width="687.0" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="999.0" y="471.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">für „Mitteltheiß“ gibt es keine Grenze</text>
+<rect x="60" y="498" width="1630" height="140" rx="12" fill="#f3e6d6" fill-opacity="0.45"/>
+<rect x="60" y="498" width="8" height="140" rx="3" fill="#8a5a2a"/>
+<text x="82.0" y="528.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="16" font-weight="500" fill="#8a5a2a">GND</text>
+<rect x="250.0" y="506.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="274.0" cy="530.0" r="13" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 269.0 525.0 L 279.0 535.0 M 279.0 525.0 L 269.0 535.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
+<text x="296.0" y="531.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">für diese Namen nicht gedacht — zu Recht</text>
+<rect x="264.0" y="552.0" width="687.0" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="274.0" y="563.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">für ein Gewerbegebiet ist die GND nicht gedacht — und das ist richtig so</text>
+<rect x="264.0" y="580.0" width="687.0" height="22" rx="11.0" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.2"/>
+<text x="274.0" y="591.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Kleinaitingen · GND 4635172-3 · gik</text>
+<rect x="264.0" y="608.0" width="687.0" height="22" rx="11.0" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.2"/>
+<text x="274.0" y="619.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Haunstetten zweimal: 2012911-7 bis 30.06.1972, danach 4096014-6</text>
+<rect x="975.0" y="506.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#8a5a2a" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="999.0" cy="530.0" r="13" fill="#8a5a2a"/><path d="M 993.0 530.0 L 997.0 535.0 L 1005.0 525.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1021.0" y="531.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">die Landschaft ist da, die Flur nicht</text>
+<rect x="989.0" y="552.0" width="687.0" height="22" rx="11.0" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.2"/>
+<text x="999.0" y="563.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Suche „Theiß“: 35 Geografika · gik 15 · gin 7 · giz 7 · giv 1 · giw 1 · ohne 6</text>
+<rect x="989.0" y="580.0" width="687.0" height="22" rx="11.0" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.2"/>
+<text x="999.0" y="591.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Theiß-Gebiet · Obere Theiß · Theißwinkel · Tiszamente · Tiszántúl</text>
+<rect x="989.0" y="608.0" width="687.0" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="999.0" y="619.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Bagi-földek: 0 Treffer</text>
+<rect x="60" y="646" width="1630" height="140" rx="12" fill="#dce8ea" fill-opacity="0.45"/>
+<rect x="60" y="646" width="8" height="140" rx="3" fill="#386870"/>
+<text x="82.0" y="676.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="16" font-weight="500" fill="#386870">Poseidon /</text>
+<text x="82.0" y="696.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="16" font-weight="500" fill="#386870">poseidon2lod</text>
+<rect x="250.0" y="654.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#386870" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="274.0" cy="678.0" r="13" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 269.0 673.0 L 279.0 683.0 M 279.0 673.0 L 269.0 683.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
+<text x="296.0" y="679.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">keine Site-Spalte — im RDF ein Blank Node</text>
+<rect x="264.0" y="700.0" width="687.0" height="22" rx="11.0" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="274.0" y="711.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">118 Individuen im Paket, Site leer</text>
+<rect x="264.0" y="728.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="274.0" y="739.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">„Unknown Site used for transitive information flow“</text>
+<rect x="264.0" y="756.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="274.0" y="767.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Place „Kleinaitingen-Gewerbegebiet Nord“ ohne arno:closeMatch</text>
+<rect x="975.0" y="654.0" width="715.0" height="124.0" rx="10" fill="#ffffff" stroke="#386870" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="999.0" cy="678.0" r="13" fill="#386870"/><path d="M 993.0 678.0 L 997.0 683.0 L 1005.0 673.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1021.0" y="679.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="14" font-weight="500" fill="#2c2c2a">Site vorhanden — und trotzdem nicht auflösbar</text>
+<rect x="989.0" y="700.0" width="687.0" height="22" rx="11.0" fill="#dce8ea" stroke="#386870" stroke-width="1.2"/>
+<text x="999.0" y="711.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">440 Individuen im Paket, 341 an diesem Fundplatz</text>
+<rect x="989.0" y="728.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="999.0" y="739.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">Site und Place beide ohne arno:closeMatch</text>
+<rect x="989.0" y="756.0" width="687.0" height="22" rx="11.0" fill="#f5dede" stroke="#a03030" stroke-width="1.2"/>
+<text x="999.0" y="767.5" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">erst das Land trifft — auf beiden Seiten</text>
+<rect x="60" y="800" width="1630" height="94" rx="12" fill="#dce8ea" fill-opacity="0.5"/>
+<text x="80.0" y="822.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-weight="500" fill="#2c2c2a">Poseidon trägt keine Gazetteer-Kennung; poseidon2lod hängt sie nachträglich an. Wie weit das reicht:</text>
+<text x="80.0" y="846.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Fundplatz (DiscoverySite)</text>
+<rect x="80" y="854" width="260" height="14" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1"/>
+<text x="80.0" y="884.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">0 von 3292 verknüpft</text>
+<text x="370.0" y="846.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Fundplatzname (Site)</text>
+<rect x="370" y="854" width="260" height="14" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1"/>
+<rect x="370" y="854" width="96.6" height="14" rx="4" fill="#386870"/>
+<text x="370.0" y="884.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">355 von 955 verknüpft</text>
+<text x="660.0" y="846.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Ort (Place)</text>
+<rect x="660" y="854" width="260" height="14" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1"/>
+<rect x="660" y="854" width="86.2" height="14" rx="4" fill="#386870"/>
+<text x="660.0" y="884.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">984 von 2968 verknüpft</text>
+<text x="950.0" y="846.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Land (Country)</text>
+<rect x="950" y="854" width="260" height="14" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1"/>
+<rect x="950" y="854" width="258.2" height="14" rx="4" fill="#386870"/>
+<text x="950.0" y="884.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">146 von 147 verknüpft</text>
+<text x="1220.0" y="862.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#a03030">Das einzige Land ohne Treffer
+heißt „BotswanaOrNamibia“.</text>
+<text x="80.0" y="918.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">20929 Individuen in 213 Paketen · Site nur in 58 Paketen · 5231 mit Fundplatzname, 17294 mit Ort, 18556 mit Koordinate · Country_ISO bei 3899 · 147 verschiedene Länder-Schreibweisen</text>
+<circle cx="70.0" cy="962.0" r="10" fill="#386870"/><path d="M 64.0 962.0 L 68.0 967.0 L 76.0 957.0" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="86.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">vorhanden</text>
+<circle cx="199.0" cy="962.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6"/><path d="M 194.0 957.0 L 204.0 967.0 M 204.0 957.0 L 194.0 967.0" stroke="#9a9890" stroke-width="2" stroke-linecap="round"/>
+<text x="215.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">fehlt</text>
+<circle cx="300.0" cy="962.0" r="10" fill="#ffffff" stroke="#9a9890" stroke-width="1.6" stroke-dasharray="3 3"/><text x="300.0" y="963.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#9a9890">?</text>
+<text x="316.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">offen</text>
+<circle cx="401.0" cy="962.0" r="10" fill="#f5dede" stroke="#a03030" stroke-width="2"/><text x="401.0" y="963.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15" font-weight="500" fill="#a03030">?</text>
+<text x="417.0" y="963.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" fill="#2c2c2a">so im Datensatz</text>
+</svg>

@@ -55,6 +55,7 @@ OUT_DIRS = {
     "06-holy-wells": IMG / "06-holy-wells",
     "07-geo-lod": IMG / "07-geo-lod",
     "08-bb-5kbc": IMG / "08-bb-5kbc",
+    "09-poseidon": IMG / "09-poseidon",
 }
 
 MARGIN_X = 60

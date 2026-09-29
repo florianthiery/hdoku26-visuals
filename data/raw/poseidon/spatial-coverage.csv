@@ -1,0 +1,28 @@
+# Derived summary of the Poseidon Community Archive and the RDF poseidon2lod
+# builds from it. Counted on 2026-09-29 by hdoku26-visuals from
+#   * the 213 .janno files of github.com/poseidon-framework/community-archive
+#   * rdf/poseidon_LOD.ttl (149 MB, Git LFS) of
+#     github.com/archaeonatural-cloud/poseidon2lod
+# Neither source is small enough to travel in this repository, so the counts
+# are shipped instead of the inputs. "matched" means the node carries an
+# arno:closeMatch to GeoNames and/or Wikidata.
+scope,measure,value
+janno,packages,213
+janno,packages_with_site,58
+janno,individuals,20929
+janno,with_site,5231
+janno,with_location,17294
+janno,with_country,20169
+janno,with_coords,18556
+janno,with_country_iso,3899
+janno,country_strings,147
+janno,location_strings,2988
+janno,site_strings,983
+rdf,DiscoverySite_matched,0
+rdf,DiscoverySite_unmatched,3292
+rdf,Site_matched,355
+rdf,Site_unmatched,600
+rdf,Place_matched,984
+rdf,Place_unmatched,1984
+rdf,Country_matched,146
+rdf,Country_unmatched,1

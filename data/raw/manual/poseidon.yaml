@@ -1,0 +1,232 @@
+# poseidon.yaml -- everything for the poseidon2lod case study (step 09) that is
+# not in the two .janno files, the RDF excerpt or the OSM exports.
+#
+# Zwei Individuen aus zwei Paketen des Poseidon Community Archive, deren
+# Fundorte auf völlig verschiedene Weise benannt sind: im Lechtal nach einem
+# Gewerbegebiet, an der Theiß nach einer Flur. Die Fallstudie vergleicht nicht
+# Datenqualität, sondern Namenstypen -- und dabei gewinnt jedes System an einer
+# anderen Stelle.
+#
+# GND-Nummern und Entitätentypen: Handrecherche im GND Explorer, 2026-09-29.
+
+sites:
+  lechtal:
+    individual: "AITI_119"
+    title_de: "Kleinaitingen-Gewerbegebiet Nord · Lechtal, Bayern"
+    title_en: "Kleinaitingen-Gewerbegebiet Nord · Lech valley, Bavaria"
+    package: "2019_Mittnik_BAEurope"
+    publication: "Mittnik u. a. 2019"
+    kind_de: "der Fundort heißt wie das Baugebiet"
+    kind_en: "the findspot is named after the development site"
+    # Die Site-Spalte fehlt in diesem Paket; der feinste Ortsname steht in
+    # Location. Im RDF wird daraus ein Blank Node.
+    site_column: false
+    osm_de: "OSM kennt die Fläche: way 376729440, landuse=commercial, benannt"
+    osm_en: "OSM has the area: way 376729440, landuse=commercial, named"
+  tisza:
+    individual: "RKC001"
+    title_de: "Rákóczifalva – Bagi-földek · Mitteltheiß, Ungarn"
+    title_en: "Rákóczifalva – Bagi-földek · Middle Tisza, Hungary"
+    package: "2024_GnecchiRuscone_CarpathianBasinAvarPedigrees"
+    publication: "Gnecchi-Ruscone u. a. 2024"
+    kind_de: "der Fundort heißt wie die Flur"
+    kind_en: "the findspot is named after the field"
+    site_column: true
+    osm_de: "OSM kennt „Bagi-földek“ nicht: 0 Objekte im 3-km-Umkreis"
+    osm_en: "OSM does not have “Bagi-földek”: 0 objects within 3 km"
+
+# Die weiteren Ortsangaben desselben Lech-Pakets. Sie sind das Argument der
+# linken Spalte, deshalb stehen sie wörtlich in Grafik A.
+lechtal_locations:
+  - ["Kleinaitingen-Gewerbegebiet Nord", 31]
+  - ["Oberottmarshausen-Kiesgrube Lauter", 20]
+  - ["Königsbrunn-Obere Kreuzstraße, Baugebiet 110", 18]
+  - ["Haunstetten-Postillionstraße", 15]
+  - ["Wehringen-Hochfeld", 9]
+  - ["Augsburg-Hugo-Eckener-Straße", 7]
+  - ["Haunstetten-Unterer Talweg 58–62", 7]
+  - ["Königsbrunn-Ampack", 1]
+  - ["Friedberg-Metzgerwäldchen", 1]
+
+# Fünf Einträge an einer Straße, jeder mit eigener Koordinate.
+talweg:
+  street: "Unterer Talweg"
+  osm: "way 33401827 · way 186888644 · highway=tertiary"
+  entries: ["58–62", "85", "85 I, northern group", "89", "121"]
+  note_de: >-
+    Fünf Ortsangaben desselben Pakets liegen an einer Straße, mit Hausnummern
+    und je eigener Koordinate, 300 bis 500 m auseinander. OSM führt die Straße;
+    ein Gazetteer historischer Orte wird sie nie führen.
+  note_en: >-
+    Five location strings of the same package sit along one street, with house
+    numbers and a coordinate each, 300 to 500 m apart. OSM has the street; a
+    gazetteer of historical places never will.
+
+chain:
+  lechtal:
+    - key: individual
+      name_de: "AITI_119"
+      name_en: "AITI_119"
+      ids_de: "aDNA-Probe · Poseidon-ID"
+      ids_en: "aDNA sample · Poseidon ID"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: null
+    - key: site
+      name_de: "Fundplatz"
+      name_en: "discovery site"
+      ids_de: "Blank Node · „Unknown Site“"
+      ids_en: "blank node · “Unknown Site”"
+      hubs: {G: none, W: none, O: none, F: open}
+      kind: object
+      gnd_slot: ["kein Ort benannt|no place named", check]
+    - key: place
+      name_de: "Gewerbegebiet Kleinaitingen"
+      name_en: "Gewerbegebiet Kleinaitingen"
+      ids: "way 376729440 · landuse=commercial"
+      hubs: {G: none, W: none, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND: nicht zuständig|GND: not its business", check]
+    - key: gemeinde
+      name_de: "Kleinaitingen"
+      name_en: "Kleinaitingen"
+      ids: "Q512970 · rel 935162 · admin_level 8"
+      hubs: {G: ok, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND 4635172-3", ok]
+    - key: kreis
+      name_de: "Landkreis Augsburg"
+      name_en: "Augsburg district"
+      ids: "Q10414 · rel 62622 · admin_level 6"
+      hubs: {G: ok, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND 4003617-0", ok]
+  tisza:
+    - key: individual
+      name_de: "RKC001"
+      name_en: "RKC001"
+      ids_de: "aDNA-Probe · Poseidon-ID"
+      ids_en: "aDNA sample · Poseidon ID"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: null
+    - key: site
+      name_de: "Bagi-földek"
+      name_en: "Bagi-földek"
+      ids_de: "Flurname · ohne Identifikator"
+      ids_en: "field name · no identifier"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: ["GND: 0 Treffer|GND: 0 hits", check]
+    - key: gemeinde
+      name_de: "Rákóczifalva"
+      name_en: "Rákóczifalva"
+      ids: "Q945191 · rel 1273070 · admin_level 8"
+      hubs: {G: ok, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND 1075762995", ok]
+    - key: kreis
+      name_de: "Szolnoki járás"
+      name_en: "Szolnok district"
+      ids: "Q831079 · rel 2376095 · admin_level 7"
+      hubs: {G: none, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND: kein Satz|GND: no record", check]
+    - key: landschaft
+      name_de: "Mitteltheiß"
+      name_en: "Middle Tisza"
+      ids_de: "„MiddleTisza“ im Datensatz"
+      ids_en: "“MiddleTisza” in the dataset"
+      hubs: {G: ok, W: open, O: none, F: ok}
+      kind: concept
+      gnd_slot: ["GND: 35 Treffer zu Theiß|GND: 35 hits for Tisza", ok]
+
+# Die Ebene daneben. Links eine Eingemeindung von 1972, rechts eine ganze
+# Familie von Landschaftsbegriffen -- beides führt nur die GND.
+aside:
+  lechtal:
+    name_de: "Haunstetten → Augsburg-Haunstetten"
+    name_en: "Haunstetten → Augsburg-Haunstetten"
+    ids_de: "GND 2012911-7 → 4096014-6"
+    ids_en: "GND 2012911-7 → 4096014-6"
+    hubs: {G: ok, W: open, O: open, F: none}
+    note_de: >-
+      Sieben Fundstellen des Pakets liegen in Haunstetten. Die GND führt es
+      zweimal: bis 30.06.1972 als eigene Gemeinde, ab 01.07.1972 als
+      Augsburg-Haunstetten mit Überordnung Augsburg. GeoNames hat für beide
+      dieselbe ID 2909053.
+    note_en: >-
+      Seven findspots of the package lie in Haunstetten. The GND holds it twice:
+      until 30 June 1972 as a municipality of its own, from 1 July 1972 as
+      Augsburg-Haunstetten under Augsburg. GeoNames has one id, 2909053, for both.
+  tisza:
+    name_de: "Theiß-Landschaften in der GND"
+    name_en: "Tisza landscapes in the GND"
+    ids_de: "35 Treffer · gin 7 · giz 7 · gik 15"
+    ids_en: "35 hits · gin 7 · giz 7 · gik 15"
+    hubs: {G: ok, W: open, O: none, F: ok}
+    note_de: >-
+      Theiß selbst 4106223-1 (gin + gik), dazu Obere Theiß, Theiß-Gebiet,
+      Theißwinkel, Tiszamente und Tiszántúl — sieben als Geografikum (giz).
+      OSM hat für keine davon eine Grenze.
+    note_en: >-
+      Tisza itself (4106223-1, gin + gik) plus Upper Tisza, Tisza region,
+      Theißwinkel, Danube-Tisza region and the Hungarian forms Tiszamente and
+      Tiszántúl — seven of them as a region record (giz). Exactly the kind of
+      unit “MiddleTisza” means, and OSM has no boundary for it.
+
+gnd_probe:
+  theiss_hits: 35
+  theiss_gnd: "4106223-1"
+  theiss_types_de: "gik 15 · gin 7 · giz 7 · giv 1 · giw 1 · ohne 6"
+  theiss_types_en: "gik 15 · gin 7 · giz 7 · giv 1 · giw 1 · none 6"
+  theiss_examples_de: "Theiß-Gebiet · Obere Theiß · Theißwinkel · Tiszamente · Tiszántúl"
+  theiss_examples_en: "Theiß-Gebiet · Obere Theiß · Theißwinkel · Tiszamente · Tiszántúl"
+  bagifoeldek_de: "Bagi-földek: 0 Treffer"
+  bagifoeldek_en: "Bagi-földek: 0 hits"
+  gewerbegebiet_de: "für ein Gewerbegebiet ist die GND nicht gedacht — und das ist richtig so"
+  gewerbegebiet_en: "a Gewerbegebiet is not what the GND is for — and rightly so"
+
+places:
+  kleinaitingen: {gnd: "4635172-3", type: gik, geonames: "2889814", coord_source: "GeoNames"}
+  landkreis_augsburg:
+    gnd: "4003617-0"
+    type: "gik + giv"
+    time_de: "01.01.1939–30.06.1972 · ab 01.05.1973"
+    time_en: "1 Jan 1939 – 30 Jun 1972 · from 1 May 1973"
+    predecessors: "Landkreis Schwabmünchen · Bezirk Augsburg"
+  haunstetten: {gnd: "2012911-7", type: gik, ended: "30.06.1972", geonames: "2909053"}
+  augsburg_haunstetten: {gnd: "4096014-6", type: gik, started: "01.07.1972", geonames: "2909053"}
+  rakoczifalva: {gnd: "1075762995", type: gik}
+  komitat_alt: {gnd: "4314881-5", type: "gik + giv", label: "Komitat Jász-Nagykun-Szolnok"}
+  komitat_neu: {gnd: "1220991-0", type: gik, started: "1989", predecessor: "Szolnok (Megye)"}
+
+terms:
+  aunjetitz:
+    name_de: "Aunjetitzer Kultur"
+    name_en: "Únětice culture"
+    gnd: "4143483-3"
+    type: saz
+    time: "v2300–v1500"
+    note_de: "Oberbegriff Bronzezeit · LCSH „Unetice culture“"
+    note_en: "broader term Bronze Age · LCSH “Unetice culture”"
+  awaren:
+    name_de: "Awaren"
+    name_en: "Avars"
+    gnd: "4004021-5"
+    type: sie
+    definition_de: "Frühmittelalterliches Reitervolk in Zentralasien und Ostmitteleuropa"
+    definition_en: "early medieval equestrian people in Central Asia and East Central Europe"
+    homonym_de: "daneben Awaren (Dagestaner), GND 7582513-2 — derselbe Name, ein anderes Volk"
+    homonym_en: "beside it Awaren (Dagestaner), GND 7582513-2 — the same name, a different people"
+
+maps:
+  # lon0, lon1, lat0, lat1
+  lechtal: [10.830, 10.874, 48.209, 48.234]
+  tisza: [20.13, 20.33, 47.03, 47.15]
+
+sources:
+  archive: "github.com/poseidon-framework/community-archive"
+  lod: "github.com/archaeonatural-cloud/poseidon2lod"
+  ontology: "github.com/archaeonatural-cloud/archaeonatural-ontology"
+  licence: "CC BY 4.0"
