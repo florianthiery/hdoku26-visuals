@@ -37,6 +37,7 @@ STEPS: list[tuple[str, str, str]] = [
     ("05", "step_05_ogham", "Case study Ogham: two stones, one grid (roles, chain of places, graph behind)"),
     ("06", "step_06_holy_wells", "Case study Holy Wells: two wells, area vs. point, and the saint behind them"),
     ("07", "step_07_geo_lod", "Case study geo-lod: two findspots, linked vs. unanchored (CI and SISAL)"),
+    ("08", "step_08_bb5kbc", "Case study bb-5kbc: Seelow 20 vs. Jordansmühl, one culture across a border"),
 ]
 
 

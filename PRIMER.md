@@ -110,7 +110,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S5 | Case Study Ogham (2 Steine) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/05-ogham/`) |
 | S6 | Case Study Holy Wells (2 Brunnen) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/06-holy-wells/`) |
 | S7 | Case Study geo-lod (CI-Fundstelle, SISAL-Höhle) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/07-geo-lod/`) |
-| S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | offen |
+| S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | erledigt 2026-09-29 (Grafiken A, B, C in `img/08-bb-5kbc/`) |
 | S9 | Case Study poseidon2lod (aDNA) | S1 | offen |
 
 S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
@@ -212,6 +212,26 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - **Offen / an Flo:** `sisal_sites.ttl` und `sisal_sites.csv` widersprechen sich bei den Probenzahlen (Liang Luar 4625 gegen 2715 δ¹⁸O, Chauvet 210 gegen 187). Die Grafik schreibt deshalb „über 2 700", was unter beiden Lesarten stimmt.
 - OSM-Flächen kommen aus drei `is_in`-Overpass-Abfragen; die Ringe sind mit Douglas-Peucker ausgedünnt (0,0004° bzw. 0,0012°) und auf 5 Nachkommastellen gerundet, damit die GeoJSONs im Repo klein bleiben.
 
+### S8 — Case Study bb-5kbc
+
+**Ziel:** Seelow 20 (Brandenburg) gegen Jordansmühl / Jordanów Śląski (Niederschlesien) — dieselbe Kultur (Stichbandkeramik), 254 km auseinander, und zwei völlig verschiedene Verortungswege.
+
+**Abnahme:** wie S2.
+
+#### Erledigt 2026-09-29
+
+- `py/step_08_bb5kbc.py` baut `rollen`, `ortskette`, `graph-dahinter` in DE und EN; die Abdeckungszahlen in Grafik A werden beim Bauen aus `bb5kbc/fst_wgs84.csv` über **verschiedene Orte** (nicht über Fundstellen) gezählt.
+- **Hauptbefund:** Die GND hat keinen Satz zu Jordanów Śląski und keinen zu Jordansmühl — aber sie hat die **Jordansmühler Kultur** (GND 1231725982, saz, v4300–v3900, Synonym Jordanów-Kultur), deren Definition lautet: „… Begriff 1906 von Hans Seger nach dem niederschlesischen Fundort Jordansmühl eingeführt". Der Ortsname überlebt in der GND also nur im Definitionstext eines Sachbegriffs — als Fließtext, nicht als Verknüpfung, und ohne dass es den Ort selbst gäbe. Das ist der Schluss von Grafik C.
+- **Zweiter Befund, und der freundlichste des ganzen Vortrags:** Die GND kann etwas, das weder OSM noch Wikidata systematisch können — **Orte datieren**. 4336493-7 (Märkisch-Oderland) beginnt 1992 und nennt Bad Freienwalde, Seelow und Strausberg als Vorgänger; Niederschlesien gibt es zweimal, als preußische Provinz 4042237-9 (1919–1938, 1941–1945) und als heutige Woiwodschaft 4596748-9. Eine Suche nach „Seelow" liefert denselben Namen als gik, giv, giz, gin und gir. Diese historischen Einheiten stehen in Grafik B als Ebene daneben — das Gegenstück zur Diözese (S6) und zur historischen Argolis (S7), diesmal zeitlich statt räumlich.
+- **Dritter Befund:** Der GND-Satz zu Seelow trägt eine Koordinate, **Quelle GeoNames**. Der Datenfluss von den Community-Hubs in die GND existiert also bereits; der Vortrag schlägt nichts Neues vor, sondern beschreibt, was schon passiert.
+- Abdeckung über verschiedene Orte: Gemeindeebene DE 239 Orte / TGN 42 / iDAI 2 / OSM 108; PL 74 Orte / TGN 0 / iDAI 0 / OSM 64. Kreisebene DE 37/13/1/17, PL 45/0/0/38. Getty TGN und iDAI.gazetteer enden an der Grenze, OSM trägt beide Seiten und auf der polnischen anteilig besser.
+- Kartenbefund in Grafik B: Jordansmühl und Dankwitz/Dankowice liegen auf **derselben Koordinate**, Gleinitz/Glinica 2 km daneben — alle drei „Mittelpunkt der Gemeinde". Drei Fundstellen, ein Punkt; die Umkehrung von Grafik 01.
+- Grafik C reicht auf deutscher Seite **unter** die Fundstelle: zwei Scherben mit eigenen Wikidata-Items (Q139477253, Q139477652, mit Foto und P2596 Kultur) und darüber die Denkmalnummer „Bodendenkmal Seelow 2" samt Aktivitätsnummer GV 2001:186/9g — eine eindeutige Ortskennung, die nur innerhalb des Landesdenkmalamts gilt.
+- **Offen / an Flo:** Das CSV zitiert „Völker 2002", das Wikidata-Item Q139304626 nennt 2003 als Erscheinungsjahr. Die Grafik schreibt „Völker 2003" nach dem Item.
+- **Offen / an Flo:** Q2191877 (Gmina Jordanów Śląski) trägt **zwei** P625-Koordinaten. In Grafik A als „im Datensatz vermerkt" markiert, nicht bewertet.
+- **Hinweis, kein Folieninhalt:** Bolko von Richthofen, Autor der Karte von 1930, war ein Vertreter der völkisch-nationalistischen Vorgeschichtsforschung der Zwischenkriegszeit und in den deutsch-polnischen Grenzdebatten aktiv. Die Grafiken nennen nur Autor, Titel und Jahr; falls im Publikum jemand nachfragt, ist der Kontext hiermit notiert.
+- OSM-Flächen aus drei `is_in`-Overpass-Abfragen, Ringe mit Douglas-Peucker ausgedünnt (0,0004° für Kreis- und Gemeindeebene, 0,002° für die beiden Locator-Umrisse) und auf 5 Nachkommastellen gerundet.
+
 ### S7–S9 — weitere Case Studies
 
 **Ziel:** Grafiken nach dem Case-Study-Raster (A4), Umfang je nach Beispiel (A + B, C wo der Graph dahinter zum Ort zurückführt): Holy Wells (u. a. St. Lachtain's Well Q121840779; Heilige statt Inschrift), geo-lod, bb-5kbc, poseidon2lod.
@@ -222,7 +242,7 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 |---|---|---|---|---|
 | S6 Holy Wells | St. Lachtain's Well (Q121840779): Wikidata, OSM-Way, SMR, dúchas, Namenspatron | ein Brunnen, den praktisch nur OSM und dúchas kennen | Wer hält den Ort überhaupt? | Brunnen, Townland, Civil Parish |
 | S7 geo-lod | CI-Fundstelle 45 Franchthi-Höhle (Q1441331, OSM-Node 1221172611, `fsl:high`) | SISAL-Standort 104 Liang Luar (kein QID, kein OSM-Objekt) | wie tief reicht die Verortung — bis auf die Höhle oder erst bis zur Insel | Gemeinde Ermionida in Argolis; Kabupaten Manggarai auf Flores |
-| S8 bb-5kbc | Fundstelle in Brandenburg | Fundstelle in Westpolen | GND-Satz und Gemeinde auf der einen, anderes nationales Register auf der anderen Seite — Internationalität wird gezeigt, nicht behauptet | Gemeinde bzw. Gmina, Staatsgrenze |
+| S8 bb-5kbc | Seelow 20 (Katalognr. 55005), SBK-Siedlung, aus den BLDAM-Denkmaldaten, ±0 m | Jordansmühl / Jordanów Śląski (Katalognr. 7), SBK, „Mittelpunkt der Gemeinde“ aus einer Karte von 1930, ±3000 m | GND-Satz und Gemeinde auf der einen, anderes nationales Register auf der anderen Seite — Internationalität wird gezeigt, nicht behauptet | Gemeinde bzw. Gmina, Staatsgrenze |
 | S9 poseidon2lod | Individuum von einer gut publizierten Fundstelle | Individuum, das nur über eine aggregierte Sammlung hängt | Wie weit reicht die Kette vom Individuum zum Ort? | Fundstelle, Verwaltungseinheit |
 
 Grafik C ist bei S6 gesetzt (Heiliger, Patrozinium, Kirche — bei Personen ist die GND dicht, die Kette trifft sie also von der anderen Seite) und bei S8 wahrscheinlich; bei S7 und S9 erst nach einem Blick in die Daten entscheiden.

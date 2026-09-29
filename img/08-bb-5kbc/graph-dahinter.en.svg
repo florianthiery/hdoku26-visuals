@@ -1,0 +1,188 @@
+<svg width="1750" height="1000" viewBox="0 0 1750 1000" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>The graph behind it: the sherd and the place name</title>
+<rect x="0" y="0" width="1750" height="1000" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="arrow-uncertain" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a03030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<text x="60.0" y="58.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">Seelow 20 · catalogue no. 55005</text>
+<text x="433.2" y="58.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">the chain reaches below the findspot — and ends at a number only the authority keeps</text>
+<rect x="60.0" y="74.0" width="591.2" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="355.6" y="85.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">Denkmaldaten / BLDAM 2021 · the coordinates were requested from the BLDAM and adopted</text>
+<rect x="60.0" y="150.0" width="196.0" height="58" rx="10" fill="#ffffff" stroke="#5f5e5a" stroke-width="1.4"/>
+<text x="158.0" y="171.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">sherd</text>
+<text x="158.0" y="191.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q139477253</text>
+<rect x="98.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="111.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="129.5" y="214.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="142.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="160.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="173.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="191.5" y="214.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="204.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="360.0" y="150.0" width="196.0" height="58" rx="10" fill="#ffffff" stroke="#5f5e5a" stroke-width="1.4"/>
+<text x="458.0" y="171.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">findspot Seelow 20</text>
+<text x="458.0" y="191.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.0" fill="#5f5e5a">catalogue no. 55005 · no QID</text>
+<rect x="398.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="411.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="429.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="442.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">W</text>
+<rect x="460.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="473.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="491.5" y="214.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="504.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="660.0" y="150.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="758.0" y="171.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="14.5" font-weight="500" fill="#2c2c2a">Bodendenkmal Seelow 2</text>
+<text x="758.0" y="191.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">GV 2001:186/9g</text>
+<rect x="698.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="711.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="729.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="742.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">W</text>
+<rect x="760.5" y="214.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="773.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="791.5" y="214.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="804.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="960.0" y="150.0" width="196.0" height="58" rx="10" fill="#ffffff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="1058.0" y="171.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">Seelow</text>
+<text x="1058.0" y="191.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q587069 · GND 4340023-1</text>
+<rect x="998.5" y="214.0" width="26" height="20" rx="4" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="1011.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="1029.5" y="214.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="1042.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="1060.5" y="214.0" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="1073.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="1091.5" y="214.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="1104.5" y="225.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<line x1="256.0" y1="179.0" x2="360.0" y2="179.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="308.0" y="165.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">from</text>
+<line x1="556.0" y1="179.0" x2="660.0" y2="179.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="608.0" y="165.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">recorded as</text>
+<line x1="856.0" y1="179.0" x2="960.0" y2="179.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="908.0" y="165.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">located in</text>
+<text x="654.0" y="254.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">The monument number and the activity number GV</text>
+<text x="654.0" y="268.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">2001:186/9g identify the place unambiguously —</text>
+<text x="654.0" y="283.7" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">but only inside the heritage authority. The</text>
+<text x="654.0" y="298.6" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">excavation happened because the B 1n bypass was</text>
+<text x="654.0" y="313.4" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">built.</text>
+<rect x="100.0" y="320.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="198.0" y="341.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="14.0" font-weight="500" fill="#2c2c2a">Stroke-ornamented ware</text>
+<text x="198.0" y="361.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q1932196 · GND 4183246-2</text>
+<rect x="138.5" y="384.0" width="26" height="20" rx="4" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="151.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="169.5" y="384.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="182.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="200.5" y="384.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="213.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="231.5" y="384.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="244.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="400.0" y="320.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="498.0" y="341.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">excavation report</text>
+<text x="498.0" y="361.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q139304626 · Völker 2003</text>
+<rect x="438.5" y="384.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="451.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="469.5" y="384.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="482.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="500.5" y="384.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="513.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="531.5" y="384.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="544.5" y="395.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<path d="M 158.0 238.0 L 158.0 298.0 L 498.0 298.0" fill="none" stroke="#73726c" stroke-width="1.6"/>
+<line x1="198.0" y1="298.0" x2="198.0" y2="320.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="498.0" y1="298.0" x2="498.0" y2="320.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="168.0" y="289.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">culture · P2596 · documented in</text>
+<line x1="60" y1="470" x2="1690" y2="470" stroke="#888780" stroke-width="1"/>
+<text x="60.0" y="516.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="20" font-weight="500" fill="#2c2c2a">Jordansmühl / Jordanów Śląski · catalogue no. 7</text>
+<text x="612.4" y="516.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-style="italic" fill="#5f5e5a">here the place name carries a whole culture — and has no record of its own</text>
+<rect x="60.0" y="532.0" width="833.1" height="22" rx="11.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="476.6" y="543.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#2c2c2a">von Richthofen 1930, Karte 2 · the municipality was looked up in digital map services and its approximate centre read off</text>
+<rect x="60.0" y="608.0" width="196.0" height="58" rx="10" fill="#ffffff" stroke="#5f5e5a" stroke-width="1.4"/>
+<text x="158.0" y="629.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">findspot</text>
+<text x="158.0" y="649.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">catalogue no. 7 · no QID</text>
+<rect x="98.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="111.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="129.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="142.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">W</text>
+<rect x="160.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="173.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="191.5" y="672.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="204.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="360.0" y="608.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="458.0" y="629.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">the name Jordansmühl</text>
+<text x="458.0" y="649.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="8.5" fill="#5f5e5a">German before 1945 · today Jordanów Śląski</text>
+<rect x="398.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="411.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="429.5" y="672.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="442.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="460.5" y="672.0" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="473.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="491.5" y="672.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="504.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="660.0" y="608.0" width="236.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="778.0" y="629.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">Jordanów culture</text>
+<text x="778.0" y="649.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">GND 1231725982 · saz · v4300–v3900</text>
+<rect x="718.5" y="672.0" width="26" height="20" rx="4" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="731.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="749.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="762.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="780.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="793.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="811.5" y="672.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="824.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="1000.0" y="608.0" width="196.0" height="58" rx="10" fill="#ffffff" stroke="#2c2c2a" stroke-width="1.8"/>
+<text x="1098.0" y="629.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="14.5" font-weight="500" fill="#2c2c2a">Gmina Jordanów Śląski</text>
+<text x="1098.0" y="649.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Q2191877 · rel 3049634</text>
+<rect x="1038.5" y="672.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="1051.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="1069.5" y="672.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="1082.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="1100.5" y="672.0" width="26" height="20" rx="4" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="1113.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#4f7a2a">O</text>
+<rect x="1131.5" y="672.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="1144.5" y="683.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<line x1="256.0" y1="637.0" x2="360.0" y2="637.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="308.0" y="623.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">named after</text>
+<line x1="556.0" y1="637.0" x2="660.0" y2="637.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="608.0" y="623.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-weight="500" font-size="11" fill="#2c2c2a">names, Seger 1906</text>
+<line x1="896.0" y1="637.0" x2="1000.0" y2="637.0" stroke="#a03030" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow-uncertain)"/>
+<text x="948.0" y="598.0" text-anchor="middle" dominant-baseline="auto" font-family="Fira Sans" font-size="11" font-weight="500" fill="#a03030">only in the definition text</text>
+<text x="654.0" y="712.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-style="italic" fill="#8a5a2a">&quot;Late Neolithic culture marking the final phase of the Lengyel</text>
+<text x="654.0" y="727.5" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-style="italic" fill="#8a5a2a">culture in eastern Central Europe; term introduced in 1906 by</text>
+<text x="654.0" y="743.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-style="italic" fill="#8a5a2a">Hans Seger after the Lower Silesian findspot of Jordansmühl&quot;</text>
+<text x="654.0" y="778.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">So the place name survives in the GND only inside the definition of</text>
+<text x="654.0" y="792.9" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">a subject term — as running text, not as a link, and without the</text>
+<text x="654.0" y="807.7" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11" fill="#a03030">place itself having a record at all.</text>
+<rect x="100.0" y="778.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="198.0" y="799.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="15.0" font-weight="500" fill="#2c2c2a">von Richthofen 1930</text>
+<text x="198.0" y="819.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="8.5" fill="#5f5e5a">Q139304635 · Blätter der Deutschen Vorgeschichte 7, pp. 18–52</text>
+<rect x="138.5" y="842.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="151.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">G</text>
+<rect x="169.5" y="842.0" width="26" height="20" rx="4" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="182.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#386870">W</text>
+<rect x="200.5" y="842.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="213.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="231.5" y="842.0" width="26" height="20" rx="4" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="244.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#666666">F</text>
+<rect x="400.0" y="778.0" width="196.0" height="58" rx="29" fill="#ffffff" stroke="#7a5a9a" stroke-width="1.4"/>
+<text x="498.0" y="799.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="10.5" font-weight="500" fill="#2c2c2a">Province of Lower Silesia (1919–1938)</text>
+<text x="498.0" y="819.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">GND 4042237-9</text>
+<rect x="438.5" y="842.0" width="26" height="20" rx="4" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="451.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#8a5a2a">G</text>
+<rect x="469.5" y="842.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#9a9890" stroke-width="1.2" stroke-dasharray="3 2"/>
+<text x="482.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="12" font-weight="500" fill="#9a9890">?</text>
+<rect x="500.5" y="842.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="513.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">O</text>
+<rect x="531.5" y="842.0" width="26" height="20" rx="4" fill="#ffffff" stroke="#d3d1ca" stroke-width="1.2"/>
+<text x="544.5" y="853.0" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#c9c7c0">F</text>
+<path d="M 158.0 696.0 L 158.0 756.0 L 498.0 756.0" fill="none" stroke="#73726c" stroke-width="1.6"/>
+<line x1="198.0" y1="756.0" x2="198.0" y2="778.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="498.0" y1="756.0" x2="498.0" y2="778.0" stroke="#73726c" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="168.0" y="747.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="11.5" font-weight="500" fill="#2c2c2a">georeferenced from · map 2 of</text>
+<rect x="60.0" y="916.0" width="1381.4" height="28" rx="14.0" fill="#e8e8e8" stroke="#666666" stroke-width="1.2"/>
+<text x="750.7" y="930.5" text-anchor="middle" dominant-baseline="central" font-family="Fira Sans" font-size="13" font-weight="500" fill="#2c2c2a">Two findspots of the same culture, 254 km apart: for one, every level above the findspot has a GND record; for the other, the place name survives in the GND only as the name of a culture.</text>
+<rect x="60.0" y="962.0" width="16" height="16" rx="3" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.4"/>
+<text x="84.0" y="970.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">GND</text>
+<rect x="250.0" y="962.0" width="16" height="16" rx="3" fill="#dce8ea" stroke="#386870" stroke-width="1.4"/>
+<text x="274.0" y="970.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">Wikidata / Wikibase</text>
+<rect x="440.0" y="962.0" width="16" height="16" rx="3" fill="#e3eed9" stroke="#4f7a2a" stroke-width="1.4"/>
+<text x="464.0" y="970.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">OpenStreetMap</text>
+<rect x="630.0" y="962.0" width="16" height="16" rx="3" fill="#e8e8e8" stroke="#666666" stroke-width="1.4"/>
+<text x="654.0" y="970.0" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#2c2c2a">research data</text>
+</svg>

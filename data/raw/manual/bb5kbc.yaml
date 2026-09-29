@@ -1,0 +1,242 @@
+# bb5kbc.yaml -- everything for the bb-5kbc case study (step 08) that is not in
+# the enriched CSV or in one of the Wikidata/OSM exports.
+#
+# Two findspots of the same culture (Stichbandkeramik), 500 km apart, from the
+# dataset of https://github.com/Research-Squirrel-Engineers/bb-5kbc-sites:
+# Seelow 20 in Brandenburg, georeferenced from the state heritage authority's
+# own database, against Jordansmühl / Jordanów Śląski in Lower Silesia,
+# georeferenced from a printed map of 1930 by reading off the centre of the
+# municipality.
+#
+# GND numbers and entity types were looked up by hand in the GND Explorer on
+# 2026-09-29. The entity type matters here: the GND separates a Gebiets-
+# körperschaft (gik) from an administrative unit (giv), a region (giz) and a
+# natural geographic unit (gin), and it dates them -- which is the one thing
+# neither OSM nor Wikidata records this systematically.
+
+sites:
+  seelow:
+    katalognr: "55005"
+    fst_id: "406"
+    title_de: "Seelow 20 · Märkisch-Oderland, Brandenburg"
+    title_en: "Seelow 20 · Märkisch-Oderland, Brandenburg"
+    claim_de: "aus der Datenbank des Landesdenkmalamts übernommen"
+    claim_en: "taken from the state heritage authority's database"
+    monument_de: "Bodendenkmal Seelow 2"
+    monument_en: "Bodendenkmal Seelow 2"
+    activity: "GV 2001:186/9g"
+    occasion_de: "Ortsumgehung der B 1n"
+    occasion_en: "the B 1n bypass"
+    # Übersetzung der verbatim aus dem CSV übernommenen Methodenbeschreibung,
+    # damit die englische Fassung lesbar bleibt.
+    method_en: "the coordinates were requested from the BLDAM and adopted"
+  jordansmuehl:
+    katalognr: "7"
+    title_de: "Jordansmühl / Jordanów Śląski · Woiwodschaft Niederschlesien"
+    title_en: "Jordansmühl / Jordanów Śląski · Lower Silesian Voivodeship"
+    claim_de: "Mittelpunkt der Gemeinde, aus einer gedruckten Karte von 1930"
+    claim_en: "centre of the municipality, read off a printed map of 1930"
+    # Dieselbe Koordinate wie Dankwitz/Dankowice (Katalognr. 6); Gleinitz/
+    # Glinica (23) liegt 2 km daneben. Drei Fundstellen, ein Punkt.
+    shares_point_with: ["6"]
+    nearby: ["23"]
+    method_en: >-
+      the municipality was looked up in digital map services and its approximate
+      centre read off
+
+# Die beiden Ortsketten. Die Kennungen unterhalb kommen aus dem CSV, die
+# GND-Nummern aus der Handrecherche.
+chain:
+  seelow:
+    - key: site
+      name_de: "Seelow 20"
+      name_en: "Seelow 20"
+      ids_de: "Katalognr. 55005 · kein QID"
+      ids_en: "catalogue no. 55005 · no QID"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: ["GND denkbar (Bodendenkmal)|GND conceivable (monument)", pot]
+    - key: gemeinde
+      name_de: "Seelow"
+      name_en: "Seelow"
+      ids: "Q587069 · rel 1332928 · admin_level 8"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4340023-1", ok]
+    - key: kreis
+      name_de: "Landkreis Märkisch-Oderland"
+      name_en: "Märkisch-Oderland district"
+      ids: "Q6181 · rel 318248 · admin_level 6"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4336493-7", ok]
+    - key: land
+      name_de: "Brandenburg"
+      name_en: "Brandenburg"
+      ids: "Q1208 · rel 62504 · admin_level 4"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4007955-7", ok]
+  jordansmuehl:
+    - key: site
+      name_de: "Jordansmühl / Jordanów Śląski"
+      name_en: "Jordansmühl / Jordanów Śląski"
+      ids_de: "Katalognr. 7 · kein QID"
+      ids_en: "catalogue no. 7 · no QID"
+      hubs: {G: none, W: none, O: none, F: ok}
+      kind: object
+      gnd_slot: ["GND: 0 Treffer|GND: 0 hits", check]
+    - key: gemeinde
+      name_de: "Gmina Jordanów Śląski"
+      name_en: "Gmina Jordanów Śląski"
+      ids: "Q2191877 · rel 3049634 · admin_level 7"
+      hubs: {G: none, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND: 0 Treffer|GND: 0 hits", check]
+    - key: kreis
+      name_de: "Powiat wrocławski"
+      name_en: "Powiat wrocławski"
+      ids: "Q715974 · rel 451517 · admin_level 6"
+      hubs: {G: none, W: ok, O: ok, F: none}
+      kind: place
+      gnd_slot: ["GND: kein Satz|GND: no record", check]
+    - key: land
+      name_de: "Woiwodschaft Niederschlesien"
+      name_en: "Lower Silesian Voivodeship"
+      ids: "Q54150 · rel 224457 · admin_level 4"
+      hubs: {G: ok, W: ok, O: ok, F: ok}
+      kind: place
+      gnd_slot: ["GND 4596748-9", ok]
+
+# Die Ebene daneben ist in dieser Fallstudie eine zeitliche: beide Ketten haben
+# einen Vorgänger, den es heute nicht mehr gibt und den die GND trotzdem führt.
+# Genau das kann OSM nicht und Wikidata nur unvollständig.
+aside:
+  seelow:
+    name_de: "Landkreis Seelow (bis 1992)"
+    name_en: "Landkreis Seelow (until 1992)"
+    ids_de: "GND-Vorgänger von 4336493-7"
+    ids_en: "GND predecessor of 4336493-7"
+    hubs: {G: ok, W: open, O: none, F: none}
+    note_de: >-
+      4336493-7 beginnt 1992 und nennt drei Vorgänger: Bad Freienwalde, Seelow
+      und Strausberg. Eine Suche nach „Seelow“ liefert denselben Namen als gik,
+      giv, giz und gin.
+    note_en: >-
+      4336493-7 begins in 1992 and names three predecessors: Bad Freienwalde,
+      Seelow and Strausberg. A search for “Seelow” returns the same name as gik,
+      giv, giz and gin.
+  jordansmuehl:
+    name_de: "Provinz Niederschlesien (1919–1938)"
+    name_en: "Province of Lower Silesia (1919–1938)"
+    ids_de: "GND 4042237-9"
+    ids_en: "GND 4042237-9"
+    hubs: {G: ok, W: open, O: none, F: none}
+    note_de: >-
+      Zwei Niederschlesien: die preußische Provinz 4042237-9, datiert und mit
+      Vorgänger Schlesien, und die heutige Woiwodschaft 4596748-9. Die Karte,
+      aus der verortet wurde, meint die erste.
+    note_en: >-
+      Two Lower Silesias: the Prussian province 4042237-9, dated and with Silesia
+      as its predecessor, and today's voivodeship 4596748-9. The map it was
+      georeferenced from means the first.
+
+# Was die GND-Recherche am 2026-09-29 ergeben hat.
+gnd_probe:
+  seelow_hits_de: >-
+    Suche „Seelow“, Filter Geografikum: Treffer als gik, giv, giz, gin und gir
+  seelow_hits_en: >-
+    search “Seelow”, filter Geografikum: hits as gik, giv, giz, gin and gir
+  seelow_coord_de: "Koordinate im GND-Satz, Quelle GeoNames"
+  seelow_coord_en: "coordinate in the GND record, source GeoNames"
+  jordanow_de: "Jordanów Śląski: 0 Treffer · Jordansmühl: kein Geografikum"
+  jordanow_en: "Jordanów Śląski: 0 hits · Jordansmühl: no place record"
+  dolnoslaskie_hits: 21
+  dolnoslaskie_de: >-
+    Eine Suche nach „Dolnośląskie“ liefert 21 Geografika in Polen, darunter
+    Wahlstatt (Liegnitz) und Milejowice (Wrocław) — Jordanów Śląski ist nicht
+    dabei.
+  dolnoslaskie_en: >-
+    A search for “Dolnośląskie” returns 21 places in Poland, among them
+    Wahlstatt (Liegnitz) and Milejowice (Wrocław) — Jordanów Śląski is not
+    among them.
+  dankowice_de: >-
+    Und „Dankowice“ führt auf GND 1243188049, ein Dankowice in der Gemeinde
+    Wilamowice, rund 250 km entfernt — derselbe Name, ein anderer Ort.
+  dankowice_en: >-
+    And “Dankowice” leads to GND 1243188049, a Dankowice in the municipality of
+    Wilamowice some 250 km away — the same name, a different place.
+
+# Die Begriffe. Hier ist die GND dicht, und hier schließt sich Grafik C.
+terms:
+  sbk:
+    name_de: "Stichbandkeramik"
+    name_en: "Stroke-ornamented ware"
+    wikidata: Q1932196
+    gnd: "4183246-2"
+    gnd_type: "saz"
+    broader_de: "Oberbegriff: Bandkeramik · GND-Systematik 16.3"
+    broader_en: "broader term: Linear Pottery · GND classification 16.3"
+  jordanow:
+    name_de: "Jordansmühler Kultur"
+    name_en: "Jordanów culture"
+    gnd: "1231725982"
+    gnd_type: "saz"
+    synonym: "Jordanów-Kultur"
+    time: "v4300–v3900"
+    definition_de: >-
+      „Jungneolithische Kultur, welche die Endphase der Lengyel-Kultur im
+      östlichen Mitteleuropa markiert, Begriff 1906 von Hans Seger nach dem
+      niederschlesischen Fundort Jordansmühl eingeführt“
+    definition_en: >-
+      "Late Neolithic culture marking the final phase of the Lengyel culture in
+      eastern Central Europe; term introduced in 1906 by Hans Seger after the
+      Lower Silesian findspot of Jordansmühl"
+    note_de: >-
+      Der Ortsname steht in der GND also nur im Definitionstext eines
+      Sachbegriffs — als Fließtext, nicht als Verknüpfung, und ohne dass es den
+      Ort selbst als Satz gäbe.
+    note_en: >-
+      So the place name survives in the GND only inside the definition of a
+      subject term — as running text, not as a link, and without the place
+      itself having a record at all.
+
+publications:
+  voelker:
+    wikidata: Q139304626
+    short: "Völker 2003"
+    title_de: "Abschlussbericht zur archäologischen Hauptuntersuchung … Bodendenkmal Seelow 2"
+    title_en: "Final report on the main archaeological investigation … Bodendenkmal Seelow 2"
+    kind_de: "Grabungsbericht, unveröffentlicht"
+    kind_en: "excavation report, unpublished"
+    # Das CSV zitiert „Völker 2002", das Wikidata-Item nennt 2003 als
+    # Erscheinungsjahr -- vor dem Vortrag klären.
+    csv_year: "2002"
+    wikidata_year: "2003"
+  richthofen:
+    wikidata: Q139304635
+    short: "von Richthofen 1930"
+    title_de: "Zur bandkeramischen Besiedlung im Bereich der unteren Weichsel und Oder"
+    title_en: "Zur bandkeramischen Besiedlung im Bereich der unteren Weichsel und Oder"
+    kind_de: "Blätter der Deutschen Vorgeschichte 7, S. 18–52"
+    kind_en: "Blätter der Deutschen Vorgeschichte 7, pp. 18–52"
+
+sherds:
+  - wikidata: Q139477253
+    label: "Seelow20_ArchivNr2002-21 18-4-1 Gef133"
+    desc_de: "Gefäßreste eines stichbandkeramischen Bechers aus Seelow, Märkisch-Oderland"
+    desc_en: "sherds of a stroke-ornamented beaker from Seelow, Märkisch-Oderland"
+  - wikidata: Q139477652
+    label: "Seelow20_ArchivNr2002-21_18-13-1_Gef019"
+    desc_de: "Gefäßreste eines stichbandkeramischen Bechers aus Seelow 20"
+    desc_en: "sherds of a stroke-ornamented beaker from Seelow 20"
+
+maps:
+  # lon0, lon1, lat0, lat1
+  seelow: [13.85, 14.75, 52.35, 52.78]
+  jordansmuehl: [16.55, 17.35, 50.70, 51.10]
+
+sources:
+  repo: "github.com/Research-Squirrel-Engineers/bb-5kbc-sites"
+  authors: "Sophie C. Schmidt, Florian Thiery"
+  licence: "Code MIT, Daten CC BY 4.0"
