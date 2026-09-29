@@ -1,0 +1,217 @@
+# abschluss.yaml -- die drei Abschlussgrafiken (Schritt 10).
+#
+# Hier steht nichts Neues. Jede Zeile fasst zusammen, was eine der fünf
+# Fallstudien gezeigt hat, und nennt im Feld ``source`` die Fallstudie und die
+# Stelle, an der es dort steht. Die Grafiken sind bewusst textarm: Marke,
+# kurzes Label, Beleg.
+
+# --------------------------------------------------------------------------- #
+# Grafik 1: Arbeitsteilung. Vier Spalten, je Zeile eine Fähigkeit.
+# Marken: "ok" = kann das, "part" = teilweise, leer = nein.
+# --------------------------------------------------------------------------- #
+matrix:
+  - de: "Zeit am Ort"
+    en: "time attached to a place"
+    marks: {G: ok}
+    source: "bb-5kbc · Poseidon"
+  - de: "Namensvarianten, historische Formen"
+    en: "name variants, historical forms"
+    marks: {G: ok, W: part}
+    source: "bb-5kbc"
+  - de: "Landschaft und Naturraum"
+    en: "landscapes and natural regions"
+    marks: {G: ok, W: part}
+    source: "geo-lod · Poseidon"
+  - de: "Begriffe neben dem Ort"
+    en: "terms beside the place"
+    marks: {G: ok, W: ok, F: part}
+    source: "Holy Wells · bb-5kbc"
+  - de: "Fläche statt Punkt"
+    en: "an area instead of a point"
+    marks: {O: ok, W: part}
+    source: "Holy Wells"
+  - de: "unterhalb der Verwaltung"
+    en: "below the administrative levels"
+    marks: {O: ok, F: part}
+    source: "Poseidon"
+  - de: "gleich tief über Grenzen hinweg"
+    en: "the same depth across borders"
+    marks: {O: ok, W: ok}
+    source: "bb-5kbc"
+  - de: "Aktualität"
+    en: "currency"
+    marks: {O: ok}
+    source: "Poseidon"
+  - de: "die Kante zwischen den Systemen"
+    en: "the edge between the systems"
+    marks: {W: ok}
+    source: "alle fünf"
+  - de: "Beleg am Einzelfakt"
+    en: "a reference on the single statement"
+    marks: {W: ok, F: part}
+    source: "Ogham · Holy Wells"
+  - de: "was kein Ort ist"
+    en: "what is not a place"
+    marks: {W: ok, G: part}
+    source: "Holy Wells · bb-5kbc"
+  - de: "Fachtiefe"
+    en: "subject depth"
+    marks: {F: ok}
+    source: "alle fünf"
+
+limits:
+  G:
+    de: "kein Objekt unterhalb des Denkmals, keine Geometrie"
+    en: "nothing below the monument, no geometry"
+  W:
+    de: "keine redaktionelle Kontrolle"
+    en: "no editorial control"
+  O:
+    de: "keine Zeit, keine Namensautorität"
+    en: "no time, no name authority"
+  F:
+    de: "endet an der Landesgrenze"
+    en: "stops at the national border"
+
+# --------------------------------------------------------------------------- #
+# Grafik 2: Was fehlt, ist meistens eine Kante.
+# --------------------------------------------------------------------------- #
+edges:
+  - case: "geo-lod"
+    from_de: "Q1441331"
+    from_en: "Q1441331"
+    to: "GND 4228929-4"
+    missing_de: "P227 fehlt — beide Sätze zur Franchthi-Höhle gibt es"
+    missing_en: "P227 is missing — both records for Franchthi Cave exist"
+    cost_de: "eine Aussage"
+    cost_en: "one statement"
+    kind: edge
+  - case: "Ogham"
+    from_de: "OSM-Node CIIC 81"
+    from_en: "OSM node CIIC 81"
+    to: "Q130529871"
+    missing_de: "der Tag zeigt auf ein Sammel-Item statt auf den Stein"
+    missing_en: "the tag points at an umbrella item, not at the stone"
+    cost_de: "ein Tag"
+    cost_en: "one tag"
+    kind: edge
+  - case: "Holy Wells"
+    from_de: "Q60554307"
+    from_en: "Q60554307"
+    to: "rel 5331080"
+    missing_de: "P402 nennt eine von zwei Relationen mit derselben Logainm-Nummer"
+    missing_en: "P402 names one of two relations carrying the same Logainm number"
+    cost_de: "eine Aussage"
+    cost_en: "one statement"
+    kind: edge
+  - case: "Poseidon"
+    from_de: "„MiddleTisza“"
+    from_en: "“MiddleTisza”"
+    to: "GND 4106223-1"
+    missing_de: "der Datensatz schreibt einen String, die GND hat die Landschaft"
+    missing_en: "the dataset writes a string, the GND holds the landscape"
+    cost_de: "ein Mapping"
+    cost_en: "one mapping"
+    kind: edge
+  - case: "bb-5kbc"
+    from_de: "Jordanów Śląski"
+    from_en: "Jordanów Śląski"
+    to_de: "kein Satz"
+    to_en: "no record"
+    missing_de: "der Ortsname lebt nur im Definitionstext eines Sachbegriffs"
+    missing_en: "the place name survives only in the definition of a subject term"
+    cost_de: "ein Normdatensatz"
+    cost_en: "an authority record"
+    kind: record
+
+edges_note:
+  de: >-
+    Vier von fünf Lücken sind eine Aussage weit. Und der Fluss läuft schon in
+    beide Richtungen: die Koordinate im GND-Satz zu Seelow stammt aus GeoNames.
+  en: >-
+    Four of five gaps are one statement wide. And the flow already runs both
+    ways: the coordinate in the GND record for Seelow comes from GeoNames.
+
+# --------------------------------------------------------------------------- #
+# Grafik 3: Tiefe der Verortung.
+#
+# Fünf Stufen, von grob nach fein. ``depth`` ist die feinste Stufe, auf der der
+# Hub für dieses Beispiel tatsächlich einen Eintrag hat -- abgelesen aus den
+# Ortsketten der jeweiligen Fallstudie (Grafik B), Stand 2026-09-29.
+# --------------------------------------------------------------------------- #
+levels:
+  - {de: "Land, Region", en: "country, region"}
+  - {de: "Kreis, Baronie", en: "district, barony"}
+  - {de: "Gemeinde, Pfarrei", en: "municipality, parish"}
+  - {de: "unterhalb der Gemeinde", en: "below the municipality"}
+  - {de: "Einzelobjekt", en: "single object"}
+
+depth:
+  - case: "Ogham"
+    label_de: "CIIC 81 · Garranes"
+    label_en: "CIIC 81 · Garranes"
+    depth: {G: 4, W: 5, O: 5, F: 5}
+    note_de: "GND: das Ringfort, eine Ebene über dem Stein"
+    note_en: "GND: the ringfort, one level above the stone"
+    source: "step 05, Ortskette, Band CIIC 81"
+  - case: "Ogham"
+    label_de: "CIIC 178 · Dunmore Head"
+    label_en: "CIIC 178 · Dunmore Head"
+    depth: {G: 1, W: 5, O: 5, F: 5}
+    source: "step 05, Ortskette, Band CIIC 178"
+  - case: "Holy Wells"
+    label_de: "St. Lachtain's Well"
+    label_en: "St. Lachtain's Well"
+    depth: {G: 2, W: 4, O: 4, F: 4}
+    source: "step 06, Ortskette"
+  - case: "Holy Wells"
+    label_de: "St. Fiachra's Well"
+    label_en: "St. Fiachra's Well"
+    depth: {G: 2, W: 4, O: 4, F: 4}
+    note_de: "Unterschied hier: die Geometrie, nicht die Tiefe"
+    note_en: "the difference here is geometry, not depth"
+    source: "step 06, Ortskette"
+  - case: "geo-lod"
+    label_de: "Franchthi-Höhle"
+    label_en: "Franchthi Cave"
+    depth: {G: 4, W: 4, O: 4, F: 4}
+    note_de: "alle vier gleich tief — und trotzdem unverbunden"
+    note_en: "all four equally deep — and still unconnected"
+    source: "step 07, Ortskette"
+  - case: "geo-lod"
+    label_de: "Liang Luar"
+    label_en: "Liang Luar"
+    depth: {G: 1, W: 2, O: 2, F: 4}
+    source: "step 07, Ortskette"
+  - case: "bb-5kbc"
+    label_de: "Seelow 20"
+    label_en: "Seelow 20"
+    depth: {G: 3, W: 3, O: 3, F: 4}
+    source: "step 08, Ortskette"
+  - case: "bb-5kbc"
+    label_de: "Jordansmühl"
+    label_en: "Jordansmühl"
+    depth: {G: 1, W: 3, O: 3, F: 4}
+    source: "step 08, Ortskette"
+  - case: "Poseidon"
+    label_de: "AITI_119 · Lechtal"
+    label_en: "AITI_119 · Lech valley"
+    depth: {G: 3, W: 3, O: 4, F: 5}
+    note_de: "OSM reicht tiefer als alle anderen: das Gewerbegebiet"
+    note_en: "OSM reaches deeper than the rest: the industrial estate"
+    source: "step 09, Ortskette"
+  - case: "Poseidon"
+    label_de: "RKC001 · Mitteltheiß"
+    label_en: "RKC001 · Middle Tisza"
+    depth: {G: 3, W: 3, O: 3, F: 5}
+    source: "step 09, Ortskette"
+
+depth_note:
+  de: >-
+    Die Fachdaten reichen fast immer am tiefsten — sie sind die Fundstelle.
+    Die GND ist nicht flach, sondern ungleichmäßig: einmal bis zum Denkmal,
+    dreimal nur bis zum Land.
+  en: >-
+    The research data almost always reaches deepest — it is the findspot. The
+    GND is not shallow but uneven: once down to the monument, three times only
+    to the country.

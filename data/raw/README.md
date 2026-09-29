@@ -66,6 +66,7 @@ written by the pipeline, and no step reaches the network.
 | `osm/boundaries-lechtal.geojson` | Kleinaitingen (935162) in the Augsburg district (62622), the named commercial area `Gewerbegebiet Kleinaitingen` (way 376729440) and the Unterer Talweg (ways 33401827, 186888644) | Overpass turbo (`out geom`), 2026-09-29 (ODbL) |
 | `osm/boundaries-tisza.geojson` | Rákóczifalva (1273070) in the Szolnok district (2376095), plus the statistical region Alföld és Észak (22793). A query for `Bagi-földek` within 3 km returned nothing, which is the finding | Overpass turbo (`out geom`), 2026-09-29 (ODbL) |
 | `manual/poseidon.yaml` | Step 09: GND numbers with entity types (Theiß 4106223-1 and the 35 hits around it, Kleinaitingen 4635172-3, Haunstetten 2012911-7 → 4096014-6, Rákóczifalva 1075762995), both chains, the map windows | supplied by Florian Thiery, 2026-09-29 (GND Explorer) |
+| `manual/abschluss.yaml` | Step 10: the summary the three closing figures draw — the capability matrix, the five gaps and the depth table. Nothing new: every row names the case study it mirrors in its `source` field | compiled from steps 05–09, 2026-09-29 |
 | `ct/facts.yaml` | Figures and facts stated in the c't article (GND/Wikidata numbers, cooperation, picture credits), with page | transcribed from the article, 2026-09-22 |
 | `ct/quotes.yaml` | Quotations from c't 19/2026, pp. 118–121 (E. Giardina), with page, speaker and status | transcribed from the article, 2026-09-22 |
 

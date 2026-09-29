@@ -112,6 +112,7 @@ Dazu bei Bedarf das c't-PDF (nicht ins Repo).
 | S7 | Case Study geo-lod (CI-Fundstelle, SISAL-Höhle) | S1 | erledigt 2026-09-28 (Grafiken A, B, C in `img/07-geo-lod/`) |
 | S8 | Case Study bb-5kbc (Brandenburg/Westpolen) | S1 | erledigt 2026-09-29 (Grafiken A, B, C in `img/08-bb-5kbc/`) |
 | S9 | Case Study poseidon2lod (aDNA) | S1 | erledigt 2026-09-29 (Grafiken A, B, C in `img/09-poseidon/`) |
+| S10 | Abschluss (Arbeitsteilung, fehlende Kanten, Tiefe der Verortung) | S5–S9 | erledigt 2026-09-29 (Grafiken in `img/10-abschluss/`) |
 
 S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 
@@ -248,6 +249,20 @@ S3–S9 hängen nur vom Skelett ab; Reihenfolge laut A4: S3, S4, dann S5–S9.
 - **Befund fürs Repo, nicht für die Folie:** Die Länder-QIDs in `poseidon_LOD.ttl` sind überwiegend nicht die Standard-Items — Germany Q41304 statt Q183, Hungary Q16410 statt Q28, Poland Q171348 statt Q36, Greece Q11772 statt Q41, USA Q229623 statt Q30 und weitere; richtig sind China Q148, Mongolei Q711, Tschechien Q213. Ursache ist vermutlich die Annahme in `queryWikidata.py`, es könne keine zwei Länder mit demselben Label geben — das stimmt für gegenwärtige Staaten, nicht für Wikidata mit seinen historischen Vorgängern. Ein zusätzlicher Filter auf `P31 wd:Q6256` sollte es beheben.
 - **Offen / an Flo:** `owl:sameAs` kommt in den 149 MB genau zweimal vor; die Modellierung setzt konsequent auf `arno:closeMatch`. Das ist als bewusste Entscheidung im README begründet und in Grafik A entsprechend neutral dargestellt.
 - Karten diesmal kleinräumig (3 × 2,5 km bzw. Gemeindeausschnitt), weil die Fallstudie von der Art des Namens handelt und die nur im Nahbereich sichtbar ist. Locator sind Landkreis Augsburg und Kreis Szolnok. Die Bundesland-Ebene war über `is_in` nicht zu bekommen (Overpass-Timeout) und wird nicht gebraucht.
+
+### S10 — Abschluss
+
+**Ziel:** Drei Grafiken, die die fünf Fallstudien zusammenfassen, ohne sie zu wiederholen — bewusst textarm, weil die Fallstudien selbst schon dicht sind.
+
+**Abnahme:** wie S2.
+
+#### Erledigt 2026-09-29
+
+- `py/step_10_abschluss.py` baut `arbeitsteilung`, `fehlende-kante` und `tiefe` in DE und EN. Alle Werte stehen in `manual/abschluss.yaml`; jede Zeile nennt im Feld `source` die Fallstudie, die sie belegt. Es kommen keine neuen Daten dazu.
+- **Arbeitsteilung:** zwölf Fähigkeiten gegen vier Spalten, nur Punkte statt Text. Die GND gewinnt Zeit am Ort, Namensvarianten, Landschaft und Begriffe; OSM Fläche, alles unterhalb der Verwaltung, gleiche Tiefe über Grenzen und Aktualität; Wikidata die Kante, den Beleg am Einzelfakt und alles, was kein Ort ist; die Fachdaten die Fachtiefe. Darunter eine Zeile je Spalte, wo es aufhört — das nimmt der Grafik die Spitze.
+- **Fehlende Kante:** fünf Lücken, vier davon eine Aussage weit (P227 bei Franchthi, der OSM-Tag bei CIIC 81, P402 bei Freshford, das Mapping von „MiddleTisza"), eine braucht wirklich einen Normdatensatz (Jordanów Śląski). Schlusssatz: der Fluss läuft schon in beide Richtungen, die Koordinate im GND-Satz zu Seelow stammt aus GeoNames.
+- **Tiefe der Verortung:** fünf Stufen von Land bis Einzelobjekt, zehn Beispiele, je vier Balken. Abgelesen aus den Ortsketten der Fallstudien. Befund: die Fachdaten reichen fast immer am tiefsten, weil sie die Fundstelle *sind*; die GND ist nicht flach, sondern **ungleichmäßig** — einmal bis zum Denkmal (Ringfort Garranes), einmal bis zur Höhle selbst (Franchthi), dreimal nur bis zum Land.
+- **Offen / an Flo:** Die Tiefenwerte in `abschluss.yaml` sind aus den Grafiken B der Fallstudien abgelesen und dort doppelt gehalten. Wenn sich an einer Ortskette etwas ändert, muss die Tabelle nachgezogen werden; das Feld `source` sagt jeweils wo.
 
 ### S7–S9 — weitere Case Studies
 

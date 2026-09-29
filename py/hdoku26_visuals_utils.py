@@ -56,6 +56,7 @@ OUT_DIRS = {
     "07-geo-lod": IMG / "07-geo-lod",
     "08-bb-5kbc": IMG / "08-bb-5kbc",
     "09-poseidon": IMG / "09-poseidon",
+    "10-abschluss": IMG / "10-abschluss",
 }
 
 MARGIN_X = 60

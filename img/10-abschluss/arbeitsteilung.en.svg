@@ -1,0 +1,104 @@
+<svg width="1750" height="1000" viewBox="0 0 1750 1000" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Division of labour: what each system holds best</title>
+<rect x="0" y="0" width="1750" height="1000" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="arrow-uncertain" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#a03030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<text x="60.0" y="78.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="24" font-weight="500" fill="#2c2c2a">None of the four replaces another.</text>
+<text x="720.0" y="132.0" text-anchor="middle" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-weight="500" fill="#8a5a2a">GND</text>
+<text x="920.0" y="132.0" text-anchor="middle" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-weight="500" fill="#386870">Wikidata</text>
+<text x="1120.0" y="132.0" text-anchor="middle" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-weight="500" fill="#4f7a2a">OpenStreetMap</text>
+<text x="1320.0" y="132.0" text-anchor="middle" dominant-baseline="auto" font-family="Fira Sans" font-size="15" font-weight="500" fill="#666666">research data</text>
+<line x1="60" y1="152" x2="1690" y2="152" stroke="#888780" stroke-width="1"/>
+<rect x="60" y="152" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="178.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">time attached to a place</text>
+<circle cx="720" cy="178.0" r="11" fill="#8a5a2a"/>
+<circle cx="920" cy="178.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1120" cy="178.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="178.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="178.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">bb-5kbc · Poseidon</text>
+<text x="76.0" y="230.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">name variants, historical forms</text>
+<circle cx="720" cy="230.0" r="11" fill="#8a5a2a"/>
+<circle cx="920" cy="230.0" r="9" fill="#dce8ea" stroke="#386870" stroke-width="1.6"/>
+<circle cx="1120" cy="230.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="230.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="230.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">bb-5kbc</text>
+<rect x="60" y="256" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="282.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">landscapes and natural regions</text>
+<circle cx="720" cy="282.0" r="11" fill="#8a5a2a"/>
+<circle cx="920" cy="282.0" r="9" fill="#dce8ea" stroke="#386870" stroke-width="1.6"/>
+<circle cx="1120" cy="282.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="282.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="282.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">geo-lod · Poseidon</text>
+<text x="76.0" y="334.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">terms beside the place</text>
+<circle cx="720" cy="334.0" r="11" fill="#8a5a2a"/>
+<circle cx="920" cy="334.0" r="11" fill="#386870"/>
+<circle cx="1120" cy="334.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="334.0" r="9" fill="#e8e8e8" stroke="#666666" stroke-width="1.6"/>
+<text x="1674.0" y="334.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Holy Wells · bb-5kbc</text>
+<rect x="60" y="360" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="386.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">an area instead of a point</text>
+<circle cx="720" cy="386.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="386.0" r="9" fill="#dce8ea" stroke="#386870" stroke-width="1.6"/>
+<circle cx="1120" cy="386.0" r="11" fill="#4f7a2a"/>
+<circle cx="1320" cy="386.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="386.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Holy Wells</text>
+<text x="76.0" y="438.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">below the administrative levels</text>
+<circle cx="720" cy="438.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="438.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1120" cy="438.0" r="11" fill="#4f7a2a"/>
+<circle cx="1320" cy="438.0" r="9" fill="#e8e8e8" stroke="#666666" stroke-width="1.6"/>
+<text x="1674.0" y="438.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Poseidon</text>
+<rect x="60" y="464" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="490.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">the same depth across borders</text>
+<circle cx="720" cy="490.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="490.0" r="11" fill="#386870"/>
+<circle cx="1120" cy="490.0" r="11" fill="#4f7a2a"/>
+<circle cx="1320" cy="490.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="490.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">bb-5kbc</text>
+<text x="76.0" y="542.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">currency</text>
+<circle cx="720" cy="542.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="542.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1120" cy="542.0" r="11" fill="#4f7a2a"/>
+<circle cx="1320" cy="542.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="542.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Poseidon</text>
+<rect x="60" y="568" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="594.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">the edge between the systems</text>
+<circle cx="720" cy="594.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="594.0" r="11" fill="#386870"/>
+<circle cx="1120" cy="594.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="594.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="594.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">alle fünf</text>
+<text x="76.0" y="646.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">a reference on the single statement</text>
+<circle cx="720" cy="646.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="646.0" r="11" fill="#386870"/>
+<circle cx="1120" cy="646.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="646.0" r="9" fill="#e8e8e8" stroke="#666666" stroke-width="1.6"/>
+<text x="1674.0" y="646.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Ogham · Holy Wells</text>
+<rect x="60" y="672" width="1630" height="52" rx="8" fill="#f4f3ef"/>
+<text x="76.0" y="698.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">what is not a place</text>
+<circle cx="720" cy="698.0" r="9" fill="#f3e6d6" stroke="#8a5a2a" stroke-width="1.6"/>
+<circle cx="920" cy="698.0" r="11" fill="#386870"/>
+<circle cx="1120" cy="698.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="698.0" r="2.5" fill="#d8d6cf"/>
+<text x="1674.0" y="698.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">Holy Wells · bb-5kbc</text>
+<text x="76.0" y="750.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="15" fill="#2c2c2a">subject depth</text>
+<circle cx="720" cy="750.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="920" cy="750.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1120" cy="750.0" r="2.5" fill="#d8d6cf"/>
+<circle cx="1320" cy="750.0" r="11" fill="#666666"/>
+<text x="1674.0" y="750.0" text-anchor="end" dominant-baseline="central" font-family="Fira Sans" font-size="11.5" fill="#5f5e5a">alle fünf</text>
+<text x="76.0" y="810.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="13" font-weight="500" fill="#5f5e5a">And where it stops:</text>
+<rect x="76" y="825" width="6" height="22" rx="3" fill="#8a5a2a"/>
+<text x="92.0" y="835.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#8a5a2a">GND</text>
+<text x="92.0" y="852.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#5f5e5a">nothing below the monument, no geometry</text>
+<rect x="486" y="825" width="6" height="22" rx="3" fill="#386870"/>
+<text x="502.0" y="835.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#386870">Wikidata</text>
+<text x="502.0" y="852.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#5f5e5a">no editorial control</text>
+<rect x="896" y="825" width="6" height="22" rx="3" fill="#4f7a2a"/>
+<text x="912.0" y="835.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#4f7a2a">OpenStreetMap</text>
+<text x="912.0" y="852.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#5f5e5a">no time, no name authority</text>
+<rect x="1306" y="825" width="6" height="22" rx="3" fill="#666666"/>
+<text x="1322.0" y="835.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12.5" font-weight="500" fill="#666666">research data</text>
+<text x="1322.0" y="852.0" text-anchor="start" dominant-baseline="central" font-family="Fira Sans" font-size="12" fill="#5f5e5a">stops at the national border</text>
+<text x="60.0" y="962.0" text-anchor="start" dominant-baseline="auto" font-family="Fira Sans" font-size="12" fill="#5f5e5a">filled: holds it · open: in part</text>
+</svg>
